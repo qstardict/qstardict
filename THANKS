@@ -1,6 +1,7 @@
 Thanks to:
     Petr Vanek whoes offer some improves
-    Andrew Gaydenko whoes help to fix bug with building in x86_64
-    Vadim Kalinnikov whoes give hosting
-    Hoopoe whoes add traditional chinese translation
+    Andrew Gaydenko whoes help to fix a  bug with building in x86_64
+    Vadim Kalinnikov whoes give a hosting
+    Hoopoe whoes add a traditional chinese translation
+    Yurij Goncharuck whoes fix bug when popup window violates from desktop
 

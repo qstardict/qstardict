@@ -3,9 +3,9 @@
 
 #include <QObject>
 
-#include <list>
 #include <string>
 #include <vector>
+#include <QFlags>
 #include <QStringList>
 class Libs;
 
@@ -14,6 +14,15 @@ class DictCore: public QObject
         Q_OBJECT
 
     public:
+        enum TranslationFlag
+        {
+            None,
+            Simple,
+            Html,
+            Reformat
+        };
+        Q_DECLARE_FLAGS(TranslationFlags, TranslationFlag)
+
         DictCore(QObject *parent = 0);
         ~DictCore();
 
@@ -27,35 +36,38 @@ class DictCore: public QObject
 
         QStringList find(const QString &str);
         bool isTranslatable(const QString &str);
-        QString translate(const QString &str, bool simple = false, bool useHtml = true);
+        QString translate(const QString &str, TranslationFlags flags = TranslationFlags(None) | Reformat);
 
         static QStringList findDicts(const QString &dir);
 
     private:
-        struct SearchResult
+        class SearchResult
         {
-            std::string dictName;
-            std::string def;
-            std::string exp;
-            SearchResult(const std::string &dictName_, const std::string &def_, const std::string &exp_)
-                    : dictName(dictName_), def(def_), exp(exp_)
-            { }
-        }
-        ;
+            public:
+                QString dictName;
+                QString def;
+                QString exp;
+
+                SearchResult(const char *_dictName, const char *_def, const char *_exp)
+                        : dictName(QString::fromUtf8(_dictName)),
+                          def(QString::fromUtf8(_def)),
+                          exp(QString::fromUtf8(_exp))
+                { }
+        };
         typedef std::vector<SearchResult> SearchResultList;
 
         void simpleLookup(const std::string &str, SearchResultList &resultList);
         void lookupWithFuzzy(const std::string &str, SearchResultList &resultList);
         void lookupWithRule(const std::string &str, SearchResultList &resultList);
         void lookupData(const std::string &str, SearchResultList &resultList);
+        QString translation(const QString &str, const QString &dict);
 
         Libs *sdLibs;
         QStringList m_dictDirs;
         QStringList m_orderedDicts;
-
-        static std::string parse_data(const char *data);
-        static std::string xdxf2text(const char *p);
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(DictCore::TranslationFlags)
 
 #endif // DICTCORE_H
 

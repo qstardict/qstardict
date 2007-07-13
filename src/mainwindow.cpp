@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setupUi(this);
     m_dict = new DictCore(this);
+    translationView->setDict(m_dict);
     popup = new PopupWindow(m_dict, this);
 
     menu_Options->insertAction(menu_Options->actions().first(), wordsListDock->toggleViewAction());
@@ -115,10 +116,10 @@ void MainWindow::saveToFileAction()
         {
             QMessageBox::warning(this, tr("Error"),
                                  tr("Cannot save translation"));
-            return ;
+            return;
         }
         QTextStream outputStream(&outputFile);
-        outputStream << m_dict->translate(searchBox->text(), false, false);
+        outputStream << m_dict->translate(searchBox->text(), DictCore::Reformat);
     }
 }
 
@@ -128,13 +129,13 @@ void MainWindow::queryButtonClicked()
         return ;
     wordsList->clear();
     wordsList->addItems(m_dict->find(searchBox->text()));
-    translationView->setHtml(m_dict->translate(searchBox->text()));
+    translationView->translate(searchBox->text());
 }
 
 void MainWindow::wordsListItemActivated(QListWidgetItem *item)
 {
     searchBox->setText(item->text());
-    translationView->setText(m_dict->translate(item->text()));
+    translationView->translate(item->text());
 }
 
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)

@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QDesktopWidget>
 #include <QSettings>
 #include <QTextBrowser>
 #include <QTimer>
@@ -100,10 +101,20 @@ void PopupWindow::xSelectionChanged()
     m_source.remove(QRegExp("\\W.*$"));
     if (m_showIfNotFound || m_dict->isTranslatable(m_source))
     {
-        QString translated = m_dict->translate(m_source, true);
+        QString translated = m_dict->translate(m_source, DictCore::Simple | DictCore::Html);
         translationView->setHtml(translated);
         translationView->adjustSize();
-        move(cursor().pos() - QPoint(30, 30));
+
+        QPoint newPosition = cursor().pos() - QPoint(30, 30);
+        if (newPosition.x() < 0)
+            newPosition.setX(0);
+        else if (newPosition.x() + width() > QApplication::desktop()->width())
+            newPosition.setX(QApplication::desktop()->width() - width());
+        if (newPosition.y() < 0)
+            newPosition.setY(0);
+        else if (newPosition.y() + height() > QApplication::desktop()->height())
+            newPosition.setY(QApplication::desktop()->height() - height());
+        move(newPosition);
         show();
     }
 }

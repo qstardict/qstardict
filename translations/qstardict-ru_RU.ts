@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
-<defaultcodec></defaultcodec>
+<!DOCTYPE TS><TS version="1.1" language="ru_RU">
 <context>
     <name>DictCore</name>
     <message>
-        <location filename="../src/dictcore.cpp" line="148"/>
+        <location filename="../src/dictcore.cpp" line="152"/>
         <source>Not found!</source>
         <translation type="unfinished">Не найдено!</translation>
     </message>
@@ -17,119 +16,124 @@
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="95"/>
+        <location filename="../src/mainwindow.cpp" line="96"/>
         <source>About QStarDict</source>
         <translation type="unfinished">О программе QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="96"/>
+        <location filename="../src/mainwindow.cpp" line="97"/>
         <source>&lt;b&gt;QStarDict </source>
         <translation type="unfinished">&lt;b&gt;QStarDict </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="97"/>
+        <location filename="../src/mainwindow.cpp" line="98"/>
         <source>&lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation type="unfinished">&lt;/b&gt; - версия StarDict, написаная с использование библиотеки Qt&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="97"/>
+        <location filename="../src/mainwindow.cpp" line="98"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation type="unfinished">Copyright (C) 2007 Александр Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="109"/>
+        <location filename="../src/mainwindow.cpp" line="110"/>
         <source>Save translation</source>
         <translation type="unfinished">Сохранить перевод</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="116"/>
+        <location filename="../src/mainwindow.cpp" line="117"/>
         <source>Error</source>
         <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="117"/>
+        <location filename="../src/mainwindow.cpp" line="118"/>
         <source>Cannot save translation</source>
         <translation type="unfinished">Невозможно сохранить перевод</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="47"/>
+        <location filename="../ui/mainwindow.ui" line="40"/>
         <source>Clear the search box</source>
         <translation type="unfinished">Очистить строку поиска</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="50"/>
+        <location filename="../ui/mainwindow.ui" line="43"/>
         <source>Clear</source>
         <translation type="unfinished">Очистить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="66"/>
+        <location filename="../ui/mainwindow.ui" line="59"/>
         <source>Fuzzy query</source>
         <translation type="unfinished">Неточный запрос</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="69"/>
+        <location filename="../ui/mainwindow.ui" line="62"/>
         <source>Search</source>
         <translation type="unfinished">Поиск</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="88"/>
+        <location filename="../ui/mainwindow.ui" line="84"/>
         <source>Words list</source>
         <translation type="unfinished">Список слов</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="118"/>
         <source>Help</source>
-        <translation type="unfinished">Справка</translation>
+        <translation type="obsolete">Справка</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="125"/>
+        <location filename="../ui/mainwindow.ui" line="126"/>
         <source>&amp;Settings</source>
         <translation type="unfinished">&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="132"/>
+        <location filename="../ui/mainwindow.ui" line="133"/>
         <source>&amp;File</source>
         <translation type="unfinished">&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="147"/>
+        <location filename="../ui/mainwindow.ui" line="157"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="150"/>
+        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished">Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
+        <location filename="../ui/mainwindow.ui" line="165"/>
         <source>&amp;About</source>
         <translation type="unfinished">&amp;О программе QStarDict</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
+        <location filename="../ui/mainwindow.ui" line="170"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished">О &amp;библиотеке Qt</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="168"/>
+        <location filename="../ui/mainwindow.ui" line="178"/>
         <source>&amp;Configure QStarDict</source>
         <translation type="unfinished">&amp;Конфигурация</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="176"/>
+        <location filename="../ui/mainwindow.ui" line="186"/>
         <source>&amp;Scan</source>
         <translation type="unfinished">&amp;Сканировать</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
+        <location filename="../ui/mainwindow.ui" line="194"/>
         <source>&amp;Save to file</source>
         <translation type="unfinished">&amp;Сохранить в файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="187"/>
+        <location filename="../ui/mainwindow.ui" line="197"/>
         <source>Ctrl+S</source>
         <translation type="unfinished">Ctrl+s</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="140"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished">&amp;Справка</translation>
     </message>
 </context>
 <context>

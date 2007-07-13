@@ -17,29 +17,22 @@
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
-    <property name="margin" >
-     <number>9</number>
-    </property>
-    <property name="spacing" >
-     <number>6</number>
-    </property>
-    <item row="1" column="0" >
-     <widget class="QTextBrowser" name="translationView" >
-      <property name="minimumSize" >
-       <size>
-        <width>240</width>
-        <height>320</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0" >
      <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
       <property name="spacing" >
        <number>6</number>
+      </property>
+      <property name="leftMargin" >
+       <number>0</number>
+      </property>
+      <property name="topMargin" >
+       <number>0</number>
+      </property>
+      <property name="rightMargin" >
+       <number>0</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>0</number>
       </property>
       <item>
        <widget class="QToolButton" name="searchClearButton" >
@@ -75,6 +68,9 @@
       </item>
      </layout>
     </item>
+    <item row="1" column="0" >
+     <widget class="DictWidget" native="1" name="translationView" />
+    </item>
    </layout>
   </widget>
   <widget class="QDockWidget" name="wordsListDock" >
@@ -92,10 +88,22 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
     <layout class="QGridLayout" >
-     <property name="margin" >
+     <property name="leftMargin" >
       <number>9</number>
      </property>
-     <property name="spacing" >
+     <property name="topMargin" >
+      <number>9</number>
+     </property>
+     <property name="rightMargin" >
+      <number>9</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>9</number>
+     </property>
+     <property name="horizontalSpacing" >
+      <number>6</number>
+     </property>
+     <property name="verticalSpacing" >
       <number>6</number>
      </property>
      <item row="0" column="0" >
@@ -113,13 +121,6 @@
      <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
-     <string>Help</string>
-    </property>
-    <addaction name="actionAbout" />
-    <addaction name="actionAboutQt" />
-   </widget>
    <widget class="QMenu" name="menu_Options" >
     <property name="title" >
      <string>&amp;Settings</string>
@@ -134,11 +135,20 @@
     <addaction name="actionSaveToFile" />
     <addaction name="actionQuit" />
    </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout" />
+    <addaction name="actionAboutQt" />
+   </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Options" />
    <addaction name="menuHelp" />
   </widget>
+  <!--
   <widget class="QStatusBar" name="statusbar" />
+  -->
   <action name="actionQuit" >
    <property name="icon" >
     <iconset resource="../resources/qstardict.qrc" >:/icons/application-exit.png</iconset>
@@ -188,11 +198,17 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DictWidget</class>
+   <extends>QWidget</extends>
+   <header>src/dictwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>searchBox</tabstop>
   <tabstop>queryButton</tabstop>
   <tabstop>wordsList</tabstop>
-  <tabstop>translationView</tabstop>
   <tabstop>searchClearButton</tabstop>
  </tabstops>
  <resources>

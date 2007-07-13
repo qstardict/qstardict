@@ -9,15 +9,20 @@
 #include "lib/lib.h"
 #include "lib/file.hpp"
 
+namespace
+{
+std::string xdxf2html(const char *p);
+std::string parse_data(const char *data);
+QString html2text(QString html);
+}
+
 DictCore::DictCore(QObject *parent)
         : QObject(parent)
 {
     sdLibs = NULL;
 #ifdef Q_OS_UNIX
-
     m_dictDirs << "/usr/share/stardict/dic";
 #else
-
     m_dictDirs << QCoreApplication::applicationDirPath() + "/dic";
 #endif // Q_OS_UNIX
 
@@ -87,8 +92,7 @@ QStringList DictCore::findDicts(const QString &dir)
     QStringList result = QDir(dir).entryList(QStringList("*.ifo"), QDir::Files);
 
     for (QStringList::Iterator dictName = result.begin(); dictName != result.end(); dictName++)
-        dictName->remove
-        (QRegExp("\\.ifo$"));
+        dictName->remove(QRegExp("\\.ifo$"));
     return result;
 }
 
@@ -98,8 +102,8 @@ QStringList DictCore::find(const QString &str)
     lookupWithFuzzy(str.toUtf8().data() + std::string("*"), resultList);
     QStringList result;
     for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); i++)
-        if (! result.contains(QString::fromUtf8(i->def.c_str())))
-            result << QString::fromUtf8(i->def.c_str());
+        if (! result.contains(i->def))
+            result << i->def;
 
     return result;
 }
@@ -115,7 +119,7 @@ bool DictCore::isTranslatable(const QString &str)
     return false;
 }
 
-QString DictCore::translate(const QString &str, bool simple, bool useHtml)
+QString DictCore::translate(const QString &str, TranslationFlags flags)
 {
     SearchResultList resultList;
     std::string query;
@@ -123,7 +127,7 @@ QString DictCore::translate(const QString &str, bool simple, bool useHtml)
     if (str.isEmpty())
         return tr("Not found!");
 
-    if (simple)
+    if (flags.testFlag(Simple))
         switch (analyze_query(str.toUtf8().data(), query))
         {
         case qtFUZZY:
@@ -146,20 +150,58 @@ QString DictCore::translate(const QString &str, bool simple, bool useHtml)
 
     if (resultList.empty())
         return tr("Not found!");
-
-    std::string result;
-    if (useHtml)
-        for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); i++)
-            result += "<p><font color=blue><i>" + i->dictName + "</i></font><br/>"
-                      "<font size=5><b>" + i->def + "</b></font><br/>" +
-                      "" + i->exp + "</p>";
+    
+    QString result;
+    if (flags.testFlag(Html))
+        for (SearchResultList::iterator i = resultList.begin(); i != resultList.end(); ++i)
+        {
+            if (flags.testFlag(Reformat))
+            {
+                if (i->exp.contains(QRegExp("\\d[>\\.]")))
+                {
+                    i->exp.insert(i->exp.indexOf(QRegExp("\\d[>\\.]")), "<ol>");
+                    i->exp.append("</li></ol>");
+                    i->exp.replace(QRegExp("1>"), "<li>");
+                    i->exp.replace(QRegExp("\\d+[>\\.]"), "</li><li>");
+                }
+#if 0
+                if (i->exp.contains(QRegExp("_\\S*")))
+                {
+                    QRegExp rx("_\\S*");
+                    int pos = 0;
+                    while ((pos = rx.indexIn(i->exp, pos)) != -1)
+                    {
+                        QString result = translation(i->exp.mid(pos, rx.matchedLength()), i->dictName);
+                        QChar lastChar = i->exp[pos + rx.matchedLength() - 1];
+                        if (! result.isEmpty())
+                        {
+                            result.remove(QRegExp("^\\s*"));
+                            result.remove(QRegExp("^\\s*"));
+                            result.remove("<br>");
+                            if (lastChar == ':')
+                                result.append(":");
+                            else if (lastChar == '.')
+                                result.prepend("(").append(")");
+                            i->exp.replace(pos, rx.matchedLength(), "<font class=\"explanation\">" + result + "</font>");
+                        }
+                    }
+                }
+#endif
+            }
+            result += "<p><font class=\"normal\"><font class=\"dict_name\">" + i->dictName + "</font><br>"
+                      "<font class=\"title\">" + i->def + "</font>";
+            if (! result.contains("<ol>"))
+                result += "<br>";
+            result += i->exp + "</font></p>";
+//            result.replace("\n", "<br>");
+//            result.replace("<br>\\s*<br>", "<br>");
+        }
     else
         for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); i++)
             result += "<-- " + i->dictName + " -->\n" +
                       "--> " + i->def + "\n" +
-                      i->exp + "\n\n";
-
-    return QString::fromUtf8(result.c_str());
+                      html2text(i->exp) + "\n\n";
+    return result;
 }
 
 void DictCore::simpleLookup(const std::string &str, SearchResultList &resultList) // taken from sdcv
@@ -169,9 +211,18 @@ void DictCore::simpleLookup(const std::string &str, SearchResultList &resultList
     for (int idict = 0; idict < sdLibs->ndicts(); idict++)
         if (sdLibs->SimpleLookupWord(str.c_str(), ind, idict))
             resultList.push_back(
-                SearchResult(sdLibs->dict_name(idict),
+                SearchResult(sdLibs->dict_name(idict).c_str(),
                              sdLibs->poGetWord(ind, idict),
-                             parse_data(sdLibs->poGetWordData(ind, idict))));
+                             parse_data(sdLibs->poGetWordData(ind, idict)).c_str()));
+}
+
+QString DictCore::translation(const QString &str, const QString &dict)
+{
+    long ind;
+    for (int idict = 0; idict < sdLibs->ndicts(); idict++)
+        if (sdLibs->dict_name(idict) == dict.toUtf8().data() && sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
+            return QString::fromUtf8(parse_data(sdLibs->poGetWordData(ind, idict)).c_str());
+    return QString();
 }
 
 void DictCore::lookupWithFuzzy(const std::string &str, SearchResultList &resultList) // taken from sdcv
@@ -219,33 +270,17 @@ void DictCore::lookupData(const std::string &str, SearchResultList &resultList)
         }
 }
 
-std::string DictCore::xdxf2text(const char *p) // taken from sdcv
+namespace
+{
+std::string xdxf2html(const char *p) // taken from sdcv
 {
     std::string res;
     for (; *p; ++p)
     {
         if (*p != '<')
         {
-            if (g_str_has_prefix(p, "&gt;"))
-            {
-                res += ">";
-                p += 3;
-            }
-            else if (g_str_has_prefix(p, "&lt;"))
-            {
-                res += "<";
-                p += 3;
-            }
-            else if (g_str_has_prefix(p, "&amp;"))
-            {
-                res += "&";
-                p += 4;
-            }
-            else if (g_str_has_prefix(p, "&quot;"))
-            {
-                res += "\"";
-                p += 5;
-            }
+            if (*p == '\n')
+                res += "<br>";
             else
                 res += *p;
             continue;
@@ -258,9 +293,9 @@ std::string DictCore::xdxf2text(const char *p) // taken from sdcv
         std::string name(p + 1, next - p - 1);
 
         if (name == "abr")
-            res += "";
+            res += "<font class=\"abbreviature\">";
         else if (name == "/abr")
-            res += "";
+            res += "</font>";
         else if (name == "k")
         {
             const char *begin = next;
@@ -269,22 +304,14 @@ std::string DictCore::xdxf2text(const char *p) // taken from sdcv
             else
                 next = begin;
         }
-        else if (name == "b")
-            res += "";
-        else if (name == "/b")
-            res += "";
-        else if (name == "i")
-            res += "";
-        else if (name == "/i")
-            res += "";
         else if (name == "tr")
-            res += "[";
+            res += "<font style=\"transcription\">[";
         else if (name == "/tr")
-            res += "]";
+            res += "]</font>";
         else if (name == "ex")
-            res += "";
+            res += "<font style=\"example\">";
         else if (name == "/ex")
-            res += "";
+            res += "</font>";
         else if (!name.empty() && name[0] == 'c' && name != "co")
         {
             std::string::size_type pos = name.find("code");
@@ -308,8 +335,7 @@ std::string DictCore::xdxf2text(const char *p) // taken from sdcv
     return res;
 }
 
-
-std::string DictCore::parse_data(const char *data) // taken from sdcv
+std::string parse_data(const char *data) // taken from sdcv
 {
     using std::string;
 
@@ -345,7 +371,7 @@ std::string DictCore::parse_data(const char *data) // taken from sdcv
             {
                 res += "\n";
                 m_str = g_strndup(p, sec_size);
-                res += xdxf2text(m_str);
+                res += xdxf2html(m_str);
                 g_free(m_str);
             }
             sec_size++;
@@ -373,8 +399,17 @@ std::string DictCore::parse_data(const char *data) // taken from sdcv
         }
         p += sec_size;
     }
-
-
     return res;
+}
+
+QString html2text(QString html)
+{
+    return html.replace("<br>", "\n").
+                replace("&lt;", "<").
+                replace("&gt;", ">").
+                replace("&amp;", "&").
+                replace("&quot;", "\"").
+                remove(QRegExp("<.*>"));
+}
 }
 

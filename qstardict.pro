@@ -30,7 +30,8 @@ HEADERS += \
     src/dictcore.h \
     src/popupwindow.h \
     src/settingsdialog.h \
-    src/keyboard.h
+    src/keyboard.h \
+    src/dictwidget.h
 SOURCES += \
     src/lib/dictziplib.cpp \
     src/lib/distance.cpp \
@@ -40,12 +41,14 @@ SOURCES += \
     src/main.cpp \
     src/popupwindow.cpp \
     src/settingsdialog.cpp \
-    src/keyboard.cpp
+    src/keyboard.cpp \
+    src/dictwidget.cpp
 RESOURCES += \
     resources/qstardict.qrc \
     translations/translations.qrc
 TRANSLATIONS += \
     translations/qstardict-ru_RU.ts \
+    translations/qstardict-ua_UA.ts \
     translations/qstardict-zh_TW.ts
 DISTFILES += \
     AUTHORS \
