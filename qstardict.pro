@@ -2,7 +2,7 @@
 
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.03
+VERSION = 0.04
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
@@ -65,14 +65,21 @@ UI_DIR = build
 RCC_DIR = build
 
 unix {
+    lrelease.output = ${QMAKE_FILE_BASE}.qm
+    lrelease.commands = lrelease -compress ${QMAKE_FILE_NAME}
+    lrelease.input = TRANSLATIONS
+    lrelease.CONFIG = no_link
+    QMAKE_EXTRA_COMPILERS += lrelease
+
     INSTALL_PREFIX=/usr
 
-    target.path = $$INSTALL_PREFIX/bin
-    icon.files = resources/qstardict.png
-    icon.path = $$INSTALL_PREFIX/share/pixmaps
-    desktop_file.files = resources/qstardict.desktop
-    desktop_file.path = $$INSTALL_PREFIX/share/applications
-    INSTALLS += target icon desktop_file
+    binaries.files += $$DESTDIR/$$TARGET
+    binaries.path = $$INSTALL_PREFIX/bin
+    icons.files += resources/qstardict.png
+    icons.path = $$INSTALL_PREFIX/share/pixmaps
+    desktop_files.files += resources/qstardict.desktop
+    desktop_files.path = $$INSTALL_PREFIX/share/applications
+    INSTALLS += binaries icons desktop_files
 }
 
 ! unix: warning("Popup window will not properly work on this platform")
