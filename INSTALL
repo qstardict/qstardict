@@ -1,0 +1,7 @@
+You need Qt >= 4.2.
+
+To build and install:
+1)	qmake
+2)	make
+3)	make install
+
