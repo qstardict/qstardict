@@ -1,6 +1,9 @@
+# QStarDict - Qt version of StarDict
+
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.01
+VERSION = 0.02
+DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
     gui \
@@ -13,12 +16,6 @@ CONFIG += \
 PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
-
-DESTDIR = bin
-OBJECTS_DIR = build
-MOC_DIR = build
-UI_DIR = build
-RCC_DIR = build
 
 RESOURCES += \
     resources/qstardict.qrc
@@ -44,7 +41,29 @@ SOURCES += \
     src/main.cpp \
     src/popupwindow.cpp \
     src/settingsdialog.cpp
+DISTFILES += \
+    AUTHORS \
+    COPYNG \
+    ChangeLog \
+    INSTALL \
+    README \
+    resources/qstardict.desktop
 
-target.path += /usr/local/bin
-INSTALLS += target
+DESTDIR = bin
+OBJECTS_DIR = build
+MOC_DIR = build
+UI_DIR = build
+RCC_DIR = build
+CFLAGS += " -pedantic "
+
+unix {
+    INSTALL_PREFIX=/usr
+
+    target.path = $$INSTALL_PREFIX/bin
+    icon.files = resources/qstardict.png
+    icon.path = $$INSTALL_PREFIX/share/pixmaps
+    desktop_file.files = resources/qstardict.desktop
+    desktop_file.path = $$INSTALL_PREFIX/share/applications
+    INSTALLS += target icon desktop_file
+}
 

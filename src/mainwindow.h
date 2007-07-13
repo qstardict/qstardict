@@ -10,8 +10,8 @@ class PopupWindow;
 class SettingsDialog;
 
 class MainWindow: public QMainWindow, private Ui::MainWindow
-{   
-    Q_OBJECT
+{
+        Q_OBJECT
 
     public:
         MainWindow(QWidget *parent = 0);
@@ -20,7 +20,8 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
     private slots:
         void aboutAction();
         void settingsAction();
-        
+        void saveToFileAction();
+
         void queryButtonClicked();
         void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
         void wordsListItemActivated(QListWidgetItem *item);

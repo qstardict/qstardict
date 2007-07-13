@@ -1,16 +1,16 @@
 <RCC>
     <qresource prefix="/icons" >
-        <file>back.png</file>
-        <file>clear.png</file>
-        <file>down.png</file>
-        <file>forward.png</file>
-        <file>icon.png</file>
-        <file>info.png</file>
-        <file>qstardict.qrc</file>
-        <file>quit.png</file>
-        <file>save.png</file>
-        <file>search.png</file>
-        <file>settings.png</file>
-        <file>up.png</file>
+        <file>application-exit.png</file>
+        <file>arrow-down.png</file>
+        <file>arrow-left.png</file>
+        <file>arrow-right.png</file>
+        <file>arrow-up.png</file>
+        <file>clear-right.png</file>
+        <file>configure.png</file>
+        <file>document-save-as.png</file>
+        <file>list-add.png</file>
+        <file>list-remove.png</file>
+        <file>qstardict.png</file>
+        <file>search-filter.png</file>
     </qresource>
 </RCC>

@@ -8,7 +8,7 @@ class MainWindow;
 
 class SettingsDialog: public QDialog, private Ui::SettingsDialog
 {
-    Q_OBJECT
+        Q_OBJECT
 
     public:
         SettingsDialog(MainWindow *parent);
@@ -20,8 +20,14 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
         void moveDownButtonClick();
         void moveLeftButtonClick();
         void moveRightButtonClick();
+        void addDictDirButtonClick();
+        void removeDictDirButtonClick();
+        void moveUpDictDirButtonClick();
+        void moveDownDictDirButtonClick();
 
     private:
+        void updateOrder();
+
         MainWindow *mainWindow;
 };
 

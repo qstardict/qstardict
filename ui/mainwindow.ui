@@ -13,14 +13,26 @@
    <string>QStarDict</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../resources/qstardict.qrc" >:/icons/icon.png</iconset>
+   <iconset resource="../resources/qstardict.qrc" >:/icons/qstardict.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
-    <property name="margin" >
+    <property name="leftMargin" >
      <number>9</number>
     </property>
-    <property name="spacing" >
+    <property name="topMargin" >
+     <number>9</number>
+    </property>
+    <property name="rightMargin" >
+     <number>9</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>9</number>
+    </property>
+    <property name="horizontalSpacing" >
+     <number>6</number>
+    </property>
+    <property name="verticalSpacing" >
      <number>6</number>
     </property>
     <item row="1" column="0" >
@@ -35,11 +47,20 @@
     </item>
     <item row="0" column="0" >
      <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
       <property name="spacing" >
        <number>6</number>
+      </property>
+      <property name="leftMargin" >
+       <number>0</number>
+      </property>
+      <property name="topMargin" >
+       <number>0</number>
+      </property>
+      <property name="rightMargin" >
+       <number>0</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>0</number>
       </property>
       <item>
        <widget class="QToolButton" name="searchClearButton" >
@@ -50,7 +71,7 @@
          <string>Clear</string>
         </property>
         <property name="icon" >
-         <iconset resource="../resources/qstardict.qrc" >:/icons/clear.png</iconset>
+         <iconset resource="../resources/qstardict.qrc" >:/icons/clear-right.png</iconset>
         </property>
         <property name="toolButtonStyle" >
          <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -69,7 +90,7 @@
          <string>Search</string>
         </property>
         <property name="icon" >
-         <iconset resource="../resources/qstardict.qrc" >:/icons/search.png</iconset>
+         <iconset resource="../resources/qstardict.qrc" >:/icons/search-filter.png</iconset>
         </property>
        </widget>
       </item>
@@ -92,10 +113,22 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
     <layout class="QGridLayout" >
-     <property name="margin" >
+     <property name="leftMargin" >
       <number>9</number>
      </property>
-     <property name="spacing" >
+     <property name="topMargin" >
+      <number>9</number>
+     </property>
+     <property name="rightMargin" >
+      <number>9</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>9</number>
+     </property>
+     <property name="horizontalSpacing" >
+      <number>6</number>
+     </property>
+     <property name="verticalSpacing" >
       <number>6</number>
      </property>
      <item row="0" column="0" >
@@ -113,11 +146,6 @@
      <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_View" >
-    <property name="title" >
-     <string>&amp;View</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuHelp" >
     <property name="title" >
      <string>Help</string>
@@ -125,9 +153,9 @@
     <addaction name="actionAbout" />
     <addaction name="actionAboutQt" />
    </widget>
-   <widget class="QMenu" name="menu_Edit" >
+   <widget class="QMenu" name="menu_Options" >
     <property name="title" >
-     <string>&amp;Tools</string>
+     <string>&amp;Settings</string>
     </property>
     <addaction name="actionScan" />
     <addaction name="actionSettings" />
@@ -136,17 +164,17 @@
     <property name="title" >
      <string>&amp;File</string>
     </property>
+    <addaction name="actionSaveToFile" />
     <addaction name="actionQuit" />
    </widget>
    <addaction name="menu_File" />
-   <addaction name="menu_View" />
-   <addaction name="menu_Edit" />
+   <addaction name="menu_Options" />
    <addaction name="menuHelp" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionQuit" >
    <property name="icon" >
-    <iconset resource="../resources/qstardict.qrc" >:/icons/quit.png</iconset>
+    <iconset resource="../resources/qstardict.qrc" >:/icons/application-exit.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Quit</string>
@@ -167,10 +195,10 @@
   </action>
   <action name="actionSettings" >
    <property name="icon" >
-    <iconset resource="../resources/qstardict.qrc" >:/icons/settings.png</iconset>
+    <iconset resource="../resources/qstardict.qrc" >:/icons/configure.png</iconset>
    </property>
    <property name="text" >
-    <string>Se&amp;ttings</string>
+    <string>&amp;Configure QStarDict</string>
    </property>
   </action>
   <action name="actionScan" >
@@ -179,6 +207,17 @@
    </property>
    <property name="text" >
     <string>&amp;Scan</string>
+   </property>
+  </action>
+  <action name="actionSaveToFile" >
+   <property name="icon" >
+    <iconset resource="../resources/qstardict.qrc" >:/icons/document-save-as.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Save to file</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>

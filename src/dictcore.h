@@ -11,20 +11,25 @@ class Libs;
 
 class DictCore: public QObject
 {
-    Q_OBJECT
+        Q_OBJECT
 
     public:
         DictCore(QObject *parent = 0);
         ~DictCore();
 
+        void setDictDirs(const QStringList &dictDirs);
+        QStringList dictDirs() const;
+
         void setDicts(const QStringList &orderedDicts);
         QStringList orderedDicts() const;
-        QStringList disabledDicts();
-        QStringList avialableDicts();
+        QStringList disabledDicts() const;
+        QStringList avialableDicts() const;
 
         QStringList find(const QString &str);
         bool isTranslatable(const QString &str);
         QString translate(const QString &str, bool simple = false, bool useHtml = true);
+
+        static QStringList findDicts(const QString &dir);
 
     private:
         struct SearchResult
@@ -33,9 +38,10 @@ class DictCore: public QObject
             std::string def;
             std::string exp;
             SearchResult(const std::string &dictName_, const std::string &def_, const std::string &exp_)
-                : dictName(dictName_), def(def_), exp(exp_)
+                    : dictName(dictName_), def(def_), exp(exp_)
             { }
-        };
+        }
+        ;
         typedef std::vector<SearchResult> SearchResultList;
 
         void simpleLookup(const std::string &str, SearchResultList &resultList);

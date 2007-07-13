@@ -5,20 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>300</height>
+    <width>427</width>
+    <height>436</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>QStarDict Setting</string>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
-   <property name="spacing" >
-    <number>6</number>
-   </property>
    <item row="0" column="0" >
     <widget class="QTabWidget" name="settingsTabWidget" >
      <property name="currentIndex" >
@@ -29,127 +23,233 @@
        <string>Dictionaries</string>
       </attribute>
       <layout class="QGridLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item row="2" column="2" >
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
+       <item row="0" column="0" >
+        <widget class="QGroupBox" name="doctBpx" >
+         <property name="title" >
+          <string>Order</string>
          </property>
-         <property name="sizeHint" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <layout class="QVBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label" >
+              <property name="text" >
+               <string>Disabled dictionaries:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="disabledDictsList" />
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="1" >
+           <layout class="QVBoxLayout" >
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QGridLayout" >
+              <property name="leftMargin" >
+               <number>0</number>
+              </property>
+              <property name="topMargin" >
+               <number>0</number>
+              </property>
+              <property name="rightMargin" >
+               <number>0</number>
+              </property>
+              <property name="bottomMargin" >
+               <number>0</number>
+              </property>
+              <property name="horizontalSpacing" >
+               <number>0</number>
+              </property>
+              <property name="verticalSpacing" >
+               <number>0</number>
+              </property>
+              <item row="1" column="0" >
+               <widget class="QToolButton" name="moveLeftButton" >
+                <property name="text" >
+                 <string>Left</string>
+                </property>
+                <property name="icon" >
+                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-left.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" >
+               <widget class="QToolButton" name="moveDownButton" >
+                <property name="text" >
+                 <string>Down</string>
+                </property>
+                <property name="icon" >
+                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-down.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" >
+               <widget class="QToolButton" name="moveUpButton" >
+                <property name="text" >
+                 <string>Up</string>
+                </property>
+                <property name="icon" >
+                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-up.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2" >
+               <widget class="QToolButton" name="moveRightButton" >
+                <property name="text" >
+                 <string>Right</string>
+                </property>
+                <property name="icon" >
+                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-right.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>20</width>
+                <height>16</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="2" >
+           <layout class="QVBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="leftMargin" >
+             <number>0</number>
+            </property>
+            <property name="topMargin" >
+             <number>0</number>
+            </property>
+            <property name="rightMargin" >
+             <number>0</number>
+            </property>
+            <property name="bottomMargin" >
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_2" >
+              <property name="text" >
+               <string>Ordered dictionaries:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="orderedDictsList" />
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
        </item>
-       <item row="0" column="1" >
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
+       <item row="1" column="0" >
+        <widget class="QGroupBox" name="dictDirsBox" >
+         <property name="title" >
+          <string>Directories</string>
          </property>
-         <property name="sizeHint" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item rowspan="3" row="0" column="3" >
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_2" >
-           <property name="text" >
-            <string>Ordered dictionaries:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QListWidget" name="orderedDictsList" />
-         </item>
-        </layout>
-       </item>
-       <item rowspan="3" row="0" column="0" >
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label" >
-           <property name="text" >
-            <string>Disabled dictionaries:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QListWidget" name="disabledDictsList" />
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="1" colspan="2" >
-        <layout class="QGridLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>0</number>
-         </property>
-         <item row="1" column="0" >
-          <widget class="QToolButton" name="moveLeftButton" >
-           <property name="text" >
-            <string>Back</string>
-           </property>
-           <property name="icon" >
-            <iconset resource="../resources/qstardict.qrc" >:/icons/back.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" >
-          <widget class="QToolButton" name="moveDownButton" >
-           <property name="text" >
-            <string>Down</string>
-           </property>
-           <property name="icon" >
-            <iconset resource="../resources/qstardict.qrc" >:/icons/down.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" >
-          <widget class="QToolButton" name="moveUpButton" >
-           <property name="text" >
-            <string>up</string>
-           </property>
-           <property name="icon" >
-            <iconset resource="../resources/qstardict.qrc" >:/icons/up.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2" >
-          <widget class="QToolButton" name="moveRightButton" >
-           <property name="text" >
-            <string/>
-           </property>
-           <property name="icon" >
-            <iconset resource="../resources/qstardict.qrc" >:/icons/forward.png</iconset>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QListWidget" name="dictDirsList" />
+          </item>
+          <item row="1" column="0" >
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QToolButton" name="addDictDirButton" >
+              <property name="text" >
+               <string>Add</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="../resources/qstardict.qrc" >:/icons/list-add.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="removeDictDirButton" >
+              <property name="text" >
+               <string>Remove</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="../resources/qstardict.qrc" >:/icons/list-remove.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="moveUpDictDirButton" >
+              <property name="text" >
+               <string>Up</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-up.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="moveDownDictDirButton" >
+              <property name="text" >
+               <string>Down</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-down.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>342</width>
+                <height>26</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -158,78 +258,121 @@
        <string>Popup window</string>
       </attribute>
       <layout class="QGridLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
        <item row="0" column="0" >
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
+        <widget class="QCheckBox" name="useScanBox" >
+         <property name="text" >
+          <string>Scan selection</string>
          </property>
+         <property name="checked" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" >
+        <layout class="QHBoxLayout" >
          <property name="spacing" >
           <number>6</number>
          </property>
+         <property name="leftMargin" >
+          <number>0</number>
+         </property>
+         <property name="topMargin" >
+          <number>0</number>
+         </property>
+         <property name="rightMargin" >
+          <number>0</number>
+         </property>
+         <property name="bottomMargin" >
+          <number>0</number>
+         </property>
          <item>
-          <widget class="QCheckBox" name="useScanBox" >
-           <property name="text" >
-            <string>Scan selection</string>
-           </property>
-           <property name="checked" >
+          <widget class="QCheckBox" name="useScanModifierBox" >
+           <property name="enabled" >
             <bool>true</bool>
+           </property>
+           <property name="text" >
+            <string>Scan only when modifier pressed</string>
            </property>
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
+          <widget class="QComboBox" name="modifierKeyBox" >
+           <property name="enabled" >
+            <bool>false</bool>
            </property>
            <item>
-            <widget class="QCheckBox" name="useScanModifierBox" >
-             <property name="enabled" >
-              <bool>true</bool>
-             </property>
-             <property name="text" >
-              <string>Scan only when modifier pressed</string>
-             </property>
-            </widget>
+            <property name="text" >
+             <string>Shift</string>
+            </property>
            </item>
            <item>
-            <widget class="QComboBox" name="modifierKeyBox" >
-             <property name="enabled" >
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text" >
-               <string>Shift</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Control</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Alt</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Meta</string>
-              </property>
-             </item>
-            </widget>
+            <property name="text" >
+             <string>Control</string>
+            </property>
            </item>
-          </layout>
+           <item>
+            <property name="text" >
+             <string>Alt</string>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>Meta</string>
+            </property>
+           </item>
+          </widget>
          </item>
         </layout>
+       </item>
+       <item row="3" column="0" >
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QLabel" name="label_3" >
+           <property name="text" >
+            <string>Popup window opacity:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="popupOpacitySpin" >
+           <property name="suffix" >
+            <string>%</string>
+           </property>
+           <property name="prefix" >
+            <string/>
+           </property>
+           <property name="minimum" >
+            <number>1</number>
+           </property>
+           <property name="maximum" >
+            <number>100</number>
+           </property>
+           <property name="value" >
+            <number>100</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="4" column="0" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>101</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0" >
+        <widget class="QCheckBox" name="showIfNotFoundBox" >
+         <property name="text" >
+          <string>Show if word not found</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -258,8 +401,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>303</x>
-     <y>276</y>
+     <x>312</x>
+     <y>426</y>
     </hint>
     <hint type="destinationlabel" >
      <x>410</x>
@@ -274,8 +417,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>379</x>
-     <y>269</y>
+     <x>388</x>
+     <y>426</y>
     </hint>
     <hint type="destinationlabel" >
      <x>410</x>
@@ -290,12 +433,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>92</x>
-     <y>131</y>
+     <x>112</x>
+     <y>64</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>123</x>
-     <y>166</y>
+     <x>156</x>
+     <y>117</y>
     </hint>
    </hints>
   </connection>
@@ -306,12 +449,60 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>230</x>
-     <y>158</y>
+     <x>249</x>
+     <y>117</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>273</x>
-     <y>160</y>
+     <x>405</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useScanBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_3</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>72</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>93</x>
+     <y>148</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useScanBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>popupOpacitySpin</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>116</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>405</x>
+     <y>148</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useScanBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>showIfNotFoundBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>80</x>
+     <y>54</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>67</x>
+     <y>76</y>
     </hint>
    </hints>
   </connection>

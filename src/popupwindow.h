@@ -11,8 +11,8 @@ class QTimer;
 class DictCore;
 
 class PopupWindow: public QWidget
-{   
-    Q_OBJECT
+{
+        Q_OBJECT
 
     public:
         PopupWindow(DictCore *dict = NULL, QWidget *parent = 0);
