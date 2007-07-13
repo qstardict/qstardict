@@ -94,7 +94,7 @@ void MainWindow::aboutAction()
     QMessageBox::about(this,
                        tr("About QStarDict"),
                        tr("<b>QStarDict ") + QSTARDICT_VERSION + tr("</b> - Qt version of StarDict<br>") +
-                       tr("Copyright (C) 2007, Alex Rodin"));
+                       tr("Copyright (C) 2007 Alexander Rodin <a href=\"http://qstardict.ylsoftware.com\">http://qstardict.ylsoftware.com</a>"));
 }
 
 void MainWindow::settingsAction()
@@ -141,5 +141,11 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::Trigger)
         setVisible(! isVisible());
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    hide();
+    event->ignore();
 }
 

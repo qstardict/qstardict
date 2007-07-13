@@ -1654,7 +1654,7 @@ bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_si
     if (sWord[0] == '\0')
         return false;
 
-    Fuzzystruct oFuzzystruct[reslist_size];
+    Fuzzystruct *oFuzzystruct = new Fuzzystruct[reslist_size];
 
     for (int i = 0; i < reslist_size; i++)
     {
@@ -1744,6 +1744,8 @@ bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_si
 
     for (gint i = 0; i < reslist_size; ++i)
         reslist[i] = oFuzzystruct[i].pMatchWord;
+
+    delete[] oFuzzystruct;
 
     return Found;
 }

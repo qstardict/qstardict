@@ -6,6 +6,7 @@
 #include <QTextBrowser>
 #include <QTimer>
 #include "dictcore.h"
+#include "keyboard.h"
 
 PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
         : QWidget(parent, Qt::ToolTip)
@@ -18,6 +19,7 @@ PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
     closeTimer = new QTimer(this);
     connect(closeTimer, SIGNAL(timeout()), SLOT(close()));
     connect(closeTimer, SIGNAL(timeout()), closeTimer, SLOT(stop()));
+    timerId = 0;
 
     QSettings config;
     setScan(config.value("PopupWindow/scan", true).toBool());
@@ -41,9 +43,12 @@ void PopupWindow::setScan(bool scan)
         return ;
     m_scan = scan;
     if (m_scan)
-        connect(qApp->clipboard(), SIGNAL(selectionChanged()), this, SLOT(xSelectionChanged()));
+    {
+        lastSelection = QApplication::clipboard()->text(QClipboard::Selection);
+        timerId = startTimer(300);
+    }
     else
-        disconnect(qApp->clipboard(), SIGNAL(selectionChanged()), this, SLOT(xSelectionChanged()));
+        killTimer(timerId);
     emit scanChanged(scan);
 }
 
@@ -77,12 +82,20 @@ DictCore* PopupWindow::dict() const
     return m_dict;
 }
 
+void PopupWindow::timerEvent(QTimerEvent*)
+{
+    if (lastSelection != QApplication::clipboard()->text(QClipboard::Selection))
+    {
+        lastSelection = QApplication::clipboard()->text(QClipboard::Selection);
+        xSelectionChanged();
+    }
+}
+
 void PopupWindow::xSelectionChanged()
 {
-// TODO: add keyboard modifiers support
-//    if (m_modifierKey && ! qApp->keyboardModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
-//        return ;
-    QString m_source = qApp->clipboard()->text(QClipboard::Selection);
+    if (m_modifierKey && ! Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
+        return ;
+    QString m_source = QApplication::clipboard()->text(QClipboard::Selection);
     m_source.remove(QRegExp("^\\W"));
     m_source.remove(QRegExp("\\W.*$"));
     if (m_showIfNotFound || m_dict->isTranslatable(m_source))

@@ -9,5 +9,5 @@ StartupNotify=true
 Terminal=false
 TerminalOptions=
 Type=Application
-Categories=Qt;Dictionaries;Utilities
+Categories=Qt;Dictionary;Utility
 

@@ -1,4 +1,4 @@
-You need Qt >= 4.2.
+You need Qt >= 4.2 and glib >= 2.0.
 
 To build and install:
 1)	qmake

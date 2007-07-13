@@ -1,9 +1,19 @@
-- Version 0.01 - initial release
-- Version 0.02:
-	* add dictionary directories selection in settings dialog
-	* redesign menus
-	* add Oxygen icons
-	* add "Save translation" action
-	* add popup window opacity item to settings dialog
-	* rename actions
+* Version 0.01 - initial release
+* Version 0.02:
+	- add dictionary directories selection in settings dialog
+	- redesign menus
+	- add Oxygen icons
+	- add "Save translation" action
+	- add pop up window opacity item to settings dialog
+	- rename actions
+	- add .desktop file
+* Version 0.03:
+	- fix bug when build fails on x86_64
+	- fix categories in .desktop file
+	- add option "Show pop up only if modifier pressed" in settings dialog
+	- improve selection scanning
+	- fix bug with closing window when it must hide
+	- setting Qt 4.2 compitibility
+	- add russian translation
+	- add traditional chinese translation
 

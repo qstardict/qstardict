@@ -7,6 +7,7 @@ class QAction;
 class QEvent;
 class QTextBrowser;
 class QTimer;
+class QClipboard;
 
 class DictCore;
 
@@ -35,6 +36,7 @@ class PopupWindow: public QWidget
     protected:
         void enterEvent(QEvent*);
         void leaveEvent(QEvent*);
+        void timerEvent(QTimerEvent*);
 
     private slots:
         void xSelectionChanged();
@@ -42,12 +44,13 @@ class PopupWindow: public QWidget
     private:
         QTextBrowser *translationView;
         QTimer *closeTimer;
-
         DictCore* m_dict;
         QString m_source;
         bool m_scan;
         int m_modifierKey;
         bool m_showIfNotFound;
+        QString lastSelection;
+        int timerId;
 };
 
 #endif // POPUPWINDOW_H

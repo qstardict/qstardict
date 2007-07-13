@@ -2,7 +2,7 @@
 
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.02
+VERSION = 0.03
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
@@ -17,8 +17,6 @@ PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
 
-RESOURCES += \
-    resources/qstardict.qrc
 FORMS += \
     ui/mainwindow.ui \
     ui/settingsdialog.ui
@@ -31,7 +29,8 @@ HEADERS += \
     src/mainwindow.h \
     src/dictcore.h \
     src/popupwindow.h \
-    src/settingsdialog.h
+    src/settingsdialog.h \
+    src/keyboard.h
 SOURCES += \
     src/lib/dictziplib.cpp \
     src/lib/distance.cpp \
@@ -40,7 +39,14 @@ SOURCES += \
     src/dictcore.cpp \
     src/main.cpp \
     src/popupwindow.cpp \
-    src/settingsdialog.cpp
+    src/settingsdialog.cpp \
+    src/keyboard.cpp
+RESOURCES += \
+    resources/qstardict.qrc \
+    translations/translations.qrc
+TRANSLATIONS += \
+    translations/qstardict-ru_RU.ts \
+    translations/qstardict-zh_TW.ts
 DISTFILES += \
     AUTHORS \
     COPYNG \
@@ -54,7 +60,6 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 RCC_DIR = build
-CFLAGS += " -pedantic "
 
 unix {
     INSTALL_PREFIX=/usr
@@ -66,4 +71,6 @@ unix {
     desktop_file.path = $$INSTALL_PREFIX/share/applications
     INSTALLS += target icon desktop_file
 }
+
+! unix: warning("Popup window will not properly work on this platform")
 

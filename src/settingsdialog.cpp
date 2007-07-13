@@ -32,7 +32,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
             modifierName = "Alt";
             break;
         case Qt::MetaModifier:
-            modifierName = "Meta";
+            modifierName = "Win";
             break;
         }
         modifierKeyBox->setCurrentIndex(modifierKeyBox->findText(modifierName));
@@ -50,10 +50,6 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     connect(moveDownDictDirButton, SIGNAL(clicked()), SLOT(moveDownDictDirButtonClick()));
 
     connect(this, SIGNAL(accepted()), SLOT(apply()));
-
-    // keyboard modifiers are not done now
-    useScanModifierBox->hide();
-    modifierKeyBox->hide();
 }
 
 void SettingsDialog::updateOrder()
@@ -100,7 +96,7 @@ void SettingsDialog::apply()
             modifierKey = Qt::ControlModifier;
         else if (modifierKeyBox->currentText() == "Alt")
             modifierKey = Qt::AltModifier;
-        else if (modifierKeyBox->currentText() == "Meta")
+        else if (modifierKeyBox->currentText() == "Win")
             modifierKey = Qt::MetaModifier;
     mainWindow->popup->setShowIfNotFound(showIfNotFoundBox->isChecked());
     mainWindow->popup->setModifierKey(modifierKey);

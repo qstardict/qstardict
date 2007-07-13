@@ -5,6 +5,8 @@
 
 #include <QSystemTrayIcon>
 class QMenu;
+class QCloseEvent;
+
 class DictCore;
 class PopupWindow;
 class SettingsDialog;
@@ -27,6 +29,10 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void wordsListItemActivated(QListWidgetItem *item);
 
         friend class SettingsDialog;
+
+    protected:
+        void closeEvent(QCloseEvent *event);
+
     private:
         void createTrayIcon();
         void createConnections();

@@ -10,9 +10,15 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>QStarDict Setting</string>
+   <string>QStarDict Settings</string>
   </property>
   <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
    <item row="0" column="0" >
     <widget class="QTabWidget" name="settingsTabWidget" >
      <property name="currentIndex" >
@@ -23,28 +29,31 @@
        <string>Dictionaries</string>
       </attribute>
       <layout class="QGridLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
        <item row="0" column="0" >
         <widget class="QGroupBox" name="doctBpx" >
          <property name="title" >
           <string>Order</string>
          </property>
          <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
           <item row="0" column="0" >
            <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="label" >
@@ -60,6 +69,12 @@
           </item>
           <item row="0" column="1" >
            <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
             <item>
              <spacer>
               <property name="orientation" >
@@ -75,23 +90,11 @@
             </item>
             <item>
              <layout class="QGridLayout" >
-              <property name="leftMargin" >
+              <property name="margin" >
                <number>0</number>
               </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
-              </property>
-              <property name="horizontalSpacing" >
-               <number>0</number>
-              </property>
-              <property name="verticalSpacing" >
-               <number>0</number>
+              <property name="spacing" >
+               <number>6</number>
               </property>
               <item row="1" column="0" >
                <widget class="QToolButton" name="moveLeftButton" >
@@ -152,20 +155,11 @@
           </item>
           <item row="0" column="2" >
            <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
             <property name="spacing" >
              <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="label_2" >
@@ -188,11 +182,23 @@
           <string>Directories</string>
          </property>
          <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
           <item row="0" column="0" >
            <widget class="QListWidget" name="dictDirsList" />
           </item>
           <item row="1" column="0" >
            <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
             <item>
              <widget class="QToolButton" name="addDictDirButton" >
               <property name="text" >
@@ -258,6 +264,12 @@
        <string>Popup window</string>
       </attribute>
       <layout class="QGridLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
        <item row="0" column="0" >
         <widget class="QCheckBox" name="useScanBox" >
          <property name="text" >
@@ -270,20 +282,11 @@
        </item>
        <item row="2" column="0" >
         <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
          <property name="spacing" >
           <number>6</number>
-         </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
          </property>
          <item>
           <widget class="QCheckBox" name="useScanModifierBox" >
@@ -291,7 +294,7 @@
             <bool>true</bool>
            </property>
            <property name="text" >
-            <string>Scan only when modifier pressed</string>
+            <string>Show only if modifier pressed</string>
            </property>
           </widget>
          </item>
@@ -302,7 +305,7 @@
            </property>
            <item>
             <property name="text" >
-             <string>Shift</string>
+             <string>Alt</string>
             </property>
            </item>
            <item>
@@ -312,12 +315,12 @@
            </item>
            <item>
             <property name="text" >
-             <string>Alt</string>
+             <string>Shift</string>
             </property>
            </item>
            <item>
             <property name="text" >
-             <string>Meta</string>
+             <string>Win</string>
             </property>
            </item>
           </widget>
@@ -326,6 +329,12 @@
        </item>
        <item row="3" column="0" >
         <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
          <item>
           <widget class="QLabel" name="label_3" >
            <property name="text" >
@@ -341,11 +350,11 @@
            <property name="prefix" >
             <string/>
            </property>
-           <property name="minimum" >
-            <number>1</number>
-           </property>
            <property name="maximum" >
             <number>100</number>
+           </property>
+           <property name="minimum" >
+            <number>1</number>
            </property>
            <property name="value" >
             <number>100</number>
