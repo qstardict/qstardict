@@ -43,6 +43,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     reformatTranslationsWarningLabel->setVisible(reformatTranslationsBox->isChecked());
     expandAbbreviationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::ExpandAbbreviations));
     timeoutBeforeHideSpin->setValue(parent->popup->timeoutBeforeHide() / 1000.0);
+    popupDefaultWidthSpin->setValue(parent->popup->defaultSize().width());
+    popupDefaultHeightSpin->setValue(parent->popup->defaultSize().height());
 
     connect(moveUpButton, SIGNAL(clicked()), SLOT(moveUpButtonClick()));
     connect(moveDownButton, SIGNAL(clicked()), SLOT(moveDownButtonClick()));
@@ -106,6 +108,7 @@ void SettingsDialog::apply()
     mainWindow->popup->setModifierKey(modifierKey);
     mainWindow->popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     mainWindow->popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
+    mainWindow->popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));
     DictCore::TranslationFlags translationFlags;
     if (reformatTranslationsBox->isChecked())
         translationFlags |= DictCore::Reformat;

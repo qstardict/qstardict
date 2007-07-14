@@ -1,7 +1,7 @@
 #ifndef POPUPWINDOW_H
 #define POPUPWINDOW_H
 
-#include <QWidget>
+#include <QFrame>
 
 class QAction;
 class QEvent;
@@ -11,7 +11,7 @@ class QClipboard;
 
 class DictCore;
 
-class PopupWindow: public QWidget
+class PopupWindow: public QFrame
 {
         Q_OBJECT
 
@@ -23,6 +23,7 @@ class PopupWindow: public QWidget
         int modifierKey() const;
         bool showIfNotFound() const;
         int timeoutBeforeHide() const;
+        const QSize& defaultSize() const;
 
         DictCore* dict() const;
 
@@ -31,6 +32,7 @@ class PopupWindow: public QWidget
         void setModifierKey(int key);
         void setShowIfNotFound(bool mode);
         void setTimeoutBeforeHide(int timeoutBeforeHide);
+        void setDefaultSize(const QSize &defaultSize);
 
     signals:
         void scanChanged(bool);
@@ -54,6 +56,7 @@ class PopupWindow: public QWidget
         QString lastSelection;
         int timerId;
         int m_timeoutBeforeHide;
+        QSize m_defaultSize;
 };
 
 #endif // POPUPWINDOW_H
