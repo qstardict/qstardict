@@ -37,14 +37,25 @@ while [ "$#" != "0" ]; do
         echo "This is a script that creates distribution from qmake-based Subversion project"
         echo "Options:"
         echo "  --output-directory, -o     set output directory for tarball"
+        echo "  --project-name, -n         force set project name"
+        echo "  --project-version, -v      force set project version"
+        echo "  --no-translations, -t      dont update translations"
         echo "  --help, -h                 show this help"
         exit 0
     elif [ "$1" = "--output-dir" ] || [ "$1" = "-o" ]; then
         shift
-        $OUTPUT_DIR=$1
+        OUTPUT_DIR="$1"
+    elif [ "$1" = "--project-name" ] || [ "$1" = "-p" ]; then
+        shift
+        PROJECT_NAME="$1"
+    elif [ "$1" = "--project-version" ] || [ "$1" = "-v" ]; then
+        shift
+        PROJECT_VERSION="$1"
+    elif [ "$1" = "--no-translations" ] || [ "$1" = "-t" ]; then
+        NO_TRANSLATIONS="1"
     else
         if [ "$WORK_DIR" = "" ]; then
-            WORK_DIR=$1
+            WORK_DIR="$1"
         else
             echo "Unknown parameter"
             exit 1
@@ -92,19 +103,25 @@ else
     exit 1
 fi
 
-printf "%-"$STR_WIDTH"s" "Updating translations"
-lrelease $PROJECT_FILE >/dev/null 2>/dev/null && print_ok || print_fail
+if [ "$NO_TRANSLATIONS" = "1" ]; then
+    printf "%-"$STR_WIDTH"s" "Updating translations"
+    lrelease $PROJECT_FILE >/dev/null 2>/dev/null && print_ok || print_fail
+fi
 
 printf "%-"$STR_WIDTH"s" "Creating dist"
 
-PROJECT_NAME=`cat $PROJECT_FILE | grep -e 'TARGET =' | sed 's/TARGET.*=\s*//'`
 if [ "$PROJECT_NAME" = "" ]; then
-    PROJECT_NAME=`echo $PROJECT_FILE | sed 's/\.pro$//'`
+    PROJECT_NAME=`cat $PROJECT_FILE | grep -e 'TARGET =' | sed 's/TARGET.*=\s*//'`
+    if [ "$PROJECT_NAME" = "" ]; then
+        PROJECT_NAME=`echo $PROJECT_FILE | sed 's/\.pro$//'`
+    fi
 fi
 
-PROJECT_VERSION=`cat $PROJECT_FILE | grep -e 'VERSION =' | sed 's/VERSION.*=\s*//'`
 if [ "$PROJECT_VERSION" = "" ]; then
-    PROJECT_VERSION=svn
+    PROJECT_VERSION=`cat $PROJECT_FILE | grep -e 'VERSION =' | sed 's/VERSION.*=\s*//'`
+    if [ "$PROJECT_VERSION" = "" ]; then
+        PROJECT_VERSION=svn
+    fi
 fi
 
 rm -rf $PROJECT_NAME-$PROJECT_VERSION
@@ -117,16 +134,17 @@ done
 
 rm -rf $PROJECT_NAME-$PROJECT_VERSION.tar.bz2
 tar cjf $PROJECT_NAME-$PROJECT_VERSION.tar.bz2 $PROJECT_NAME-$PROJECT_VERSION
-if [ "$OUTPUT_DIR" != "" ]; then
-    printf "%-"$STR_WIDTH"s" "Moving to output directory"
-    mkdir -p $OUTPUT_DIR
-    mv $PROJECT_NAME-$PROJECT_VERSION.tar.bz2 $OUTPUT_DIR/$PROJECT_NAME-$PROJECT_VERSION.tar.bz2 && print_ok || print_fail
-fi
 
 if test -f $PROJECT_NAME-$PROJECT_VERSION.tar.bz2; then
     print_ok
 else
     print_fail
+fi
+
+if [ "$OUTPUT_DIR" != "" ]; then
+    printf "%-"$STR_WIDTH"s" "Moving to output directory"
+    mkdir -p $OUTPUT_DIR
+    mv $PROJECT_NAME-$PROJECT_VERSION.tar.bz2 $OUTPUT_DIR/$PROJECT_NAME-$PROJECT_VERSION.tar.bz2 && print_ok || print_fail
 fi
 
 printf "%-"$STR_WIDTH"s" "Cleaning temponary directories"
