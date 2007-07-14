@@ -120,7 +120,7 @@ void SettingsDialog::moveUpButtonClick()
 {
     if (orderedDictsList->currentRow() > 0)
     {
-        orderedDictsList->insertItem(orderedDictsList->currentRow() - 1,
+        orderedDictsList->insertItem(orderedDictsList->currentRow(),
                                      orderedDictsList->takeItem(orderedDictsList->currentRow()));
         orderedDictsList->setCurrentRow(orderedDictsList->currentRow() - 1);
     }
@@ -137,7 +137,7 @@ void SettingsDialog::moveUpDictDirButtonClick()
 {
     if (dictDirsList->currentRow() > 0)
     {
-        dictDirsList->insertItem(dictDirsList->currentRow() - 1,
+        dictDirsList->insertItem(dictDirsList->currentRow(),
                                  dictDirsList->takeItem(dictDirsList->currentRow()));
         dictDirsList->setCurrentRow(dictDirsList->currentRow() - 1);
     }
