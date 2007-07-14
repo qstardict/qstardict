@@ -77,13 +77,14 @@ else
     exit 1
 fi
 
-printf "%-"$STR_WIDTH"s" "Searching to project file"
+printf "%-"$STR_WIDTH"s" "Search the project file"
 for i in $FILES; do
     if test -f $i && [ "`echo $i | grep -o '\.pro$'`" = ".pro" ]; then
         PROJECT_FILE=$i;
         break;
     fi
 done
+
 if [ "$PROJECT_FILE" != "" ]; then
     print_ok
 else
@@ -110,6 +111,7 @@ for i in $FILES; do
         install -m 655 -D $i $PROJECT_NAME-$PROJECT_VERSION 2>/dev/null
     fi
 done
+
 rm -rf $PROJECT_NAME-$PROJECT_VERSION.tar.bz2
 tar cjf $PROJECT_NAME-$PROJECT_VERSION.tar.bz2 $PROJECT_NAME-$PROJECT_VERSION
 if [ "$OUTPUT_DIR" != "" ]; then
