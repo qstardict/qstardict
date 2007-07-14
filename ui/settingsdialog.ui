@@ -20,7 +20,7 @@
     <number>6</number>
    </property>
    <item row="0" column="0" >
-    <widget class="QTabWidget" name="settingsTabWidget" >
+    <widget class="QTabWidget" name="reformatWarningLabel" >
      <property name="currentIndex" >
       <number>0</number>
      </property>
@@ -462,7 +462,7 @@
        <property name="spacing" >
         <number>6</number>
        </property>
-       <item row="2" column="0" >
+       <item row="3" column="0" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
@@ -470,28 +470,29 @@
          <property name="sizeHint" >
           <size>
            <width>20</width>
-           <height>241</height>
+           <height>40</height>
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="0" column="0" >
-        <widget class="QCheckBox" name="reformatTranslationsBox" >
-         <property name="text" >
-          <string>Reformat translations</string>
-         </property>
-         <property name="checked" >
-          <bool>true</bool>
-         </property>
-        </widget>
        </item>
        <item row="1" column="0" >
         <widget class="QCheckBox" name="expandAbbreviationsBox" >
          <property name="text" >
           <string>Expand abbreviations</string>
          </property>
-         <property name="checked" >
-          <bool>true</bool>
+        </widget>
+       </item>
+       <item row="0" column="0" >
+        <widget class="QCheckBox" name="reformatTranslationsBox" >
+         <property name="text" >
+          <string>Reformat translations</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" >
+        <widget class="QLabel" name="reformatTranslationsWarningLabel" >
+         <property name="text" >
+          <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may not correct displayed</string>
          </property>
         </widget>
        </item>
@@ -554,12 +555,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>112</x>
-     <y>64</y>
+     <x>110</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>156</x>
-     <y>117</y>
+     <x>110</x>
+     <y>63</y>
     </hint>
    </hints>
   </connection>
@@ -570,12 +571,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>249</x>
-     <y>117</y>
+     <x>110</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>405</x>
-     <y>117</y>
+     <x>110</x>
+     <y>63</y>
     </hint>
    </hints>
   </connection>
@@ -590,8 +591,8 @@
      <y>52</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>93</x>
-     <y>148</y>
+     <x>104</x>
+     <y>63</y>
     </hint>
    </hints>
   </connection>
@@ -602,12 +603,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>116</x>
-     <y>55</y>
+     <x>110</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>405</x>
-     <y>148</y>
+     <x>110</x>
+     <y>63</y>
     </hint>
    </hints>
   </connection>
@@ -622,8 +623,24 @@
      <y>54</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>67</x>
-     <y>76</y>
+     <x>78</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reformatTranslationsBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>reformatTranslationsWarningLabel</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>38</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>53</x>
+     <y>109</y>
     </hint>
    </hints>
   </connection>
