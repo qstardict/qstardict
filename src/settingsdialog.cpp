@@ -40,6 +40,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     showIfNotFoundBox->setChecked(parent->popup->showIfNotFound());
     popupOpacitySpin->setValue(static_cast<int>(parent->popup->windowOpacity() * 100));
     reformatTranslationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::Reformat));
+    reformatTranslationsWarningLabel->setVisible(reformatTranslationsBox->isChecked());
     expandAbbreviationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::ExpandAbbreviations));
     timeoutBeforeHideSpin->setValue(parent->popup->timeoutBeforeHide() / 1000.0);
 
