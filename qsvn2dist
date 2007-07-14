@@ -92,8 +92,8 @@ else
     exit 1
 fi
 
-print "%-"$STR_WIDTH"s" "Updating translations"
-lrelease $PROJECT_FILE && print_ok || print_fail
+printf "%-"$STR_WIDTH"s" "Updating translations"
+lrelease $PROJECT_FILE >/dev/null 2>/dev/null && print_ok || print_fail
 
 printf "%-"$STR_WIDTH"s" "Creating dist"
 
