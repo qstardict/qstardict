@@ -12,10 +12,12 @@ CONFIG += \
     qt \
     link_pkgconfig \
     warn_on \
-    release 
+    release
 PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
+unix:CONFIG += qdbus
+unix:DEFINES += HAVE_DBUS
 
 FORMS += \
     ui/mainwindow.ui \
