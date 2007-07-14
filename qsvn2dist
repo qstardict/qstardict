@@ -54,7 +54,7 @@ while [ "$#" != "0" ]; do
 done
 
 if [ "$WORK_DIR" != "" ]; then
-    printf "%-"$STR_WIDTH"s" "Changing current directory"
+    printf "%-"$STR_WIDTH"s" "Changing a current directory"
     if ! test -d $WORK_DIR; then
         print_fail
         exit 1
@@ -68,7 +68,7 @@ if [ "$WORK_DIR" != "" ]; then
     print_ok
 fi
 
-printf "%-"$STR_WIDTH"s" "Getting files list"
+printf "%-"$STR_WIDTH"s" "Getting a files list"
 FILES=`svn ls -R`
 if [ "$FILES" != "" ]; then
     print_ok
@@ -77,7 +77,7 @@ else
     exit 1
 fi
 
-printf "%-"$STR_WIDTH"s" "Search the project file"
+printf "%-"$STR_WIDTH"s" "Searching the project file"
 for i in $FILES; do
     if test -f $i && [ "`echo $i | grep -o '\.pro$'`" = ".pro" ]; then
         PROJECT_FILE=$i;
@@ -91,6 +91,9 @@ else
     print_fail
     exit 1
 fi
+
+print "%-"$STR_WIDTH"s" "Updating translations"
+lrelease $PROJECT_FILE && print_ok || print_fail
 
 printf "%-"$STR_WIDTH"s" "Creating dist"
 
