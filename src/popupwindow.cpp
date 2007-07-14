@@ -27,6 +27,7 @@ PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
     setModifierKey(config.value("PopupWindow/modifierKey", 0).toInt());
     setShowIfNotFound(config.value("PopupWindow/showIfNotFound", false).toBool());
     setWindowOpacity(config.value("PopupWindow/opacity", 1.0).toDouble());
+    m_timeoutBeforeHide = config.value("PopupWindow/timeoutBeforeHide", 300).toInt();
 }
 
 PopupWindow::~PopupWindow()
@@ -36,6 +37,7 @@ PopupWindow::~PopupWindow()
     config.setValue("PopupWindow/modifierKey", m_modifierKey);
     config.setValue("PopupWindow/showIfNotFound", m_showIfNotFound);
     config.setValue("PopupWindow/opacity", windowOpacity());
+    config.setValue("PopupWindow/timeoutBeforeHide", m_timeoutBeforeHide);
 }
 
 void PopupWindow::setScan(bool scan)
@@ -126,6 +128,16 @@ void PopupWindow::enterEvent(QEvent*)
 
 void PopupWindow::leaveEvent(QEvent*)
 {
-    closeTimer->start(200);
+    closeTimer->start(m_timeoutBeforeHide);
+}
+
+int PopupWindow::timeoutBeforeHide() const
+{
+    return m_timeoutBeforeHide;
+}
+
+void PopupWindow::setTimeoutBeforeHide(int timeoutBeforeHide)
+{
+    m_timeoutBeforeHide = timeoutBeforeHide;
 }
 

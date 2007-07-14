@@ -271,99 +271,172 @@
         <number>6</number>
        </property>
        <item row="0" column="0" >
-        <widget class="QCheckBox" name="useScanBox" >
-         <property name="text" >
-          <string>Scan selection</string>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="title" >
+          <string>Behaviour</string>
          </property>
-         <property name="checked" >
-          <bool>true</bool>
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="3" column="0" >
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_4" >
+              <property name="text" >
+               <string>Timeout before hide after mouse over</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="timeoutBeforeHideSpin" >
+              <property name="suffix" >
+               <string> seconds</string>
+              </property>
+              <property name="decimals" >
+               <number>1</number>
+              </property>
+              <property name="maximum" >
+               <double>10.000000000000000</double>
+              </property>
+              <property name="singleStep" >
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value" >
+               <double>0.300000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0" >
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="useScanModifierBox" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="text" >
+               <string>Show only if modifier pressed</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="modifierKeyBox" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <item>
+               <property name="text" >
+                <string>Alt</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Control</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Shift</string>
+               </property>
+              </item>
+              <item>
+               <property name="text" >
+                <string>Win</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0" >
+           <widget class="QCheckBox" name="useScanBox" >
+            <property name="text" >
+             <string>Scan selection</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QCheckBox" name="showIfNotFoundBox" >
+            <property name="text" >
+             <string>Show if word not found</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" >
+        <widget class="QGroupBox" name="groupBox_2" >
+         <property name="title" >
+          <string>Apperance</string>
          </property>
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="0" column="0" >
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_3" >
+              <property name="text" >
+               <string>Opacity:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="popupOpacitySpin" >
+              <property name="suffix" >
+               <string>%</string>
+              </property>
+              <property name="prefix" >
+               <string/>
+              </property>
+              <property name="maximum" >
+               <number>100</number>
+              </property>
+              <property name="minimum" >
+               <number>1</number>
+              </property>
+              <property name="value" >
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </item>
        <item row="2" column="0" >
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QCheckBox" name="useScanModifierBox" >
-           <property name="enabled" >
-            <bool>true</bool>
-           </property>
-           <property name="text" >
-            <string>Show only if modifier pressed</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="modifierKeyBox" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-           <item>
-            <property name="text" >
-             <string>Alt</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Control</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Shift</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Win</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="3" column="0" >
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_3" >
-           <property name="text" >
-            <string>Popup window opacity:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="popupOpacitySpin" >
-           <property name="suffix" >
-            <string>%</string>
-           </property>
-           <property name="prefix" >
-            <string/>
-           </property>
-           <property name="maximum" >
-            <number>100</number>
-           </property>
-           <property name="minimum" >
-            <number>1</number>
-           </property>
-           <property name="value" >
-            <number>100</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="4" column="0" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
@@ -375,13 +448,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="1" column="0" >
-        <widget class="QCheckBox" name="showIfNotFoundBox" >
-         <property name="text" >
-          <string>Show if word not found</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>

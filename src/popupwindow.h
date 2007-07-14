@@ -22,6 +22,7 @@ class PopupWindow: public QWidget
         bool isScan() const;
         int modifierKey() const;
         bool showIfNotFound() const;
+        int timeoutBeforeHide() const;
 
         DictCore* dict() const;
 
@@ -29,6 +30,7 @@ class PopupWindow: public QWidget
         void setScan(bool scan);
         void setModifierKey(int key);
         void setShowIfNotFound(bool mode);
+        void setTimeoutBeforeHide(int timeoutBeforeHide);
 
     signals:
         void scanChanged(bool);
@@ -51,6 +53,7 @@ class PopupWindow: public QWidget
         bool m_showIfNotFound;
         QString lastSelection;
         int timerId;
+        int m_timeoutBeforeHide;
 };
 
 #endif // POPUPWINDOW_H

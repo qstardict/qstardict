@@ -41,6 +41,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     popupOpacitySpin->setValue(static_cast<int>(parent->popup->windowOpacity() * 100));
     reformatTranslationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::Reformat));
     expandAbbreviationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::ExpandAbbreviations));
+    timeoutBeforeHideSpin->setValue(parent->popup->timeoutBeforeHide() / 1000.0);
 
     connect(moveUpButton, SIGNAL(clicked()), SLOT(moveUpButtonClick()));
     connect(moveDownButton, SIGNAL(clicked()), SLOT(moveDownButtonClick()));
@@ -103,6 +104,7 @@ void SettingsDialog::apply()
     mainWindow->popup->setShowIfNotFound(showIfNotFoundBox->isChecked());
     mainWindow->popup->setModifierKey(modifierKey);
     mainWindow->popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
+    mainWindow->popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     DictCore::TranslationFlags translationFlags;
     if (reformatTranslationsBox->isChecked())
         translationFlags |= DictCore::Reformat;
