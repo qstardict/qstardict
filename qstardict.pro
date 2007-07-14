@@ -2,7 +2,7 @@
 
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.04
+VERSION = 0.04-svn
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
@@ -65,12 +65,6 @@ UI_DIR = build
 RCC_DIR = build
 
 unix {
-    lrelease.output = ${QMAKE_FILE_BASE}.qm
-    lrelease.commands = lrelease -compress ${QMAKE_FILE_NAME}
-    lrelease.input = TRANSLATIONS
-    lrelease.CONFIG = no_link
-    QMAKE_EXTRA_COMPILERS += lrelease
-
     INSTALL_PREFIX=/usr
 
     binaries.files += $$DESTDIR/$$TARGET
