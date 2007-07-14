@@ -39,6 +39,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     }
     showIfNotFoundBox->setChecked(parent->popup->showIfNotFound());
     popupOpacitySpin->setValue(static_cast<int>(parent->popup->windowOpacity() * 100));
+    reformatTranslationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::Reformat));
+    expandAbbreviationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::ExpandAbbreviations));
 
     connect(moveUpButton, SIGNAL(clicked()), SLOT(moveUpButtonClick()));
     connect(moveDownButton, SIGNAL(clicked()), SLOT(moveDownButtonClick()));
@@ -101,6 +103,12 @@ void SettingsDialog::apply()
     mainWindow->popup->setShowIfNotFound(showIfNotFoundBox->isChecked());
     mainWindow->popup->setModifierKey(modifierKey);
     mainWindow->popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
+    DictCore::TranslationFlags translationFlags;
+    if (reformatTranslationsBox->isChecked())
+        translationFlags |= DictCore::Reformat;
+    if (expandAbbreviationsBox->isChecked())
+        translationFlags |= DictCore::ExpandAbbreviations;
+    mainWindow->translationView->setTranslationFlags(translationFlags);
 
     mainWindow->queryButtonClicked();
 }

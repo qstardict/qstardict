@@ -157,44 +157,53 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
         {
             if (flags.testFlag(Reformat))
             {
-                if (i->exp.contains(QRegExp("\\d[>\\.]")))
+                QRegExp regExp;
+                regExp.setMinimal(true);
+                regExp.setPattern("\\d[>\\.]\\s+");
+                if (i->exp.contains(regExp))
                 {
-                    i->exp.insert(i->exp.indexOf(QRegExp("\\d[>\\.]")), "<ol>");
+                    i->exp.insert(i->exp.indexOf(regExp), "<ol>");
                     i->exp.append("</li></ol>");
-                    i->exp.replace(QRegExp("1>"), "<li>");
-                    i->exp.replace(QRegExp("\\d+[>\\.]"), "</li><li>");
+                    i->exp.replace("1>", "<li>");
+                    i->exp.replace(regExp, "</li><li>");
                 }
-#if 0
-                if (i->exp.contains(QRegExp("_\\S*")))
+                regExp.setPattern("^(\\s*\\[.*\\])(?!\\s*<ol>)");
+                int pos = regExp.indexIn(i->exp);
+                if (pos != -1)
+                    i->exp.insert(pos + regExp.matchedLength(), "<br>");
+                regExp.setPattern("(?=\\[.*\\])");
+                i->exp.replace(regExp, "<font class=\"transcription\">");
+                i->exp.replace("]", "]</font>");
+            }
+            else
+            {
+                i->exp.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                i->exp.replace("\n", "<br>");
+            }
+            if (flags.testFlag(ExpandAbbreviations) && i->exp.contains(QRegExp("_\\S*[\\.:]")))
+            {
+                QRegExp rx("_\\S*[\\.:]");
+                int pos = 0;
+                while ((pos = rx.indexIn(i->exp, pos)) != -1)
                 {
-                    QRegExp rx("_\\S*");
-                    int pos = 0;
-                    while ((pos = rx.indexIn(i->exp, pos)) != -1)
+                    QString result = translation(i->exp.mid(pos, rx.matchedLength()), i->dictName);
+                    QChar lastChar = i->exp[pos + rx.matchedLength() - 1];
+                    if (! result.isEmpty())
                     {
-                        QString result = translation(i->exp.mid(pos, rx.matchedLength()), i->dictName);
-                        QChar lastChar = i->exp[pos + rx.matchedLength() - 1];
-                        if (! result.isEmpty())
-                        {
-                            result.remove(QRegExp("^\\s*"));
-                            result.remove(QRegExp("^\\s*"));
-                            result.remove("<br>");
-                            if (lastChar == ':')
-                                result.append(":");
-                            else if (lastChar == '.')
-                                result.prepend("(").append(")");
-                            i->exp.replace(pos, rx.matchedLength(), "<font class=\"explanation\">" + result + "</font>");
-                        }
+                        result.remove(QRegExp("^\\s*"));
+                        result.remove(QRegExp("^\\s*"));
+                        result.remove("<br>");
+                        if (lastChar == ':')
+                            result.append(":");
+                        i->exp.replace(pos, rx.matchedLength(), "<font class=\"explanation\">" + result + "</font>");
                     }
                 }
-#endif
             }
             result += "<p><font class=\"normal\"><font class=\"dict_name\">" + i->dictName + "</font><br>"
                       "<font class=\"title\">" + i->def + "</font>";
-            if (! result.contains("<ol>"))
+            if (! i->exp.contains(QRegExp("^\\s*<ol>")))
                 result += "<br>";
             result += i->exp + "</font></p>";
-//            result.replace("\n", "<br>");
-//            result.replace("<br>\\s*<br>", "<br>");
         }
     else
         for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); i++)

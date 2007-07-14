@@ -17,22 +17,19 @@
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
     <item row="0" column="0" >
      <layout class="QHBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
       <property name="spacing" >
        <number>6</number>
-      </property>
-      <property name="leftMargin" >
-       <number>0</number>
-      </property>
-      <property name="topMargin" >
-       <number>0</number>
-      </property>
-      <property name="rightMargin" >
-       <number>0</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>0</number>
       </property>
       <item>
        <widget class="QToolButton" name="searchClearButton" >
@@ -88,22 +85,10 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
     <layout class="QGridLayout" >
-     <property name="leftMargin" >
+     <property name="margin" >
       <number>9</number>
      </property>
-     <property name="topMargin" >
-      <number>9</number>
-     </property>
-     <property name="rightMargin" >
-      <number>9</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>9</number>
-     </property>
-     <property name="horizontalSpacing" >
-      <number>6</number>
-     </property>
-     <property name="verticalSpacing" >
+     <property name="spacing" >
       <number>6</number>
      </property>
      <item row="0" column="0" >
@@ -146,9 +131,6 @@
    <addaction name="menu_Options" />
    <addaction name="menuHelp" />
   </widget>
-  <!--
-  <widget class="QStatusBar" name="statusbar" />
-  -->
   <action name="actionQuit" >
    <property name="icon" >
     <iconset resource="../resources/qstardict.qrc" >:/icons/application-exit.png</iconset>

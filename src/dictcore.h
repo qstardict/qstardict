@@ -16,10 +16,11 @@ class DictCore: public QObject
     public:
         enum TranslationFlag
         {
-            None,
-            Simple,
-            Html,
-            Reformat
+            None                    = 0x01,
+            Simple                  = 0x02,
+            Html                    = 0x04,
+            Reformat                = 0x08,
+            ExpandAbbreviations     = 0xf0
         };
         Q_DECLARE_FLAGS(TranslationFlags, TranslationFlag)
 

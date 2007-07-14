@@ -13,7 +13,7 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     layout->addWidget(translationView);
     setLayout(layout);
     m_dict = 0;
-    m_flags = DictCore::Html | DictCore::Reformat;
+    m_flags = DictCore::Html | DictCore::Reformat | DictCore::ExpandAbbreviations;
 }
 
 void DictWidget::setDict(DictCore *dict)
@@ -29,7 +29,6 @@ const DictCore* DictWidget::dict() const
 void DictWidget::setTranslationFlags(DictCore::TranslationFlags flags)
 {
     m_flags = flags | DictCore::Html;
-    translate(m_translatedWord);
 }
 
 DictCore::TranslationFlags DictWidget::translationFlags() const
@@ -42,6 +41,7 @@ bool DictWidget::translate(const QString &str)
     const QString htmlStyle = 
         "<style>"
         "font.normal { "
+            "font-family: \"Sans Serif\", \"Arial\", \"Sans\"; "
             "color: black; } "
         "font.dict_name { "
             "color: blue; "
@@ -56,6 +56,8 @@ bool DictWidget::translate(const QString &str)
             "font-weight: bold; }"
         "font.example { "
             "font-style: italic; } "
+        "font.transcription { "
+            "font-weight: bold; }"
         "</style>";
     m_translatedWord = str;
     QString result = m_dict->translate(str, m_flags);

@@ -75,6 +75,7 @@ void MainWindow::loadSettings()
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
     m_dict->setDictDirs(config.value("DictCore/dictDirs", m_dict->dictDirs()).toStringList());
     m_dict->setDicts(config.value("DictCore/orderedDicts", m_dict->avialableDicts()).toStringList());
+    translationView->setTranslationFlags(QFlag(config.value("DictWidget/translationFlags", (int)translationView->translationFlags()).toInt()));
 }
 
 void MainWindow::saveSettings()
@@ -88,6 +89,7 @@ void MainWindow::saveSettings()
     config.setValue("DictCore/dictDirs", m_dict->dictDirs());
     config.setValue("DictCore/orderedDicts", m_dict->orderedDicts());
     config.setValue("DictCore/disabledDicts", m_dict->disabledDicts());
+    config.setValue("DictWidget/translationFlags", (int)translationView->translationFlags());
 }
 
 void MainWindow::aboutAction()
