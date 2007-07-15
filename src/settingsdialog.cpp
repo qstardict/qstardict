@@ -109,12 +109,17 @@ void SettingsDialog::apply()
     mainWindow->popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     mainWindow->popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     mainWindow->popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));
-    DictCore::TranslationFlags translationFlags;
+    DictCore::TranslationFlags translationFlags = mainWindow->translationView->translationFlags();
     if (reformatTranslationsBox->isChecked())
         translationFlags |= DictCore::Reformat;
+    else
+        translationFlags &= ~DictCore::Reformat;
     if (expandAbbreviationsBox->isChecked())
         translationFlags |= DictCore::ExpandAbbreviations;
+    else
+        translationFlags &= ~DictCore::ExpandAbbreviations;
     mainWindow->translationView->setTranslationFlags(translationFlags);
+    mainWindow->popup->setTranslationFlags(translationFlags);
 
     mainWindow->queryButtonClicked();
 }

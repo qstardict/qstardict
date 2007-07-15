@@ -5,9 +5,8 @@
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QSettings>
-#include <QTextBrowser>
 #include <QTimer>
-#include "dictcore.h"
+#include "dictwidget.h"
 #include "keyboard.h"
 
 PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
@@ -18,7 +17,8 @@ PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
     else
         m_dict = dict;
     setFrameStyle(QFrame::Box);
-    translationView = new QTextBrowser(this);
+    translationView = new DictWidget(this);
+    translationView->setDict(m_dict);
     QGridLayout *mainLayout = new QGridLayout(this);
     mainLayout->setMargin(0);
     mainLayout->addWidget(translationView);
@@ -34,6 +34,7 @@ PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
     setWindowOpacity(config.value("PopupWindow/opacity", 1.0).toDouble());
     m_timeoutBeforeHide = config.value("PopupWindow/timeoutBeforeHide", 300).toInt();
     m_defaultSize = config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize();
+    setTranslationFlags(DictCore::TranslationFlags(config.value("DictWidget/translationFlags", (int)translationView->translationFlags()).toInt()));
 }
 
 PopupWindow::~PopupWindow()
@@ -110,8 +111,7 @@ void PopupWindow::xSelectionChanged()
     m_source.remove(QRegExp("\\W.*$"));
     if (m_showIfNotFound || m_dict->isTranslatable(m_source))
     {
-        QString translated = m_dict->translate(m_source, DictCore::Simple | DictCore::Html);
-        translationView->setHtml(translated);
+        translationView->translate(m_source);
         resize(m_defaultSize);
 
         QPoint newPosition = cursor().pos() - QPoint(30, 30);
@@ -158,3 +158,7 @@ void PopupWindow::setDefaultSize(const QSize &defaultSize)
     m_defaultSize = defaultSize;
 }
 
+void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlags)
+{
+    translationView->setTranslationFlags(translationFlags | DictCore::Simple);
+}

@@ -552,7 +552,7 @@
        <item row="2" column="0" >
         <widget class="QLabel" name="reformatTranslationsWarningLabel" >
          <property name="text" >
-          <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may not correct displayed</string>
+          <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may be not correct displayed</string>
          </property>
         </widget>
        </item>

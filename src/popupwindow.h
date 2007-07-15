@@ -2,14 +2,14 @@
 #define POPUPWINDOW_H
 
 #include <QFrame>
+#include "dictcore.h"
 
 class QAction;
 class QEvent;
-class QTextBrowser;
 class QTimer;
 class QClipboard;
 
-class DictCore;
+class DictWidget;
 
 class PopupWindow: public QFrame
 {
@@ -24,6 +24,7 @@ class PopupWindow: public QFrame
         bool showIfNotFound() const;
         int timeoutBeforeHide() const;
         const QSize& defaultSize() const;
+        DictCore::TranslationFlags translationFlags() const;
 
         DictCore* dict() const;
 
@@ -33,6 +34,7 @@ class PopupWindow: public QFrame
         void setShowIfNotFound(bool mode);
         void setTimeoutBeforeHide(int timeoutBeforeHide);
         void setDefaultSize(const QSize &defaultSize);
+        void setTranslationFlags(DictCore::TranslationFlags translationFlags);
 
     signals:
         void scanChanged(bool);
@@ -46,9 +48,9 @@ class PopupWindow: public QFrame
         void xSelectionChanged();
 
     private:
-        QTextBrowser *translationView;
-        QTimer *closeTimer;
         DictCore* m_dict;
+        DictWidget *translationView;
+        QTimer *closeTimer;
         QString m_source;
         bool m_scan;
         int m_modifierKey;
