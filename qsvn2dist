@@ -104,7 +104,7 @@ else
     exit 1
 fi
 
-if [ "$NO_TRANSLATIONS" = "1" ]; then
+if [ "$NO_TRANSLATIONS" != "1" ]; then
     printf "%-"$STR_WIDTH"s" "Updating translations"
     lrelease $PROJECT_FILE >/dev/null 2>/dev/null && print_ok || print_fail
 fi
