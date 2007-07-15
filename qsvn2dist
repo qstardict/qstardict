@@ -127,8 +127,8 @@ fi
 rm -rf $PROJECT_NAME-$PROJECT_VERSION
 mkdir $PROJECT_NAME-$PROJECT_VERSION
 for i in $FILES; do
-    if test -f $i && [ "$i" != "$0" ]; then
-        install -m 655 -D $i $PROJECT_NAME-$PROJECT_VERSION 2>/dev/null
+    if test -f $i && test "$i" -ef "$0" ; then
+        install -m 644 -D $i $PROJECT_NAME-$PROJECT_VERSION 2>/dev/null
     fi
 done
 
