@@ -26,15 +26,15 @@
 
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
-    const unsigned mAlt = 010;
-    const unsigned mCtrl = 04;
-    const unsigned mShift = 01;
-    const unsigned mWin = 0100;
+    const unsigned mAlt     = 0010;
+    const unsigned mCtrl    = 0004;
+    const unsigned mShift   = 0001;
+    const unsigned mWin     = 0100;
 
     XkbStateRec state;
     Qt::KeyboardModifiers result;
 
-    XkbSelectEvents(QX11Info::display(), XkbUseCoreKbd, XkbStateNotifyMask, XkbStateNotifyMask);
+//    XkbSelectEvents(QX11Info::display(), XkbUseCoreKbd, XkbStateNotifyMask, XkbStateNotifyMask);
     XkbGetState(QX11Info::display(), XkbUseCoreKbd, &state);
     if (state.base_mods & mAlt)
         result |= Qt::AltModifier;
@@ -49,10 +49,13 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 }
 
 #else // Q_WS_X11
+
+// TODO: write it for other platforms
 Qt::KeyBoardModifiers Keyboard::modifiers()
 {
     return Qt::NoModifier;
 }
+
 #endif // Q_WS_X11
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
