@@ -332,11 +332,11 @@ std::string xdxf2html(const char *p) // taken from sdcv
                 next = begin;
         }
         else if (name == "tr")
-            res += "<font style=\"transcription\">[";
+            res += "<font class=\"transcription\">[";
         else if (name == "/tr")
             res += "]</font>";
         else if (name == "ex")
-            res += "<font style=\"example\">";
+            res += "<font class=\"example\">";
         else if (name == "/ex")
             res += "</font>";
         else if (!name.empty() && name[0] == 'c' && name != "co")
