@@ -33,8 +33,7 @@ HEADERS += \
     src/popupwindow.h \
     src/settingsdialog.h \
     src/keyboard.h \
-    src/dictwidget.h \
-    src/cssstyle.h
+    src/dictwidget.h
 SOURCES += \
     src/lib/dictziplib.cpp \
     src/lib/distance.cpp \
@@ -45,8 +44,7 @@ SOURCES += \
     src/popupwindow.cpp \
     src/settingsdialog.cpp \
     src/keyboard.cpp \
-    src/dictwidget.cpp \
-    src/cssstyle.cpp
+    src/dictwidget.cpp
 RESOURCES += \
     resources/qstardict.qrc \
     translations/translations.qrc
