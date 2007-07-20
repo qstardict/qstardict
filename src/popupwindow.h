@@ -31,7 +31,7 @@ class DictWidget;
 
 class PopupWindow: public QFrame
 {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         PopupWindow(DictCore *dict = NULL, QWidget *parent = 0);

@@ -26,7 +26,7 @@ class MainWindow;
 
 class SettingsDialog: public QDialog, private Ui::SettingsDialog
 {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         SettingsDialog(MainWindow *parent);

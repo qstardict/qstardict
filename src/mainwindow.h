@@ -32,7 +32,7 @@ class SettingsDialog;
 
 class MainWindow: public QMainWindow, private Ui::MainWindow
 {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         MainWindow(QWidget *parent = 0);

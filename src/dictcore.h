@@ -29,7 +29,7 @@ class Libs;
 
 class DictCore: public QObject
 {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         enum TranslationFlag
