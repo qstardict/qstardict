@@ -21,7 +21,7 @@
 #include <QTranslator>
 #include "mainwindow.h"
 
-#if !defined(QT_NO_DBUS) && defined(Q_OS_UNIX)
+#if !defined(QT_NO_DBUS) && defined Q_OS_UNIX
 #include <QDBusConnection>
 #include "dbusadaptor.h"
 #endif // QT_NO_DBUS
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName("qstardict");
     app.setApplicationName("qstardict");
     MainWindow window;
-#if !defined(QT_NO_DBUS) && defined(Q_OS_UNIX)
+#if !defined(QT_NO_DBUS) && defined Q_OS_UNIX
     DBusAdaptor dbusAdaptor(&window);
 #endif // QT_NO_DBUS
 

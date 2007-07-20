@@ -7,8 +7,7 @@ DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
     gui \
-    core \
-    qtdbus
+    core
 CONFIG += \
     qt \
     link_pkgconfig \
@@ -17,8 +16,7 @@ CONFIG += \
 PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
-unix:CONFIG += qdbus
-unix:DEFINES += HAVE_DBUS
+unix:contains(QT_CONFIG, qdbus):CONFIG += qdbus
 
 FORMS += \
     ui/mainwindow.ui \
@@ -34,8 +32,8 @@ HEADERS += \
     src/popupwindow.h \
     src/settingsdialog.h \
     src/keyboard.h \
-    src/dictwidget.h \
-    src/dbusadaptor.h
+    src/dictwidget.h
+unix:contains(CONFIG, qdbus): HEADERS += src/dbusadaptor.h
 SOURCES += \
     src/lib/dictziplib.cpp \
     src/lib/distance.cpp \
@@ -46,8 +44,8 @@ SOURCES += \
     src/popupwindow.cpp \
     src/settingsdialog.cpp \
     src/keyboard.cpp \
-    src/dictwidget.cpp \
-    src/dbusadaptor.cpp
+    src/dictwidget.cpp
+unix:contains(CONFIG, qdbus): SOURCES += src/dbusadaptor.cpp
 RESOURCES += \
     resources/qstardict.qrc \
     translations/translations.qrc
