@@ -7,7 +7,8 @@ DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
     gui \
-    core
+    core \
+    qtdbus
 CONFIG += \
     qt \
     link_pkgconfig \
@@ -33,7 +34,8 @@ HEADERS += \
     src/popupwindow.h \
     src/settingsdialog.h \
     src/keyboard.h \
-    src/dictwidget.h
+    src/dictwidget.h \
+    src/dbusadaptor.h
 SOURCES += \
     src/lib/dictziplib.cpp \
     src/lib/distance.cpp \
@@ -44,7 +46,8 @@ SOURCES += \
     src/popupwindow.cpp \
     src/settingsdialog.cpp \
     src/keyboard.cpp \
-    src/dictwidget.cpp
+    src/dictwidget.cpp \
+    src/dbusadaptor.cpp
 RESOURCES += \
     resources/qstardict.qrc \
     translations/translations.qrc

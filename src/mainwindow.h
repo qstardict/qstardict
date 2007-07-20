@@ -38,6 +38,11 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         MainWindow(QWidget *parent = 0);
         ~MainWindow();
 
+        PopupWindow* popupWindow();
+
+    public slots:
+        void showTranslation(const QString &text);
+
     private slots:
         void aboutAction();
         void settingsAction();

@@ -54,6 +54,17 @@ MainWindow::~MainWindow()
     saveSettings();
 }
 
+PopupWindow* MainWindow::popupWindow()
+{
+    return popup;
+}
+
+void MainWindow::showTranslation(const QString &text)
+{
+    searchBox->setText(text);
+    queryButtonClicked();
+}
+
 void MainWindow::createTrayIcon()
 {
     trayIcon = new QSystemTrayIcon(QIcon(":/icons/qstardict.png"), this);

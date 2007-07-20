@@ -124,26 +124,30 @@ void PopupWindow::xSelectionChanged()
 {
     if (m_modifierKey && ! Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
         return ;
-    QString m_source = QApplication::clipboard()->text(QClipboard::Selection);
-    m_source.remove(QRegExp("^\\W"));
-    m_source.remove(QRegExp("\\W.*$"));
-    if (m_showIfNotFound || m_dict->isTranslatable(m_source))
-    {
-        translationView->translate(m_source);
-        resize(m_defaultSize);
+    QString text = QApplication::clipboard()->text(QClipboard::Selection);
+    text.remove(QRegExp("^\\W"));
+    text.remove(QRegExp("\\W.*$"));
+    if (m_showIfNotFound || m_dict->isTranslatable(text))
+        showTranslation(text);
+}
 
-        QPoint newPosition = cursor().pos() - QPoint(30, 30);
-        if (newPosition.x() < 0)
-            newPosition.setX(0);
-        else if (newPosition.x() + width() > QApplication::desktop()->width())
-            newPosition.setX(QApplication::desktop()->width() - width());
-        if (newPosition.y() < 0)
-            newPosition.setY(0);
-        else if (newPosition.y() + height() > QApplication::desktop()->height())
-            newPosition.setY(QApplication::desktop()->height() - height());
-        move(newPosition);
-        show();
-    }
+void PopupWindow::showTranslation(const QString &text)
+{
+    m_source = text;
+    translationView->translate(m_source);
+    resize(m_defaultSize);
+
+    QPoint newPosition = cursor().pos() - QPoint(30, 30);
+    if (newPosition.x() < 0)
+        newPosition.setX(0);
+    else if (newPosition.x() + width() > QApplication::desktop()->width())
+        newPosition.setX(QApplication::desktop()->width() - width());
+    if (newPosition.y() < 0)
+        newPosition.setY(0);
+    else if (newPosition.y() + height() > QApplication::desktop()->height())
+        newPosition.setY(QApplication::desktop()->height() - height());
+    move(newPosition);
+    show();
 }
 
 void PopupWindow::enterEvent(QEvent*)

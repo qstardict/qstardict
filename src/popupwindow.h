@@ -53,6 +53,7 @@ class PopupWindow: public QFrame
         void setTimeoutBeforeHide(int timeoutBeforeHide);
         void setDefaultSize(const QSize &defaultSize);
         void setTranslationFlags(DictCore::TranslationFlags translationFlags);
+        void showTranslation(const QString &text);
 
     signals:
         void scanChanged(bool);
@@ -61,7 +62,7 @@ class PopupWindow: public QFrame
         void enterEvent(QEvent*);
         void leaveEvent(QEvent*);
         void timerEvent(QTimerEvent*);
-
+    
     private slots:
         void xSelectionChanged();
 
