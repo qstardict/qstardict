@@ -24,3 +24,5 @@
 	- fix bug with "Up" buttons in settings dialog
 	- add popup window default width and height items to settings dialog
 	- change PopupWindow base class from QWidget to QFrame
+	- add D-Bus support
+
