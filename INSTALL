@@ -1,4 +1,4 @@
-You need Qt >= 4.2 and glib >= 2.0.
+You need Qt >= 4.2 and glib >= 2.0. If you have QtDBus module QStarDict will be compiled with D-Bus support.
 
 To build and install:
 1)	qmake
