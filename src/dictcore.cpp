@@ -32,12 +32,13 @@ namespace
 std::string xdxf2html(const char *p);
 std::string parse_data(const char *data);
 QString html2text(QString html);
+const int MaxFuzzy = 10;
 }
 
 DictCore::DictCore(QObject *parent)
         : QObject(parent)
 {
-    sdLibs = NULL;
+    m_sdLibs = 0;
 #ifdef Q_OS_UNIX
     m_dictDirs << "/usr/share/stardict/dic";
 #else
@@ -49,38 +50,23 @@ DictCore::DictCore(QObject *parent)
 
 DictCore::~DictCore()
 {
-    delete sdLibs;
-}
-
-void DictCore::setDictDirs(const QStringList &dictDirs)
-{
-    m_dictDirs = dictDirs;
-}
-
-QStringList DictCore::dictDirs() const
-{
-    return m_dictDirs;
+    delete m_sdLibs;
 }
 
 void DictCore::setDicts(const QStringList &orderedDicts)
 {
     m_orderedDicts = orderedDicts;
 
-    delete sdLibs;
-    sdLibs = new Libs;
+    delete m_sdLibs;
+    m_sdLibs = new Libs;
 
-    for (QStringList::ConstIterator dictName = m_orderedDicts.begin(); dictName != m_orderedDicts.end(); dictName++)
-        for (QStringList::ConstIterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); dictDir++)
+    for (QStringList::ConstIterator dictName = m_orderedDicts.begin(); dictName != m_orderedDicts.end(); ++dictName)
+        for (QStringList::ConstIterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); ++dictDir)
             if (QFile::exists(*dictDir + "/" + *dictName + ".ifo"))
             {
-                sdLibs->load_dict(QDir::toNativeSeparators(*dictDir + "/" + *dictName + ".ifo").toUtf8().data());
+                m_sdLibs->load_dict(QDir::toNativeSeparators(*dictDir + "/" + *dictName + ".ifo").toUtf8().data());
                 break;
             }
-}
-
-QStringList DictCore::orderedDicts() const
-{
-    return m_orderedDicts;
 }
 
 QStringList DictCore::disabledDicts() const
@@ -88,7 +74,7 @@ QStringList DictCore::disabledDicts() const
     QStringList avialable = avialableDicts();
     QStringList disabled;
 
-    for (QStringList::ConstIterator dictName = avialable.begin(); dictName != avialable.end(); dictName++)
+    for (QStringList::ConstIterator dictName = avialable.begin(); dictName != avialable.end(); ++dictName)
         if (! m_orderedDicts.contains(*dictName))
             disabled << *dictName;
 
@@ -99,7 +85,7 @@ QStringList DictCore::avialableDicts() const
 {
     QStringList result;
 
-    for (QStringList::ConstIterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); dictDir++)
+    for (QStringList::ConstIterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); ++dictDir)
         result << findDicts(*dictDir);
 
     return result;
@@ -109,7 +95,7 @@ QStringList DictCore::findDicts(const QString &dir)
 {
     QStringList result = QDir(dir).entryList(QStringList("*.ifo"), QDir::Files);
 
-    for (QStringList::Iterator dictName = result.begin(); dictName != result.end(); dictName++)
+    for (QStringList::Iterator dictName = result.begin(); dictName != result.end(); ++dictName)
         dictName->remove(QRegExp("\\.ifo$"));
     return result;
 }
@@ -119,7 +105,7 @@ QStringList DictCore::find(const QString &str)
     SearchResultList resultList;
     lookupWithFuzzy(str.toUtf8().data() + std::string("*"), resultList);
     QStringList result;
-    for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); i++)
+    for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); ++i)
         if (! result.contains(i->def))
             result << i->def;
 
@@ -131,8 +117,8 @@ bool DictCore::isTranslatable(const QString &str)
     if (str.isEmpty())
         return false;
     long ind;
-    for (int idict = 0; idict < sdLibs->ndicts(); idict++)
-        if (sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
+    for (int idict = 0; idict < m_sdLibs->ndicts(); ++idict)
+        if (m_sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
             return true;
     return false;
 }
@@ -233,33 +219,31 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
 void DictCore::simpleLookup(const std::string &str, SearchResultList &resultList) // taken from sdcv
 {
     glong ind;
-    resultList.reserve(sdLibs->ndicts());
-    for (int idict = 0; idict < sdLibs->ndicts(); idict++)
-        if (sdLibs->SimpleLookupWord(str.c_str(), ind, idict))
+    resultList.reserve(m_sdLibs->ndicts());
+    for (int idict = 0; idict < m_sdLibs->ndicts(); idict++)
+        if (m_sdLibs->SimpleLookupWord(str.c_str(), ind, idict))
             resultList.push_back(
-                SearchResult(sdLibs->dict_name(idict).c_str(),
-                             sdLibs->poGetWord(ind, idict),
-                             parse_data(sdLibs->poGetWordData(ind, idict)).c_str()));
+                SearchResult(m_sdLibs->dict_name(idict).c_str(),
+                             m_sdLibs->poGetWord(ind, idict),
+                             parse_data(m_sdLibs->poGetWordData(ind, idict)).c_str()));
 }
 
 QString DictCore::translation(const QString &str, const QString &dict)
 {
     long ind;
-    for (int idict = 0; idict < sdLibs->ndicts(); idict++)
-        if (sdLibs->dict_name(idict) == dict.toUtf8().data() && sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
-            return QString::fromUtf8(parse_data(sdLibs->poGetWordData(ind, idict)).c_str());
+    for (int idict = 0; idict < m_sdLibs->ndicts(); idict++)
+        if (m_sdLibs->dict_name(idict) == dict.toUtf8().data() && m_sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
+            return QString::fromUtf8(parse_data(m_sdLibs->poGetWordData(ind, idict)).c_str());
     return QString();
 }
 
 void DictCore::lookupWithFuzzy(const std::string &str, SearchResultList &resultList) // taken from sdcv
 {
-    static const int MAXFUZZY = 10;
-
-    gchar *fuzzy_res[MAXFUZZY];
-    if (! sdLibs->LookupWithFuzzy(str.c_str(), fuzzy_res, MAXFUZZY))
+    gchar *fuzzy_res[MaxFuzzy];
+    if (! m_sdLibs->LookupWithFuzzy(str.c_str(), fuzzy_res, MaxFuzzy))
         return ;
 
-    for (gchar **p = fuzzy_res, **end = fuzzy_res + MAXFUZZY;
+    for (gchar **p = fuzzy_res, **end = fuzzy_res + MaxFuzzy;
             p != end && *p; ++p)
     {
         simpleLookup(*p, resultList);
@@ -269,9 +253,9 @@ void DictCore::lookupWithFuzzy(const std::string &str, SearchResultList &resultL
 
 void DictCore::lookupWithRule(const std::string &str, SearchResultList &resultList)
 {
-    std::vector<gchar *> match_res((MAX_MATCH_ITEM_PER_LIB) * sdLibs->ndicts());
+    std::vector<gchar *> match_res((MAX_MATCH_ITEM_PER_LIB) * m_sdLibs->ndicts());
 
-    gint nfound = sdLibs->LookupWithRule(str.c_str(), &match_res[0]);
+    gint nfound = m_sdLibs->LookupWithRule(str.c_str(), &match_res[0]);
     if (!nfound)
         return ;
 
@@ -284,10 +268,10 @@ void DictCore::lookupWithRule(const std::string &str, SearchResultList &resultLi
 
 void DictCore::lookupData(const std::string &str, SearchResultList &resultList)
 {
-    std::vector<gchar *> drl[sdLibs->ndicts()];
-    if (! sdLibs->LookupData(str.c_str(), drl))
+    std::vector<gchar *> drl[m_sdLibs->ndicts()];
+    if (! m_sdLibs->LookupData(str.c_str(), drl))
         return ;
-    for (int idict = 0; idict < sdLibs->ndicts(); ++idict)
+    for (int idict = 0; idict < m_sdLibs->ndicts(); ++idict)
         for (std::vector<gchar *>::size_type j = 0; j<drl[idict].size(); ++j)
         {
             simpleLookup(drl[idict][j], resultList)

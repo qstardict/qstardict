@@ -45,11 +45,14 @@ class DictCore: public QObject
         DictCore(QObject *parent = 0);
         ~DictCore();
 
-        void setDictDirs(const QStringList &dictDirs);
-        QStringList dictDirs() const;
+        void setDictDirs(const QStringList &dictDirs)
+        { m_dictDirs = dictDirs; }
+        const QStringList& dictDirs() const
+        { return m_dictDirs; }
 
         void setDicts(const QStringList &orderedDicts);
-        QStringList orderedDicts() const;
+        const QStringList& orderedDicts() const
+        { return m_orderedDicts; }
         QStringList disabledDicts() const;
         QStringList avialableDicts() const;
 
@@ -81,7 +84,7 @@ class DictCore: public QObject
         void lookupData(const std::string &str, SearchResultList &resultList);
         QString translation(const QString &str, const QString &dict);
 
-        Libs *sdLibs;
+        Libs *m_sdLibs;
         QStringList m_dictDirs;
         QStringList m_orderedDicts;
 };
