@@ -1,5 +1,5 @@
 /********************************************************************************
- * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt            *
+ * selection.h                                                                  *
  * Copyright (C) 2007 Alexander Rodin                                           *
  *                                                                              *
  * This program is free software: you can redistribute it and/or modify         *
@@ -16,34 +16,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.        *
  ********************************************************************************/
 
-#ifndef DBUSADAPTOR_H
-#define DBUSADAPTOR_H
+#ifndef SELECTION_H
+#define SELECTION_H
 
-#include <QDBusAbstractAdaptor>
+#include <QObject>
 
-class MainWindow;
+class QTimerEvent;
 
-class DBusAdaptor: public QDBusAbstractAdaptor
+class Selection: public QObject
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
-    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
 
     public:
-        DBusAdaptor(MainWindow *mainWindow);
+        Selection(QObject *parent = 0);
 
-        bool mainWindowVisible() const;
-        void setMainWindowVisible(bool visible);
+        bool isScan() const;
 
     public slots:
-        void showTranslation(const QString &text);
-        void showPopup(const QString &text);
+        void setScan(bool scan);
+
+    signals:
+        void changed(const QString &newText);
+
+    protected:
+        void timerEvent(QTimerEvent*);
 
     private:
-        MainWindow *m_mainWindow;
+        QString m_lastState;
+        int m_scan;
+        int m_timerId;
 };
 
-#endif // DBUSADAPTOR_H
+#endif // SELECTION_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
 

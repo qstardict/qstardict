@@ -23,9 +23,11 @@
 #include <cassert>
 
 DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
-    : QWidget(parent, f)
+    : QFrame(parent, f)
 {
     translationView = new QTextBrowser(this);
+    setFrameStyle(translationView->frameStyle());
+    translationView->setFrameStyle(QFrame::NoFrame);
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(translationView);

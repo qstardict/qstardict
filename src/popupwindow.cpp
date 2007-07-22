@@ -18,72 +18,60 @@
 
 #include "popupwindow.h"
 
-#include <QApplication>
-#include <QClipboard>
-#include <QDesktopWidget>
 #include <QGridLayout>
 #include <QSettings>
-#include <QTimer>
 #include "dictwidget.h"
 #include "keyboard.h"
+#include "selection.h"
 
 PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
-        : QFrame(parent, Qt::ToolTip)
+        : ResizablePopup(parent)
 {
     if (! dict)
         m_dict = new DictCore(this);
     else
         m_dict = dict;
-    setFrameStyle(QFrame::Box);
     translationView = new DictWidget(this);
+    translationView->setFrameStyle(QFrame::NoFrame);
     translationView->setDict(m_dict);
+    translationView->setMouseTracking(true);
     QGridLayout *mainLayout = new QGridLayout(this);
     mainLayout->setMargin(0);
     mainLayout->addWidget(translationView);
-    closeTimer = new QTimer(this);
-    connect(closeTimer, SIGNAL(timeout()), SLOT(close()));
-    connect(closeTimer, SIGNAL(timeout()), closeTimer, SLOT(stop()));
-    timerId = 0;
+
+    m_selection = new Selection(this);
+    connect(m_selection, SIGNAL(changed(const QString&)), this, SLOT(selectionChanged(const QString&)));
 
     QSettings config;
     setScan(config.value("PopupWindow/scan", true).toBool());
     setModifierKey(config.value("PopupWindow/modifierKey", 0).toInt());
     setShowIfNotFound(config.value("PopupWindow/showIfNotFound", false).toBool());
     setWindowOpacity(config.value("PopupWindow/opacity", 1.0).toDouble());
-    m_timeoutBeforeHide = config.value("PopupWindow/timeoutBeforeHide", 300).toInt();
-    m_defaultSize = config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize();
+    setTimeoutBeforeHide(config.value("PopupWindow/timeoutBeforeHide", 300).toInt());
+    setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
     setTranslationFlags(DictCore::TranslationFlags(config.value("DictWidget/translationFlags", (int)translationView->translationFlags()).toInt()));
 }
 
 PopupWindow::~PopupWindow()
 {
     QSettings config;
-    config.setValue("PopupWindow/scan", m_scan);
+    config.setValue("PopupWindow/scan", isScan());
     config.setValue("PopupWindow/modifierKey", m_modifierKey);
     config.setValue("PopupWindow/showIfNotFound", m_showIfNotFound);
     config.setValue("PopupWindow/opacity", windowOpacity());
-    config.setValue("PopupWindow/timeoutBeforeHide", m_timeoutBeforeHide);
-    config.setValue("PopupWindow/defaultSize", m_defaultSize);
+    config.setValue("PopupWindow/timeoutBeforeHide", timeoutBeforeHide());
+    config.setValue("PopupWindow/defaultSize", defaultSize());
 }
 
 void PopupWindow::setScan(bool scan)
 {
-    if (m_scan == scan)
-        return ;
-    m_scan = scan;
-    if (m_scan)
-    {
-        lastSelection = QApplication::clipboard()->text(QClipboard::Selection);
-        timerId = startTimer(300);
-    }
-    else
-        killTimer(timerId);
+    m_selection->setScan(scan);
     emit scanChanged(scan);
 }
 
 bool PopupWindow::isScan() const
 {
-    return m_scan;
+    return m_selection->isScan();
 }
 
 void PopupWindow::setModifierKey(int key)
@@ -111,73 +99,21 @@ DictCore* PopupWindow::dict() const
     return m_dict;
 }
 
-void PopupWindow::timerEvent(QTimerEvent*)
+void PopupWindow::selectionChanged(const QString &text)
 {
-    if (lastSelection != QApplication::clipboard()->text(QClipboard::Selection))
-    {
-        lastSelection = QApplication::clipboard()->text(QClipboard::Selection);
-        xSelectionChanged();
-    }
-}
-
-void PopupWindow::xSelectionChanged()
-{
-    if (m_modifierKey && ! Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
-        return ;
-    QString text = QApplication::clipboard()->text(QClipboard::Selection);
-    text.remove(QRegExp("^\\W"));
-    text.remove(QRegExp("\\W.*$"));
+    if (m_modifierKey && ! Keyboard::activeModifiers().testFlag((Qt::KeyboardModifier)(m_modifierKey)))
+        return;
+    QString tmp = text;
+    tmp.remove(QRegExp("^\\W"));
+    tmp.remove(QRegExp("\\W.*$"));
     if (m_showIfNotFound || m_dict->isTranslatable(text))
         showTranslation(text);
 }
 
 void PopupWindow::showTranslation(const QString &text)
 {
-    m_source = text;
-    translationView->translate(m_source);
-    resize(m_defaultSize);
-
-    QPoint newPosition = cursor().pos() - QPoint(30, 30);
-    if (newPosition.x() < 0)
-        newPosition.setX(0);
-    else if (newPosition.x() + width() > QApplication::desktop()->width())
-        newPosition.setX(QApplication::desktop()->width() - width());
-    if (newPosition.y() < 0)
-        newPosition.setY(0);
-    else if (newPosition.y() + height() > QApplication::desktop()->height())
-        newPosition.setY(QApplication::desktop()->height() - height());
-    move(newPosition);
-    show();
-}
-
-void PopupWindow::enterEvent(QEvent*)
-{
-    closeTimer->stop();
-}
-
-void PopupWindow::leaveEvent(QEvent*)
-{
-    closeTimer->start(m_timeoutBeforeHide);
-}
-
-int PopupWindow::timeoutBeforeHide() const
-{
-    return m_timeoutBeforeHide;
-}
-
-void PopupWindow::setTimeoutBeforeHide(int timeoutBeforeHide)
-{
-    m_timeoutBeforeHide = timeoutBeforeHide;
-}
-
-const QSize& PopupWindow::defaultSize() const
-{
-    return m_defaultSize;
-}
-
-void PopupWindow::setDefaultSize(const QSize &defaultSize)
-{
-    m_defaultSize = defaultSize;
+    translationView->translate(text);
+    popup();
 }
 
 void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlags)

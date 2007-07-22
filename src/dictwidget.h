@@ -19,12 +19,12 @@
 #ifndef DICTWIDGET_H
 #define DICTWIDGET_H
 
-#include <QWidget>
+#include <QFrame>
 #include "dictcore.h"
 
 class QTextBrowser;
 
-class DictWidget: public QWidget
+class DictWidget: public QFrame
 {
     public:
         DictWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);

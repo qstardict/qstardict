@@ -26,7 +26,7 @@ DBusAdaptor::DBusAdaptor(MainWindow *mainWindow)
     : QDBusAbstractAdaptor(mainWindow), m_mainWindow(mainWindow)
 {
     QDBusConnection connection = QDBusConnection::sessionBus();
-    connection.registerService("org.qstardict.qstardict");
+    connection.registerService("org.qstardict.dbus");
     connection.registerObject("/qstardict", mainWindow);
 }
 

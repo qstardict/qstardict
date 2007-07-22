@@ -1,5 +1,5 @@
 /********************************************************************************
- * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt            *
+ * resizablepopup.h - QStarDict, a StarDict clone written with using Qt         *
  * Copyright (C) 2007 Alexander Rodin                                           *
  *                                                                              *
  * This program is free software: you can redistribute it and/or modify         *
@@ -16,34 +16,58 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.        *
  ********************************************************************************/
 
-#ifndef DBUSADAPTOR_H
-#define DBUSADAPTOR_H
+#ifndef RESIZABLEPOPUP_H
+#define RESIZABLEPOPUP_H
 
-#include <QDBusAbstractAdaptor>
+#include <QFrame>
 
-class MainWindow;
+class QEvent;
+class QMouseEvent;
+class QTimerEvent;
 
-class DBusAdaptor: public QDBusAbstractAdaptor
+class ResizablePopup: public QFrame
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
-    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
 
     public:
-        DBusAdaptor(MainWindow *mainWindow);
+        ResizablePopup(QWidget *parent = 0);
 
-        bool mainWindowVisible() const;
-        void setMainWindowVisible(bool visible);
+        int timeoutBeforeHide() const;
+        const QSize& defaultSize() const;
 
     public slots:
-        void showTranslation(const QString &text);
-        void showPopup(const QString &text);
+        void setTimeoutBeforeHide(int timeoutBeforeHide);
+        void setDefaultSize(const QSize &defaultSize);
+        void popup();
+
+    protected:
+        void enterEvent(QEvent*);
+        void leaveEvent(QEvent*);
+        void mouseMoveEvent(QMouseEvent*);
+        void mousePressEvent(QMouseEvent*);
+        void mouseReleaseEvent(QMouseEvent);
+        void timerEvent(QTimerEvent*);
 
     private:
-        MainWindow *m_mainWindow;
+        enum ResizeDirection
+        {
+            None,
+            Top,
+            Bottom,
+            Left,
+            Right,
+            TopLeft,
+            TopRight,
+            BottomLeft,
+            BottomRight
+        };
+        QSize m_defaultSize;
+        ResizeDirection m_resizeDirection;
+        int m_timeoutBeforeHide;
+        int m_timerCloseId;
 };
 
-#endif // DBUSADAPTOR_H
+#endif // RESIZABLEPOPUP_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
 

@@ -32,7 +32,9 @@ HEADERS += \
     src/popupwindow.h \
     src/settingsdialog.h \
     src/keyboard.h \
-    src/dictwidget.h
+    src/dictwidget.h \
+    src/resizablepopup.h \
+    src/selection.h
 unix:contains(CONFIG, qdbus): HEADERS += src/dbusadaptor.h
 SOURCES += \
     src/lib/dictziplib.cpp \
@@ -44,7 +46,9 @@ SOURCES += \
     src/popupwindow.cpp \
     src/settingsdialog.cpp \
     src/keyboard.cpp \
-    src/dictwidget.cpp
+    src/dictwidget.cpp \
+    src/resizablepopup.cpp \
+    src/selection.cpp
 unix:contains(CONFIG, qdbus): SOURCES += src/dbusadaptor.cpp
 RESOURCES += \
     resources/qstardict.qrc \

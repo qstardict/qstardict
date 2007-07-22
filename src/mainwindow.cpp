@@ -21,7 +21,6 @@
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDir>
-#include <QDockWidget>
 #include <QFile>
 #include <QFileDialog>
 #include <QListWidgetItem>

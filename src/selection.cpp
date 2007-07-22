@@ -1,5 +1,5 @@
 /********************************************************************************
- * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt            *
+ * selection.cpp                                                                *
  * Copyright (C) 2007 Alexander Rodin                                           *
  *                                                                              *
  * This program is free software: you can redistribute it and/or modify         *
@@ -16,34 +16,46 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.        *
  ********************************************************************************/
 
-#ifndef DBUSADAPTOR_H
-#define DBUSADAPTOR_H
+#include "selection.h"
 
-#include <QDBusAbstractAdaptor>
+#include <QApplication>
+#include <QClipboard>
 
-class MainWindow;
-
-class DBusAdaptor: public QDBusAbstractAdaptor
+Selection::Selection(QObject *parent)
+    : QObject(parent)
 {
-    Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
-    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
+    m_scan = false;
+    m_timerId = 0;
+}
 
-    public:
-        DBusAdaptor(MainWindow *mainWindow);
+bool Selection::isScan() const
+{
+    return m_scan;
+}
 
-        bool mainWindowVisible() const;
-        void setMainWindowVisible(bool visible);
+void Selection::setScan(bool scan)
+{
+    if (m_scan == scan)
+        return;
 
-    public slots:
-        void showTranslation(const QString &text);
-        void showPopup(const QString &text);
+    m_scan = scan;
+    if (m_scan)
+    {
+        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
+        m_timerId = startTimer(300);
+    }
+    else
+        killTimer(m_timerId);
+}
 
-    private:
-        MainWindow *m_mainWindow;
-};
-
-#endif // DBUSADAPTOR_H
+void Selection::timerEvent(QTimerEvent*)
+{
+    if (m_lastState != QApplication::clipboard()->text(QClipboard::Selection))
+    {
+        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
+        emit changed(m_lastState);
+    }
+}
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
 
