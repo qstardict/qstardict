@@ -177,7 +177,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             {
                 QRegExp regExp;
                 regExp.setMinimal(true);
-                regExp.setPattern("\\d[>\\.]\\s+");
+                regExp.setPattern("\\d[>\\.\\)]\\s+");
                 if (i->exp.contains(regExp))
                 {
                     i->exp.insert(i->exp.indexOf(regExp), "<ol>");
@@ -208,7 +208,6 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                     QChar lastChar = i->exp[pos + rx.matchedLength() - 1];
                     if (! result.isEmpty())
                     {
-                        result.remove(QRegExp("^\\s*"));
                         result.remove(QRegExp("^\\s*"));
                         result.remove("<br>");
                         if (lastChar == ':')
