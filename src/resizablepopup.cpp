@@ -22,6 +22,11 @@
 #include <QDesktopWidget>
 #include <QMouseEvent>
 
+namespace
+{
+const int CornerSize = 10;
+}
+
 ResizablePopup::ResizablePopup(QWidget *parent)
     : QFrame(parent, Qt::Popup)
 {
@@ -151,8 +156,6 @@ void ResizablePopup::mousePressEvent(QMouseEvent *event)
         hide();
         return;
     }
-
-    const int CornerSize = 10;
 
     if (event->buttons().testFlag(Qt::LeftButton))
     {
