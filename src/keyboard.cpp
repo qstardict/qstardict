@@ -24,17 +24,19 @@
 #include <X11/XKBlib.h>
 #include <stdio.h>
 
+namespace
+{
+const unsigned mAlt     = 0010;
+const unsigned mCtrl    = 0004;
+const unsigned mShift   = 0001;
+const unsigned mWin     = 0100;
+}
+
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
-    const unsigned mAlt     = 0010;
-    const unsigned mCtrl    = 0004;
-    const unsigned mShift   = 0001;
-    const unsigned mWin     = 0100;
-
     XkbStateRec state;
     Qt::KeyboardModifiers result;
 
-//    XkbSelectEvents(QX11Info::display(), XkbUseCoreKbd, XkbStateNotifyMask, XkbStateNotifyMask);
     XkbGetState(QX11Info::display(), XkbUseCoreKbd, &state);
     if (state.base_mods & mAlt)
         result |= Qt::AltModifier;
