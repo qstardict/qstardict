@@ -25,6 +25,7 @@
 #include <vector>
 #include <QFlags>
 #include <QStringList>
+
 class Libs;
 
 class DictCore: public QObject
