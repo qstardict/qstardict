@@ -33,27 +33,7 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     layout->addWidget(translationView);
     setLayout(layout);
     m_dict = 0;
-    m_flags = DictCore::Html | DictCore::Reformat | DictCore::ExpandAbbreviations;
-}
-
-void DictWidget::setDict(DictCore *dict)
-{
-    m_dict = dict;
-}
-
-const DictCore* DictWidget::dict() const
-{
-    return m_dict;
-}
-
-void DictWidget::setTranslationFlags(DictCore::TranslationFlags flags)
-{
-    m_flags = flags | DictCore::Html;
-}
-
-DictCore::TranslationFlags DictWidget::translationFlags() const
-{
-    return m_flags;
+    m_translationFlags = DictCore::Html | DictCore::Reformat | DictCore::ExpandAbbreviations;
 }
 
 bool DictWidget::translate(const QString &str)
@@ -80,7 +60,7 @@ bool DictWidget::translate(const QString &str)
             "font-weight: bold; }"
         "</style>";
     m_translatedWord = str;
-    QString result = m_dict->translate(str, m_flags);
+    QString result = m_dict->translate(str, m_translationFlags);
     translationView->setHtml(htmlStyle + result);
     return result.isEmpty();
 }

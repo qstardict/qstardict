@@ -37,16 +37,6 @@ ResizablePopup::ResizablePopup(QWidget *parent)
     setFrameStyle(QFrame::StyledPanel);
 }
 
-int ResizablePopup::timeoutBeforeHide() const
-{
-    return m_timeoutBeforeHide;
-}
-
-void ResizablePopup::setTimeoutBeforeHide(int timeoutBeforeHide)
-{
-    m_timeoutBeforeHide = timeoutBeforeHide;
-}
-
 void ResizablePopup::popup()
 {
     if (m_defaultSize != size())
@@ -180,7 +170,7 @@ void ResizablePopup::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void ResizablePopup::mouseReleaseEvent(QMouseEvent)
+void ResizablePopup::mouseReleaseEvent(QMouseEvent*)
 {
     m_resizeDirection = None;
 }
@@ -190,16 +180,6 @@ void ResizablePopup::timerEvent(QTimerEvent*)
     hide();
     killTimer(m_timerCloseId);
     m_timerCloseId = 0;
-}
-
-const QSize& ResizablePopup::defaultSize() const
-{
-    return m_defaultSize;
-}
-
-void ResizablePopup::setDefaultSize(const QSize& defaultSize)
-{
-    m_defaultSize = defaultSize;
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent

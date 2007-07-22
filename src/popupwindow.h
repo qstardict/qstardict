@@ -34,16 +34,20 @@ class PopupWindow: public ResizablePopup
         ~PopupWindow();
 
         bool isScan() const;
-        int modifierKey() const;
-        bool showIfNotFound() const;
+        int modifierKey() const
+        { return m_modifierKey; }
+        bool showIfNotFound() const
+        { return m_showIfNotFound; }
         DictCore::TranslationFlags translationFlags() const;
-
-        DictCore* dict() const;
+        DictCore* dict() const
+        { return m_dict; }
 
     public slots:
         void setScan(bool scan);
-        void setModifierKey(int key);
-        void setShowIfNotFound(bool mode);
+        void setModifierKey(int key)
+        { m_modifierKey = key; }
+        void setShowIfNotFound(bool mode)
+        { m_showIfNotFound = mode; }
         void setTranslationFlags(DictCore::TranslationFlags translationFlags);
         void showTranslation(const QString &text);
 
@@ -54,6 +58,9 @@ class PopupWindow: public ResizablePopup
         void scanChanged(bool scan);
 
     private:
+        void loadSettings();
+        void saveSettings();
+
         DictWidget *translationView;
         DictCore* m_dict;
         int m_modifierKey;

@@ -53,11 +53,6 @@ MainWindow::~MainWindow()
     saveSettings();
 }
 
-PopupWindow* MainWindow::popupWindow()
-{
-    return popup;
-}
-
 void MainWindow::showTranslation(const QString &text)
 {
     searchBox->setText(text);

@@ -42,6 +42,16 @@ PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
     m_selection = new Selection(this);
     connect(m_selection, SIGNAL(changed(const QString&)), this, SLOT(selectionChanged(const QString&)));
 
+    loadSettings();
+}
+
+PopupWindow::~PopupWindow()
+{
+    saveSettings();
+}
+
+void PopupWindow::loadSettings()
+{
     QSettings config;
     setScan(config.value("PopupWindow/scan", true).toBool());
     setModifierKey(config.value("PopupWindow/modifierKey", 0).toInt());
@@ -52,7 +62,7 @@ PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
     setTranslationFlags(DictCore::TranslationFlags(config.value("DictWidget/translationFlags", (int)translationView->translationFlags()).toInt()));
 }
 
-PopupWindow::~PopupWindow()
+void PopupWindow::saveSettings()
 {
     QSettings config;
     config.setValue("PopupWindow/scan", isScan());
@@ -74,37 +84,12 @@ bool PopupWindow::isScan() const
     return m_selection->isScan();
 }
 
-void PopupWindow::setModifierKey(int key)
-{
-    m_modifierKey = key;
-}
-
-int PopupWindow::modifierKey() const
-{
-    return m_modifierKey;
-}
-
-bool PopupWindow::showIfNotFound() const
-{
-    return m_showIfNotFound;
-}
-
-void PopupWindow::setShowIfNotFound(bool mode)
-{
-    m_showIfNotFound = mode;
-}
-
-DictCore* PopupWindow::dict() const
-{
-    return m_dict;
-}
-
 void PopupWindow::selectionChanged(const QString &text)
 {
     if (m_modifierKey && ! Keyboard::activeModifiers().testFlag((Qt::KeyboardModifier)(m_modifierKey)))
         return;
     QString tmp = text;
-    tmp.remove(QRegExp("^\\W"));
+    tmp.remove(QRegExp("^\\W*"));
     tmp.remove(QRegExp("\\W.*$"));
     if (m_showIfNotFound || m_dict->isTranslatable(text))
         showTranslation(text);

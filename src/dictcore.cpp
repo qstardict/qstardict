@@ -209,7 +209,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             result += i->exp + "</font></p>";
         }
     else
-        for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); i++)
+        for (SearchResultList::const_iterator i = resultList.begin(); i != resultList.end(); ++i)
             result += "<-- " + i->dictName + " -->\n" +
                       "--> " + i->def + "\n" +
                       html2text(i->exp) + "\n\n";
@@ -373,7 +373,7 @@ std::string parse_data(const char *data) // taken from sdcv
                 res += m_str;
                 g_free(m_str);
             }
-            sec_size++;
+            ++sec_size;
             break;
         case 'x':
             sec_size = strlen(p);
@@ -384,7 +384,7 @@ std::string parse_data(const char *data) // taken from sdcv
                 res += xdxf2html(m_str);
                 g_free(m_str);
             }
-            sec_size++;
+            ++sec_size;
             break;
         case 't':
             sec_size = strlen(p);
@@ -395,11 +395,11 @@ std::string parse_data(const char *data) // taken from sdcv
                 res += "[" + string(m_str) + "]";
                 g_free(m_str);
             }
-            sec_size++;
+            ++sec_size;
             break;
         case 'y':
             sec_size = strlen(p);
-            sec_size++;
+            ++sec_size;
             break;
         case 'W':
         case 'P':

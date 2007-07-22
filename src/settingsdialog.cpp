@@ -64,14 +64,14 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     popupDefaultWidthSpin->setValue(parent->popup->defaultSize().width());
     popupDefaultHeightSpin->setValue(parent->popup->defaultSize().height());
 
-    connect(moveUpButton, SIGNAL(clicked()), SLOT(moveUpButtonClick()));
-    connect(moveDownButton, SIGNAL(clicked()), SLOT(moveDownButtonClick()));
-    connect(moveLeftButton, SIGNAL(clicked()), SLOT(moveLeftButtonClick()));
-    connect(moveRightButton, SIGNAL(clicked()), SLOT(moveRightButtonClick()));
-    connect(addDictDirButton, SIGNAL(clicked()), SLOT(addDictDirButtonClick()));
-    connect(removeDictDirButton, SIGNAL(clicked()), SLOT(removeDictDirButtonClick()));
-    connect(moveUpDictDirButton, SIGNAL(clicked()), SLOT(moveUpDictDirButtonClick()));
-    connect(moveDownDictDirButton, SIGNAL(clicked()), SLOT(moveDownDictDirButtonClick()));
+    connect(moveUpButton, SIGNAL(clicked()), SLOT(moveUpOrderedDictsButtonClicked()));
+    connect(moveDownButton, SIGNAL(clicked()), SLOT(moveDownOrdredDictsButtonClicked()));
+    connect(moveLeftButton, SIGNAL(clicked()), SLOT(moveLeftOrderedDictsButtonClicked()));
+    connect(moveRightButton, SIGNAL(clicked()), SLOT(moveRightOrderedDictsButtonClicked()));
+    connect(addDictDirButton, SIGNAL(clicked()), SLOT(addDictDirsButtonClicked()));
+    connect(removeDictDirButton, SIGNAL(clicked()), SLOT(removeDictDirsButtonClicked()));
+    connect(moveUpDictDirButton, SIGNAL(clicked()), SLOT(moveUpDictDirsButtonClicked()));
+    connect(moveDownDictDirButton, SIGNAL(clicked()), SLOT(moveDownDictDirsButtonClicked()));
 
     connect(this, SIGNAL(accepted()), SLOT(apply()));
 }
@@ -80,12 +80,12 @@ void SettingsDialog::updateOrder()
 {
     QStringList newDictsDirs;
 
-    for (int i = 0; i < dictDirsList->count(); i++)
+    for (int i = 0; i < dictDirsList->count(); ++i)
     {
         newDictsDirs << DictCore::findDicts(dictDirsList->item(i)->text());
     }
 
-    for (int i = 0; i < orderedDictsList->count(); i++)
+    for (int i = 0; i < orderedDictsList->count(); ++i)
     {
         int index = newDictsDirs.indexOf(orderedDictsList->item(i)->text());
 
@@ -104,10 +104,10 @@ void SettingsDialog::apply()
     QStringList dirs;
     QStringList ordered;
 
-    for (int i = 0; i < dictDirsList->count(); i++)
+    for (int i = 0; i < dictDirsList->count(); ++i)
         dirs << dictDirsList->item(i)->text();
     mainWindow->m_dict->setDictDirs(dirs);
-    for (int i = 0; i < orderedDictsList->count(); i++)
+    for (int i = 0; i < orderedDictsList->count(); ++i)
         ordered << orderedDictsList->item(i)->text();
     mainWindow->m_dict->setDicts(ordered);
 
@@ -142,7 +142,7 @@ void SettingsDialog::apply()
     mainWindow->queryButtonClicked();
 }
 
-void SettingsDialog::moveUpButtonClick()
+void SettingsDialog::moveUpOrderedDictsButtonClicked()
 {
     if (orderedDictsList->currentRow() > 0)
     {
@@ -152,14 +152,14 @@ void SettingsDialog::moveUpButtonClick()
     }
 }
 
-void SettingsDialog::moveDownButtonClick()
+void SettingsDialog::moveDownOrderedDictsButtonClicked()
 {
     if (orderedDictsList->currentRow() < orderedDictsList->count() - 1)
         orderedDictsList->insertItem(orderedDictsList->currentRow(),
                                      orderedDictsList->takeItem(orderedDictsList->currentRow() + 1));
 }
 
-void SettingsDialog::moveUpDictDirButtonClick()
+void SettingsDialog::moveUpDictDirsButtonClicked()
 {
     if (dictDirsList->currentRow() > 0)
     {
@@ -169,24 +169,24 @@ void SettingsDialog::moveUpDictDirButtonClick()
     }
 }
 
-void SettingsDialog::moveDownDictDirButtonClick()
+void SettingsDialog::moveDownDictDirsButtonClicked()
 {
     if (dictDirsList->currentRow() < dictDirsList->count() - 1)
         dictDirsList->insertItem(dictDirsList->currentRow(),
                                  dictDirsList->takeItem(dictDirsList->currentRow() + 1));
 }
 
-void SettingsDialog::moveLeftButtonClick()
+void SettingsDialog::moveLeftOrderedDictsButtonClicked()
 {
     disabledDictsList->addItem(orderedDictsList->takeItem(orderedDictsList->currentRow()));
 }
 
-void SettingsDialog::moveRightButtonClick()
+void SettingsDialog::moveRightOrderedDictsButtonClicked()
 {
     orderedDictsList->addItem(disabledDictsList->takeItem(disabledDictsList->currentRow()));
 }
 
-void SettingsDialog::addDictDirButtonClick()
+void SettingsDialog::addDictDirsButtonClicked()
 {
     QString dirName = QFileDialog::getExistingDirectory(this, tr("Select dictionaries directory"));
     if (! dirName.isEmpty())
@@ -196,7 +196,7 @@ void SettingsDialog::addDictDirButtonClick()
     }
 }
 
-void SettingsDialog::removeDictDirButtonClick()
+void SettingsDialog::removeDictDirsButtonClicked()
 {
     delete dictDirsList->takeItem(dictDirsList->currentRow());
     updateOrder();

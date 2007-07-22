@@ -38,10 +38,14 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         MainWindow(QWidget *parent = 0);
         ~MainWindow();
 
-        PopupWindow* popupWindow();
+        PopupWindow* popupWindow()
+        { return popup; }
 
     public slots:
         void showTranslation(const QString &text);
+
+    protected:
+        void closeEvent(QCloseEvent *event);
 
     private slots:
         void aboutAction();
@@ -52,12 +56,9 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
         void wordsListItemActivated(QListWidgetItem *item);
 
+    private:
         friend class SettingsDialog;
 
-    protected:
-        void closeEvent(QCloseEvent *event);
-
-    private:
         void createTrayIcon();
         void createConnections();
         void loadSettings();

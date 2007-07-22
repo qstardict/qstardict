@@ -28,11 +28,6 @@ Selection::Selection(QObject *parent)
     m_timerId = 0;
 }
 
-bool Selection::isScan() const
-{
-    return m_scan;
-}
-
 void Selection::setScan(bool scan)
 {
     if (m_scan == scan)

@@ -30,7 +30,8 @@ class Selection: public QObject
     public:
         Selection(QObject *parent = 0);
 
-        bool isScan() const;
+        bool isScan() const
+        { return m_scan; }
 
     public slots:
         void setScan(bool scan);

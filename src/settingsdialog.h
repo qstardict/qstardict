@@ -34,14 +34,15 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
     private slots:
         void apply();
 
-        void moveUpButtonClick();
-        void moveDownButtonClick();
-        void moveLeftButtonClick();
-        void moveRightButtonClick();
-        void addDictDirButtonClick();
-        void removeDictDirButtonClick();
-        void moveUpDictDirButtonClick();
-        void moveDownDictDirButtonClick();
+        void moveUpOrderedDictsButtonClicked();
+        void moveDownOrderedDictsButtonClicked();
+        void moveLeftOrderedDictsButtonClicked();
+        void moveRightOrderedDictsButtonClicked();
+        
+        void addDictDirsButtonClicked();
+        void removeDictDirsButtonClicked();
+        void moveUpDictDirsButtonClicked();
+        void moveDownDictDirsButtonClicked();
 
     private:
         void updateOrder();

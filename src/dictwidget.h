@@ -29,11 +29,15 @@ class DictWidget: public QFrame
     public:
         DictWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
-        void setDict(DictCore *dict);
-        const DictCore* dict() const;
+        void setDict(DictCore *dict)
+        { m_dict = dict; }
+        const DictCore* dict() const
+        { return m_dict; }
 
-        void setTranslationFlags(DictCore::TranslationFlags flags);
-        DictCore::TranslationFlags translationFlags() const;
+        void setTranslationFlags(DictCore::TranslationFlags flags)
+        { m_translationFlags = flags; }
+        DictCore::TranslationFlags translationFlags() const
+        { return m_translationFlags; }
 
         bool translate(const QString &str);
         QString translatedWord() const;
@@ -41,7 +45,7 @@ class DictWidget: public QFrame
     private:
         QTextBrowser *translationView;
         DictCore *m_dict;
-        DictCore::TranslationFlags m_flags;
+        DictCore::TranslationFlags m_translationFlags;
         QString m_translatedWord;
 };
 

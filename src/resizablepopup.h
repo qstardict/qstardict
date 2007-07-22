@@ -32,12 +32,16 @@ class ResizablePopup: public QFrame
     public:
         ResizablePopup(QWidget *parent = 0);
 
-        int timeoutBeforeHide() const;
-        const QSize& defaultSize() const;
+        int timeoutBeforeHide() const
+        { return m_timeoutBeforeHide; }
+        const QSize& defaultSize() const
+        { return m_defaultSize; }
 
     public slots:
-        void setTimeoutBeforeHide(int timeoutBeforeHide);
-        void setDefaultSize(const QSize &defaultSize);
+        void setTimeoutBeforeHide(int timeoutBeforeHide)
+        { m_timeoutBeforeHide = timeoutBeforeHide; }
+        void setDefaultSize(const QSize &defaultSize)
+        { m_defaultSize = defaultSize; }
         void popup();
 
     protected:
@@ -45,7 +49,7 @@ class ResizablePopup: public QFrame
         void leaveEvent(QEvent*);
         void mouseMoveEvent(QMouseEvent*);
         void mousePressEvent(QMouseEvent*);
-        void mouseReleaseEvent(QMouseEvent);
+        void mouseReleaseEvent(QMouseEvent*);
         void timerEvent(QTimerEvent*);
 
     private:
