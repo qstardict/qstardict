@@ -23,6 +23,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QStack>
 #include <glib.h>
 #include "lib/lib.h"
 #include "lib/file.hpp"
@@ -164,17 +165,42 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                 QRegExp regExp;
                 regExp.setMinimal(true);
                 regExp.setPattern("\\d[>\\.\\)]\\s+");
-                if (i->exp.contains(regExp))
+                int pos = 0;
+                QStack<QString> openedLists;
+                openedLists.push(QString());
+                while ((pos = regExp.indexIn(i->exp, pos)) != -1)
                 {
-                    i->exp.insert(i->exp.indexOf(regExp), "<ol>");
-                    i->exp.append("</li></ol>");
-                    i->exp.replace("1>", "<li>");
-                    i->exp.replace(regExp, "</li><li>");
+                    QString result = i->exp.mid(pos, regExp.matchedLength());
+                    i->exp.remove(pos, regExp.matchedLength());
+                    i->exp.insert(pos, "<li>");
+                    QString num = result;
+                    num.remove(QRegExp("[^\\d]"));
+                    result.remove(QRegExp("\\d"));
+                    if (openedLists.top() != result)
+                    {
+                        if (num == "1")
+                        {
+                            i->exp.insert(pos, "<ol>");
+                            openedLists.push(result);
+                        }
+                        else
+                        {
+                            while (openedLists.top() != result)
+                            {
+                                i->exp.insert(pos, "</li></ol>");
+                                openedLists.pop();
+                            }
+                        }
+                    }
                 }
+                while (! openedLists.pop().isEmpty())
+                    i->exp += "</li></ol>";
+
                 regExp.setPattern("^(\\s*\\[.*\\])(?!\\s*<ol>)");
-                int pos = regExp.indexIn(i->exp);
+                pos = regExp.indexIn(i->exp);
                 if (pos != -1)
                     i->exp.insert(pos + regExp.matchedLength(), "<br>");
+
                 regExp.setPattern("(?=\\[.*\\])");
                 i->exp.replace(regExp, "<font class=\"transcription\">");
                 i->exp.replace("]", "]</font>");
