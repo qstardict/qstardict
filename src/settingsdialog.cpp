@@ -65,10 +65,10 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     popupDefaultWidthSpin->setValue(parent->popup->defaultSize().width());
     popupDefaultHeightSpin->setValue(parent->popup->defaultSize().height());
 
-    connect(moveUpButton, SIGNAL(clicked()), SLOT(moveUpOrderedDictsButtonClicked()));
-    connect(moveDownButton, SIGNAL(clicked()), SLOT(moveDownOrdredDictsButtonClicked()));
-    connect(moveLeftButton, SIGNAL(clicked()), SLOT(moveLeftOrderedDictsButtonClicked()));
-    connect(moveRightButton, SIGNAL(clicked()), SLOT(moveRightOrderedDictsButtonClicked()));
+    connect(moveUpOrderedDictsButton, SIGNAL(clicked()), SLOT(moveUpOrderedDictsButtonClicked()));
+    connect(moveDownOrderedDictsButton, SIGNAL(clicked()), SLOT(moveDownOrderedDictsButtonClicked()));
+    connect(moveLeftOrderedDictsButton, SIGNAL(clicked()), SLOT(moveLeftOrderedDictsButtonClicked()));
+    connect(moveRightOrderedDictsButton, SIGNAL(clicked()), SLOT(moveRightOrderedDictsButtonClicked()));
     connect(addDictDirButton, SIGNAL(clicked()), SLOT(addDictDirsButtonClicked()));
     connect(removeDictDirButton, SIGNAL(clicked()), SLOT(removeDictDirsButtonClicked()));
     connect(moveUpDictDirButton, SIGNAL(clicked()), SLOT(moveUpDictDirsButtonClicked()));

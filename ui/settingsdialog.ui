@@ -97,7 +97,7 @@
                <number>6</number>
               </property>
               <item row="1" column="0" >
-               <widget class="QToolButton" name="moveLeftButton" >
+               <widget class="QToolButton" name="moveLeftOrderedDictsButton" >
                 <property name="text" >
                  <string>Left</string>
                 </property>
@@ -107,7 +107,7 @@
                </widget>
               </item>
               <item row="2" column="1" >
-               <widget class="QToolButton" name="moveDownButton" >
+               <widget class="QToolButton" name="moveDownOrderedDictsButton" >
                 <property name="text" >
                  <string>Down</string>
                 </property>
@@ -117,7 +117,7 @@
                </widget>
               </item>
               <item row="0" column="1" >
-               <widget class="QToolButton" name="moveUpButton" >
+               <widget class="QToolButton" name="moveUpOrderedDictsButton" >
                 <property name="text" >
                  <string>Up</string>
                 </property>
@@ -127,7 +127,7 @@
                </widget>
               </item>
               <item row="1" column="2" >
-               <widget class="QToolButton" name="moveRightButton" >
+               <widget class="QToolButton" name="moveRightOrderedDictsButton" >
                 <property name="text" >
                  <string>Right</string>
                 </property>

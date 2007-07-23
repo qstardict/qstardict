@@ -164,10 +164,9 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             {
                 QRegExp regExp;
                 regExp.setMinimal(true);
-                regExp.setPattern("\\d[>\\.\\)]\\s+");
+                regExp.setPattern("\\d[>\\.]\\s+");
                 int pos = 0;
                 QStack<QString> openedLists;
-                openedLists.push(QString());
                 while ((pos = regExp.indexIn(i->exp, pos)) != -1)
                 {
                     QString result = i->exp.mid(pos, regExp.matchedLength());
@@ -176,7 +175,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                     QString num = result;
                     num.remove(QRegExp("[^\\d]"));
                     result.remove(QRegExp("\\d"));
-                    if (openedLists.top() != result)
+                    if (openedLists.size() == 0 || openedLists.top() != result)
                     {
                         if (num == "1")
                         {
@@ -185,7 +184,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                         }
                         else
                         {
-                            while (openedLists.top() != result)
+                            while (openedLists.size() && openedLists.top() != result)
                             {
                                 i->exp.insert(pos, "</li></ol>");
                                 openedLists.pop();
@@ -193,8 +192,19 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                         }
                     }
                 }
-                while (! openedLists.pop().isEmpty())
+                while (openedLists.size())
+                {
                     i->exp += "</li></ol>";
+                    openedLists.pop();
+                }
+
+                if (! i->exp.contains("<ol>"))
+                {
+                    i->exp.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                    i->exp.replace(QRegExp("\n{2,}"), "</p><p>");
+                    i->exp.replace("\n", "<br>");
+                    i->exp.remove(QRegExp("^(\\s*<br>\\s*)*"));
+                }
 
                 regExp.setPattern("^(\\s*\\[.*\\])(?!\\s*<ol>)");
                 pos = regExp.indexIn(i->exp);
