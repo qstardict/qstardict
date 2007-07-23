@@ -26,4 +26,5 @@
 	- change PopupWindow base class from QWidget to QFrame
 	- add D-Bus support
 	- make popup window resizable
+	- add current translation title to main window header
 

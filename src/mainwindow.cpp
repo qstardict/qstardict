@@ -153,10 +153,11 @@ void MainWindow::saveToFileAction()
 void MainWindow::queryButtonClicked()
 {
     if (searchBox->text().isEmpty())
-        return ;
+        return;
     wordsList->clear();
     wordsList->addItems(m_dict->find(searchBox->text()));
     translationView->translate(searchBox->text());
+    setWindowTitle(tr("%1 - QStarDict").arg(translationView->translatedWord()));
 }
 
 void MainWindow::wordsListItemActivated(QListWidgetItem *item)
