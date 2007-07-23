@@ -53,6 +53,9 @@ class ResizablePopup: public QFrame
         void timerEvent(QTimerEvent*);
 
     private:
+        void stopResize();
+        void doResize();
+            
         enum ResizeDirection
         {
             None,
@@ -69,6 +72,7 @@ class ResizablePopup: public QFrame
         ResizeDirection m_resizeDirection;
         int m_timeoutBeforeHide;
         int m_timerCloseId;
+        int m_timerResizeId;
 };
 
 #endif // RESIZABLEPOPUP_H

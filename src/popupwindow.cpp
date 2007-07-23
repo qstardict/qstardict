@@ -57,7 +57,7 @@ void PopupWindow::loadSettings()
     setModifierKey(config.value("PopupWindow/modifierKey", 0).toInt());
     setShowIfNotFound(config.value("PopupWindow/showIfNotFound", false).toBool());
     setWindowOpacity(config.value("PopupWindow/opacity", 1.0).toDouble());
-    setTimeoutBeforeHide(config.value("PopupWindow/timeoutBeforeHide", 300).toInt());
+    setTimeoutBeforeHide(config.value("PopupWindow/timeoutBeforeHide", 500).toInt());
     setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
     setTranslationFlags(static_cast<DictCore::TranslationFlags>(config.value("DictWidget/translationFlags",
                     static_cast<int>(translationView->translationFlags())).toInt()));

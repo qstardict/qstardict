@@ -423,6 +423,9 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="timeoutBeforeHideSpin" >
+              <property name="specialValueText" >
+               <string>Never</string>
+              </property>
               <property name="suffix" >
                <string> seconds</string>
               </property>
@@ -431,6 +434,9 @@
               </property>
               <property name="maximum" >
                <double>10.000000000000000</double>
+              </property>
+              <property name="minimum" >
+               <double>-0.100000000000000</double>
               </property>
               <property name="singleStep" >
                <double>0.100000000000000</double>

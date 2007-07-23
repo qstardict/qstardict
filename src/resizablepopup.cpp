@@ -19,8 +19,10 @@
 #include "resizablepopup.h"
 
 #include <QApplication>
+#include <QCursor>
 #include <QDesktopWidget>
 #include <QMouseEvent>
+#include <QTimerEvent>
 
 namespace
 {
@@ -33,8 +35,11 @@ ResizablePopup::ResizablePopup(QWidget *parent)
     m_resizeDirection = None;
     m_timeoutBeforeHide = 0;
     m_timerCloseId = 0;
+    m_timerResizeId = 0;
     setMouseTracking(true);
-    setFrameStyle(QFrame::StyledPanel);
+    setLineWidth(1);
+    setFrameStyle(QFrame::Panel);
+    setFrameShadow(QFrame::Plain);
 }
 
 void ResizablePopup::popup()
@@ -97,45 +102,6 @@ void ResizablePopup::mouseMoveEvent(QMouseEvent *event)
     
     if (cursor().shape() != cursorShape)
         setCursor(cursorShape);
-
-    if (! event->buttons().testFlag(Qt::LeftButton))
-        m_resizeDirection = None;
-
-    if (m_resizeDirection != None)
-    {
-        QRect newGeometry = geometry();
-        switch (m_resizeDirection)
-        {
-            case TopLeft:
-                newGeometry.setTopLeft(event->globalPos());
-                break;
-            case TopRight:
-                newGeometry.setTopRight(event->globalPos());
-                break;
-            case BottomLeft:
-                newGeometry.setBottomLeft(event->globalPos());
-                break;
-            case BottomRight:
-                newGeometry.setBottomRight(event->globalPos());
-                break;
-            case Left:
-                newGeometry.setLeft(event->globalX());
-                break;
-            case Right:
-                newGeometry.setRight(event->globalX());
-                break;
-            case Top:
-                newGeometry.setTop(event->globalY());
-                break;
-            case Bottom:
-                newGeometry.setBottom(event->globalY());
-                break;
-            default:
-                ; // Nothing
-        }
-        if (newGeometry != geometry())
-            setGeometry(newGeometry);
-    }
 }
 
 void ResizablePopup::mousePressEvent(QMouseEvent *event)
@@ -171,19 +137,82 @@ void ResizablePopup::mousePressEvent(QMouseEvent *event)
             m_resizeDirection = Bottom;
         else
             m_resizeDirection = None;
+        if (m_resizeDirection)
+            m_timerResizeId = startTimer(8);
     }
 }
 
 void ResizablePopup::mouseReleaseEvent(QMouseEvent*)
 {
-    m_resizeDirection = None;
+    stopResize();
 }
 
-void ResizablePopup::timerEvent(QTimerEvent*)
+void ResizablePopup::timerEvent(QTimerEvent *event)
 {
-    hide();
-    killTimer(m_timerCloseId);
-    m_timerCloseId = 0;
+    if (event->timerId() == m_timerResizeId)
+    {
+        doResize();
+    }
+    else if (event->timerId() == m_timerCloseId)
+    {
+        hide();
+        killTimer(m_timerCloseId);
+        m_timerCloseId = 0;
+        stopResize();
+    }
+}
+
+void ResizablePopup::doResize()
+{
+    if (! QApplication::mouseButtons().testFlag(Qt::LeftButton))
+        stopResize();
+    
+    if (m_resizeDirection)
+    {
+        QRect newGeometry = geometry();
+        switch (m_resizeDirection)
+        {
+            case TopLeft:
+                newGeometry.setTopLeft(QCursor::pos());
+                break;
+            case TopRight:
+                newGeometry.setTopRight(QCursor::pos());
+                break;
+            case BottomLeft:
+                newGeometry.setBottomLeft(QCursor::pos());
+                break;
+            case BottomRight:
+                newGeometry.setBottomRight(QCursor::pos());
+                break;
+            case Left:
+                newGeometry.setLeft(QCursor::pos().x());
+                break;
+            case Right:
+                newGeometry.setRight(QCursor::pos().x());
+                break;
+            case Top:
+                newGeometry.setTop(QCursor::pos().y());
+                break;
+            case Bottom:
+                newGeometry.setBottom(QCursor::pos().y());
+                break;
+            default:
+                ; // Nothing
+        }
+        if (newGeometry != geometry() &&
+            newGeometry.width() >= minimumSize().width() && newGeometry.height() >= minimumSize().height())
+            setGeometry(newGeometry);
+    }
+}
+
+void ResizablePopup::stopResize()
+{
+    if (m_resizeDirection)
+    {
+        m_resizeDirection = None;
+        killTimer(m_timerResizeId);
+        m_timerResizeId = 0;
+    }
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
