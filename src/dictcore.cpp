@@ -186,19 +186,20 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             }
             if (flags.testFlag(ExpandAbbreviations) && i->exp.contains(QRegExp("_\\S*[\\.:]")))
             {
-                QRegExp rx("_\\S*[\\.:]");
+                QRegExp regExp("_\\S*[\\.:]");
                 int pos = 0;
-                while ((pos = rx.indexIn(i->exp, pos)) != -1)
+                while ((pos = regExp.indexIn(i->exp, pos)) != -1)
                 {
-                    QString result = translation(i->exp.mid(pos, rx.matchedLength()), i->dictName);
-                    QChar lastChar = i->exp[pos + rx.matchedLength() - 1];
+                    QString result = translation(i->exp.mid(pos, regExp.matchedLength()), i->dictName);
+                    QChar lastChar = i->exp[pos + regExp.matchedLength() - 1];
                     if (! result.isEmpty())
                     {
                         result.remove(QRegExp("^\\s*"));
                         result.remove("<br>");
                         if (lastChar == ':')
                             result.append(":");
-                        i->exp.replace(pos, rx.matchedLength(), "<font class=\"explanation\">" + result + "</font>");
+                        i->exp.replace(pos, regExp.matchedLength(),
+                                "<font class=\"explanation\">" + result + "</font>");
                     }
                 }
             }
@@ -232,7 +233,8 @@ QString DictCore::translation(const QString &str, const QString &dict)
 {
     long ind;
     for (int idict = 0; idict < m_sdLibs->ndicts(); idict++)
-        if (m_sdLibs->dict_name(idict) == dict.toUtf8().data() && m_sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
+        if (m_sdLibs->dict_name(idict) == dict.toUtf8().data() &&
+            m_sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
             return QString::fromUtf8(parse_data(m_sdLibs->poGetWordData(ind, idict)).c_str());
     return QString();
 }
@@ -423,5 +425,5 @@ QString html2text(QString html)
 }
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

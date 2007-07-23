@@ -98,7 +98,8 @@ void MainWindow::loadSettings()
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
     m_dict->setDictDirs(config.value("DictCore/dictDirs", m_dict->dictDirs()).toStringList());
     m_dict->setDicts(config.value("DictCore/orderedDicts", m_dict->avialableDicts()).toStringList());
-    translationView->setTranslationFlags(QFlag(config.value("DictWidget/translationFlags", (int)translationView->translationFlags()).toInt()));
+    translationView->setTranslationFlags(QFlag(config.value("DictWidget/translationFlags",
+                    static_cast<int>(translationView->translationFlags())).toInt()));
 }
 
 void MainWindow::saveSettings()
@@ -112,15 +113,16 @@ void MainWindow::saveSettings()
     config.setValue("DictCore/dictDirs", m_dict->dictDirs());
     config.setValue("DictCore/orderedDicts", m_dict->orderedDicts());
     config.setValue("DictCore/disabledDicts", m_dict->disabledDicts());
-    config.setValue("DictWidget/translationFlags", (int)translationView->translationFlags());
+    config.setValue("DictWidget/translationFlags", static_cast<int>(translationView->translationFlags()));
 }
 
 void MainWindow::aboutAction()
 {
     QMessageBox::about(this,
-                       tr("About QStarDict"),
-                       tr("<b>QStarDict ") + QSTARDICT_VERSION + tr("</b> - Qt version of StarDict<br>") +
-                       tr("Copyright (C) 2007 Alexander Rodin <a href=\"http://qstardict.ylsoftware.com\">http://qstardict.ylsoftware.com</a>"));
+            tr("About QStarDict"),
+            tr("<b>QStarDict ") + QSTARDICT_VERSION + tr("</b> - Qt version of StarDict<br>") +
+            tr("Copyright (C) 2007 Alexander Rodin "
+               "<a href=\"http://qstardict.ylsoftware.com\">http://qstardict.ylsoftware.com</a>"));
 }
 
 void MainWindow::settingsAction()
@@ -175,5 +177,5 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->ignore();
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

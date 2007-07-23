@@ -59,7 +59,8 @@ void PopupWindow::loadSettings()
     setWindowOpacity(config.value("PopupWindow/opacity", 1.0).toDouble());
     setTimeoutBeforeHide(config.value("PopupWindow/timeoutBeforeHide", 300).toInt());
     setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
-    setTranslationFlags(DictCore::TranslationFlags(config.value("DictWidget/translationFlags", (int)translationView->translationFlags()).toInt()));
+    setTranslationFlags(static_cast<DictCore::TranslationFlags>(config.value("DictWidget/translationFlags",
+                    static_cast<int>(translationView->translationFlags())).toInt()));
 }
 
 void PopupWindow::saveSettings()
@@ -86,7 +87,7 @@ bool PopupWindow::isScan() const
 
 void PopupWindow::selectionChanged(const QString &text)
 {
-    if (m_modifierKey && ! Keyboard::activeModifiers().testFlag((Qt::KeyboardModifier)(m_modifierKey)))
+    if (m_modifierKey && ! Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
         return;
     QString tmp = text;
     tmp.remove(QRegExp("^\\W*"));
@@ -106,5 +107,5 @@ void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlag
     translationView->setTranslationFlags(translationFlags | DictCore::Simple);
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

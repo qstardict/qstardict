@@ -59,7 +59,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     popupOpacitySpin->setValue(static_cast<int>(parent->popup->windowOpacity() * 100));
     reformatTranslationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::Reformat));
     reformatTranslationsWarningLabel->setVisible(reformatTranslationsBox->isChecked());
-    expandAbbreviationsBox->setChecked(parent->translationView->translationFlags().testFlag(DictCore::ExpandAbbreviations));
+    expandAbbreviationsBox->setChecked(parent->translationView->translationFlags().testFlag(
+                DictCore::ExpandAbbreviations));
     timeoutBeforeHideSpin->setValue(parent->popup->timeoutBeforeHide() / 1000.0);
     popupDefaultWidthSpin->setValue(parent->popup->defaultSize().width());
     popupDefaultHeightSpin->setValue(parent->popup->defaultSize().height());
@@ -202,5 +203,5 @@ void SettingsDialog::removeDictDirsButtonClicked()
     updateOrder();
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

@@ -60,5 +60,5 @@ Qt::KeyBoardModifiers Keyboard::modifiers()
 
 #endif // Q_WS_X11
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

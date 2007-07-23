@@ -42,5 +42,5 @@ int main(int argc, char *argv[])
     return app.exec();
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

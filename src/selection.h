@@ -1,5 +1,5 @@
 /********************************************************************************
- * selection.h                                                                  *
+ * selection.h - QStarDict, a StarDict clone written with using Qt              *
  * Copyright (C) 2007 Alexander Rodin                                           *
  *                                                                              *
  * This program is free software: you can redistribute it and/or modify         *
@@ -50,5 +50,5 @@ class Selection: public QObject
 
 #endif // SELECTION_H
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

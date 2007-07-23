@@ -78,11 +78,15 @@ void ResizablePopup::mouseMoveEvent(QMouseEvent *event)
     const int CornerSize = 10;
 
     Qt::CursorShape cursorShape = Qt::ArrowCursor;
-    if (event->x() >= 0 && event->x() < CornerSize && event->y() >= 0 && event->y() < CornerSize ||
-        event->x() < width() && event->x() >= width() - CornerSize && event->y() < height() && event->y() >= height() - CornerSize)
+    if ((event->x() >= 0 && event->x() < CornerSize &&
+            event->y() >= 0 && event->y() < CornerSize) ||
+        (event->x() < width() && event->x() >= width() - CornerSize &&
+            event->y() < height() && event->y() >= height() - CornerSize))
         cursorShape = Qt::SizeFDiagCursor;
-    else if (event->x() < width() && event->x() >= width() - CornerSize && event->y() >= 0 && event->y() < CornerSize ||
-             event->x() >= 0 && event->x() < CornerSize && event->y() < height() && event->y() >= height() - CornerSize)
+    else if ((event->x() < width() && event->x() >= width() - CornerSize &&
+                event->y() >= 0 && event->y() < CornerSize) ||
+             (event->x() >= 0 && event->x() < CornerSize &&
+                event->y() < height() && event->y() >= height() - CornerSize))
         cursorShape = Qt::SizeBDiagCursor;
     else if (event->x() >= 0 && event->x() < frameWidth() ||
              event->x() < width() && event->x() >= width() - frameWidth())
@@ -182,5 +186,5 @@ void ResizablePopup::timerEvent(QTimerEvent*)
     m_timerCloseId = 0;
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
