@@ -37,9 +37,14 @@ ResizablePopup::ResizablePopup(QWidget *parent)
     m_timerCloseId = 0;
     m_timerResizeId = 0;
     setMouseTracking(true);
-    setLineWidth(1);
-    setFrameStyle(QFrame::Panel);
-    setFrameShadow(QFrame::Plain);
+    setFrameStyle(QFrame::StyledPanel);
+    if (! frameWidth())
+    {
+        setLineWidth(1);
+        setMidLineWidth(1);
+        setFrameStyle(QFrame::Box);
+        setFrameShadow(QFrame::Raised);
+    }
 }
 
 void ResizablePopup::popup()
@@ -199,8 +204,17 @@ void ResizablePopup::doResize()
             default:
                 ; // Nothing
         }
-        if (newGeometry != geometry() &&
-            newGeometry.width() >= minimumSize().width() && newGeometry.height() >= minimumSize().height())
+        if (newGeometry.width() < minimumSize().width())
+        {
+            newGeometry.setWidth(width());
+            newGeometry.moveLeft(geometry().left());
+        }
+        if (newGeometry.height() < minimumSize().height())
+        {
+            newGeometry.setHeight(height());
+            newGeometry.moveTop(geometry().top());
+        }
+        if (newGeometry != geometry())
             setGeometry(newGeometry);
     }
 }
