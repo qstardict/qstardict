@@ -417,11 +417,11 @@ std::string parse_data(const char *data) // taken from sdcv
 QString html2text(QString html)
 {
     return html.replace("<br>", "\n").
+                remove(QRegExp("<.*>")).
                 replace("&lt;", "<").
                 replace("&gt;", ">").
                 replace("&amp;", "&").
-                replace("&quot;", "\"").
-                remove(QRegExp("<.*>"));
+                replace("&quot;", "\"");
 }
 }
 
