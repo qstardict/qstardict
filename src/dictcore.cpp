@@ -33,7 +33,7 @@ namespace
 std::string xdxf2html(const char *p);
 std::string parse_data(const char *data);
 QString html2text(QString html);
-const int MaxFuzzy = 10;
+const int MaxFuzzy = 24;
 }
 
 DictCore::DictCore(QObject *parent)
