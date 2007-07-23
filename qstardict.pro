@@ -2,7 +2,7 @@
 
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.04-svn
+VERSION = 0.04
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
@@ -74,13 +74,12 @@ RCC_DIR = build
 unix {
     INSTALL_PREFIX=/usr
 
-    binaries.files += $$DESTDIR/$$TARGET
-    binaries.path = $$INSTALL_PREFIX/bin
+    target.path = $$INSTALL_PREFIX/bin
     icons.files += resources/qstardict.png
     icons.path = $$INSTALL_PREFIX/share/pixmaps
     desktop_files.files += resources/qstardict.desktop
     desktop_files.path = $$INSTALL_PREFIX/share/applications
-    INSTALLS += binaries icons desktop_files
+    INSTALLS += target icons desktop_files
 }
 
 ! unix: warning("Popup window will not properly work on this platform")
