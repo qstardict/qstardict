@@ -293,7 +293,7 @@
             <item>
              <widget class="QLabel" name="label_3" >
               <property name="text" >
-               <string>Opacity:</string>
+               <string>Opacity</string>
               </property>
              </widget>
             </item>
@@ -329,7 +329,7 @@
             <item>
              <widget class="QLabel" name="label_5" >
               <property name="text" >
-               <string>Default width:</string>
+               <string>Default width</string>
               </property>
              </widget>
             </item>
@@ -359,7 +359,7 @@
             <item>
              <widget class="QLabel" name="label_6" >
               <property name="text" >
-               <string>Default height:</string>
+               <string>Default height</string>
               </property>
              </widget>
             </item>
@@ -424,10 +424,10 @@
             <item>
              <widget class="QDoubleSpinBox" name="timeoutBeforeHideSpin" >
               <property name="specialValueText" >
-               <string>Never</string>
+               <string>Don't hide</string>
               </property>
               <property name="suffix" >
-               <string> seconds</string>
+               <string> sec</string>
               </property>
               <property name="decimals" >
                <number>1</number>
@@ -436,13 +436,13 @@
                <double>10.000000000000000</double>
               </property>
               <property name="minimum" >
-               <double>-0.100000000000000</double>
+               <double>0.000000000000000</double>
               </property>
               <property name="singleStep" >
                <double>0.100000000000000</double>
               </property>
               <property name="value" >
-               <double>0.300000000000000</double>
+               <double>0.500000000000000</double>
               </property>
              </widget>
             </item>

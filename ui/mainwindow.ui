@@ -43,7 +43,7 @@
          <iconset resource="../resources/qstardict.qrc" >:/icons/clear-right.png</iconset>
         </property>
         <property name="toolButtonStyle" >
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
+         <enum>Qt::ToolButtonIconOnly</enum>
         </property>
        </widget>
       </item>
@@ -60,6 +60,9 @@
         </property>
         <property name="icon" >
          <iconset resource="../resources/qstardict.qrc" >:/icons/search-filter.png</iconset>
+        </property>
+        <property name="toolButtonStyle" >
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
