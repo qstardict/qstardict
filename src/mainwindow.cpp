@@ -81,7 +81,7 @@ void MainWindow::createConnections()
     connect(actionQuit, SIGNAL(activated()), qApp, SLOT(quit()));
 
     connect(queryButton, SIGNAL(clicked()), SLOT(queryButtonClicked()));
-    connect(wordsList, SIGNAL(itemActivated(QListWidgetItem*)),
+    connect(wordsList, SIGNAL(itemClicked(QListWidgetItem*)),
             SLOT(wordsListItemActivated(QListWidgetItem*)));
 
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -164,6 +164,7 @@ void MainWindow::wordsListItemActivated(QListWidgetItem *item)
 {
     searchBox->setText(item->text());
     translationView->translate(item->text());
+    setWindowTitle(tr("%1 - QStarDict").arg(translationView->translatedWord()));
 }
 
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
