@@ -41,8 +41,7 @@ bool DictWidget::translate(const QString &str)
     const QString htmlStyle = 
         "<style>"
         "font.normal { "
-            "font-family: \"Sans Serif\", \"Arial\", \"Sans\"; "
-            "color: black; } "
+            " } "
         "font.dict_name { "
             "color: blue; "
             "font-style: italic; }"
