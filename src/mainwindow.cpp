@@ -81,6 +81,8 @@ void MainWindow::createConnections()
     connect(actionQuit, SIGNAL(activated()), qApp, SLOT(quit()));
 
     connect(queryButton, SIGNAL(clicked()), SLOT(queryButtonClicked()));
+    connect(wordsList, SIGNAL(itemActivated(QListWidgetItem*)),
+            SLOT(wordsListItemActivated(QListWidgetItem*)));
     connect(wordsList, SIGNAL(itemClicked(QListWidgetItem*)),
             SLOT(wordsListItemActivated(QListWidgetItem*)));
 
