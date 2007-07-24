@@ -2,7 +2,7 @@
 
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.04
+VERSION = 0.05-svn
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 QT = \
