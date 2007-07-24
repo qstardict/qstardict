@@ -5,6 +5,8 @@ TARGET = qstardict
 VERSION = 0.05-svn
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
+unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
+
 QT = \
     gui \
     core
@@ -13,10 +15,11 @@ CONFIG += \
     link_pkgconfig \
     warn_on \
     release
+unix:isEmpty(NO_DBUS): CONFIG += qdbus
 PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
-unix:contains(QT_CONFIG, qdbus):CONFIG += qdbus
+unix:isEmpty(NO_DBUS) += QSTARDICT_WITH_DBUS
 
 FORMS += \
     ui/mainwindow.ui \
@@ -35,7 +38,7 @@ HEADERS += \
     src/dictwidget.h \
     src/resizablepopup.h \
     src/selection.h
-unix:contains(QT_CONFIG, qdbus): HEADERS += src/dbusadaptor.h
+unix:isEmpty(NO_DBUS):HEADERS += src/dbusadaptor.h
 SOURCES += \
     src/lib/dictziplib.cpp \
     src/lib/distance.cpp \
@@ -49,7 +52,7 @@ SOURCES += \
     src/dictwidget.cpp \
     src/resizablepopup.cpp \
     src/selection.cpp
-unix:contains(QT_CONFIG, qdbus): SOURCES += src/dbusadaptor.cpp
+unix:isEmpty(NO_DBUS):SOURCES += src/dbusadaptor.cpp
 RESOURCES += \
     resources/qstardict.qrc \
     translations/translations.qrc

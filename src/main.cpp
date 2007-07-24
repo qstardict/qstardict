@@ -21,10 +21,10 @@
 #include <QTranslator>
 #include "mainwindow.h"
 
-#if !defined(QT_NO_DBUS) && defined Q_OS_UNIX
+#ifdef QSTARDICT_WITH_DBUS
 #include <QDBusConnection>
 #include "dbusadaptor.h"
-#endif // QT_NO_DBUS
+#endif // QSTARDICT_WITH_DBUS
 
 int main(int argc, char *argv[])
 {
@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
     app.setOrganizationName("qstardict");
     app.setApplicationName("qstardict");
     MainWindow window;
-#if !defined(QT_NO_DBUS) && defined Q_OS_UNIX
+#ifdef QSTARDICT_WITH_DBUS
     DBusAdaptor dbusAdaptor(&window);
-#endif // QT_NO_DBUS
+#endif // QSTARDICT_WITH_DBUS
 
     return app.exec();
 }
