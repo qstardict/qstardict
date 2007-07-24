@@ -35,7 +35,7 @@ HEADERS += \
     src/dictwidget.h \
     src/resizablepopup.h \
     src/selection.h
-unix:contains(CONFIG, qdbus): HEADERS += src/dbusadaptor.h
+unix:contains(QT_CONFIG, qdbus): HEADERS += src/dbusadaptor.h
 SOURCES += \
     src/lib/dictziplib.cpp \
     src/lib/distance.cpp \
@@ -49,7 +49,7 @@ SOURCES += \
     src/dictwidget.cpp \
     src/resizablepopup.cpp \
     src/selection.cpp
-unix:contains(CONFIG, qdbus): SOURCES += src/dbusadaptor.cpp
+unix:contains(QT_CONFIG, qdbus): SOURCES += src/dbusadaptor.cpp
 RESOURCES += \
     resources/qstardict.qrc \
     translations/translations.qrc
