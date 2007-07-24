@@ -19,7 +19,7 @@ unix:isEmpty(NO_DBUS): CONFIG += qdbus
 PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
-unix:isEmpty(NO_DBUS) += QSTARDICT_WITH_DBUS
+unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
 
 FORMS += \
     ui/mainwindow.ui \
