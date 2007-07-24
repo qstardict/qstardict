@@ -37,14 +37,10 @@ ResizablePopup::ResizablePopup(QWidget *parent)
     m_timerCloseId = 0;
     m_timerResizeId = 0;
     setMouseTracking(true);
-    setFrameStyle(QFrame::StyledPanel);
-    if (! frameWidth())
-    {
-        setLineWidth(1);
-        setMidLineWidth(1);
-        setFrameStyle(QFrame::Box);
-        setFrameShadow(QFrame::Raised);
-    }
+    setLineWidth(2);
+    setMidLineWidth(1);
+    setFrameStyle(QFrame::Box);
+    setFrameShadow(QFrame::Raised);
 }
 
 void ResizablePopup::popup()
