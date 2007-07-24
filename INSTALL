@@ -1,7 +1,16 @@
-You need Qt >= 4.2 and glib >= 2.0. If you have QtDBus module QStarDict will be compiled with D-Bus support.
+You need Qt >= 4.2 and glib >= 2.0. If you have QtDBus module QStarDict
+will be compiled with D-Bus support.
+
+To disable D-Bus support add
+    NO_DBUS=1
+to qmake arguments.
+
+To disable translations add
+    NO_TRANSLATIONS=1
+to qmake arguments.
 
 To build and install:
-1)	qmake
+1)	qmake [switches]
 2)	make
 3)	make install
 
