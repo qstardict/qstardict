@@ -17,9 +17,12 @@
  ********************************************************************************/
 
 #include <QApplication>
+#include "mainwindow.h"
+
+#ifdef QSTARDICT_WITH_TRANSLATIONS
 #include <QLocale>
 #include <QTranslator>
-#include "mainwindow.h"
+#endif // QSTARDICT_WITH_TRANSLATIONS
 
 #ifdef QSTARDICT_WITH_DBUS
 #include <QDBusConnection>
@@ -29,9 +32,11 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+#ifdef QSTARDICT_WITH_TRANSLATIONS
     QTranslator translator;
     translator.load(":/translations/qstardict-" + QLocale::system().name());
     app.installTranslator(&translator);
+#endif // QSTARDICT_WITH_TRANSLATIONS
     app.setOrganizationName("qstardict");
     app.setApplicationName("qstardict");
     MainWindow window;

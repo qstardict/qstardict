@@ -20,6 +20,7 @@ PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
+isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
 
 FORMS += \
     ui/mainwindow.ui \
@@ -54,12 +55,14 @@ SOURCES += \
     src/selection.cpp
 unix:isEmpty(NO_DBUS):SOURCES += src/dbusadaptor.cpp
 RESOURCES += \
-    resources/qstardict.qrc \
-    translations/translations.qrc
-TRANSLATIONS += \
-    translations/qstardict-ru_RU.ts \
-    translations/qstardict-ua_UA.ts \
-    translations/qstardict-zh_TW.ts
+    resources/qstardict.qrc
+isEmpty(NO_TRANSLATIONS) {
+    TRANSLATIONS += \
+        translations/qstardict-ru_RU.ts \
+        translations/qstardict-ua_UA.ts \
+        translations/qstardict-zh_TW.ts
+    RESOURCES += translations/translations.qrc
+}
 DISTFILES += \
     AUTHORS \
     COPYNG \
