@@ -32,7 +32,7 @@ const QString translationCSS =
         "color: blue;\n"
         "font-style: italic; }\n"
     "font.title {\n"
-        "font-size: 16pt;\n"
+        "font-size: x-large;\n"
         "font-weight: bold; }\n"
     "font.explanation {\n"
         "color: #7f7f7f;\n"
