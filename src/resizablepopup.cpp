@@ -71,6 +71,8 @@ void ResizablePopup::enterEvent(QEvent*)
 
 void ResizablePopup::leaveEvent(QEvent*)
 {
+    if (geometry().contains(QCursor::pos()))
+        return;
     if (m_resizeDirection)
         return;
     if (m_timeoutBeforeHide < 0)
