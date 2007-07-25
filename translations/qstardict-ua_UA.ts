@@ -16,37 +16,37 @@
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="122"/>
+        <location filename="../src/mainwindow.cpp" line="124"/>
         <source>About QStarDict</source>
         <translation type="unfinished">Про програму QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="123"/>
+        <location filename="../src/mainwindow.cpp" line="125"/>
         <source>&lt;b&gt;QStarDict </source>
         <translation type="unfinished">&lt;b&gt;QStarDict </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="124"/>
+        <location filename="../src/mainwindow.cpp" line="126"/>
         <source>&lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation type="unfinished">&lt;/b&gt; - версiя StarDict, написана з використанням бiблiотеки Qt&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="127"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation type="unfinished">Copyright (C) 2007 Александр Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="137"/>
+        <location filename="../src/mainwindow.cpp" line="139"/>
         <source>Save translation</source>
         <translation type="unfinished">Зберегти переклад</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="144"/>
+        <location filename="../src/mainwindow.cpp" line="146"/>
         <source>Error</source>
         <translation type="unfinished">Помилка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="145"/>
+        <location filename="../src/mainwindow.cpp" line="147"/>
         <source>Cannot save translation</source>
         <translation type="unfinished">Неможливо зберегти переклад</translation>
     </message>
@@ -71,64 +71,69 @@
         <translation type="unfinished">Пошук</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="81"/>
+        <location filename="../ui/mainwindow.ui" line="84"/>
         <source>Words list</source>
         <translation type="unfinished">Список слiв</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="118"/>
+        <location filename="../ui/mainwindow.ui" line="121"/>
         <source>&amp;Settings</source>
         <translation type="unfinished">&amp;Налаштування</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="111"/>
+        <location filename="../ui/mainwindow.ui" line="114"/>
         <source>&amp;File</source>
         <translation type="unfinished">&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="139"/>
+        <location filename="../ui/mainwindow.ui" line="142"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Вихiд</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="142"/>
+        <location filename="../ui/mainwindow.ui" line="145"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished">Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="147"/>
+        <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;About</source>
         <translation type="unfinished">&amp;Про програму QStarDict</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="152"/>
+        <location filename="../ui/mainwindow.ui" line="155"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished">Про &amp;бiблiотеку Qt</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
+        <location filename="../ui/mainwindow.ui" line="163"/>
         <source>&amp;Configure QStarDict</source>
         <translation type="unfinished">&amp;Конфiгурацiя</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="168"/>
+        <location filename="../ui/mainwindow.ui" line="171"/>
         <source>&amp;Scan</source>
         <translation type="unfinished">&amp;Сканувати</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="176"/>
+        <location filename="../ui/mainwindow.ui" line="179"/>
         <source>&amp;Save to file</source>
         <translation type="unfinished">&amp;Зберегти в файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="179"/>
+        <location filename="../ui/mainwindow.ui" line="182"/>
         <source>Ctrl+S</source>
         <translation type="unfinished">Ctrl+s</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="125"/>
+        <location filename="../ui/mainwindow.ui" line="128"/>
         <source>&amp;Help</source>
         <translation type="unfinished">&amp;Довiдка</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="169"/>
+        <source>%1 - QStarDict</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

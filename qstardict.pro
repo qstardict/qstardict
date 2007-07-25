@@ -60,7 +60,8 @@ isEmpty(NO_TRANSLATIONS) {
     TRANSLATIONS += \
         translations/qstardict-ru_RU.ts \
         translations/qstardict-ua_UA.ts \
-        translations/qstardict-zh_TW.ts
+        translations/qstardict-zh_TW.ts \
+        translations/qstardict-zh_CN.ts
     RESOURCES += translations/translations.qrc
 }
 DISTFILES += \
