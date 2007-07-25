@@ -347,7 +347,7 @@ std::string xdxf2html(const char *p) // taken from sdcv
         else if (name == "k")
         {
             const char *begin = next;
-            if ((next = strstr(begin, "</k>")) != NULL)
+            if ((next = strstr(begin, "</k>")) != 0)
                 next += sizeof("</k>") - 1 - 1;
             else
                 next = begin;
