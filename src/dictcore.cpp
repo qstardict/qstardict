@@ -181,6 +181,15 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                         if (num == "1")
                         {
                             i->exp.insert(pos, "<ol>");
+                            if (openedLists.contains(result))
+                            {
+                                i->exp.insert(pos, "</li></ol>");
+                                while (openedLists.size() && openedLists.top() != result)
+                                {
+                                    i->exp.insert(pos, "</li></ol>");
+                                    openedLists.pop();
+                                }
+                            }
                             openedLists.push(result);
                         }
                         else

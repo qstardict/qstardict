@@ -32,4 +32,5 @@
 	- make popup window border more useful
 	- fix bug with words list
 	- add simplified chinese translation
+	- fix bug with uncorrect displayed hierarchical lists
 
