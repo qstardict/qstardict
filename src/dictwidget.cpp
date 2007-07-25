@@ -52,7 +52,7 @@ bool DictWidget::translate(const QString &str)
             "color: #7f7f7f;\n"
             "font-style: italic; }\n"
         "font.abbreviature {\n"
-            "font-weight: bold; }\n"
+            "font-style: italic; }\n"
         "font.example {\n"
             "font-style: italic; }\n"
         "font.transcription {\n"
