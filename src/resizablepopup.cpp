@@ -37,8 +37,8 @@ ResizablePopup::ResizablePopup(QWidget *parent)
     m_timerCloseId = 0;
     m_timerResizeId = 0;
     setMouseTracking(true);
-    setLineWidth(2);
-    setMidLineWidth(1);
+    setLineWidth(1);
+    setMidLineWidth(2);
     setFrameStyle(QFrame::Box);
     setFrameShadow(QFrame::Raised);
 }
@@ -71,9 +71,11 @@ void ResizablePopup::enterEvent(QEvent*)
 
 void ResizablePopup::leaveEvent(QEvent*)
 {
+    if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
+        return;
     if (m_timeoutBeforeHide < 0)
         return;
-    else if (m_timeoutBeforeHide == 0)
+    if (m_timeoutBeforeHide == 0)
         hide();
     else if (! m_timerCloseId)
         m_timerCloseId = startTimer(m_timeoutBeforeHide);
@@ -81,8 +83,6 @@ void ResizablePopup::leaveEvent(QEvent*)
 
 void ResizablePopup::mouseMoveEvent(QMouseEvent *event)
 {
-    const int CornerSize = 10;
-
     Qt::CursorShape cursorShape = Qt::ArrowCursor;
     if ((event->x() >= 0 && event->x() < CornerSize &&
             event->y() >= 0 && event->y() < CornerSize) ||
