@@ -22,6 +22,30 @@
 #include <QHBoxLayout>
 #include <QScrollBar>
 
+namespace
+{
+const QString translationCSS = 
+    "<style>\n"
+    "font.normal {\n"
+        " }\n"
+    "font.dict_name {\n"
+        "color: blue;\n"
+        "font-style: italic; }\n"
+    "font.title {\n"
+        "font-size: 16pt;\n"
+        "font-weight: bold; }\n"
+    "font.explanation {\n"
+        "color: #7f7f7f;\n"
+        "font-style: italic; }\n"
+    "font.abbreviature {\n"
+        "font-style: italic; }\n"
+    "font.example {\n"
+        "font-style: italic; }\n"
+    "font.transcription {\n"
+        "font-weight: bold; }\n"
+    "</style>\n";
+}
+
 DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     : QFrame(parent, f)
 {
@@ -40,29 +64,9 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
 
 bool DictWidget::translate(const QString &str)
 {
-    const QString htmlStyle = 
-        "<style>\n"
-        "font.normal {\n"
-            " }\n"
-        "font.dict_name {\n"
-            "color: blue;\n"
-            "font-style: italic; }\n"
-        "font.title {\n"
-            "font-size: 16pt;\n"
-            "font-weight: bold; }\n"
-        "font.explanation {\n"
-            "color: #7f7f7f;\n"
-            "font-style: italic; }\n"
-        "font.abbreviature {\n"
-            "font-style: italic; }\n"
-        "font.example {\n"
-            "font-style: italic; }\n"
-        "font.transcription {\n"
-            "font-weight: bold; }\n"
-        "</style>\n";
     m_translatedWord = str;
     QString result = m_dict->translate(str, m_translationFlags);
-    translationView->setHtml(htmlStyle + result);
+    translationView->setHtml(translationCSS + result);
     return result.isEmpty();
 }
 
