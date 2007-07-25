@@ -20,7 +20,7 @@
 
 #include <QTextBrowser>
 #include <QHBoxLayout>
-#include <cassert>
+#include <QScrollBar>
 
 DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     : QFrame(parent, f)
@@ -28,6 +28,8 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     translationView = new QTextBrowser(this);
     setFrameStyle(translationView->frameStyle());
     translationView->setFrameStyle(QFrame::NoFrame);
+    translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
+    translationView->horizontalScrollBar()->setCursor(Qt::ArrowCursor);
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(translationView);
