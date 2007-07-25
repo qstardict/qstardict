@@ -39,25 +39,25 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
 bool DictWidget::translate(const QString &str)
 {
     const QString htmlStyle = 
-        "<style>"
-        "font.normal { "
-            " } "
-        "font.dict_name { "
-            "color: blue; "
-            "font-style: italic; }"
-        "font.title { "
-            "font-size: 16pt; "
-            "font-weight: bold; }"
-        "font.explanation { "
-            "color: #7f7f7f; "
-            "font-style: italic; }"
-        "font.abbreviature { "
-            "font-weight: bold; }"
-        "font.example { "
-            "font-style: italic; } "
-        "font.transcription { "
-            "font-weight: bold; }"
-        "</style>";
+        "<style>\n"
+        "font.normal {\n"
+            " }\n"
+        "font.dict_name {\n"
+            "color: blue;\n"
+            "font-style: italic; }\n"
+        "font.title {\n"
+            "font-size: 16pt;\n"
+            "font-weight: bold; }\n"
+        "font.explanation {\n"
+            "color: #7f7f7f;\n"
+            "font-style: italic; }\n"
+        "font.abbreviature {\n"
+            "font-weight: bold; }\n"
+        "font.example {\n"
+            "font-style: italic; }\n"
+        "font.transcription {\n"
+            "font-weight: bold; }\n"
+        "</style>\n";
     m_translatedWord = str;
     QString result = m_dict->translate(str, m_translationFlags);
     translationView->setHtml(htmlStyle + result);
