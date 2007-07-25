@@ -71,7 +71,7 @@ void ResizablePopup::enterEvent(QEvent*)
 
 void ResizablePopup::leaveEvent(QEvent*)
 {
-    if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
+    if (m_resizeDirection)
         return;
     if (m_timeoutBeforeHide < 0)
         return;
