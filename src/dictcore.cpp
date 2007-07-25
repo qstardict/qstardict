@@ -24,7 +24,8 @@
 #include <QDir>
 #include <QFile>
 #include <QStack>
-#include <glib.h>
+#include <glib/gmem.h>
+#include <glib/gstrfuncs.h>
 #include "lib/lib.h"
 #include "lib/file.hpp"
 
