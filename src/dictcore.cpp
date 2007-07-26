@@ -164,11 +164,8 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             if (flags.testFlag(Reformat))
             {
                 QRegExp regExp;
-#if 0
                 regExp.setPattern("_[I|V|X|L|C|D|M]+\\s*");
-#endif
                 int pos = 0;
-#if 0
                 if ((pos = regExp.indexIn(i->exp, pos)) != -1)
                 {
                     
@@ -176,7 +173,6 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                     resultList.insert(i, SearchResult(i->dictName, i->def, i->exp.mid(pos)));
                     i->exp.truncate(pos);
                 }
-#endif
                 regExp.setMinimal(true);
                 pos = 0;
                 regExp.setPattern("\\d+[>\\.]");
@@ -279,7 +275,6 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
 void DictCore::simpleLookup(const std::string &str, SearchResultList &resultList) // taken from sdcv
 {
     glong ind;
-    resultList.reserve(m_sdLibs->ndicts());
     for (int idict = 0; idict < m_sdLibs->ndicts(); idict++)
         if (m_sdLibs->SimpleLookupWord(str.c_str(), ind, idict))
             resultList.push_back(

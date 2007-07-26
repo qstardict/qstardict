@@ -397,7 +397,7 @@
        <item row="0" column="0" >
         <widget class="QGroupBox" name="groupBox" >
          <property name="title" >
-          <string>Behaviour</string>
+          <string>Behavior</string>
          </property>
          <layout class="QGridLayout" >
           <property name="margin" >
