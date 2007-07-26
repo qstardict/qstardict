@@ -71,13 +71,18 @@ class DictCore: public QObject
                 QString def;
                 QString exp;
 
+                SearchResult(const QString &_dictName, const QString &_def, const QString &_exp)
+                        : dictName(_dictName),
+                          def(_def),
+                          exp(_exp)
+                { }
                 SearchResult(const char *_dictName, const char *_def, const char *_exp)
                         : dictName(QString::fromUtf8(_dictName)),
                           def(QString::fromUtf8(_def)),
                           exp(QString::fromUtf8(_exp))
                 { }
         };
-        typedef std::vector<SearchResult> SearchResultList;
+        typedef QList<SearchResult> SearchResultList;
 
         void simpleLookup(const std::string &str, SearchResultList &resultList);
         void lookupWithFuzzy(const std::string &str, SearchResultList &resultList);
