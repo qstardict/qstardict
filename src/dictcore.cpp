@@ -216,7 +216,6 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                     i->exp += "</li></ol>";
                     openedLists.pop();
                 }
-
                 if (! i->exp.contains("<ol>"))
                 {
                     i->exp.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
