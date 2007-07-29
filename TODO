@@ -1,0 +1,4 @@
+In version 0.05:
+    - fix bug with froze on Magus-like dictionaries
+    - don't start instance if one runned
+
