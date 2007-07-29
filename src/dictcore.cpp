@@ -116,25 +116,28 @@ QStringList DictCore::find(const QString &str)
 
 bool DictCore::isTranslatable(const QString &str)
 {
-    if (str.isEmpty())
+    QString simplifiedStr = str.simplified();
+    if (simplifiedStr.isEmpty())
         return false;
     long ind;
     for (int idict = 0; idict < m_sdLibs->ndicts(); ++idict)
-        if (m_sdLibs->SimpleLookupWord(str.toUtf8().data(), ind, idict))
+        if (m_sdLibs->SimpleLookupWord(simplifiedStr.toUtf8().data(), ind, idict))
             return true;
     return false;
 }
 
 QString DictCore::translate(const QString &str, TranslationFlags flags)
 {
+    QString simplifiedStr = str.simplified();
+
     SearchResultList resultList;
     std::string query;
 
-    if (str.isEmpty())
+    if (simplifiedStr.isEmpty())
         return tr("Not found!");
 
     if (flags.testFlag(Simple))
-        switch (analyze_query(str.toUtf8().data(), query))
+        switch (analyze_query(simplifiedStr.toUtf8().data(), query))
         {
         case qtFUZZY:
             lookupWithFuzzy(query, resultList);
@@ -143,7 +146,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             lookupWithRule(query, resultList);
             break;
         case qtSIMPLE:
-            simpleLookup(str.toUtf8().data(), resultList);
+            simpleLookup(simplifiedStr.toUtf8().data(), resultList);
             break;
         case qtDATA:
             lookupData(query, resultList);
@@ -152,7 +155,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             ; // nothing
         }
     else
-        simpleLookup(str.toUtf8().data(), resultList);
+        simpleLookup(simplifiedStr.toUtf8().data(), resultList);
 
     if (resultList.empty())
         return tr("Not found!");
@@ -259,7 +262,6 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             result += "<-- " + i->dictName + " -->\n" +
                       "--> " + i->def + "\n" +
                       html2text(i->exp) + "\n\n";
-    qWarning("%s\n", result.toUtf8().data());
     return result;
 }
 

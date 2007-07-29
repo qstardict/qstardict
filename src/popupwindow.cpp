@@ -89,9 +89,6 @@ void PopupWindow::selectionChanged(const QString &text)
 {
     if (m_modifierKey && ! Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
         return;
-    QString tmp = text;
-    tmp.remove(QRegExp("^\\W*"));
-    tmp.remove(QRegExp("\\W.*$"));
     if (m_showIfNotFound || m_dict->isTranslatable(text))
         showTranslation(text);
 }
