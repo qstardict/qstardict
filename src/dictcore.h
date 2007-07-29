@@ -25,6 +25,7 @@
 #include <vector>
 #include <QFlags>
 #include <QStringList>
+#include <QVector>
 
 class Libs;
 
@@ -71,6 +72,8 @@ class DictCore: public QObject
                 QString def;
                 QString exp;
 
+                SearchResult()
+                { }
                 SearchResult(const QString &_dictName, const QString &_def, const QString &_exp)
                         : dictName(_dictName),
                           def(_def),
@@ -82,7 +85,7 @@ class DictCore: public QObject
                           exp(QString::fromUtf8(_exp))
                 { }
         };
-        typedef QList<SearchResult> SearchResultList;
+        typedef QVector<SearchResult> SearchResultList;
 
         void simpleLookup(const std::string &str, SearchResultList &resultList);
         void lookupWithFuzzy(const std::string &str, SearchResultList &resultList);

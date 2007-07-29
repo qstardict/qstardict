@@ -164,18 +164,13 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             if (flags.testFlag(Reformat))
             {
                 QRegExp regExp;
-                regExp.setPattern("_[I|V|X|L|C|D|M]+\\s*");
-                int pos = 0;
-                if ((pos = regExp.indexIn(i->exp, pos)) != -1)
-                {
-                    
-                    qWarning("%s\n", i->exp.mid(pos, regExp.matchedLength()).toUtf8().data());qWarning("%s\n", i->exp.mid(pos, regExp.matchedLength()).toUtf8().data());
-                    resultList.insert(i, SearchResult(i->dictName, i->def, i->exp.mid(pos)));
-                    i->exp.truncate(pos);
-                }
                 regExp.setMinimal(true);
-                pos = 0;
-                regExp.setPattern("\\d+[>\\.]");
+/*                regExp.setPattern("_[I|V|X|L|C|D|M]+\\s+");*/
+                int pos = 0;
+/*                while ((pos = regExp.indexIn(i->exp, pos)) != -1)
+                    i->exp.replace(pos, regExp.matchedLength(), "</p>\n<p>");*/
+                regExp.setPattern("(\\d+[>|\\.|&gt;])|(_[I|V|X|L|C|D|M]+\\s+)");
+/*                pos = 0;*/
                 QStack<QString> openedLists;
                 while ((pos = regExp.indexIn(i->exp, pos)) != -1)
                 {
@@ -202,13 +197,11 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                             openedLists.push(result);
                         }
                         else
-                        {
                             while (openedLists.size() && openedLists.top() != result)
                             {
                                 i->exp.insert(pos, "</li></ol>");
                                 openedLists.pop();
                             }
-                        }
                     }
                 }
                 while (openedLists.size())
@@ -255,6 +248,8 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                         i->exp.replace(pos, regExp.matchedLength(),
                                 "<font class=\"explanation\">" + result + "</font>");
                     }
+                    else
+                        pos += regExp.matchedLength();
                 }
             }
             result += "<p><font class=\"normal\"><font class=\"dict_name\">" + i->dictName + "</font><br>"
@@ -268,6 +263,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
             result += "<-- " + i->dictName + " -->\n" +
                       "--> " + i->def + "\n" +
                       html2text(i->exp) + "\n\n";
+    qWarning("%s\n", result.toUtf8().data());
     return result;
 }
 
