@@ -22,7 +22,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="reformatWarningLabel" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabDictionaries" >
       <attribute name="title" >
@@ -615,54 +615,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>useScanBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>useScanModifierBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>141</x>
-     <y>92</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>142</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useScanModifierBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>modifierKeyBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>142</x>
-     <y>149</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>353</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useScanBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>showIfNotFoundBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>111</x>
-     <y>92</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>109</x>
-     <y>120</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>reformatTranslationsBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>reformatTranslationsWarningLabel</receiver>
@@ -679,50 +631,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>useScanBox</sender>
+   <sender>useScanModifierBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>groupBox_2</receiver>
+   <receiver>modifierKeyBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>157</x>
-     <y>79</y>
+     <x>165</x>
+     <y>140</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>197</x>
-     <y>209</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>groupBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_4</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>95</x>
-     <y>93</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>220</x>
-     <y>169</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useScanBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>timeoutBeforeHideSpin</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>294</x>
-     <y>84</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>328</x>
-     <y>169</y>
+     <x>273</x>
+     <y>137</y>
     </hint>
    </hints>
   </connection>
