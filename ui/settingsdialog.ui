@@ -22,7 +22,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="reformatWarningLabel" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabDictionaries" >
       <attribute name="title" >
@@ -589,8 +589,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>312</x>
-     <y>426</y>
+     <x>321</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel" >
      <x>410</x>
@@ -605,8 +605,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>388</x>
-     <y>426</y>
+     <x>397</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel" >
      <x>410</x>
@@ -621,12 +621,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>110</x>
-     <y>63</y>
+     <x>141</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>110</x>
-     <y>63</y>
+     <x>142</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>
@@ -637,44 +637,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>110</x>
-     <y>63</y>
+     <x>142</x>
+     <y>149</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>110</x>
-     <y>63</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useScanBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_3</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>72</x>
-     <y>52</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>104</x>
-     <y>63</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useScanBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>popupOpacitySpin</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>110</x>
-     <y>63</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>110</x>
-     <y>63</y>
+     <x>353</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>
@@ -685,12 +653,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>80</x>
-     <y>54</y>
+     <x>111</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>78</x>
-     <y>63</y>
+     <x>109</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -705,8 +673,56 @@
      <y>48</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>53</x>
-     <y>109</y>
+     <x>64</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useScanBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>groupBox_2</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>157</x>
+     <y>79</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>197</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>groupBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_4</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>95</x>
+     <y>93</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>220</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useScanBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>timeoutBeforeHideSpin</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>294</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>328</x>
+     <y>169</y>
     </hint>
    </hints>
   </connection>
