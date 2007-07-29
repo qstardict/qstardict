@@ -16,37 +16,37 @@
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="124"/>
+        <location filename="../src/mainwindow.cpp" line="122"/>
         <source>About QStarDict</source>
         <translation type="unfinished">Про програму QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="123"/>
         <source>&lt;b&gt;QStarDict </source>
         <translation type="unfinished">&lt;b&gt;QStarDict </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="126"/>
+        <location filename="../src/mainwindow.cpp" line="124"/>
         <source>&lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation type="unfinished">&lt;/b&gt; - версiя StarDict, написана з використанням бiблiотеки Qt&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="127"/>
+        <location filename="../src/mainwindow.cpp" line="125"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation type="unfinished">Copyright (C) 2007 Александр Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="139"/>
+        <location filename="../src/mainwindow.cpp" line="137"/>
         <source>Save translation</source>
         <translation type="unfinished">Зберегти переклад</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="146"/>
+        <location filename="../src/mainwindow.cpp" line="144"/>
         <source>Error</source>
         <translation type="unfinished">Помилка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="147"/>
+        <location filename="../src/mainwindow.cpp" line="145"/>
         <source>Cannot save translation</source>
         <translation type="unfinished">Неможливо зберегти переклад</translation>
     </message>
@@ -71,69 +71,64 @@
         <translation type="unfinished">Пошук</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="84"/>
+        <location filename="../ui/mainwindow.ui" line="81"/>
         <source>Words list</source>
         <translation type="unfinished">Список слiв</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="121"/>
+        <location filename="../ui/mainwindow.ui" line="118"/>
         <source>&amp;Settings</source>
         <translation type="unfinished">&amp;Налаштування</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="114"/>
+        <location filename="../ui/mainwindow.ui" line="111"/>
         <source>&amp;File</source>
         <translation type="unfinished">&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="142"/>
+        <location filename="../ui/mainwindow.ui" line="139"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Вихiд</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="145"/>
+        <location filename="../ui/mainwindow.ui" line="142"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished">Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="150"/>
+        <location filename="../ui/mainwindow.ui" line="147"/>
         <source>&amp;About</source>
         <translation type="unfinished">&amp;Про програму QStarDict</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="155"/>
+        <location filename="../ui/mainwindow.ui" line="152"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished">Про &amp;бiблiотеку Qt</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="163"/>
+        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>&amp;Configure QStarDict</source>
         <translation type="unfinished">&amp;Конфiгурацiя</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="171"/>
+        <location filename="../ui/mainwindow.ui" line="168"/>
         <source>&amp;Scan</source>
         <translation type="unfinished">&amp;Сканувати</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="179"/>
+        <location filename="../ui/mainwindow.ui" line="176"/>
         <source>&amp;Save to file</source>
         <translation type="unfinished">&amp;Зберегти в файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="182"/>
+        <location filename="../ui/mainwindow.ui" line="179"/>
         <source>Ctrl+S</source>
         <translation type="unfinished">Ctrl+s</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="128"/>
+        <location filename="../ui/mainwindow.ui" line="125"/>
         <source>&amp;Help</source>
         <translation type="unfinished">&amp;Довiдка</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="169"/>
-        <source>%1 - QStarDict</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -251,62 +246,62 @@
     <message>
         <location filename="../ui/settingsdialog.ui" line="276"/>
         <source>Apperance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зовнiшнiй вигляд</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="296"/>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Непрозорiсть</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="332"/>
         <source>Default width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ширина за замовчуванням</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="362"/>
         <source>Default height</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Висота за замовчуванням</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="400"/>
-        <source>Behaviour</source>
-        <translation type="unfinished"></translation>
+        <source>Behavior</source>
+        <translation type="unfinished">Поведiнка</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="420"/>
         <source>Timeout before hide after mouse over</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Затримка приховування пiсля &quot;втечi&quot; мишi з вiкна переклада</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="430"/>
         <source> sec</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">сек</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="522"/>
         <source>Translation view</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перегляд перекладу</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="547"/>
         <source>Expand abbreviations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Розкладати абревiатури</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="554"/>
         <source>Reformat translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Змiна формату перекладу</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="561"/>
         <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformated translations may be not correct displayed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Увага!&lt;/font&gt;&lt;/b&gt; Форматованi переклади можуть некоректно вiдображатися</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="427"/>
         <source>Don&apos;t hide</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не приховувати</translation>
     </message>
 </context>
 </TS>

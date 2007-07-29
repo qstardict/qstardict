@@ -3,7 +3,7 @@
 <context>
     <name>DictCore</name>
     <message>
-        <location filename="../src/dictcore.cpp" line="157"/>
+        <location filename="../src/dictcore.cpp" line="158"/>
         <source>Not found!</source>
         <translation type="unfinished">Не найдено!</translation>
     </message>
@@ -270,7 +270,7 @@
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="400"/>
-        <source>Behaviour</source>
+        <source>Behavior</source>
         <translation type="unfinished">Поведение</translation>
     </message>
     <message>
