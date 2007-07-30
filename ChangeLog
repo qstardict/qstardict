@@ -33,4 +33,6 @@
 	- fix bug with words list
 	- add simplified chinese translation
 	- fix bug with uncorrect displayed hierarchical lists
+	- set to run only one instance of application
+	- set to search for dictionaries recursively
 
