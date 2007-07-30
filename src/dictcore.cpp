@@ -34,6 +34,7 @@ namespace
 std::string xdxf2html(const char *p);
 std::string parse_data(const char *data);
 QString html2text(QString html);
+QString whereDict(const QString &name, const QString &path);
 const int MaxFuzzy = 24;
 }
 
@@ -62,13 +63,14 @@ void DictCore::setDicts(const QStringList &orderedDicts)
     delete m_sdLibs;
     m_sdLibs = new Libs;
 
-    for (QStringList::ConstIterator dictName = m_orderedDicts.begin(); dictName != m_orderedDicts.end(); ++dictName)
-        for (QStringList::ConstIterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); ++dictDir)
-            if (QFile::exists(*dictDir + "/" + *dictName + ".ifo"))
-            {
-                m_sdLibs->load_dict(QDir::toNativeSeparators(*dictDir + "/" + *dictName + ".ifo").toUtf8().data());
-                break;
-            }
+
+    for (QStringList::const_iterator dictName = m_orderedDicts.begin(); dictName != m_orderedDicts.end(); ++dictName)
+        for (QStringList::const_iterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); ++dictDir)
+        {
+            QString dictFile = whereDict(*dictName, *dictDir);
+            if (! dictFile.isEmpty())
+                m_sdLibs->load_dict(QDir::toNativeSeparators(dictFile).toUtf8().data());
+        }
 }
 
 QStringList DictCore::disabledDicts() const
@@ -95,11 +97,19 @@ QStringList DictCore::avialableDicts() const
 
 QStringList DictCore::findDicts(const QString &dir)
 {
-    QStringList result = QDir(dir).entryList(QStringList("*.ifo"), QDir::Files);
+    QFileInfoList result = QDir(dir).entryInfoList(QStringList("*.ifo"), QDir::Files | QDir::AllDirs |
+            QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    QStringList dicts;
 
-    for (QStringList::Iterator dictName = result.begin(); dictName != result.end(); ++dictName)
-        dictName->remove(QRegExp("\\.ifo$"));
-    return result;
+    for (QFileInfoList::const_iterator i = result.begin(); i != result.end(); ++i)
+    {
+        if (i->isDir())
+            dicts << findDicts(i->filePath());
+        else
+            dicts << QString(i->fileName()).remove(QRegExp("\\.ifo$"));
+    }
+
+    return dicts;
 }
 
 QStringList DictCore::find(const QString &str)
@@ -470,6 +480,23 @@ QString html2text(QString html)
                 replace("&amp;", "&").
                 replace("&quot;", "\"");
 }
+
+QString whereDict(const QString &name, const QString &path)
+{
+    if (QFile::exists(path + "/" + name + ".ifo"))
+        return path + "/" + name + ".ifo";
+
+    QStringList dirs = QDir(path).entryList(QDir::AllDirs | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+    for (QStringList::const_iterator i = dirs.begin(); i != dirs.end(); ++i)
+    {
+        QString result = whereDict(name, path + "/" + *i);
+        if (! result.isEmpty())
+            return result;
+    }
+
+    return QString();
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
