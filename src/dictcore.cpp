@@ -179,7 +179,7 @@ QString DictCore::translate(const QString &str, TranslationFlags flags)
                 QRegExp regExp;
                 regExp.setMinimal(true);
                 int pos = 0;
-                regExp.setPattern("(\\d+[>|\\.|&gt;])|(_[I|V|X|L|C|D|M]+\\s+)");
+                regExp.setPattern("(\\d+(>|\\.|&gt;))|(_[I|V|X|L|C|D|M]+\\s+)");
                 QStack<QString> openedLists;
                 while ((pos = regExp.indexIn(i->exp, pos)) != -1)
                 {
