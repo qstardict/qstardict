@@ -18,11 +18,11 @@
       <translation>За QStarDict</translation>
     </message>
     <message>
-      <source>&lt;b>QStarDict </source>
+      <source>&lt;b&lt;QStarDict </source>
       <translation>&lt;b>QStarDict</translation>
     </message>
     <message>
-      <source>&lt;/b> - Qt version of StarDict&lt;br></source>
+      <source>&lt;/b&lt; - Qt version of StarDict&lt;br></source>
       <translation>Qt версия на StarDict</translation>
     </message>
     <message>
