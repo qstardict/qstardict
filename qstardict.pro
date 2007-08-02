@@ -58,10 +58,11 @@ RESOURCES += \
     resources/qstardict.qrc
 isEmpty(NO_TRANSLATIONS) {
     TRANSLATIONS += \
+        translations/qstardict-bg_BG.ts \
         translations/qstardict-ru_RU.ts \
         translations/qstardict-ua_UA.ts \
-        translations/qstardict-zh_TW.ts \
-        translations/qstardict-zh_CN.ts
+        translations/qstardict-zh_CN.ts \
+        translations/qstardict-zh_TW.ts
     RESOURCES += translations/translations.qrc
 }
 DISTFILES += \
