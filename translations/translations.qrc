@@ -1,8 +1,9 @@
 <RCC>
     <qresource prefix="/translations" >
+        <file>qstardict-bg_BG.qm</file>
         <file>qstardict-ru_RU.qm</file>
         <file>qstardict-ua_UA.qm</file>
-        <file>qstardict-zh_TW.qm</file>
         <file>qstardict-zh_CN.qm</file>
+        <file>qstardict-zh_TW.qm</file>
     </qresource>
 </RCC>

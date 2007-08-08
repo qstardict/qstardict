@@ -44,7 +44,10 @@ int main(int argc, char *argv[])
     QTextStream lockStream(&lockFile);
     QString oldPid = lockStream.readLine();
     if (oldPid.length() && QDir("/proc/" + oldPid).exists())
+    {
+        qWarning("qstardict: Already running");
         return 0;
+    }
     lockFile.close();
     lockFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
     lockStream << getpid() << endl;

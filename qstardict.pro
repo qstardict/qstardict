@@ -2,7 +2,7 @@
 
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.05
+VERSION = 0.06-svn
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
@@ -58,10 +58,11 @@ RESOURCES += \
     resources/qstardict.qrc
 isEmpty(NO_TRANSLATIONS) {
     TRANSLATIONS += \
+        translations/qstardict-bg_BG.ts \
         translations/qstardict-ru_RU.ts \
         translations/qstardict-ua_UA.ts \
-        translations/qstardict-zh_TW.ts \
-        translations/qstardict-zh_CN.ts
+        translations/qstardict-zh_CN.ts \
+        translations/qstardict-zh_TW.ts
     RESOURCES += translations/translations.qrc
 }
 DISTFILES += \
