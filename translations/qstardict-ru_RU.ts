@@ -3,7 +3,7 @@
 <context>
     <name>DictCore</name>
     <message>
-        <location filename="../src/dictcore.cpp" line="158"/>
+        <location filename="../src/dictcore.cpp" line="171"/>
         <source>Not found!</source>
         <translation type="unfinished">Не найдено!</translation>
     </message>
@@ -131,15 +131,15 @@
         <translation type="unfinished">&amp;Справка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="169"/>
+        <location filename="../src/mainwindow.cpp" line="173"/>
         <source>%1 - QStarDict</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 - QStarDict</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="192"/>
+        <location filename="../src/settingsdialog.cpp" line="196"/>
         <source>Select dictionaries directory</source>
         <translation type="unfinished">Выбрать папку со словарями</translation>
     </message>
@@ -204,42 +204,42 @@
         <translation type="unfinished">Всплывающее окно</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="501"/>
+        <location filename="../ui/settingsdialog.ui" line="421"/>
         <source>Scan selection</source>
         <translation type="unfinished">Сканировать выделение</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="465"/>
+        <location filename="../ui/settingsdialog.ui" line="385"/>
         <source>Show only if modifier pressed</source>
         <translation type="unfinished">Показывать только если нажата клавиша-модификатор</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="476"/>
+        <location filename="../ui/settingsdialog.ui" line="396"/>
         <source>Alt</source>
         <translation type="unfinished">Alt</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="481"/>
+        <location filename="../ui/settingsdialog.ui" line="401"/>
         <source>Control</source>
         <translation type="unfinished">Control</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="486"/>
+        <location filename="../ui/settingsdialog.ui" line="406"/>
         <source>Shift</source>
         <translation type="unfinished">Shift</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="491"/>
+        <location filename="../ui/settingsdialog.ui" line="411"/>
         <source>Win</source>
         <translation type="unfinished">Win</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="303"/>
+        <location filename="../ui/settingsdialog.ui" line="468"/>
         <source>%</source>
         <translation type="unfinished">%</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="511"/>
+        <location filename="../ui/settingsdialog.ui" line="431"/>
         <source>Show if word not found</source>
         <translation type="unfinished">Показывать если слово не найдено</translation>
     </message>
@@ -249,64 +249,74 @@
         <translation type="unfinished">Настройки QStarDict</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="276"/>
+        <location filename="../ui/settingsdialog.ui" line="441"/>
         <source>Apperance</source>
         <translation type="unfinished">Внешний вид</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="296"/>
+        <location filename="../ui/settingsdialog.ui" line="461"/>
         <source>Opacity</source>
         <translation type="unfinished">Непрозрачность</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="332"/>
+        <location filename="../ui/settingsdialog.ui" line="497"/>
         <source>Default width</source>
         <translation type="unfinished">Ширина по умолчанию</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="362"/>
+        <location filename="../ui/settingsdialog.ui" line="527"/>
         <source>Default height</source>
         <translation type="unfinished">Высота по умолчанию</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="400"/>
+        <location filename="../ui/settingsdialog.ui" line="276"/>
         <source>Behavior</source>
         <translation type="unfinished">Поведение</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="420"/>
+        <location filename="../ui/settingsdialog.ui" line="340"/>
         <source>Timeout before hide after mouse over</source>
         <translation type="unfinished">Задержка перед сокрытием после отведения указателя мыши</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="430"/>
+        <location filename="../ui/settingsdialog.ui" line="350"/>
         <source> sec</source>
         <translation type="unfinished">сек</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="522"/>
+        <location filename="../ui/settingsdialog.ui" line="566"/>
         <source>Translation view</source>
         <translation type="unfinished">Вид переводов</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="547"/>
+        <location filename="../ui/settingsdialog.ui" line="591"/>
         <source>Expand abbreviations</source>
         <translation type="unfinished">Расшифровывать сокращения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="554"/>
+        <location filename="../ui/settingsdialog.ui" line="598"/>
         <source>Reformat translations</source>
         <translation type="unfinished">Переформатировать переводы</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="561"/>
+        <location filename="../ui/settingsdialog.ui" line="605"/>
         <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformated translations may be not correct displayed</source>
         <translation type="unfinished">&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Предупреждение!&lt;/font&gt;&lt;/b&gt; Переформатированные переводы могут некорректно отображаться</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="427"/>
+        <location filename="../ui/settingsdialog.ui" line="347"/>
         <source>Don&apos;t hide</source>
         <translation type="unfinished">Не скрывать</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="296"/>
+        <source>Pronounce the word</source>
+        <translation type="unfinished">Произность слово</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="314"/>
+        <source>Pronounce using this command:</source>
+        <translation type="unfinished">Произносить, используя следующую команду:</translation>
     </message>
 </context>
 </TS>
