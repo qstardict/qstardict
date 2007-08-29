@@ -94,26 +94,29 @@ void PopupWindow::selectionChanged(const QString &text)
 {
     if (m_modifierKey && ! Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
         return;
-    if (m_showIfNotFound || m_dict->isTranslatable(text))
-        showTranslation(text);
+    showTranslation(text);
 }
 
 void PopupWindow::showTranslation(const QString &text)
 {
-    QString sourceText = text.simplified();
-    translationView->translate(sourceText);
-    popup();
-    if (m_pronounceWord)
+    bool isFound = m_dict->isTranslatable(text);
+    if (m_showIfNotFound || isFound)
     {
-	if (m_speechProcess->state() != QProcess::NotRunning)
-	    m_speechProcess->kill();
-
-	m_speechProcess->start(m_speechProgram, QIODevice::WriteOnly);
-	if (! m_speechProcess->waitForStarted())
-	    return;
-	m_speechProcess->write(sourceText.toUtf8());
-	m_speechProcess->closeWriteChannel();
-    };
+	QString sourceText = text.simplified();
+	translationView->translate(sourceText);
+	popup();
+	if (isFound && m_pronounceWord)
+	{
+	    if (m_speechProcess->state() != QProcess::NotRunning)
+		m_speechProcess->kill();
+	    
+	    m_speechProcess->start(m_speechProgram, QIODevice::WriteOnly);
+	    if (! m_speechProcess->waitForStarted())
+		return;
+	    m_speechProcess->write(sourceText.toUtf8());
+	    m_speechProcess->closeWriteChannel();
+	}
+    }
 }
 
 void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlags)

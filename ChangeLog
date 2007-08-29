@@ -28,7 +28,7 @@
 	- make popup window resizable
 	- add current translation title to main window header
 * Version 0.05
-	- fix bug with hurd font-family in translation CSS
+	- fix bug with hard font-family in translation CSS
 	- make popup window border more useful
 	- fix bug with words list
 	- add simplified chinese translation
