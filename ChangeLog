@@ -38,3 +38,4 @@
 * Version 0.06
 	- add bulgarian translation
 	- add speech support
+	- fix bug with broken main window title when search is empty
