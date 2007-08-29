@@ -22,7 +22,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="reformatWarningLabel" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabDictionaries" >
       <attribute name="title" >
@@ -307,13 +307,20 @@
               </property>
               <item>
                <widget class="QLabel" name="label_7" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
                 <property name="text" >
                  <string>Pronounce using this command:</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="speechProgramEdit" />
+               <widget class="QLineEdit" name="speechProgramEdit" >
+                <property name="enabled" >
+                 <bool>false</bool>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
