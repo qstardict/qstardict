@@ -19,6 +19,7 @@
 #include "popupwindow.h"
 
 #include <QGridLayout>
+#include <QProcess>
 #include <QSettings>
 #include "dictwidget.h"
 #include "keyboard.h"
@@ -38,6 +39,7 @@ PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
     QGridLayout *mainLayout = new QGridLayout(this);
     mainLayout->setMargin(0);
     mainLayout->addWidget(translationView);
+    m_speechProcess = new QProcess(this);
 
     m_selection = new Selection(this);
     connect(m_selection, SIGNAL(changed(const QString&)), this, SLOT(selectionChanged(const QString&)));
@@ -61,6 +63,8 @@ void PopupWindow::loadSettings()
     setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
     setTranslationFlags(static_cast<DictCore::TranslationFlags>(config.value("DictWidget/translationFlags",
                     static_cast<int>(translationView->translationFlags())).toInt()));
+    setPronounceWord(config.value("PopupWindow/pronounceWord", true).toBool());
+    setSpeechProgram(config.value("PopupWindow/speechProgram", "festival --tts").toString());
 }
 
 void PopupWindow::saveSettings()
@@ -72,6 +76,7 @@ void PopupWindow::saveSettings()
     config.setValue("PopupWindow/opacity", windowOpacity());
     config.setValue("PopupWindow/timeoutBeforeHide", timeoutBeforeHide());
     config.setValue("PopupWindow/defaultSize", defaultSize());
+    config.setValue("PopupWindow/pronounceWord", pronounceWord());
 }
 
 void PopupWindow::setScan(bool scan)
@@ -95,8 +100,20 @@ void PopupWindow::selectionChanged(const QString &text)
 
 void PopupWindow::showTranslation(const QString &text)
 {
-    translationView->translate(text);
+    QString sourceText = text.simplified();
+    translationView->translate(sourceText);
     popup();
+    if (m_pronounceWord)
+    {
+	if (m_speechProcess->state() != QProcess::NotRunning)
+	    m_speechProcess->kill();
+
+	m_speechProcess->start(m_speechProgram, QIODevice::WriteOnly);
+	if (! m_speechProcess->waitForStarted())
+	    return;
+	m_speechProcess->write(sourceText.toUtf8());
+	m_speechProcess->closeWriteChannel();
+    };
 }
 
 void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlags)

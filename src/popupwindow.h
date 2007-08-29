@@ -22,6 +22,7 @@
 #include "resizablepopup.h"
 #include "dictcore.h"
 
+class QProcess;
 class DictWidget;
 class Selection;
 
@@ -41,6 +42,10 @@ class PopupWindow: public ResizablePopup
         DictCore::TranslationFlags translationFlags() const;
         DictCore* dict() const
         { return m_dict; }
+	bool pronounceWord() const
+	{ return m_pronounceWord; }
+	const QString &speechProgram() const
+        { return m_speechProgram; }
 
     public slots:
         void setScan(bool scan);
@@ -50,6 +55,10 @@ class PopupWindow: public ResizablePopup
         { m_showIfNotFound = mode; }
         void setTranslationFlags(DictCore::TranslationFlags translationFlags);
         void showTranslation(const QString &text);
+	void setPronounceWord(bool pronounceWord)
+        { m_pronounceWord = pronounceWord; }
+	void setSpeechProgram(const QString &speechProgram)
+        { m_speechProgram = speechProgram; }
 
     private slots:
         void selectionChanged(const QString &text);
@@ -66,9 +75,11 @@ class PopupWindow: public ResizablePopup
         int m_modifierKey;
         bool m_showIfNotFound;
         Selection *m_selection;
+	bool m_pronounceWord;
+	QString m_speechProgram;
+	QProcess *m_speechProcess;
 };
 
 #endif // POPUPWINDOW_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
-

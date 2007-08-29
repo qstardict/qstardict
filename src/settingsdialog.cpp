@@ -64,6 +64,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     timeoutBeforeHideSpin->setValue(parent->popup->timeoutBeforeHide() / 1000.0);
     popupDefaultWidthSpin->setValue(parent->popup->defaultSize().width());
     popupDefaultHeightSpin->setValue(parent->popup->defaultSize().height());
+    pronounceWordBox->setChecked(parent->popup->pronounceWord());
+    speechProgramEdit->setText(parent->popup->speechProgram());
 
     connect(moveUpOrderedDictsButton, SIGNAL(clicked()), SLOT(moveUpOrderedDictsButtonClicked()));
     connect(moveDownOrderedDictsButton, SIGNAL(clicked()), SLOT(moveDownOrderedDictsButtonClicked()));
@@ -139,6 +141,8 @@ void SettingsDialog::apply()
         translationFlags &= ~DictCore::ExpandAbbreviations;
     mainWindow->translationView->setTranslationFlags(translationFlags);
     mainWindow->popup->setTranslationFlags(translationFlags);
+    mainWindow->popup->setPronounceWord(pronounceWordBox->isChecked());
+    mainWindow->popup->setSpeechProgram(speechProgramEdit->text());
 
     mainWindow->queryButtonClicked();
 }

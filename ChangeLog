@@ -35,6 +35,6 @@
 	- fix bug with uncorrect displayed hierarchical lists
 	- set to run only one instance of application
 	- set to search for dictionaries recursively
-* Version 0.05
+* Version 0.06
 	- add bulgarian translation
 
