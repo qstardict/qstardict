@@ -75,5 +75,10 @@ QString DictWidget::translatedWord() const
     return m_translatedWord;
 }
 
+void DictWidget::clear()
+{
+    translationView->clear();
+}
+
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
