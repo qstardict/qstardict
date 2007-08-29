@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This is a script that creates distribution from qmake-based Subversion project
 # Copyright (C) 2007 Alexander Rodin <rodin.alexander@gmail.com>
