@@ -43,6 +43,8 @@ class DictWidget: public QFrame
         bool translate(const QString &str);
         QString translatedWord() const;
 
+	static const QString &cssStyle();
+
     private:
         QTextBrowser *translationView;
         DictCore *m_dict;

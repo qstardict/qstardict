@@ -184,3 +184,25 @@ void MainWindow::closeEvent(QCloseEvent *event)
     hide();
     event->ignore();
 }
+
+QString MainWindow::translate(const QString &text) const
+{
+    return m_dict->translate(text, translationView->translationFlags() & ~DictCore::Html);
+}
+
+QString MainWindow::translateHtml(const QString &text) const
+{
+    return
+	"<html>\n"
+	"<head>\n"
+	"<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">\n"
+	"<title>" + text + "</title>\n"
+	"<style><!--\n" +
+	translationView->cssStyle() + 
+	"--></style>\n"
+	"</head>\n"
+	"<body>\n" +
+	m_dict->translate(text, translationView->translationFlags() | DictCore::Html) +
+	"</body>\n"
+	"</html>\n";
+}

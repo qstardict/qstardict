@@ -38,6 +38,8 @@ class DBusAdaptor: public QDBusAbstractAdaptor
     public slots:
         void showTranslation(const QString &text);
         void showPopup(const QString &text);
+	QString translate(const QString &text);
+	QString translateHtml(const QString &text);
 
     private:
         MainWindow *m_mainWindow;
@@ -46,4 +48,3 @@ class DBusAdaptor: public QDBusAbstractAdaptor
 #endif // DBUSADAPTOR_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
-

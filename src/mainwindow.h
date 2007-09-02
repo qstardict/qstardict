@@ -44,6 +44,9 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
     public slots:
         void showTranslation(const QString &text);
 
+        QString translate(const QString &text) const;
+	QString translateHtml(const QString &text) const;
+
     protected:
         void closeEvent(QCloseEvent *event);
 

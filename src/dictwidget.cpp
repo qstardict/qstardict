@@ -25,7 +25,6 @@
 namespace
 {
 const QString translationCSS = 
-    "<style>\n"
     "font.normal {\n"
         " }\n"
     "font.dict_name {\n"
@@ -42,8 +41,7 @@ const QString translationCSS =
     "font.example {\n"
         "font-style: italic; }\n"
     "font.transcription {\n"
-        "font-weight: bold; }\n"
-    "</style>\n";
+    "font-weight: bold; }\n";
 }
 
 DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
@@ -66,7 +64,7 @@ bool DictWidget::translate(const QString &str)
 {
     m_translatedWord = str;
     QString result = m_dict->translate(str, m_translationFlags);
-    translationView->setHtml(translationCSS + result);
+    translationView->setHtml("<style>\n" + translationCSS + "</style>\n" + result);
     return result.isEmpty();
 }
 
@@ -78,6 +76,11 @@ QString DictWidget::translatedWord() const
 void DictWidget::clear()
 {
     translationView->clear();
+}
+
+const QString& DictWidget::cssStyle()
+{
+    return translationCSS;
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

@@ -50,5 +50,14 @@ void DBusAdaptor::showPopup(const QString &text)
     m_mainWindow->popupWindow()->showTranslation(text);
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+QString DBusAdaptor::translate(const QString &text)
+{
+    return m_mainWindow->translate(text);
+}
 
+QString DBusAdaptor::translateHtml(const QString &text)
+{
+    return m_mainWindow->translateHtml(text);
+}
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
