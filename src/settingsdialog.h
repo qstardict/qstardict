@@ -51,6 +51,3 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
 };
 
 #endif // SETTINGSDIALOG_H
-
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
-

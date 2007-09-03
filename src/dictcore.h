@@ -101,6 +101,3 @@ class DictCore: public QObject
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictCore::TranslationFlags)
 
 #endif // DICTCORE_H
-
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
-

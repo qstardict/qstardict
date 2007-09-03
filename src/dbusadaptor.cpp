@@ -59,5 +59,3 @@ QString DBusAdaptor::translateHtml(const QString &text)
 {
     return m_mainWindow->translateHtml(text);
 }
-
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
