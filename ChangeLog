@@ -41,3 +41,4 @@
 	- fix bug with broken main window title when search is empty
 * Version 0.07
 	- add "translate" and "translateHtml" methods to D-Bus interface
+	- change license from GPLv3 to GPLv2
