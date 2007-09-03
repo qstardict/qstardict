@@ -2,7 +2,7 @@
 
 TEMPLATE = app
 TARGET = qstardict
-VERSION = 0.06
+VERSION = 0.07
 DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 
 unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
