@@ -42,3 +42,5 @@
 * Version 0.07
 	- add "translate" and "translateHtml" methods to D-Bus interface
 	- change license from GPLv3 to GPLv2
+* Version 0.08
+	- add czech translation
