@@ -7,7 +7,6 @@ Icon=qstardict
 Name=QStarDict
 StartupNotify=true
 Terminal=false
-TerminalOptions=
 Type=Application
 Categories=Qt;Dictionary;Utility
 
