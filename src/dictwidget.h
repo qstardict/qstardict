@@ -34,7 +34,7 @@ class DictWidget: public QFrame
         { m_dict = dict; }
         const DictCore* dict() const
         { return m_dict; }
-	void clear();
+        void clear();
 
         void setTranslationFlags(DictCore::TranslationFlags flags)
         { m_translationFlags = flags; }
@@ -44,7 +44,7 @@ class DictWidget: public QFrame
         bool translate(const QString &str);
         QString translatedWord() const;
 
-	static const QString &cssStyle();
+        static const QString &cssStyle();
 
     private:
         QTextBrowser *translationView;
