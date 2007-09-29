@@ -3,4 +3,4 @@ In version 0.06:
     - add support for in-place edit dictionaries (by double-click)
     - make dictionary list more useful
     - document API
-
+    - add support for links
