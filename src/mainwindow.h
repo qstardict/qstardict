@@ -59,6 +59,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void queryButtonClicked();
         void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
         void wordsListItemActivated(QListWidgetItem *item);
+        void wordTranslated(const QString &word);
 
     private:
         friend class SettingsDialog;

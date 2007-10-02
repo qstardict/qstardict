@@ -23,10 +23,12 @@
 #include <QFrame>
 #include "dictcore.h"
 
-class QTextBrowser;
+class DictBrowser;
 
 class DictWidget: public QFrame
 {
+    Q_OBJECT
+
     public:
         DictWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
@@ -46,8 +48,11 @@ class DictWidget: public QFrame
 
         static const QString &cssStyle();
 
+    signals:
+        void wordTranslated(const QString &word);
+
     private:
-        QTextBrowser *translationView;
+        DictBrowser *translationView;
         DictCore *m_dict;
         DictCore::TranslationFlags m_translationFlags;
         QString m_translatedWord;

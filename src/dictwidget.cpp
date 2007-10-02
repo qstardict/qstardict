@@ -45,10 +45,18 @@ const QString translationCSS =
     "font-weight: bold; }\n";
 }
 
+class DictBrowser: public QTextBrowser
+{
+    public:
+        DictBrowser(QWidget *parent = 0)
+        : QTextBrowser(parent)
+        { }
+};
+
 DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     : QFrame(parent, f)
 {
-    translationView = new QTextBrowser(this);
+    translationView = new DictBrowser(this);
     setFrameStyle(translationView->frameStyle());
     translationView->setFrameStyle(QFrame::NoFrame);
     translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
@@ -66,6 +74,7 @@ bool DictWidget::translate(const QString &str)
     m_translatedWord = str;
     QString result = m_dict->translate(str, m_translationFlags);
     translationView->setHtml("<style>\n" + translationCSS + "</style>\n" + result);
+    emit wordTranslated(str);
     return result.isEmpty();
 }
 

@@ -89,6 +89,8 @@ void MainWindow::createConnections()
 
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
+    connect(translationView, SIGNAL(wordTranslated(const QString&)),
+            SLOT(wordTranslated(const QString&)));
 }
 
 void MainWindow::loadSettings()
@@ -157,14 +159,18 @@ void MainWindow::queryButtonClicked()
 {
     if (searchBox->text().isEmpty())
     {
-	setWindowTitle(tr("QStarDict"));
-	translationView->clear();
-	return;
+        setWindowTitle(tr("QStarDict"));
+        translationView->clear();
+        return;
     }
     wordsList->clear();
     wordsList->addItems(m_dict->find(searchBox->text()));
     translationView->translate(searchBox->text());
-    setWindowTitle(tr("%1 - QStarDict").arg(translationView->translatedWord()));
+}
+
+void MainWindow::wordTranslated(const QString &word)
+{
+    setWindowTitle(tr("%1 - QStarDict").arg(word));
 }
 
 void MainWindow::wordsListItemActivated(QListWidgetItem *item)
