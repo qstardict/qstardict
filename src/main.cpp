@@ -40,7 +40,7 @@
 int main(int argc, char *argv[])
 {
 #ifdef Q_OS_UNIX
-    QFile lockFile(QDir::tempPath() + "/qstardict.lock");
+    QFile lockFile(QDir::homePath() + "/config/qstardict/qstardict.pid");
     lockFile.open(QIODevice::ReadOnly);
     QTextStream lockStream(&lockFile);
     QString oldPid = lockStream.readLine();
