@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     lockFile.close();
     lockFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
     lockStream << getpid() << endl
-               << QFileInfo("/proc/" + oldPid).created().toString() << endl;
+               << QFileInfo("/proc/" + QString::number(getpid())).created().toString() << endl;
     lockFile.close();
 #endif
 
