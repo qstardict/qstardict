@@ -60,6 +60,7 @@ isEmpty(NO_TRANSLATIONS) {
     TRANSLATIONS += \
         translations/qstardict-bg_BG.ts \
         translations/qstardict-cs_CZ.ts \
+        translations/qstardict-pt_BR.ts \
         translations/qstardict-ru_RU.ts \
         translations/qstardict-ua_UA.ts \
         translations/qstardict-zh_CN.ts \
