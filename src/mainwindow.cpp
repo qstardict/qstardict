@@ -33,6 +33,8 @@
 #include "popupwindow.h"
 #include "settingsdialog.h"
 
+namespace QStarDict
+{
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
 {
@@ -212,4 +214,5 @@ QString MainWindow::translateHtml(const QString &text) const
 	m_dict->translate(text, translationView->translationFlags() | DictCore::Html) +
 	"</body>\n"
 	"</html>\n";
+}
 }

@@ -26,6 +26,8 @@ class QEvent;
 class QMouseEvent;
 class QTimerEvent;
 
+namespace QStarDict
+{
 class ResizablePopup: public QFrame
 {
     Q_OBJECT
@@ -75,5 +77,6 @@ class ResizablePopup: public QFrame
         int m_timerCloseId;
         int m_timerResizeId;
 };
+}
 
 #endif // RESIZABLEPOPUP_H

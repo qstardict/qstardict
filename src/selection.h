@@ -24,6 +24,8 @@
 
 class QTimerEvent;
 
+namespace QStarDict
+{
 class Selection: public QObject
 {
     Q_OBJECT
@@ -48,5 +50,6 @@ class Selection: public QObject
         int m_scan;
         int m_timerId;
 };
+}
 
 #endif // SELECTION_H

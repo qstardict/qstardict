@@ -23,8 +23,9 @@
 
 #include <QX11Info>
 #include <X11/XKBlib.h>
-#include <stdio.h>
 
+namespace QStarDict
+{
 namespace
 {
 const unsigned mAlt     = 0010;
@@ -60,3 +61,4 @@ Qt::KeyBoardModifiers Keyboard::modifiers()
 }
 
 #endif // Q_WS_X11
+}

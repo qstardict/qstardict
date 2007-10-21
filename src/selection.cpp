@@ -22,6 +22,8 @@
 #include <QApplication>
 #include <QClipboard>
 
+namespace QStarDict
+{
 Selection::Selection(QObject *parent)
     : QObject(parent)
 {
@@ -51,4 +53,5 @@ void Selection::timerEvent(QTimerEvent*)
         m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
         emit changed(m_lastState);
     }
+}
 }

@@ -22,10 +22,13 @@
 
 #include <Qt>
 
+namespace QStarDict
+{
 class Keyboard
 {
     public:
         static Qt::KeyboardModifiers activeModifiers();
 };
+}
 
 #endif // KEYBOARD_H

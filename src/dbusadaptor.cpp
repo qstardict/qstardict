@@ -23,6 +23,8 @@
 #include "mainwindow.h"
 #include "popupwindow.h"
 
+namespace QStarDict
+{
 DBusAdaptor::DBusAdaptor(MainWindow *mainWindow)
     : QDBusAbstractAdaptor(mainWindow), m_mainWindow(mainWindow)
 {
@@ -59,4 +61,5 @@ QString DBusAdaptor::translate(const QString &text)
 QString DBusAdaptor::translateHtml(const QString &text)
 {
     return m_mainWindow->translateHtml(text);
+}
 }

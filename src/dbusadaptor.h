@@ -22,6 +22,8 @@
 
 #include <QDBusAbstractAdaptor>
 
+namespace QStarDict
+{
 class MainWindow;
 
 class DBusAdaptor: public QDBusAbstractAdaptor
@@ -45,5 +47,6 @@ class DBusAdaptor: public QDBusAbstractAdaptor
     private:
         MainWindow *m_mainWindow;
 };
+}
 
 #endif // DBUSADAPTOR_H

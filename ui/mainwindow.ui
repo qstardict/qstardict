@@ -69,7 +69,7 @@
      </layout>
     </item>
     <item row="1" column="0" >
-     <widget class="DictWidget" native="1" name="translationView" />
+     <widget class="QStarDict::DictWidget" native="1" name="translationView" />
     </item>
    </layout>
   </widget>
@@ -185,7 +185,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>DictWidget</class>
+   <class>QStarDict::DictWidget</class>
    <extends>QWidget</extends>
    <header>src/dictwidget.h</header>
   </customwidget>

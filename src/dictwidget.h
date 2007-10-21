@@ -23,6 +23,8 @@
 #include <QFrame>
 #include "dictcore.h"
 
+namespace QStarDict
+{
 class DictBrowser;
 
 class DictWidget: public QFrame
@@ -57,5 +59,6 @@ class DictWidget: public QFrame
         DictCore::TranslationFlags m_translationFlags;
         QString m_translatedWord;
 };
+}
 
 #endif // DICTWIDGET_H
