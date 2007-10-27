@@ -55,7 +55,7 @@ SOURCES += \
     qstardict/selection.cpp
 unix:isEmpty(NO_DBUS):SOURCES += qstardict/dbusadaptor.cpp
 RESOURCES += \
-    resources/qstardict.qrc
+    pics/qstardict.qrc
 isEmpty(NO_TRANSLATIONS) {
     TRANSLATIONS += \
         translations/qstardict-bg_BG.ts \
@@ -73,7 +73,7 @@ DISTFILES += \
     ChangeLog \
     INSTALL \
     README \
-    resources/qstardict.desktop
+    pics/qstardict.desktop
 
 DESTDIR = bin
 OBJECTS_DIR = build
@@ -85,9 +85,9 @@ unix {
     INSTALL_PREFIX=/usr
 
     target.path = $$INSTALL_PREFIX/bin
-    icons.files += resources/qstardict.png
+    icons.files += pics/qstardict.png
     icons.path = $$INSTALL_PREFIX/share/pixmaps
-    desktop_files.files += resources/qstardict.desktop
+    desktop_files.files += pics/qstardict.desktop
     desktop_files.path = $$INSTALL_PREFIX/share/applications
     INSTALLS += target icons desktop_files
 }
