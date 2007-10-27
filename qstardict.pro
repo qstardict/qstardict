@@ -73,7 +73,7 @@ DISTFILES += \
     ChangeLog \
     INSTALL \
     README \
-    pics/qstardict.desktop
+    data/qstardict.desktop
 
 DESTDIR = bin
 OBJECTS_DIR = build
@@ -87,7 +87,7 @@ unix {
     target.path = $$INSTALL_PREFIX/bin
     icons.files += pics/qstardict.png
     icons.path = $$INSTALL_PREFIX/share/pixmaps
-    desktop_files.files += pics/qstardict.desktop
+    desktop_files.files += data/qstardict.desktop
     desktop_files.path = $$INSTALL_PREFIX/share/applications
     INSTALLS += target icons desktop_files
 }
