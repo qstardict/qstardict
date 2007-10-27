@@ -187,7 +187,7 @@
   <customwidget>
    <class>QStarDict::DictWidget</class>
    <extends>QWidget</extends>
-   <header>src/dictwidget.h</header>
+   <header>qstardict/dictwidget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

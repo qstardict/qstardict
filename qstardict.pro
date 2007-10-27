@@ -26,34 +26,34 @@ FORMS += \
     ui/mainwindow.ui \
     ui/settingsdialog.ui
 HEADERS += \
-    src/lib/dictziplib.hpp \
-    src/lib/distance.h \
-    src/lib/file.hpp \
-    src/lib/lib.h \
-    src/lib/mapfile.hpp \
-    src/mainwindow.h \
-    src/dictcore.h \
-    src/popupwindow.h \
-    src/settingsdialog.h \
-    src/keyboard.h \
-    src/dictwidget.h \
-    src/resizablepopup.h \
-    src/selection.h
-unix:isEmpty(NO_DBUS):HEADERS += src/dbusadaptor.h
+    qstardict/lib/dictziplib.hpp \
+    qstardict/lib/distance.h \
+    qstardict/lib/file.hpp \
+    qstardict/lib/lib.h \
+    qstardict/lib/mapfile.hpp \
+    qstardict/mainwindow.h \
+    qstardict/dictcore.h \
+    qstardict/popupwindow.h \
+    qstardict/settingsdialog.h \
+    qstardict/keyboard.h \
+    qstardict/dictwidget.h \
+    qstardict/resizablepopup.h \
+    qstardict/selection.h
+unix:isEmpty(NO_DBUS):HEADERS += qstardict/dbusadaptor.h
 SOURCES += \
-    src/lib/dictziplib.cpp \
-    src/lib/distance.cpp \
-    src/lib/lib.cpp \
-    src/mainwindow.cpp \
-    src/dictcore.cpp \
-    src/main.cpp \
-    src/popupwindow.cpp \
-    src/settingsdialog.cpp \
-    src/keyboard.cpp \
-    src/dictwidget.cpp \
-    src/resizablepopup.cpp \
-    src/selection.cpp
-unix:isEmpty(NO_DBUS):SOURCES += src/dbusadaptor.cpp
+    qstardict/lib/dictziplib.cpp \
+    qstardict/lib/distance.cpp \
+    qstardict/lib/lib.cpp \
+    qstardict/mainwindow.cpp \
+    qstardict/dictcore.cpp \
+    qstardict/main.cpp \
+    qstardict/popupwindow.cpp \
+    qstardict/settingsdialog.cpp \
+    qstardict/keyboard.cpp \
+    qstardict/dictwidget.cpp \
+    qstardict/resizablepopup.cpp \
+    qstardict/selection.cpp
+unix:isEmpty(NO_DBUS):SOURCES += qstardict/dbusadaptor.cpp
 RESOURCES += \
     resources/qstardict.qrc
 isEmpty(NO_TRANSLATIONS) {
