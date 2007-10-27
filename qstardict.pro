@@ -23,8 +23,8 @@ unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
 isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
 
 FORMS += \
-    ui/mainwindow.ui \
-    ui/settingsdialog.ui
+    qstardict/mainwindow.ui \
+    qstardict/settingsdialog.ui
 HEADERS += \
     qstardict/lib/dictziplib.hpp \
     qstardict/lib/distance.h \
