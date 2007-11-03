@@ -63,14 +63,14 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     QTranslator translator;
-    translator.load(QSTARDICT_DATA_DIR + "translations/qstardict-" + QLocale::system().name());
+    translator.load(":/translations/qstardict-" + QLocale::system().name());
     app.installTranslator(&translator);
 #endif // QSTARDICT_WITH_TRANSLATIONS
     app.setOrganizationName("qstardict");
     app.setApplicationName("qstardict");
-    QStarDict::MainWindow window;
+    MainWindow window;
 #ifdef QSTARDICT_WITH_DBUS
-    QStarDict::DBusAdaptor dbusAdaptor(&window);
+    DBusAdaptor dbusAdaptor(&window);
 #endif // QSTARDICT_WITH_DBUS
 
     return app.exec();

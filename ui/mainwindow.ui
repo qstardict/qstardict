@@ -69,7 +69,7 @@
      </layout>
     </item>
     <item row="1" column="0" >
-     <widget class="QStarDict::DictWidget" native="1" name="translationView" />
+     <widget class="DictWidget" native="1" name="translationView" />
     </item>
    </layout>
   </widget>
@@ -185,9 +185,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QStarDict::DictWidget</class>
+   <class>DictWidget</class>
    <extends>QWidget</extends>
-   <header>qstardict/dictwidget.h</header>
+   <header>src/dictwidget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

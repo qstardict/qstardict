@@ -1,5 +1,5 @@
 /*****************************************************************************
- * dbusadaptor.cpp - QStarDict, a StarDict clone written with using Qt       *
+ * keyboard.cpp - QStarDict, a StarDict clone written with using Qt          *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,49 +17,46 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#include "dbusadaptor.h"
+#include "keyboard.h"
 
-#include <QDBusConnection>
-#include "mainwindow.h"
-#include "popupwindow.h"
+#ifdef Q_WS_X11
 
-namespace QStarDict
+#include <QX11Info>
+#include <X11/XKBlib.h>
+#include <stdio.h>
+
+namespace
 {
-DBusAdaptor::DBusAdaptor(MainWindow *mainWindow)
-    : QDBusAbstractAdaptor(mainWindow), m_mainWindow(mainWindow)
-{
-    QDBusConnection connection = QDBusConnection::sessionBus();
-    connection.registerService("org.qstardict.dbus");
-    connection.registerObject("/qstardict", mainWindow);
+const unsigned mAlt     = 0010;
+const unsigned mCtrl    = 0004;
+const unsigned mShift   = 0001;
+const unsigned mWin     = 0100;
 }
 
-bool DBusAdaptor::mainWindowVisible() const
+Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
-    return m_mainWindow->isVisible();
+    XkbStateRec state;
+    Qt::KeyboardModifiers result;
+
+    XkbGetState(QX11Info::display(), XkbUseCoreKbd, &state);
+    if (state.base_mods & mAlt)
+        result |= Qt::AltModifier;
+    if (state.base_mods & mCtrl)
+        result |= Qt::ControlModifier;
+    if (state.base_mods & mShift)
+        result |= Qt::ShiftModifier;
+    if (state.base_mods & mWin)
+        result |= Qt::MetaModifier;
+
+    return result;
 }
 
-void DBusAdaptor::setMainWindowVisible(bool visible)
+#else // Q_WS_X11
+
+// TODO: write it for other platforms
+Qt::KeyBoardModifiers Keyboard::modifiers()
 {
-    m_mainWindow->setVisible(visible);
+    return Qt::NoModifier;
 }
 
-void DBusAdaptor::showTranslation(const QString &text)
-{
-    m_mainWindow->showTranslation(text);
-}
-
-void DBusAdaptor::showPopup(const QString &text)
-{
-    m_mainWindow->popupWindow()->showTranslation(text);
-}
-
-QString DBusAdaptor::translate(const QString &text)
-{
-    return m_mainWindow->translate(text);
-}
-
-QString DBusAdaptor::translateHtml(const QString &text)
-{
-    return m_mainWindow->translateHtml(text);
-}
-}
+#endif // Q_WS_X11

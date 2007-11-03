@@ -1,5 +1,5 @@
 /*****************************************************************************
- * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt         *
+ * keyboard.h - QStarDict, a StarDict clone written with using Qt            *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,36 +17,15 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef DBUSADAPTOR_H
-#define DBUSADAPTOR_H
+#ifndef KEYBOARD_H
+#define KEYBOARD_H
 
-#include <QDBusAbstractAdaptor>
+#include <Qt>
 
-namespace QStarDict
+class Keyboard
 {
-class MainWindow;
-
-class DBusAdaptor: public QDBusAbstractAdaptor
-{
-    Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
-    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
-
     public:
-        DBusAdaptor(MainWindow *mainWindow);
-
-        bool mainWindowVisible() const;
-        void setMainWindowVisible(bool visible);
-
-    public slots:
-        void showTranslation(const QString &text);
-        void showPopup(const QString &text);
-	QString translate(const QString &text);
-	QString translateHtml(const QString &text);
-
-    private:
-        MainWindow *m_mainWindow;
+        static Qt::KeyboardModifiers activeModifiers();
 };
-}
 
-#endif // DBUSADAPTOR_H
+#endif // KEYBOARD_H

@@ -24,8 +24,6 @@
 #include "mainwindow.h"
 #include "popupwindow.h"
 
-namespace QStarDict
-{
 SettingsDialog::SettingsDialog(MainWindow *parent)
         : QDialog(parent)
 {
@@ -208,5 +206,4 @@ void SettingsDialog::removeDictDirsButtonClicked()
 {
     delete dictDirsList->takeItem(dictDirsList->currentRow());
     updateOrder();
-}
 }

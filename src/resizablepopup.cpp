@@ -25,8 +25,6 @@
 #include <QMouseEvent>
 #include <QTimerEvent>
 
-namespace QStarDict
-{
 namespace
 {
 const int CornerSize = 10;
@@ -228,5 +226,4 @@ void ResizablePopup::stopResize()
         killTimer(m_timerResizeId);
         m_timerResizeId = 0;
     }
-}
 }

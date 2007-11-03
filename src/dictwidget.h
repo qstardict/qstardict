@@ -1,5 +1,5 @@
 /*****************************************************************************
- * selection.cpp - QStarDict, a StarDict clone written with using Qt         *
+ * dictwidget.h - QStarDict, a StarDict clone written with using Qt          *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,41 +17,45 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#include "selection.h"
+#ifndef DICTWIDGET_H
+#define DICTWIDGET_H
 
-#include <QApplication>
-#include <QClipboard>
+#include <QFrame>
+#include "dictcore.h"
 
-namespace QStarDict
+class DictBrowser;
+
+class DictWidget: public QFrame
 {
-Selection::Selection(QObject *parent)
-    : QObject(parent)
-{
-    m_scan = false;
-    m_timerId = 0;
-}
+    Q_OBJECT
 
-void Selection::setScan(bool scan)
-{
-    if (m_scan == scan)
-        return;
+    public:
+        DictWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
-    m_scan = scan;
-    if (m_scan)
-    {
-        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
-        m_timerId = startTimer(300);
-    }
-    else
-        killTimer(m_timerId);
-}
+        void setDict(DictCore *dict)
+        { m_dict = dict; }
+        const DictCore* dict() const
+        { return m_dict; }
+        void clear();
 
-void Selection::timerEvent(QTimerEvent*)
-{
-    if (m_lastState != QApplication::clipboard()->text(QClipboard::Selection))
-    {
-        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
-        emit changed(m_lastState);
-    }
-}
-}
+        void setTranslationFlags(DictCore::TranslationFlags flags)
+        { m_translationFlags = flags; }
+        DictCore::TranslationFlags translationFlags() const
+        { return m_translationFlags; }
+
+        bool translate(const QString &str);
+        QString translatedWord() const;
+
+        static const QString &cssStyle();
+
+    signals:
+        void wordTranslated(const QString &word);
+
+    private:
+        DictBrowser *translationView;
+        DictCore *m_dict;
+        DictCore::TranslationFlags m_translationFlags;
+        QString m_translatedWord;
+};
+
+#endif // DICTWIDGET_H

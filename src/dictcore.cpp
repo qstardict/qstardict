@@ -30,8 +30,6 @@
 #include "lib/lib.h"
 #include "lib/file.hpp"
 
-namespace QStarDict
-{
 namespace
 {
 std::string xdxf2html(const char *p);
@@ -500,5 +498,4 @@ QString whereDict(const QString &name, const QString &path)
     return QString();
 }
 
-}
 }

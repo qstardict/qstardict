@@ -27,8 +27,6 @@
 class QMenu;
 class QCloseEvent;
 
-namespace QStarDict
-{
 class DictCore;
 class PopupWindow;
 class SettingsDialog;
@@ -76,6 +74,5 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         QMenu *trayMenu;
         PopupWindow *popup;
 };
-}
 
 #endif // MAINWINDOW_H

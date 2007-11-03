@@ -1,5 +1,5 @@
 /*****************************************************************************
- * dictwidget.h - QStarDict, a StarDict clone written with using Qt          *
+ * settingsdialog.h - QStarDict, a StarDict clone written with using Qt      *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,48 +17,38 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef DICTWIDGET_H
-#define DICTWIDGET_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <QFrame>
-#include "dictcore.h"
+#include <QDialog>
+#include "ui_settingsdialog.h"
 
-namespace QStarDict
-{
-class DictBrowser;
+class MainWindow;
 
-class DictWidget: public QFrame
+class SettingsDialog: public QDialog, private Ui::SettingsDialog
 {
     Q_OBJECT
 
     public:
-        DictWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);
+        SettingsDialog(MainWindow *parent);
 
-        void setDict(DictCore *dict)
-        { m_dict = dict; }
-        const DictCore* dict() const
-        { return m_dict; }
-        void clear();
+    private slots:
+        void apply();
 
-        void setTranslationFlags(DictCore::TranslationFlags flags)
-        { m_translationFlags = flags; }
-        DictCore::TranslationFlags translationFlags() const
-        { return m_translationFlags; }
-
-        bool translate(const QString &str);
-        QString translatedWord() const;
-
-        static const QString &cssStyle();
-
-    signals:
-        void wordTranslated(const QString &word);
+        void moveUpOrderedDictsButtonClicked();
+        void moveDownOrderedDictsButtonClicked();
+        void moveLeftOrderedDictsButtonClicked();
+        void moveRightOrderedDictsButtonClicked();
+        
+        void addDictDirsButtonClicked();
+        void removeDictDirsButtonClicked();
+        void moveUpDictDirsButtonClicked();
+        void moveDownDictDirsButtonClicked();
 
     private:
-        DictBrowser *translationView;
-        DictCore *m_dict;
-        DictCore::TranslationFlags m_translationFlags;
-        QString m_translatedWord;
-};
-}
+        void updateOrder();
 
-#endif // DICTWIDGET_H
+        MainWindow *mainWindow;
+};
+
+#endif // SETTINGSDIALOG_H

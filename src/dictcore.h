@@ -30,8 +30,6 @@
 
 class Libs;
 
-namespace QStarDict
-{
 class DictCore: public QObject
 {
     Q_OBJECT
@@ -102,6 +100,5 @@ class DictCore: public QObject
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictCore::TranslationFlags)
-}
 
 #endif // DICTCORE_H

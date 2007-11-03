@@ -26,8 +26,6 @@
 #include "keyboard.h"
 #include "selection.h"
 
-namespace QStarDict
-{
 PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
         : ResizablePopup(parent)
 {
@@ -125,5 +123,4 @@ void PopupWindow::showTranslation(const QString &text)
 void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlags)
 {
     translationView->setTranslationFlags(translationFlags | DictCore::Simple);
-}
 }

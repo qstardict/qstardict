@@ -24,9 +24,6 @@
 #include "dictcore.h"
 
 class QProcess;
-
-namespace QStarDict
-{
 class DictWidget;
 class Selection;
 
@@ -83,6 +80,5 @@ class PopupWindow: public ResizablePopup
 	QString m_speechProgram;
 	QProcess *m_speechProcess;
 };
-}
 
 #endif // POPUPWINDOW_H

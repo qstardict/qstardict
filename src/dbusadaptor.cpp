@@ -1,5 +1,5 @@
 /*****************************************************************************
- * keyboard.h - QStarDict, a StarDict clone written with using Qt            *
+ * dbusadaptor.cpp - QStarDict, a StarDict clone written with using Qt       *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,18 +17,46 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#include "dbusadaptor.h"
 
-#include <Qt>
+#include <QDBusConnection>
+#include "mainwindow.h"
+#include "popupwindow.h"
 
-namespace QStarDict
+DBusAdaptor::DBusAdaptor(MainWindow *mainWindow)
+    : QDBusAbstractAdaptor(mainWindow), m_mainWindow(mainWindow)
 {
-class Keyboard
-{
-    public:
-        static Qt::KeyboardModifiers activeModifiers();
-};
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    connection.registerService("org.qstardict.dbus");
+    connection.registerObject("/qstardict", mainWindow);
 }
 
-#endif // KEYBOARD_H
+bool DBusAdaptor::mainWindowVisible() const
+{
+    return m_mainWindow->isVisible();
+}
+
+void DBusAdaptor::setMainWindowVisible(bool visible)
+{
+    m_mainWindow->setVisible(visible);
+}
+
+void DBusAdaptor::showTranslation(const QString &text)
+{
+    m_mainWindow->showTranslation(text);
+}
+
+void DBusAdaptor::showPopup(const QString &text)
+{
+    m_mainWindow->popupWindow()->showTranslation(text);
+}
+
+QString DBusAdaptor::translate(const QString &text)
+{
+    return m_mainWindow->translate(text);
+}
+
+QString DBusAdaptor::translateHtml(const QString &text)
+{
+    return m_mainWindow->translateHtml(text);
+}

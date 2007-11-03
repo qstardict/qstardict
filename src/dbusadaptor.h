@@ -1,5 +1,5 @@
 /*****************************************************************************
- * keyboard.cpp - QStarDict, a StarDict clone written with using Qt          *
+ * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt         *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,48 +17,33 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#include "keyboard.h"
+#ifndef DBUSADAPTOR_H
+#define DBUSADAPTOR_H
 
-#ifdef Q_WS_X11
+#include <QDBusAbstractAdaptor>
 
-#include <QX11Info>
-#include <X11/XKBlib.h>
+class MainWindow;
 
-namespace QStarDict
+class DBusAdaptor: public QDBusAbstractAdaptor
 {
-namespace
-{
-const unsigned mAlt     = 0010;
-const unsigned mCtrl    = 0004;
-const unsigned mShift   = 0001;
-const unsigned mWin     = 0100;
-}
+    Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
+    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
 
-Qt::KeyboardModifiers Keyboard::activeModifiers()
-{
-    XkbStateRec state;
-    Qt::KeyboardModifiers result;
+    public:
+        DBusAdaptor(MainWindow *mainWindow);
 
-    XkbGetState(QX11Info::display(), XkbUseCoreKbd, &state);
-    if (state.base_mods & mAlt)
-        result |= Qt::AltModifier;
-    if (state.base_mods & mCtrl)
-        result |= Qt::ControlModifier;
-    if (state.base_mods & mShift)
-        result |= Qt::ShiftModifier;
-    if (state.base_mods & mWin)
-        result |= Qt::MetaModifier;
+        bool mainWindowVisible() const;
+        void setMainWindowVisible(bool visible);
 
-    return result;
-}
+    public slots:
+        void showTranslation(const QString &text);
+        void showPopup(const QString &text);
+	QString translate(const QString &text);
+	QString translateHtml(const QString &text);
 
-#else // Q_WS_X11
+    private:
+        MainWindow *m_mainWindow;
+};
 
-// TODO: write it for other platforms
-Qt::KeyBoardModifiers Keyboard::modifiers()
-{
-    return Qt::NoModifier;
-}
-
-#endif // Q_WS_X11
-}
+#endif // DBUSADAPTOR_H

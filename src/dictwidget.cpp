@@ -23,8 +23,6 @@
 #include <QHBoxLayout>
 #include <QScrollBar>
 
-namespace QStarDict
-{
 namespace
 {
 const QString translationCSS = 
@@ -93,5 +91,4 @@ void DictWidget::clear()
 const QString& DictWidget::cssStyle()
 {
     return translationCSS;
-}
 }

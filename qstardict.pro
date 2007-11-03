@@ -20,60 +20,60 @@ PKGCONFIG += \
     glib-2.0
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
-#isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
+isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
 
 FORMS += \
-    qstardict/mainwindow.ui \
-    qstardict/settingsdialog.ui
+    ui/mainwindow.ui \
+    ui/settingsdialog.ui
 HEADERS += \
-    qstardict/lib/dictziplib.hpp \
-    qstardict/lib/distance.h \
-    qstardict/lib/file.hpp \
-    qstardict/lib/lib.h \
-    qstardict/lib/mapfile.hpp \
-    qstardict/mainwindow.h \
-    qstardict/dictcore.h \
-    qstardict/popupwindow.h \
-    qstardict/settingsdialog.h \
-    qstardict/keyboard.h \
-    qstardict/dictwidget.h \
-    qstardict/resizablepopup.h \
-    qstardict/selection.h
-unix:isEmpty(NO_DBUS):HEADERS += qstardict/dbusadaptor.h
+    src/lib/dictziplib.hpp \
+    src/lib/distance.h \
+    src/lib/file.hpp \
+    src/lib/lib.h \
+    src/lib/mapfile.hpp \
+    src/mainwindow.h \
+    src/dictcore.h \
+    src/popupwindow.h \
+    src/settingsdialog.h \
+    src/keyboard.h \
+    src/dictwidget.h \
+    src/resizablepopup.h \
+    src/selection.h
+unix:isEmpty(NO_DBUS):HEADERS += src/dbusadaptor.h
 SOURCES += \
-    qstardict/lib/dictziplib.cpp \
-    qstardict/lib/distance.cpp \
-    qstardict/lib/lib.cpp \
-    qstardict/mainwindow.cpp \
-    qstardict/dictcore.cpp \
-    qstardict/main.cpp \
-    qstardict/popupwindow.cpp \
-    qstardict/settingsdialog.cpp \
-    qstardict/keyboard.cpp \
-    qstardict/dictwidget.cpp \
-    qstardict/resizablepopup.cpp \
-    qstardict/selection.cpp
-unix:isEmpty(NO_DBUS):SOURCES += qstardict/dbusadaptor.cpp
+    src/lib/dictziplib.cpp \
+    src/lib/distance.cpp \
+    src/lib/lib.cpp \
+    src/mainwindow.cpp \
+    src/dictcore.cpp \
+    src/main.cpp \
+    src/popupwindow.cpp \
+    src/settingsdialog.cpp \
+    src/keyboard.cpp \
+    src/dictwidget.cpp \
+    src/resizablepopup.cpp \
+    src/selection.cpp
+unix:isEmpty(NO_DBUS):SOURCES += src/dbusadaptor.cpp
 RESOURCES += \
-    pics/qstardict.qrc
-#isEmpty(NO_TRANSLATIONS) {
-#    TRANSLATIONS += \
-#        translations/qstardict-bg_BG.ts \
-#        translations/qstardict-cs_CZ.ts \
-#        translations/qstardict-pt_BR.ts \
-#        translations/qstardict-ru_RU.ts \
-#        translations/qstardict-ua_UA.ts \
-#        translations/qstardict-zh_CN.ts \
-#        translations/qstardict-zh_TW.ts
-#    RESOURCES += translations/translations.qrc
-#}
+    resources/qstardict.qrc
+isEmpty(NO_TRANSLATIONS) {
+    TRANSLATIONS += \
+        translations/qstardict-bg_BG.ts \
+        translations/qstardict-cs_CZ.ts \
+        translations/qstardict-pt_BR.ts \
+        translations/qstardict-ru_RU.ts \
+        translations/qstardict-ua_UA.ts \
+        translations/qstardict-zh_CN.ts \
+        translations/qstardict-zh_TW.ts
+    RESOURCES += translations/translations.qrc
+}
 DISTFILES += \
     AUTHORS \
     COPYNG \
     ChangeLog \
     INSTALL \
     README \
-    data/qstardict.desktop
+    resources/qstardict.desktop
 
 DESTDIR = bin
 OBJECTS_DIR = build
@@ -85,9 +85,9 @@ unix {
     INSTALL_PREFIX=/usr
 
     target.path = $$INSTALL_PREFIX/bin
-    icons.files += pics/qstardict.png
+    icons.files += resources/qstardict.png
     icons.path = $$INSTALL_PREFIX/share/pixmaps
-    desktop_files.files += data/qstardict.desktop
+    desktop_files.files += resources/qstardict.desktop
     desktop_files.path = $$INSTALL_PREFIX/share/applications
     INSTALLS += target icons desktop_files
 }

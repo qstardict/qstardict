@@ -1,5 +1,5 @@
 /*****************************************************************************
- * settingsdialog.h - QStarDict, a StarDict clone written with using Qt      *
+ * selection.cpp - QStarDict, a StarDict clone written with using Qt         *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,41 +17,38 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#include "selection.h"
 
-#include <QDialog>
-#include "ui_settingsdialog.h"
+#include <QApplication>
+#include <QClipboard>
 
-namespace QStarDict
+Selection::Selection(QObject *parent)
+    : QObject(parent)
 {
-class MainWindow;
-
-class SettingsDialog: public QDialog, private Ui::SettingsDialog
-{
-    Q_OBJECT
-
-    public:
-        SettingsDialog(MainWindow *parent);
-
-    private slots:
-        void apply();
-
-        void moveUpOrderedDictsButtonClicked();
-        void moveDownOrderedDictsButtonClicked();
-        void moveLeftOrderedDictsButtonClicked();
-        void moveRightOrderedDictsButtonClicked();
-        
-        void addDictDirsButtonClicked();
-        void removeDictDirsButtonClicked();
-        void moveUpDictDirsButtonClicked();
-        void moveDownDictDirsButtonClicked();
-
-    private:
-        void updateOrder();
-
-        MainWindow *mainWindow;
-};
+    m_scan = false;
+    m_timerId = 0;
 }
 
-#endif // SETTINGSDIALOG_H
+void Selection::setScan(bool scan)
+{
+    if (m_scan == scan)
+        return;
+
+    m_scan = scan;
+    if (m_scan)
+    {
+        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
+        m_timerId = startTimer(300);
+    }
+    else
+        killTimer(m_timerId);
+}
+
+void Selection::timerEvent(QTimerEvent*)
+{
+    if (m_lastState != QApplication::clipboard()->text(QClipboard::Selection))
+    {
+        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
+        emit changed(m_lastState);
+    }
+}
