@@ -56,7 +56,6 @@ class DictWidget: public QFrame
         DictCore *m_dict;
         DictCore::TranslationFlags m_translationFlags;
         QString m_translatedWord;
-        QStringList m_history;
 };
 
 #endif // DICTWIDGET_H
