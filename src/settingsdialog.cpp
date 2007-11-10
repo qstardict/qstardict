@@ -67,6 +67,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     popupDefaultHeightSpin->setValue(parent->popup->defaultSize().height());
     pronounceWordBox->setChecked(parent->popup->pronounceWord());
     speechProgramEdit->setText(parent->popup->speechProgram());
+    instantSearchBox->setChecked(parent->isInstantSearch());
 
     connect(moveUpOrderedDictsButton, SIGNAL(clicked()), SLOT(moveUpOrderedDictsButtonClicked()));
     connect(moveDownOrderedDictsButton, SIGNAL(clicked()), SLOT(moveDownOrderedDictsButtonClicked()));
@@ -144,6 +145,7 @@ void SettingsDialog::apply()
     mainWindow->popup->setTranslationFlags(translationFlags);
     mainWindow->popup->setPronounceWord(pronounceWordBox->isChecked());
     mainWindow->popup->setSpeechProgram(speechProgramEdit->text());
+    mainWindow->setInstantSearch(instantSearchBox->isChecked());
 
     mainWindow->queryButtonClicked();
 }

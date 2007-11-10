@@ -213,3 +213,15 @@ QString MainWindow::translateHtml(const QString &text) const
 	"</body>\n"
 	"</html>\n";
 }
+
+void MainWindow::setInstantSearch(bool instantSearch)
+{
+    if (instantSearch == m_instantSearch)
+        return;
+    m_instantSearch = instantSearch;
+    if (m_instantSearch)
+        connect(searchBox, SIGNAL(textEdited(const QString&)), SLOT(queryButtonClicked()));
+    else
+        disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(queryButtonClicked()));
+}
+

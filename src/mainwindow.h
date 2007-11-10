@@ -42,11 +42,15 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         PopupWindow* popupWindow()
         { return popup; }
 
+        bool isInstantSearch() const
+        { return m_instantSearch; }
+        void setInstantSearch(bool instantSearch);
+
     public slots:
         void showTranslation(const QString &text);
 
         QString translate(const QString &text) const;
-	QString translateHtml(const QString &text) const;
+        QString translateHtml(const QString &text) const;
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -73,6 +77,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         QSystemTrayIcon *trayIcon;
         QMenu *trayMenu;
         PopupWindow *popup;
+        bool m_instantSearch;
 };
 
 #endif // MAINWINDOW_H

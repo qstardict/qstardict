@@ -22,7 +22,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="reformatWarningLabel" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabDictionaries" >
       <attribute name="title" >
@@ -572,7 +572,21 @@
        <property name="spacing" >
         <number>6</number>
        </property>
+       <item row="2" column="0" >
+        <widget class="QCheckBox" name="expandAbbreviationsBox" >
+         <property name="text" >
+          <string>Expand abbreviations</string>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="0" >
+        <widget class="QLabel" name="reformatTranslationsWarningLabel" >
+         <property name="text" >
+          <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may be not correct displayed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
@@ -586,23 +600,16 @@
         </spacer>
        </item>
        <item row="1" column="0" >
-        <widget class="QCheckBox" name="expandAbbreviationsBox" >
-         <property name="text" >
-          <string>Expand abbreviations</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" >
         <widget class="QCheckBox" name="reformatTranslationsBox" >
          <property name="text" >
           <string>Reformat translations</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <widget class="QLabel" name="reformatTranslationsWarningLabel" >
+       <item row="0" column="0" >
+        <widget class="QCheckBox" name="instantSearchBox" >
          <property name="text" >
-          <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may be not correct displayed</string>
+          <string>Instant search</string>
          </property>
         </widget>
        </item>
