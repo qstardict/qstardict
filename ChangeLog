@@ -47,4 +47,5 @@
 	- fix bug with multiple running from different users
 	- add brazilian portuguese translation
 	- update the traditional chinese translation
+	- add support for configurable instant search
 
