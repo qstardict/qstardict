@@ -63,7 +63,7 @@
     <message>
         <location filename="../ui/mainwindow.ui" line="56"/>
         <source>Fuzzy query</source>
-        <translation>馍糊查询</translation>
+        <translation>模糊查询</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="59"/>
@@ -133,7 +133,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="173"/>
         <source>%1 - QStarDict</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - QStarDict</translation>
     </message>
 </context>
 <context>
@@ -151,7 +151,7 @@
     <message>
         <location filename="../ui/settingsdialog.ui" line="41"/>
         <source>Order</source>
-        <translation>排序</translation>
+        <translation>顺序</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="61"/>
@@ -191,7 +191,7 @@
     <message>
         <location filename="../ui/settingsdialog.ui" line="205"/>
         <source>Add</source>
-        <translation>加入</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="215"/>
@@ -311,12 +311,12 @@
     <message>
         <location filename="../ui/settingsdialog.ui" line="296"/>
         <source>Pronounce the word</source>
-        <translation type="unfinished"></translation>
+        <translation>单词发音</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="314"/>
         <source>Pronounce using this command:</source>
-        <translation type="unfinished"></translation>
+        <translation>使用如下命令发音:</translation>
     </message>
 </context>
 </TS>
