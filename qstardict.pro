@@ -103,5 +103,24 @@ unix {
         DEFINES += QSTARDICT_TRANSLATIONS_DIR="translations/"
     }
 }
+
+isEmpty(NO_DBUS) {
+    message("D-Bus support is enabled")
+} else {
+    message("D-Bus support is disabled")
+}
+
+isEmpty(NO_TRANSLATIONS) {
+    isEmpty(SEPARATE_TRANSLATIONS) {
+        message("Built-in translations are enabled")
+    } else {
+        message("Separate translations are enabled")
+    }
+} else {
+    message("Translations are disabled") 
+}
+!isEmpty(INSTALL_PREFIX) {
+    message("Install prefix is "$$INSTALL_PREFIX)
+}
 ! unix: warning("Popup window will not properly work on this platform")
 
