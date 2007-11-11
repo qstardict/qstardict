@@ -3,7 +3,7 @@
 <context>
     <name>DictCore</name>
     <message>
-        <location filename="../src/dictcore.cpp" line="171"/>
+        <location filename="../src/dictcore.cpp" line="172"/>
         <source>Not found!</source>
         <translation>未找到!</translation>
     </message>
@@ -16,37 +16,37 @@
         <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="124"/>
+        <location filename="../src/mainwindow.cpp" line="127"/>
         <source>About QStarDict</source>
         <translation>关于 QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="128"/>
         <source>&lt;b&gt;QStarDict </source>
         <translation>&lt;b&gt;QStarDict </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="126"/>
+        <location filename="../src/mainwindow.cpp" line="129"/>
         <source>&lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation>&lt;/b&gt; - StarDict 的 Qt 版本&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="127"/>
+        <location filename="../src/mainwindow.cpp" line="130"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation>版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="139"/>
+        <location filename="../src/mainwindow.cpp" line="142"/>
         <source>Save translation</source>
         <translation>保存翻译</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="146"/>
+        <location filename="../src/mainwindow.cpp" line="149"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="147"/>
+        <location filename="../src/mainwindow.cpp" line="150"/>
         <source>Cannot save translation</source>
         <translation>无法保存翻译</translation>
     </message>
@@ -76,7 +76,7 @@
         <translation>词汇列表</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="121"/>
+        <location filename="../ui/mainwindow.ui" line="128"/>
         <source>&amp;Settings</source>
         <translation>&amp;设置</translation>
     </message>
@@ -126,12 +126,12 @@
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="128"/>
+        <location filename="../ui/mainwindow.ui" line="121"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="173"/>
+        <location filename="../src/mainwindow.cpp" line="180"/>
         <source>%1 - QStarDict</source>
         <translation>%1 - QStarDict</translation>
     </message>
@@ -139,7 +139,7 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="196"/>
+        <location filename="../src/settingsdialog.cpp" line="199"/>
         <source>Select dictionaries directory</source>
         <translation>选择字典目录</translation>
     </message>
@@ -289,17 +289,17 @@
         <translation>翻译视图</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="591"/>
+        <location filename="../ui/settingsdialog.ui" line="578"/>
         <source>Expand abbreviations</source>
         <translation>展开缩写</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="598"/>
+        <location filename="../ui/settingsdialog.ui" line="605"/>
         <source>Reformat translations</source>
         <translation>重排翻译格式</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="605"/>
+        <location filename="../ui/settingsdialog.ui" line="585"/>
         <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformated translations may be not correct displayed</source>
         <translation>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;警告！&lt;/font&gt;&lt;/b&gt; 重排格式后的翻译可能显示不正确</translation>
     </message>
@@ -317,6 +317,11 @@
         <location filename="../ui/settingsdialog.ui" line="314"/>
         <source>Pronounce using this command:</source>
         <translation>使用如下命令发音:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="612"/>
+        <source>Instant search</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

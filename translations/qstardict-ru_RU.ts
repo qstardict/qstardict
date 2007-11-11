@@ -3,7 +3,7 @@
 <context>
     <name>DictCore</name>
     <message>
-        <location filename="../src/dictcore.cpp" line="171"/>
+        <location filename="../src/dictcore.cpp" line="172"/>
         <source>Not found!</source>
         <translation type="unfinished">Не найдено!</translation>
     </message>
@@ -16,37 +16,37 @@
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="124"/>
+        <location filename="../src/mainwindow.cpp" line="127"/>
         <source>About QStarDict</source>
         <translation type="unfinished">О программе QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="128"/>
         <source>&lt;b&gt;QStarDict </source>
         <translation type="unfinished">&lt;b&gt;QStarDict </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="126"/>
+        <location filename="../src/mainwindow.cpp" line="129"/>
         <source>&lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation type="unfinished">&lt;/b&gt; - версия StarDict, написаная с использование библиотеки Qt&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="127"/>
+        <location filename="../src/mainwindow.cpp" line="130"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation type="unfinished">Copyright (C) 2007 Александр Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="139"/>
+        <location filename="../src/mainwindow.cpp" line="142"/>
         <source>Save translation</source>
         <translation type="unfinished">Сохранить перевод</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="146"/>
+        <location filename="../src/mainwindow.cpp" line="149"/>
         <source>Error</source>
         <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="147"/>
+        <location filename="../src/mainwindow.cpp" line="150"/>
         <source>Cannot save translation</source>
         <translation type="unfinished">Невозможно сохранить перевод</translation>
     </message>
@@ -76,7 +76,7 @@
         <translation type="unfinished">Список слов</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="121"/>
+        <location filename="../ui/mainwindow.ui" line="128"/>
         <source>&amp;Settings</source>
         <translation type="unfinished">&amp;Настройки</translation>
     </message>
@@ -126,12 +126,12 @@
         <translation type="unfinished">Ctrl+s</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="128"/>
+        <location filename="../ui/mainwindow.ui" line="121"/>
         <source>&amp;Help</source>
         <translation type="unfinished">&amp;Справка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="173"/>
+        <location filename="../src/mainwindow.cpp" line="180"/>
         <source>%1 - QStarDict</source>
         <translation type="unfinished">%1 - QStarDict</translation>
     </message>
@@ -139,7 +139,7 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="196"/>
+        <location filename="../src/settingsdialog.cpp" line="199"/>
         <source>Select dictionaries directory</source>
         <translation type="unfinished">Выбрать папку со словарями</translation>
     </message>
@@ -289,17 +289,17 @@
         <translation type="unfinished">Вид переводов</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="591"/>
+        <location filename="../ui/settingsdialog.ui" line="578"/>
         <source>Expand abbreviations</source>
         <translation type="unfinished">Расшифровывать сокращения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="598"/>
+        <location filename="../ui/settingsdialog.ui" line="605"/>
         <source>Reformat translations</source>
         <translation type="unfinished">Переформатировать переводы</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="605"/>
+        <location filename="../ui/settingsdialog.ui" line="585"/>
         <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformated translations may be not correct displayed</source>
         <translation type="unfinished">&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Предупреждение!&lt;/font&gt;&lt;/b&gt; Переформатированные переводы могут некорректно отображаться</translation>
     </message>
@@ -317,6 +317,11 @@
         <location filename="../ui/settingsdialog.ui" line="314"/>
         <source>Pronounce using this command:</source>
         <translation type="unfinished">Произносить, используя следующую команду:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="612"/>
+        <source>Instant search</source>
+        <translation type="unfinished">Поиск при наборе</translation>
     </message>
 </context>
 </TS>

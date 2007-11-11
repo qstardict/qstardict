@@ -3,7 +3,7 @@
 <context>
     <name>DictCore</name>
     <message>
-        <location filename="../src/dictcore.cpp" line="171"/>
+        <location filename="../src/dictcore.cpp" line="172"/>
         <source>Not found!</source>
         <translation>Не е намерена!</translation>
     </message>
@@ -16,7 +16,7 @@
         <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="124"/>
+        <location filename="../src/mainwindow.cpp" line="127"/>
         <source>About QStarDict</source>
         <translation>За QStarDict</translation>
     </message>
@@ -31,27 +31,27 @@
         <translation type="obsolete">Qt версия на StarDict</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="127"/>
+        <location filename="../src/mainwindow.cpp" line="130"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation>Copyright (C) 2007 Александър Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="139"/>
+        <location filename="../src/mainwindow.cpp" line="142"/>
         <source>Save translation</source>
         <translation>Запази превода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="146"/>
+        <location filename="../src/mainwindow.cpp" line="149"/>
         <source>Error</source>
         <translation>Грешка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="147"/>
+        <location filename="../src/mainwindow.cpp" line="150"/>
         <source>Cannot save translation</source>
         <translation>Превода не може да бъде запазен</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="173"/>
+        <location filename="../src/mainwindow.cpp" line="180"/>
         <source>%1 - QStarDict</source>
         <translation>%1 - QStarDict</translation>
     </message>
@@ -86,12 +86,12 @@
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="121"/>
+        <location filename="../ui/mainwindow.ui" line="128"/>
         <source>&amp;Settings</source>
         <translation>&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="128"/>
+        <location filename="../ui/mainwindow.ui" line="121"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощ</translation>
     </message>
@@ -136,12 +136,12 @@
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="128"/>
         <source>&lt;b&gt;QStarDict </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="126"/>
+        <location filename="../src/mainwindow.cpp" line="129"/>
         <source>&lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -149,7 +149,7 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="196"/>
+        <location filename="../src/settingsdialog.cpp" line="199"/>
         <source>Select dictionaries directory</source>
         <translation>Избери директория с речници</translation>
     </message>
@@ -304,17 +304,17 @@
         <translation>Изглед на превода</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="591"/>
+        <location filename="../ui/settingsdialog.ui" line="578"/>
         <source>Expand abbreviations</source>
         <translation>Разкрий съкращения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="598"/>
+        <location filename="../ui/settingsdialog.ui" line="605"/>
         <source>Reformat translations</source>
         <translation>Реформатирай преводите</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="605"/>
+        <location filename="../ui/settingsdialog.ui" line="585"/>
         <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformated translations may be not correct displayed</source>
         <translation>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Внимание!&lt;/font&gt;&lt;/b&gt; Реформатираният превод може, да не се покаже коректно</translation>
     </message>
@@ -326,6 +326,11 @@
     <message>
         <location filename="../ui/settingsdialog.ui" line="314"/>
         <source>Pronounce using this command:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="612"/>
+        <source>Instant search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
