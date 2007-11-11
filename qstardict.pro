@@ -21,6 +21,7 @@ PKGCONFIG += \
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
 isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
+isEmpty(NO_TRANSLATIONS):!isEmpty(SEPARATE_TRANSLATIONS):DEFINES += QSTARDICT_WITH_SEPARATE_TRANSLATIONS
 
 FORMS += \
     ui/mainwindow.ui \
@@ -65,7 +66,7 @@ isEmpty(NO_TRANSLATIONS) {
         translations/qstardict-ua_UA.ts \
         translations/qstardict-zh_CN.ts \
         translations/qstardict-zh_TW.ts
-    RESOURCES += translations/translations.qrc
+    isEmpty(SEPARATE_TRANSLATIONS):RESOURCES += translations/translations.qrc
 }
 DISTFILES += \
     AUTHORS \
@@ -89,8 +90,18 @@ unix {
     icons.path = $$INSTALL_PREFIX/share/pixmaps
     desktop_files.files += resources/qstardict.desktop
     desktop_files.path = $$INSTALL_PREFIX/share/applications
+    isEmpty(NO_TRANSLATIONS):!isEmpty(SEPARATE_TRANSLATIONS) {
+        TRANSLATIONS_DIR = $$INSTALL_PREFIX/share/qstardict/translations
+        translations.path = $$TRANSLATIONS_DIR
+        translations.files = $$system("grep '<file>' translations/translations.qrc | sed 's/^\s*<file>\s*/translations\//' | sed 's/<\/file>$//'")
+        DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
+        INSTALLS += translations
+    }
     INSTALLS += target icons desktop_files
+} else {
+    isEmpty(NO_TRANSLATIONS):!isEmpty(SEPARATE_TRANSLATIONS) {
+        DEFINES += QSTARDICT_TRANSLATIONS_DIR="translations/"
+    }
 }
-
 ! unix: warning("Popup window will not properly work on this platform")
 

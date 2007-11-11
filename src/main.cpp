@@ -63,7 +63,12 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     QTranslator translator;
+#ifdef QSTARDICT_WITH_SEPARATE_TRANSLATIONS
+    translator.load(QSTARDICT_TRANSLATIONS_DIR "/qstardict-" + QLocale::system().name());
+    qDebug("%s\n", QSTARDICT_TRANSLATIONS_DIR);
+#else // QSTARDICT_WITH_SEPARATE_TRANSLATIONS
     translator.load(":/translations/qstardict-" + QLocale::system().name());
+#endif // QSTARDICT_WITH_SEPARATE_TRANSLATIONS
     app.installTranslator(&translator);
 #endif // QSTARDICT_WITH_TRANSLATIONS
     app.setOrganizationName("qstardict");
