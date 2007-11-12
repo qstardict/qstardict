@@ -7,5 +7,6 @@
         <file>qstardict-ua_UA.qm</file>
         <file>qstardict-zh_CN.qm</file>
         <file>qstardict-zh_TW.qm</file>
+        <file>qstardict-pl_PL.qm</file>
     </qresource>
 </RCC>
