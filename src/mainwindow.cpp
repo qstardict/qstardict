@@ -105,6 +105,7 @@ void MainWindow::loadSettings()
     m_dict->setDicts(config.value("DictCore/orderedDicts", m_dict->avialableDicts()).toStringList());
     translationView->setTranslationFlags(QFlag(config.value("DictWidget/translationFlags",
                     static_cast<int>(translationView->translationFlags())).toInt()));
+    setInstantSearch(config.value("MainWindow/instantSearch", false).toBool());
 }
 
 void MainWindow::saveSettings()
@@ -119,6 +120,7 @@ void MainWindow::saveSettings()
     config.setValue("DictCore/orderedDicts", m_dict->orderedDicts());
     config.setValue("DictCore/disabledDicts", m_dict->disabledDicts());
     config.setValue("DictWidget/translationFlags", static_cast<int>(translationView->translationFlags()));
+    config.setValue("MainWindow/instantSearch", m_instantSearch);
 }
 
 void MainWindow::aboutAction()
