@@ -22,9 +22,15 @@
 
 #include <Qt>
 
+/**
+ * Keyboard representation
+ */
 class Keyboard
 {
     public:
+        /**
+         * @return Active keyboard modifiers
+         */
         static Qt::KeyboardModifiers activeModifiers();
 };
 
