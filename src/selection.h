@@ -24,20 +24,37 @@
 
 class QTimerEvent;
 
+/**
+ * Mouse selection representation class
+ */
 class Selection: public QObject
 {
     Q_OBJECT
 
     public:
+        /**
+         * Constructor
+         */
         Selection(QObject *parent = 0);
 
+        /**
+         * @return Scan state
+         */
         bool isScan() const
         { return m_scan; }
 
     public slots:
+        /**
+         * Set scan mode
+         * @scan Scan mode
+         */
         void setScan(bool scan);
 
     signals:
+        /**
+         * Emits when selection text chaned
+         * @newText New selection
+         */
         void changed(const QString &newText);
 
     protected:
