@@ -23,13 +23,13 @@
 #include <Qt>
 
 /**
- * Keyboard representation
+ * Keyboard representation.
  */
 class Keyboard
 {
     public:
         /**
-         * Return active keyboard modifiers
+         * Return active keyboard modifiers.
          */
         static Qt::KeyboardModifiers activeModifiers();
 };
