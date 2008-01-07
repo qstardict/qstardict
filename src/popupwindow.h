@@ -27,38 +27,96 @@ class QProcess;
 class DictWidget;
 class Selection;
 
+/**
+ * The PopupWindow is a window that scan selection and pop-up
+ * when needed.
+ */
 class PopupWindow: public ResizablePopup
 {
     Q_OBJECT
 
     public:
+        /**
+         * Construct new PopupWindow.
+         */
         PopupWindow(DictCore *dict = 0, QWidget *parent = 0);
+        /**
+         * Destructor.
+         */
         ~PopupWindow();
 
+        /**
+         * Return true if scanning enabled, otherwise return false.
+         */
         bool isScan() const;
+        /**
+         * Return modifier key. The modifiers are from
+         * Qt::KeyboardModifier enum.
+         */
         int modifierKey() const
         { return m_modifierKey; }
+        /**
+         * Set behaviour for not found in dictionary words.
+         */
         bool showIfNotFound() const
         { return m_showIfNotFound; }
+        /**
+         * Return translation flags that used for translations.
+         */
         DictCore::TranslationFlags translationFlags() const;
+        /**
+         * Return dictionary.
+         */
         DictCore* dict() const
         { return m_dict; }
-	bool pronounceWord() const
-	{ return m_pronounceWord; }
-	const QString &speechProgram() const
+        /**
+         * Return true if shown words will be pronounced, othewise
+         * return false.
+         */
+        bool pronounceWord() const
+        { return m_pronounceWord; }
+        /**
+         * Return program using that shown words will be prnounced.
+         */
+        const QString &speechProgram() const
         { return m_speechProgram; }
 
     public slots:
+        /**
+         * Enable or disable scanning of selection.
+         */
         void setScan(bool scan);
+        /**
+         * Set modifier key. If key not is 0 then popup will be shown
+         * only if key is pressed.
+         */
         void setModifierKey(int key)
         { m_modifierKey = key; }
+        /**
+         * Set beahivour for words that not in dictionaris.
+         * If true then popup will be shown with text "No found", otherwise
+         * popup will not be shown.
+         */
         void setShowIfNotFound(bool mode)
         { m_showIfNotFound = mode; }
+        /**
+         * Set translation flags. The DictCore::Simple will be by default
+         * appended to flags.
+         */
         void setTranslationFlags(DictCore::TranslationFlags translationFlags);
+        /**
+         * Popup with translation of text.
+         */
         void showTranslation(const QString &text);
-	void setPronounceWord(bool pronounceWord)
+        /**
+         * If prounounceWord is true shown words will be prounounced.
+         */
+        void setPronounceWord(bool pronounceWord)
         { m_pronounceWord = pronounceWord; }
-	void setSpeechProgram(const QString &speechProgram)
+        /**
+         * Set speech program for words pronouncing.
+         */
+        void setSpeechProgram(const QString &speechProgram)
         { m_speechProgram = speechProgram; }
 
     private slots:

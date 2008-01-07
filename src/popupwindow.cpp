@@ -103,20 +103,20 @@ void PopupWindow::showTranslation(const QString &text)
     bool isFound = m_dict->isTranslatable(text);
     if (m_showIfNotFound || isFound)
     {
-	QString sourceText = text.simplified();
-	translationView->translate(sourceText);
-	popup();
-	if (isFound && m_pronounceWord)
-	{
-	    if (m_speechProcess->state() != QProcess::NotRunning)
-		m_speechProcess->kill();
-	    
-	    m_speechProcess->start(m_speechProgram, QIODevice::WriteOnly);
-	    if (! m_speechProcess->waitForStarted())
-		return;
-	    m_speechProcess->write(sourceText.toUtf8());
-	    m_speechProcess->closeWriteChannel();
-	}
+        QString sourceText = text.simplified();
+        translationView->translate(sourceText);
+        popup();
+        if (isFound && m_pronounceWord)
+        {
+            if (m_speechProcess->state() != QProcess::NotRunning)
+            m_speechProcess->kill();
+            
+            m_speechProcess->start(m_speechProgram, QIODevice::WriteOnly);
+            if (! m_speechProcess->waitForStarted())
+            return;
+            m_speechProcess->write(sourceText.toUtf8());
+            m_speechProcess->closeWriteChannel();
+        }
     }
 }
 
