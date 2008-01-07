@@ -31,25 +31,54 @@ class DictCore;
 class PopupWindow;
 class SettingsDialog;
 
+/**
+ * The main window of QStarDict.
+ */
 class MainWindow: public QMainWindow, private Ui::MainWindow
 {
     Q_OBJECT
 
     public:
+        /**
+         * Create new MainWindow.
+         */
         MainWindow(QWidget *parent = 0);
+        /**
+         * Destructor.
+         */
         ~MainWindow();
 
+        /**
+         * Return popup window.
+         */
         PopupWindow* popupWindow()
         { return popup; }
 
+        /**
+         * Return true if instant search is on, otherwise false.
+         */
         bool isInstantSearch() const
         { return m_instantSearch; }
+        /**
+         * Set instant search mode. If instantSearch is true
+         * translation will be shown when typing, otherwise only when
+         * "Search" button clicked.
+         */
         void setInstantSearch(bool instantSearch);
 
     public slots:
+        /**
+         * Show translation of text.
+         */
         void showTranslation(const QString &text);
 
+        /**
+         * Return translation of text in plain text format.
+         */
         QString translate(const QString &text) const;
+        /**
+         * Return translation of text in HTML format.
+         */
         QString translateHtml(const QString &text) const;
 
     protected:
