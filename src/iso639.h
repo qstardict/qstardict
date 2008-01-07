@@ -1,6 +1,6 @@
 /*****************************************************************************
- * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt         *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * iso639.h - QStarDict, a StarDict clone written with using Qt              *
+ * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -17,36 +17,31 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef DBUSADAPTOR_H
-#define DBUSADAPTOR_H
+#ifndef ISO639_H
+#define ISO639_H
 
-#include <QDBusAbstractAdaptor>
+#include <QStringList>
+#include <QHash>
 
-class MainWindow;
-
-class DBusAdaptor: public QDBusAbstractAdaptor
+class ISO639
 {
-    Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
-    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
-
     public:
-        DBusAdaptor(MainWindow *mainWindow);
-
-        bool mainWindowVisible() const;
-        void setMainWindowVisible(bool visible);
-
-    public slots:
-        void showTranslation(const QString &text);
-        void showPopup(const QString &text);
-	QString translate(const QString &text);
-	QString translateHtml(const QString &text);
+        /**
+         * Return a list of ISO 639 3-letter language codes
+         */
+        static QStringList languages();
+        /**
+         * Return language name from 3-letter ISO 639 code
+         */
+        static QString languageName(const QString &code);
 
     private:
-        MainWindow *m_mainWindow;
+        static void init();
+
+        static QHash<QString, QString> m_languages;
 };
 
-#endif // DBUSADAPTOR_H
+#endif // ISO639_H
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
 

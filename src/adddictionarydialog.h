@@ -1,5 +1,5 @@
 /*****************************************************************************
- * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt         *
+ * adddictionarydialog.h - QStarDict, a StarDict clone written with using Qt *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,36 +17,48 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef DBUSADAPTOR_H
-#define DBUSADAPTOR_H
+#ifndef ADDDICTIONARYDIALOG_H
+#define ADDDICTIONARYDIALOG_H
 
-#include <QDBusAbstractAdaptor>
+#include <QDialog>
+#include "ui_adddictionarydialog.h"
 
-class MainWindow;
+#include <QHash>
+#include <QList>
+#include <QXmlDefaultHandler>
 
-class DBusAdaptor: public QDBusAbstractAdaptor
+class AddDictionaryDialog: public QDialog, private Ui::AddDictionaryDialog
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
-    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
 
     public:
-        DBusAdaptor(MainWindow *mainWindow);
+        AddDictionaryDialog(QWidget *parent = 0);
 
-        bool mainWindowVisible() const;
-        void setMainWindowVisible(bool visible);
+    protected:
+        void showEvent(QShowEvent*);
 
-    public slots:
-        void showTranslation(const QString &text);
-        void showPopup(const QString &text);
-	QString translate(const QString &text);
-	QString translateHtml(const QString &text);
+    private slots:
+        void on_addButton_clicked();
+        void on_refreshButton_clicked();
+        void on_infoButton_clicked();
 
     private:
-        MainWindow *m_mainWindow;
+        void refreshDictsList(bool reload = false);
+
+        struct Dict
+        {
+            QString name;
+            QString langFrom;
+            QString langTo;
+            QString description;
+            QString downLink;
+            ulong size;
+        };
+        QList<Dict> dicts;
+        QStringList mirrors;
 };
 
-#endif // DBUSADAPTOR_H
+#endif // ADDDICTIONARYDIALOG_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

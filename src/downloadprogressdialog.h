@@ -1,6 +1,6 @@
 /*****************************************************************************
- * dbusadaptor.h - QStarDict, a StarDict clone written with using Qt         *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * downloadprogressdialog.h - QStarDict, a StarDict clone written with using Qt*
+ * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -17,36 +17,38 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef DBUSADAPTOR_H
-#define DBUSADAPTOR_H
+#ifndef DOWNLOADPROGRESSDIALOG_H
+#define DOWNLOADPROGRESSDIALOG_H
 
-#include <QDBusAbstractAdaptor>
+#include <QProgressDialog>
 
-class MainWindow;
-
-class DBusAdaptor: public QDBusAbstractAdaptor
+class DownloadProgressDialog: public QProgressDialog
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
-    Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
 
     public:
-        DBusAdaptor(MainWindow *mainWindow);
+        DownloadProgressDialog(QWidget *parent = 0);
+         
+        /**
+         * Get data and write to out
+         */
+        static int httpGet(QWidget *parent, const QString &host, const QString &path, QIODevice *out,
+                const QString &title = QString(), const QString &label = QString(), bool *isOk = 0);
+        /**
+         * Get data and write to file
+         */
+        static int httpGet(QWidget *parent, const QString &host, const QString &path, const QString &filename,
+                const QString &title = QString(), const QString &label = QString(), bool *isOk = 0);
 
-        bool mainWindowVisible() const;
-        void setMainWindowVisible(bool visible);
-
-    public slots:
-        void showTranslation(const QString &text);
-        void showPopup(const QString &text);
-	QString translate(const QString &text);
-	QString translateHtml(const QString &text);
+    private slots:
+        void setValue(int done, int total);
+        void loadingDone(bool error);
 
     private:
-        MainWindow *m_mainWindow;
+        bool m_isOk;
 };
 
-#endif // DBUSADAPTOR_H
+#endif // DOWNLOADPROGRESSDIALOG_H
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
 

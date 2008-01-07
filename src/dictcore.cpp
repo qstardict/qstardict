@@ -39,6 +39,11 @@ QString whereDict(const QString &name, const QString &path);
 const int MaxFuzzy = 24;
 }
 
+QString DictCore::localDictsDir()
+{
+    return QDir::homePath() + "/.stardict/dic";
+}
+
 DictCore::DictCore(QObject *parent)
         : QObject(parent)
 {
@@ -49,7 +54,7 @@ DictCore::DictCore(QObject *parent)
     m_dictDirs << QCoreApplication::applicationDirPath() + "/dic";
 #endif // Q_OS_UNIX
 
-    m_dictDirs << QDir::homePath() + "/.stardict/dic";
+    m_dictDirs << localDictsDir();
 }
 
 DictCore::~DictCore()
@@ -499,3 +504,6 @@ QString whereDict(const QString &name, const QString &path)
 }
 
 }
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+

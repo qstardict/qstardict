@@ -127,7 +127,7 @@ void MainWindow::aboutAction()
 {
     QMessageBox::about(this,
             tr("About QStarDict"),
-            tr("<b>QStarDict ") + QSTARDICT_VERSION + tr("</b> - Qt version of StarDict<br>") +
+            tr("<b>QStarDict %1 </b> - Qt version of StarDict<br>").arg(QSTARDICT_VERSION) +
             tr("Copyright (C) 2007 Alexander Rodin "
                "<a href=\"http://qstardict.ylsoftware.com\">http://qstardict.ylsoftware.com</a>"));
 }
@@ -226,4 +226,7 @@ void MainWindow::setInstantSearch(bool instantSearch)
     else
         disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(queryButtonClicked()));
 }
+
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

@@ -23,6 +23,7 @@
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
+#include "adddictionarydialog.h"
 
 SettingsDialog::SettingsDialog(MainWindow *parent)
         : QDialog(parent)
@@ -194,6 +195,13 @@ void SettingsDialog::moveRightOrderedDictsButtonClicked()
     orderedDictsList->addItem(disabledDictsList->takeItem(disabledDictsList->currentRow()));
 }
 
+void SettingsDialog::on_addDictionaryButton_clicked()
+{
+    AddDictionaryDialog dialog(this);
+    dialog.exec();
+    updateOrder();
+}
+
 void SettingsDialog::addDictDirsButtonClicked()
 {
     QString dirName = QFileDialog::getExistingDirectory(this, tr("Select dictionaries directory"));
@@ -209,3 +217,6 @@ void SettingsDialog::removeDictDirsButtonClicked()
     delete dictDirsList->takeItem(dictDirsList->currentRow());
     updateOrder();
 }
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+

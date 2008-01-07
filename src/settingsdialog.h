@@ -39,6 +39,7 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
         void moveDownOrderedDictsButtonClicked();
         void moveLeftOrderedDictsButtonClicked();
         void moveRightOrderedDictsButtonClicked();
+        void on_addDictionaryButton_clicked();
         
         void addDictDirsButtonClicked();
         void removeDictDirsButtonClicked();
@@ -52,3 +53,6 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
 };
 
 #endif // SETTINGSDIALOG_H
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+

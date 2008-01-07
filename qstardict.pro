@@ -9,7 +9,9 @@ unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
 
 QT = \
     gui \
-    core
+    core \
+    network \
+    xml
 CONFIG += \
     qt \
     link_pkgconfig \
@@ -25,7 +27,8 @@ isEmpty(NO_TRANSLATIONS):!isEmpty(SEPARATE_TRANSLATIONS):DEFINES += QSTARDICT_WI
 
 FORMS += \
     ui/mainwindow.ui \
-    ui/settingsdialog.ui
+    ui/settingsdialog.ui \
+    ui/adddictionarydialog.ui
 HEADERS += \
     src/lib/dictziplib.hpp \
     src/lib/distance.h \
@@ -39,7 +42,10 @@ HEADERS += \
     src/keyboard.h \
     src/dictwidget.h \
     src/resizablepopup.h \
-    src/selection.h
+    src/selection.h \
+    src/adddictionarydialog.h \
+    src/downloadprogressdialog.h \
+    src/iso639.h
 unix:isEmpty(NO_DBUS):HEADERS += src/dbusadaptor.h
 SOURCES += \
     src/lib/dictziplib.cpp \
@@ -53,7 +59,10 @@ SOURCES += \
     src/keyboard.cpp \
     src/dictwidget.cpp \
     src/resizablepopup.cpp \
-    src/selection.cpp
+    src/selection.cpp \
+    src/adddictionarydialog.cpp \
+    src/downloadprogressdialog.cpp \
+    src/iso639.cpp
 unix:isEmpty(NO_DBUS):SOURCES += src/dbusadaptor.cpp
 RESOURCES += \
     resources/qstardict.qrc

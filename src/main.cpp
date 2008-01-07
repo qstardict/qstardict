@@ -65,7 +65,6 @@ int main(int argc, char *argv[])
     QTranslator translator;
 #ifdef QSTARDICT_WITH_SEPARATE_TRANSLATIONS
     translator.load(QSTARDICT_TRANSLATIONS_DIR "/qstardict-" + QLocale::system().name());
-    qDebug("%s\n", QSTARDICT_TRANSLATIONS_DIR);
 #else // QSTARDICT_WITH_SEPARATE_TRANSLATIONS
     translator.load(":/translations/qstardict-" + QLocale::system().name());
 #endif // QSTARDICT_WITH_SEPARATE_TRANSLATIONS
@@ -80,3 +79,6 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+

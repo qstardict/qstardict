@@ -59,3 +59,6 @@ class DictWidget: public QFrame
 };
 
 #endif // DICTWIDGET_H
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+

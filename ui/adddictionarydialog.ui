@@ -1,0 +1,158 @@
+<ui version="4.0" >
+ <class>AddDictionaryDialog</class>
+ <widget class="QDialog" name="AddDictionaryDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>412</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
+   </property>
+   <item>
+    <widget class="QTableWidget" name="dictsList" >
+     <property name="editTriggers" >
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode" >
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior" >
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="showGrid" >
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled" >
+      <bool>true</bool>
+     </property>
+     <column>
+      <property name="text" >
+       <string>Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>From</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>To</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Download size</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="refreshButton" >
+     <property name="toolTip" >
+      <string>Download up-to-date dictionaries list</string>
+     </property>
+     <property name="text" >
+      <string>Refresh</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="../resources/qstardict.qrc" >:/icons/view-refresh.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="infoButton" >
+     <property name="toolTip" >
+      <string>Show information about selected dictionary</string>
+     </property>
+     <property name="text" >
+      <string>Info</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="../resources/qstardict.qrc" >:/icons/dialog-information.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="addButton" >
+     <property name="toolTip" >
+      <string>Download and install dictionary</string>
+     </property>
+     <property name="text" >
+      <string>Add</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="../resources/qstardict.qrc" >:/icons/list-add.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../resources/qstardict.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>AddDictionaryDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>491</x>
+     <y>312</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>628</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>AddDictionaryDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>517</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>632</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

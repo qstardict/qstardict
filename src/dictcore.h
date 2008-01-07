@@ -45,6 +45,8 @@ class DictCore: public QObject
         };
         Q_DECLARE_FLAGS(TranslationFlags, TranslationFlag)
 
+        static QString localDictsDir();
+
         DictCore(QObject *parent = 0);
         ~DictCore();
 
@@ -102,3 +104,6 @@ class DictCore: public QObject
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictCore::TranslationFlags)
 
 #endif // DICTCORE_H
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+
