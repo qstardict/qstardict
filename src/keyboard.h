@@ -29,7 +29,7 @@ class Keyboard
 {
     public:
         /**
-         * @return Active keyboard modifiers
+         * Return active keyboard modifiers
          */
         static Qt::KeyboardModifiers activeModifiers();
 };
