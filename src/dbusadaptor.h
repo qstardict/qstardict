@@ -24,23 +24,51 @@
 
 class MainWindow;
 
+/**
+ * The DBusAdaptor class represents and QStarDict D-Bus interface.
+ */
 class DBusAdaptor: public QDBusAbstractAdaptor
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.qstardict.dbus")
+    /**
+     * The main window visible property.
+     */
     Q_PROPERTY(int mainWindowVisible READ mainWindowVisible WRITE setMainWindowVisible)
 
     public:
+        /**
+         * Construct a DBusAdaptor.
+         */
         DBusAdaptor(MainWindow *mainWindow);
 
+        /**
+         * Return true if main window is visible, otherwise return
+         * false.
+         */
         bool mainWindowVisible() const;
+        /**
+         * Set visible state of main window.
+         */
         void setMainWindowVisible(bool visible);
 
     public slots:
+        /**
+         * Show main window with translation of text.
+         */
         void showTranslation(const QString &text);
+        /**
+         * Show popup window with translation of text.
+         */
         void showPopup(const QString &text);
-	QString translate(const QString &text);
-	QString translateHtml(const QString &text);
+        /**
+         * Return a translation of text in plain text format.
+         */
+        QString translate(const QString &text);
+        /**
+         * Return a translation of text in HTML format.
+         */
+        QString translateHtml(const QString &text);
 
     private:
         MainWindow *m_mainWindow;
