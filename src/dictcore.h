@@ -67,6 +67,9 @@ class DictCore: public QObject
              */
             ExpandAbbreviations     = 0xf0
         };
+        /**
+         * The flags used to control translations.
+         */
         Q_DECLARE_FLAGS(TranslationFlags, TranslationFlag)
 
         /**
