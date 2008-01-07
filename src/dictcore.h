@@ -30,42 +30,109 @@
 
 class Libs;
 
+/**
+ * The DictCore is a base dictionary class.
+ */
 class DictCore: public QObject
 {
     Q_OBJECT
 
     public:
+        /**
+         * This set of flags used to control translations.
+         */
         enum TranslationFlag
         {
+            /**
+             * Default parametres.
+             */
             None                    = 0x01,
+            /**
+             * Simple lookup (only exact matched words).
+             */
             Simple                  = 0x02,
+            /**
+             * Translation in HTML format.
+             */
             Html                    = 0x04,
+            /**
+             * Reformat simple text lists to herarchical lists (HTML only).
+             */
             Reformat                = 0x08,
+            /**
+             * Expand dictionary abberviations to full text.
+             * For example if dictionary contains translation for "_abr."
+             * "abbreviation" then "_abr." in translation will be replaced to
+             * "abbreviation".
+             */
             ExpandAbbreviations     = 0xf0
         };
         Q_DECLARE_FLAGS(TranslationFlags, TranslationFlag)
 
-        static QString localDictsDir();
-
+        /**
+         * Construct dictionary.
+         */
         DictCore(QObject *parent = 0);
+        /**
+         * Destructor.
+         */
         ~DictCore();
 
+        /**
+         * Set directories for search dictionaries.
+         */
         void setDictDirs(const QStringList &dictDirs)
         { m_dictDirs = dictDirs; }
+        /**
+         * Return dictionaries search path.
+         */
         const QStringList& dictDirs() const
         { return m_dictDirs; }
 
+        /**
+         * Set dictionaries list. The translations will be returned in
+         * orderedDicts order.
+         */
         void setDicts(const QStringList &orderedDicts);
+        /**
+         * Return list of dictionaries.
+         */
         const QStringList& orderedDicts() const
         { return m_orderedDicts; }
+        /**
+         * Return list of not used but avialable dicts.
+         */
         QStringList disabledDicts() const;
+        /**
+         * Return list of avialable dictionaries in dictDirs.
+         */
         QStringList avialableDicts() const;
 
+        /**
+         * Find words that looks like str (using fuzzy algoritms).
+         */
         QStringList find(const QString &str);
+        /**
+         * Return true if str has a translation in a dictionaries,
+         * otherwise return false.
+         */
         bool isTranslatable(const QString &str);
+        /**
+         * Return translation of str. The flag parameter is used for
+         * setting translation format.
+         */
         QString translate(const QString &str, TranslationFlags flags = TranslationFlags(None) | Reformat);
 
+        /**
+         * Return list of dictionaries placed in dir or dir childs.
+         */
         static QStringList findDicts(const QString &dir);
+
+        /**
+         * Return default local dir when dictionaries are stored.
+         * On UNIX it is $HOME/.stardict/dic.
+         */
+        static QString localDictsDir();
 
     private:
         class SearchResult
