@@ -23,15 +23,18 @@
 #include <QStringList>
 #include <QHash>
 
+/**
+ * The ISO639 represents a ISO 639-3 standard.
+ */
 class ISO639
 {
     public:
         /**
-         * Return a list of ISO 639 3-letter language codes
+         * Return a list of ISO 639 3-letter language codes.
          */
         static QStringList languages();
         /**
-         * Return language name from 3-letter ISO 639 code
+         * Return language name from 3-letter ISO 639 code.
          */
         static QString languageName(const QString &code);
 
