@@ -88,7 +88,7 @@ void DictWidget::clear()
     translationView->clear();
 }
 
-const QString& DictWidget::cssStyle()
+QString DictWidget::cssStyle()
 {
     return translationCSS;
 }
