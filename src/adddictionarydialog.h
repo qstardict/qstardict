@@ -25,13 +25,20 @@
 
 #include <QHash>
 #include <QList>
-#include <QXmlDefaultHandler>
 
+/**
+ * A dialog that show a list of avialable dictionaries from
+ * xdxf.revdanica.com repository and install selected to
+ * local dictionaries directory (DictCore::localDictsDir()).
+ */
 class AddDictionaryDialog: public QDialog, private Ui::AddDictionaryDialog
 {
     Q_OBJECT
 
     public:
+        /**
+         * Construct AddDictionaryDialog.
+         */
         AddDictionaryDialog(QWidget *parent = 0);
 
     protected:
