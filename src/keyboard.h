@@ -23,7 +23,7 @@
 #include <Qt>
 
 /**
- * Keyboard representation.
+ * The Keyboard class is a representation.
  */
 class Keyboard
 {
