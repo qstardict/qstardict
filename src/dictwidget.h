@@ -25,30 +25,67 @@
 
 class DictBrowser;
 
+/**
+ * The DictBrowser widget provides view of translations from given dictionary.
+ */
 class DictWidget: public QFrame
 {
     Q_OBJECT
 
     public:
+        /**
+         * Construct empty DictWidget.
+         */
         DictWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);
 
+        /**
+         * Set source dictionary.
+         * Warning: DictWidget copy only a pointer to dict. So set dictionaries
+         * allocated from heap and don't destroy it befor DictWidget.
+         */
         void setDict(DictCore *dict)
         { m_dict = dict; }
+        /**
+         * Return pointer to dictionary.
+         */
         const DictCore* dict() const
         { return m_dict; }
+        /**
+         * Clear translation text.
+         */
         void clear();
 
+        /**
+         * Set translation flags.
+         */
         void setTranslationFlags(DictCore::TranslationFlags flags)
         { m_translationFlags = flags; }
+        /**
+         * Return translation flags.
+         */
         DictCore::TranslationFlags translationFlags() const
         { return m_translationFlags; }
 
+        /**
+         * Show translation of str. If no translations found return false, 
+         * otherwise true.
+         */
         bool translate(const QString &str);
+        /**
+         * Return last translated word.
+         */
         QString translatedWord() const;
 
-        static const QString &cssStyle();
+        /**
+         * Return CSS style used by DictWidget. It can be used to generate
+         * HTML translation with like DictWidget apperance.
+         */
+        static QString cssStyle();
 
     signals:
+        /**
+         * Emits when translated word is shown.
+         */
         void wordTranslated(const QString &word);
 
     private:
