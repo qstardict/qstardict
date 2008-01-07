@@ -22,6 +22,10 @@
 
 #include <QProgressDialog>
 
+/**
+ * The DownloadProgressDialog is a dialog that can be connected to
+ * QHttp and show download progress.
+ */
 class DownloadProgressDialog: public QProgressDialog
 {
     Q_OBJECT
@@ -30,12 +34,12 @@ class DownloadProgressDialog: public QProgressDialog
         DownloadProgressDialog(QWidget *parent = 0);
          
         /**
-         * Get data and write to out
+         * Get data and write to out.
          */
         static int httpGet(QWidget *parent, const QString &host, const QString &path, QIODevice *out,
                 const QString &title = QString(), const QString &label = QString(), bool *isOk = 0);
         /**
-         * Get data and write to file
+         * Get data and write to file.
          */
         static int httpGet(QWidget *parent, const QString &host, const QString &path, const QString &filename,
                 const QString &title = QString(), const QString &label = QString(), bool *isOk = 0);
