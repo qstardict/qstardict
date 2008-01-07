@@ -26,23 +26,45 @@ class QEvent;
 class QMouseEvent;
 class QTimerEvent;
 
+/**
+ * The ResizablePopup widget is a resizable top-level window
+ * without decorations.
+ */
 class ResizablePopup: public QFrame
 {
     Q_OBJECT
 
     public:
+        /**
+         * Construct a ResizablePopup widget.
+         */
         ResizablePopup(QWidget *parent = 0);
 
+        /**
+         * Return timeout before hiding after mouse leaving.
+         */
         int timeoutBeforeHide() const
         { return m_timeoutBeforeHide; }
+        /**
+         * Return a default size of new-shown popup.
+         */
         const QSize& defaultSize() const
         { return m_defaultSize; }
 
     public slots:
+        /**
+         * Set timeout before hiding after mouse leaving.
+         */
         void setTimeoutBeforeHide(int timeoutBeforeHide)
         { m_timeoutBeforeHide = timeoutBeforeHide; }
+        /**
+         * Set default size of new-shown popup.
+         */
         void setDefaultSize(const QSize &defaultSize)
         { m_defaultSize = defaultSize; }
+        /**
+         * Show popup under mouse cursor.
+         */
         void popup();
 
     protected:

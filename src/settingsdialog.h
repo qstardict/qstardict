@@ -25,11 +25,17 @@
 
 class MainWindow;
 
+/**
+ * The settings dialog.
+ */
 class SettingsDialog: public QDialog, private Ui::SettingsDialog
 {
     Q_OBJECT
 
     public:
+        /**
+         * Construct new SettingsDialog widget with parent MainWindow.
+         */
         SettingsDialog(MainWindow *parent);
 
     private slots:
