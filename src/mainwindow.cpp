@@ -72,14 +72,14 @@ void MainWindow::createTrayIcon()
 
 void MainWindow::createConnections()
 {
-    connect(actionAbout, SIGNAL(activated()), SLOT(aboutAction()));
-    connect(actionAboutQt, SIGNAL(activated()), qApp, SLOT(aboutQt()));
-    connect(actionSaveToFile, SIGNAL(activated()), SLOT(saveToFileAction()));
+    connect(actionAbout, SIGNAL(triggered()), SLOT(aboutAction()));
+    connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    connect(actionSaveToFile, SIGNAL(triggered()), SLOT(saveToFileAction()));
     connect(actionScan, SIGNAL(toggled(bool)), popup, SLOT(setScan(bool)));
     connect(popup, SIGNAL(scanChanged(bool)), actionScan, SLOT(setChecked(bool)));
     actionScan->setChecked(popup->isScan());
-    connect(actionSettings, SIGNAL(activated()), SLOT(settingsAction()));
-    connect(actionQuit, SIGNAL(activated()), qApp, SLOT(quit()));
+    connect(actionSettings, SIGNAL(triggered()), SLOT(settingsAction()));
+    connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
     connect(queryButton, SIGNAL(clicked()), SLOT(queryButtonClicked()));
     connect(wordsList, SIGNAL(itemActivated(QListWidgetItem*)),
