@@ -57,7 +57,7 @@ MainWindow::~MainWindow()
 void MainWindow::showTranslation(const QString &text)
 {
     searchBox->setText(text);
-    queryButtonClicked();
+    on_queryButton_clicked();
 }
 
 void MainWindow::createTrayIcon()
@@ -72,16 +72,12 @@ void MainWindow::createTrayIcon()
 
 void MainWindow::createConnections()
 {
-    connect(actionAbout, SIGNAL(triggered()), SLOT(aboutAction()));
     connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-    connect(actionSaveToFile, SIGNAL(triggered()), SLOT(saveToFileAction()));
     connect(actionScan, SIGNAL(toggled(bool)), popup, SLOT(setScan(bool)));
     connect(popup, SIGNAL(scanChanged(bool)), actionScan, SLOT(setChecked(bool)));
     actionScan->setChecked(popup->isScan());
-    connect(actionSettings, SIGNAL(triggered()), SLOT(settingsAction()));
     connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
-    connect(queryButton, SIGNAL(clicked()), SLOT(queryButtonClicked()));
     connect(wordsList, SIGNAL(itemActivated(QListWidgetItem*)),
             SLOT(wordsListItemActivated(QListWidgetItem*)));
     connect(wordsList, SIGNAL(itemClicked(QListWidgetItem*)),
@@ -123,7 +119,7 @@ void MainWindow::saveSettings()
     config.setValue("MainWindow/instantSearch", m_instantSearch);
 }
 
-void MainWindow::aboutAction()
+void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(this,
             tr("About QStarDict"),
@@ -132,15 +128,15 @@ void MainWindow::aboutAction()
                "<a href=\"http://qstardict.ylsoftware.com\">http://qstardict.ylsoftware.com</a>"));
 }
 
-void MainWindow::settingsAction()
+void MainWindow::on_actionSettings_triggered()
 {
     SettingsDialog dialog(this);
     dialog.exec();
 }
 
-void MainWindow::saveToFileAction()
+void MainWindow::on_actionSaveToFile_triggered()
 {
-    queryButtonClicked();
+    on_queryButton_clicked();
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save translation"),
                        QDir::homePath() + "/" + searchBox->text() + ".txt");
     if (! fileName.isEmpty())
@@ -157,7 +153,7 @@ void MainWindow::saveToFileAction()
     }
 }
 
-void MainWindow::queryButtonClicked()
+void MainWindow::on_queryButton_clicked()
 {
     if (searchBox->text().isEmpty())
     {
@@ -222,9 +218,9 @@ void MainWindow::setInstantSearch(bool instantSearch)
         return;
     m_instantSearch = instantSearch;
     if (m_instantSearch)
-        connect(searchBox, SIGNAL(textEdited(const QString&)), SLOT(queryButtonClicked()));
+        connect(searchBox, SIGNAL(textEdited(const QString&)), SLOT(on_queryButton_clicked()));
     else
-        disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(queryButtonClicked()));
+        disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(on_queryButton_clicked()));
 }
 
 

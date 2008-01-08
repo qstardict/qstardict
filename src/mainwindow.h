@@ -85,11 +85,11 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void closeEvent(QCloseEvent *event);
 
     private slots:
-        void aboutAction();
-        void settingsAction();
-        void saveToFileAction();
+        void on_actionAbout_triggered();
+        void on_actionSettings_triggered();
+        void on_actionSaveToFile_triggered();
+        void on_queryButton_clicked();
 
-        void queryButtonClicked();
         void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
         void wordsListItemActivated(QListWidgetItem *item);
         void wordTranslated(const QString &word);

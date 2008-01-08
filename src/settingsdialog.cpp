@@ -148,7 +148,7 @@ void SettingsDialog::apply()
     mainWindow->popup->setSpeechProgram(speechProgramEdit->text());
     mainWindow->setInstantSearch(instantSearchBox->isChecked());
 
-    mainWindow->queryButtonClicked();
+    mainWindow->on_queryButton_clicked();
 }
 
 void SettingsDialog::moveUpOrderedDictsButtonClicked()
