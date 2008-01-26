@@ -54,3 +54,5 @@
 	- fix bug with instant search
 	- add support for dictionaries repository
 	- add italian translation
+	- fix bug with simlinks to dictionaries
+

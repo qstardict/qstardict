@@ -104,7 +104,7 @@ QStringList DictCore::avialableDicts() const
 QStringList DictCore::findDicts(const QString &dir)
 {
     QFileInfoList result = QDir(dir).entryInfoList(QStringList("*.ifo"), QDir::Files | QDir::AllDirs |
-            QDir::NoDotAndDotDot | QDir::NoSymLinks);
+            QDir::NoDotAndDotDot);
     QStringList dicts;
 
     for (QFileInfoList::const_iterator i = result.begin(); i != result.end(); ++i)
