@@ -25,6 +25,7 @@
 #include "dictwidget.h"
 #include "keyboard.h"
 #include "selection.h"
+#include <QRegExp>
 
 PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
         : ResizablePopup(parent)
@@ -100,7 +101,12 @@ void PopupWindow::selectionChanged(const QString &text)
 
 void PopupWindow::showTranslation(const QString &text)
 {
+    if ( text.simplified().isEmpty() ) return;
+
+    if ( text.contains( QRegExp( "[&%-/+?\\*#!0123456789]()" ) ) ) return;
+
     bool isFound = m_dict->isTranslatable(text);
+
     if (m_showIfNotFound || isFound)
     {
         QString sourceText = text.simplified();
