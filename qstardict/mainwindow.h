@@ -27,6 +27,8 @@
 class QMenu;
 class QCloseEvent;
 
+namespace QStarDict {
+
 class DictCore;
 class PopupWindow;
 class SettingsDialog;
@@ -108,6 +110,8 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         PopupWindow *popup;
         bool m_instantSearch;
 };
+
+}
 
 #endif // MAINWINDOW_H
 

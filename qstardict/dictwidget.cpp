@@ -45,18 +45,13 @@ const QString translationCSS =
     "font-weight: bold; }\n";
 }
 
-class DictBrowser: public QTextBrowser
+namespace QStarDict
 {
-    public:
-        DictBrowser(QWidget *parent = 0)
-        : QTextBrowser(parent)
-        { }
-};
 
 DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     : QFrame(parent, f)
 {
-    translationView = new DictBrowser(this);
+    translationView = new QTextBrowser(this);
     setFrameStyle(translationView->frameStyle());
     translationView->setFrameStyle(QFrame::NoFrame);
     translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
@@ -91,6 +86,8 @@ void DictWidget::clear()
 QString DictWidget::cssStyle()
 {
     return translationCSS;
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

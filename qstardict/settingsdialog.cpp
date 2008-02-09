@@ -25,6 +25,8 @@
 #include "popupwindow.h"
 #include "adddictionarydialog.h"
 
+namespace QStarDict {
+
 SettingsDialog::SettingsDialog(MainWindow *parent)
         : QDialog(parent)
 {
@@ -216,6 +218,8 @@ void SettingsDialog::removeDictDirsButtonClicked()
 {
     delete dictDirsList->takeItem(dictDirsList->currentRow());
     updateOrder();
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

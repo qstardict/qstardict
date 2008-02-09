@@ -23,6 +23,8 @@
 #include <QDialog>
 #include "ui_settingsdialog.h"
 
+namespace QStarDict
+{
 class MainWindow;
 
 /**
@@ -57,6 +59,8 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
 
         MainWindow *mainWindow;
 };
+
+}
 
 #endif // SETTINGSDIALOG_H
 

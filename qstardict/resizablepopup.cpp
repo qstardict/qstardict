@@ -30,6 +30,9 @@ namespace
 const int CornerSize = 10;
 }
 
+namespace QStarDict
+{
+
 ResizablePopup::ResizablePopup(QWidget *parent)
     : QFrame(parent, Qt::Popup)
 {
@@ -226,6 +229,8 @@ void ResizablePopup::stopResize()
         killTimer(m_timerResizeId);
         m_timerResizeId = 0;
     }
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

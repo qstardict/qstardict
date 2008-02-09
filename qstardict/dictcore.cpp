@@ -39,6 +39,9 @@ QString whereDict(const QString &name, const QString &path);
 const int MaxFuzzy = 24;
 }
 
+namespace QStarDict
+{
+
 QString DictCore::localDictsDir()
 {
     return QDir::homePath() + "/.stardict/dic";
@@ -343,6 +346,8 @@ void DictCore::lookupData(const std::string &str, SearchResultList &resultList)
             ;
             g_free(drl[idict][j]);
         }
+}
+
 }
 
 namespace

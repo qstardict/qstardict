@@ -22,6 +22,9 @@
 
 #include <QProgressDialog>
 
+namespace QStarDict
+{
+
 /**
  * The DownloadProgressDialog is a dialog that can be connected to
  * QHttp and show download progress.
@@ -51,6 +54,8 @@ class DownloadProgressDialog: public QProgressDialog
     private:
         bool m_isOk;
 };
+
+}
 
 #endif // DOWNLOADPROGRESSDIALOG_H
 

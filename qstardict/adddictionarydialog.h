@@ -26,6 +26,9 @@
 #include <QHash>
 #include <QList>
 
+namespace QStarDict 
+{
+
 /**
  * A dialog that show a list of avialable dictionaries from
  * xdxf.revdanica.com repository and install selected to
@@ -64,6 +67,8 @@ class AddDictionaryDialog: public QDialog, private Ui::AddDictionaryDialog
         QList<Dict> dicts;
         QStringList mirrors;
 };
+
+}
 
 #endif // ADDDICTIONARYDIALOG_H
 

@@ -23,7 +23,10 @@
 #include <QFrame>
 #include "dictcore.h"
 
-class DictBrowser;
+class QTextBrowser;
+
+namespace QStarDict
+{
 
 /**
  * The DictBrowser widget provides view of translations from given dictionary.
@@ -89,11 +92,13 @@ class DictWidget: public QFrame
         void wordTranslated(const QString &word);
 
     private:
-        DictBrowser *translationView;
+        QTextBrowser *translationView;
         DictCore *m_dict;
         DictCore::TranslationFlags m_translationFlags;
         QString m_translatedWord;
 };
+
+}
 
 #endif // DICTWIDGET_H
 

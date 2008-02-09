@@ -24,6 +24,9 @@
 
 class QTimerEvent;
 
+namespace QStarDict
+{
+
 /**
  * Mouse selection representation class.
  */
@@ -63,6 +66,8 @@ class Selection: public QObject
         int m_scan;
         int m_timerId;
 };
+
+}
 
 #endif // SELECTION_H
 

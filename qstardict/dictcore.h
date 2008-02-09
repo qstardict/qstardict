@@ -30,6 +30,9 @@
 
 class Libs;
 
+namespace QStarDict
+{
+
 /**
  * The DictCore is a base dictionary class.
  */
@@ -172,6 +175,8 @@ class DictCore: public QObject
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictCore::TranslationFlags)
+
+}
 
 #endif // DICTCORE_H
 

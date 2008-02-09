@@ -27,6 +27,9 @@
 #include "selection.h"
 #include <QRegExp>
 
+namespace QStarDict
+{
+
 PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
         : ResizablePopup(parent)
 {
@@ -129,6 +132,8 @@ void PopupWindow::showTranslation(const QString &text)
 void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlags)
 {
     translationView->setTranslationFlags(translationFlags | DictCore::Simple);
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

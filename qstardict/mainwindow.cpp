@@ -33,6 +33,9 @@
 #include "popupwindow.h"
 #include "settingsdialog.h"
 
+namespace QStarDict 
+{
+
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
 {
@@ -223,6 +226,7 @@ void MainWindow::setInstantSearch(bool instantSearch)
         disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(on_queryButton_clicked()));
 }
 
+}
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

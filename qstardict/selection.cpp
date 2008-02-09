@@ -22,6 +22,9 @@
 #include <QApplication>
 #include <QClipboard>
 
+namespace QStarDict
+{
+
 Selection::Selection(QObject *parent)
     : QObject(parent)
 {
@@ -51,6 +54,8 @@ void Selection::timerEvent(QTimerEvent*)
         m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
         emit changed(m_lastState);
     }
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

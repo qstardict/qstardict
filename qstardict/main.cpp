@@ -68,9 +68,9 @@ int main(int argc, char *argv[])
 #endif // QSTARDICT_WITH_TRANSLATIONS
     app.setOrganizationName("qstardict");
     app.setApplicationName("qstardict");
-    MainWindow window;
+    QStarDict::MainWindow window;
 #ifdef QSTARDICT_WITH_DBUS
-    DBusAdaptor dbusAdaptor(&window);
+    QStarDict::DBusAdaptor dbusAdaptor(&window);
 #endif // QSTARDICT_WITH_DBUS
 
     return app.exec();

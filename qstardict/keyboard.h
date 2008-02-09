@@ -22,6 +22,9 @@
 
 #include <Qt>
 
+namespace QStarDict
+{
+
 /**
  * The Keyboard class is a representation.
  */
@@ -33,6 +36,8 @@ class Keyboard
          */
         static Qt::KeyboardModifiers activeModifiers();
 };
+
+}
 
 #endif // KEYBOARD_H
 

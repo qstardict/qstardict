@@ -35,6 +35,9 @@
 #include "iso639.h"
 #include "dictcore.h"
 
+namespace QStarDict 
+{
+
 AddDictionaryDialog::AddDictionaryDialog(QWidget *parent)
     : QDialog(parent)
 {
@@ -221,6 +224,8 @@ void AddDictionaryDialog::refreshDictsList(bool reload)
 void AddDictionaryDialog::showEvent(QShowEvent*)
 {
     refreshDictsList();
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

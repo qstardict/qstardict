@@ -23,6 +23,9 @@
 #include <QLabel>
 #include <QHttp>
 
+namespace QStarDict
+{
+
 DownloadProgressDialog::DownloadProgressDialog(QWidget *parent)
     : QProgressDialog(parent),
     m_isOk(false)
@@ -68,6 +71,8 @@ void DownloadProgressDialog::loadingDone(bool error)
 {
     m_isOk = ! error;
     accept();
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

@@ -33,6 +33,9 @@ const unsigned mShift   = 0001;
 const unsigned mWin     = 0100;
 }
 
+namespace QStarDict 
+{
+
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
     XkbStateRec state;
@@ -51,12 +54,19 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
     return result;
 }
 
+}
+
 #else // Q_WS_X11
+
+namespace QStarDict
+{
 
 // TODO: write it for other platforms
 Qt::KeyBoardModifiers Keyboard::modifiers()
 {
     return Qt::NoModifier;
+}
+
 }
 
 #endif // Q_WS_X11

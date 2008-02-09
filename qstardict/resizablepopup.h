@@ -26,6 +26,9 @@ class QEvent;
 class QMouseEvent;
 class QTimerEvent;
 
+namespace QStarDict
+{
+
 /**
  * The ResizablePopup widget is a resizable top-level window
  * without decorations.
@@ -97,6 +100,8 @@ class ResizablePopup: public QFrame
         int m_timerCloseId;
         int m_timerResizeId;
 };
+
+}
 
 #endif // RESIZABLEPOPUP_H
 

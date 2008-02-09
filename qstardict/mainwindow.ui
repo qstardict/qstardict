@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
+ <class>QStarDict::MainWindow</class>
+ <widget class="QMainWindow" name="QStarDict::MainWindow" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -13,23 +13,44 @@
    <string>QStarDict</string>
   </property>
   <property name="windowIcon" >
-  <iconset resource="pixmaps/pixmaps.qrc" >:/icons/qstardict.png</iconset>
+   <iconset resource="pixmaps/pixmaps.qrc" >:/icons/qstardict.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
-    <property name="margin" >
+    <property name="leftMargin" >
      <number>9</number>
     </property>
-    <property name="spacing" >
+    <property name="topMargin" >
+     <number>9</number>
+    </property>
+    <property name="rightMargin" >
+     <number>9</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>9</number>
+    </property>
+    <property name="horizontalSpacing" >
+     <number>6</number>
+    </property>
+    <property name="verticalSpacing" >
      <number>6</number>
     </property>
     <item row="0" column="0" >
      <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
       <property name="spacing" >
        <number>6</number>
+      </property>
+      <property name="leftMargin" >
+       <number>0</number>
+      </property>
+      <property name="topMargin" >
+       <number>0</number>
+      </property>
+      <property name="rightMargin" >
+       <number>0</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>0</number>
       </property>
       <item>
        <widget class="QToolButton" name="searchClearButton" >
@@ -59,7 +80,7 @@
          <string>Search</string>
         </property>
         <property name="icon" >
-            <iconset resource="pixmaps/pixmaps.qrc" >:/icons/search-filter.png</iconset>
+         <iconset resource="pixmaps/pixmaps.qrc" >:/icons/search-filter.png</iconset>
         </property>
         <property name="toolButtonStyle" >
          <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -78,7 +99,7 @@
     <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
    <property name="allowedAreas" >
-    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+    <set>Qt::DockWidgetAreas(Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea)</set>
    </property>
    <property name="windowTitle" >
     <string>Words list</string>
@@ -88,10 +109,22 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
     <layout class="QGridLayout" >
-     <property name="margin" >
+     <property name="leftMargin" >
       <number>9</number>
      </property>
-     <property name="spacing" >
+     <property name="topMargin" >
+      <number>9</number>
+     </property>
+     <property name="rightMargin" >
+      <number>9</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>9</number>
+     </property>
+     <property name="horizontalSpacing" >
+      <number>6</number>
+     </property>
+     <property name="verticalSpacing" >
       <number>6</number>
      </property>
      <item row="0" column="0" >
@@ -106,7 +139,7 @@
      <x>0</x>
      <y>0</y>
      <width>742</width>
-     <height>27</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File" >

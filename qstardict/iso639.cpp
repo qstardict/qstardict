@@ -19,6 +19,9 @@
 
 #include "iso639.h"
 
+namespace QStarDict
+{
+
 QHash<QString, QString> ISO639::m_languages;
 
 QStringList ISO639::languages()
@@ -443,6 +446,8 @@ void ISO639::init()
     m_languages["zha"] = QObject::tr("Zhuang");
     m_languages["zul"] = QObject::tr("Zulu");
     m_languages["zun"] = QObject::tr("Zuni");
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

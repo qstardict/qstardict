@@ -23,6 +23,9 @@
 #include <QStringList>
 #include <QHash>
 
+namespace QStarDict
+{
+
 /**
  * The ISO639 represents a ISO 639-3 standard.
  */
@@ -43,6 +46,8 @@ class ISO639
 
         static QHash<QString, QString> m_languages;
 };
+
+}
 
 #endif // ISO639_H
 
