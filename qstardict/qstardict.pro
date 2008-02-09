@@ -32,6 +32,7 @@ HEADERS += \
     lib/lib.h \
     lib/mapfile.hpp \
     adddictionarydialog.h \
+    application.h \
     dictcore.h \
     dictwidget.h \
     downloadprogressdialog.h \
@@ -48,6 +49,7 @@ SOURCES += \
     lib/distance.cpp \
     lib/lib.cpp \
     adddictionarydialog.cpp \
+    application.cpp \
     dictcore.cpp \
     dictwidget.cpp \
     downloadprogressdialog.cpp \

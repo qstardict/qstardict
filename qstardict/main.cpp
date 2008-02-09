@@ -17,8 +17,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#include <QApplication>
-#include "mainwindow.h"
+#include "application.h"
 
 #ifdef Q_OS_UNIX
 #include <QDateTime>
@@ -33,11 +32,6 @@
 #include <QLocale>
 #include <QTranslator>
 #endif // QSTARDICT_WITH_TRANSLATIONS
-
-#ifdef QSTARDICT_WITH_DBUS
-#include <QDBusConnection>
-#include "dbusadaptor.h"
-#endif // QSTARDICT_WITH_DBUS
 
 int main(int argc, char *argv[])
 {
@@ -60,7 +54,7 @@ int main(int argc, char *argv[])
     lockFile.close();
 #endif
 
-    QApplication app(argc, argv);
+    QStarDict::Application app(argc, argv);
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     QTranslator translator;
     translator.load(QSTARDICT_TRANSLATIONS_DIR "/qstardict-" + QLocale::system().name());
@@ -68,10 +62,6 @@ int main(int argc, char *argv[])
 #endif // QSTARDICT_WITH_TRANSLATIONS
     app.setOrganizationName("qstardict");
     app.setApplicationName("qstardict");
-    QStarDict::MainWindow window;
-#ifdef QSTARDICT_WITH_DBUS
-    QStarDict::DBusAdaptor dbusAdaptor(&window);
-#endif // QSTARDICT_WITH_DBUS
 
     return app.exec();
 }
