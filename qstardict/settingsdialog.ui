@@ -108,7 +108,7 @@ p, li { white-space: pre-wrap; }
                  <string>Left</string>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-left.png</iconset>
+                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-left.png</iconset>
                 </property>
                </widget>
               </item>
@@ -124,7 +124,7 @@ p, li { white-space: pre-wrap; }
                  <string>Down</string>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-down.png</iconset>
+                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-down.png</iconset>
                 </property>
                </widget>
               </item>
@@ -134,7 +134,7 @@ p, li { white-space: pre-wrap; }
                  <string>Up</string>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-up.png</iconset>
+                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-up.png</iconset>
                 </property>
                </widget>
               </item>
@@ -150,7 +150,7 @@ p, li { white-space: pre-wrap; }
                  <string>Right</string>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-right.png</iconset>
+                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-right.png</iconset>
                 </property>
                </widget>
               </item>
@@ -166,7 +166,7 @@ p, li { white-space: pre-wrap; }
                  <string>Download...</string>
                 </property>
                 <property name="icon" >
-                 <iconset resource="../resources/qstardict.qrc" >:/icons/download.png</iconset>
+                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/download.png</iconset>
                 </property>
                </widget>
               </item>
@@ -245,7 +245,7 @@ p, li { white-space: pre-wrap; }
                <string>Add</string>
               </property>
               <property name="icon" >
-               <iconset resource="../resources/qstardict.qrc" >:/icons/list-add.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-add.png</iconset>
               </property>
              </widget>
             </item>
@@ -261,7 +261,7 @@ p, li { white-space: pre-wrap; }
                <string>Remove</string>
               </property>
               <property name="icon" >
-               <iconset resource="../resources/qstardict.qrc" >:/icons/list-remove.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-remove.png</iconset>
               </property>
              </widget>
             </item>
@@ -277,7 +277,7 @@ p, li { white-space: pre-wrap; }
                <string>Up</string>
               </property>
               <property name="icon" >
-               <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-up.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-up.png</iconset>
               </property>
              </widget>
             </item>
@@ -293,7 +293,7 @@ p, li { white-space: pre-wrap; }
                <string>Down</string>
               </property>
               <property name="icon" >
-               <iconset resource="../resources/qstardict.qrc" >:/icons/arrow-down.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-down.png</iconset>
               </property>
              </widget>
             </item>
@@ -688,7 +688,7 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources>
-  <include location="../resources/qstardict.qrc" />
+  <include location="pixmaps/pixmaps.qrc" />
  </resources>
  <connections>
   <connection>

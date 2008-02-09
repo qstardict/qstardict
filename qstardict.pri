@@ -1,5 +1,5 @@
 #############################################################################
-# qstardict.pro - QStarDict, a StarDict clone written with using Qt         #
+# qstardict.inc - QStarDict, a StarDict clone written with using Qt         #
 # Copyright (C) 2008 Alexander Rodin                                        #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
@@ -17,30 +17,38 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-include(qstardict.pri)
-SUBDIRS = qstardict translations
+VERSION = 0.09-svn
 
-DISTFILES += \
-    AUTHORS \
-    COPYNG \
-    ChangeLog \
-    INSTALL \
-    README
+QT = \
+    core \
+    gui \
+    network \
+    xml
+CONFIG += \
+    qt \
+    link_pkgconfig \
+    warn_on \
+    release
+PKGCONFIG += \
+    glib-2.0
 
-isEmpty(NO_DBUS) {
-    message("D-Bus support: enabled")
-} else {
-    message("D-Bus support: disabled")
+unix:DEFINES += HAVE_MMAP
+unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
+unix:isEmpty(NO_DBUS):CONFIG += qdbus
+unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
+unix:isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
+
+unix {
+    isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/usr
+    isEmpty(BIN_DIR):BIN_DIR=$$INSTALL_PREFIX/bin
+    isEmpty(DATA_DIR):DATA_DIR=$$INSTALL_PREFIX/share/qstardict
+    isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$DATA_DIR/translations
+    isEmpty(PIXMAPS_DIR):PIXMAPS_DIR=$$DATA_DIR/pixmaps
 }
-isEmpty(NO_TRANSLATIONS) {
-    message("Translations: enabled")
-} else {
-    message("Translations: disabled")
-}
-message("Install prefix: "$$INSTALL_PREFIX)
-message("Binary directory: "$$BIN_DIR)
-message("Data directory: "$$DATA_DIR)
-message("Translations directory: "$$TRANSLATIONS_DIR)
-message("Pixmaps directory: "$$PIXMAPS_DIR)
 
+DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
+DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
+DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
+DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
+DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
+DEFINES += QSTARDICT_PIXMAPS_DIR=\\\"$$PIXMAPS_DIR\\\"

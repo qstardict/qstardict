@@ -86,7 +86,7 @@
       <string>Refresh</string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/qstardict.qrc" >:/icons/view-refresh.png</iconset>
+      <iconset resource="pixmaps/pixmaps.qrc" >:/icons/view-refresh.png</iconset>
      </property>
     </widget>
    </item>
@@ -99,7 +99,7 @@
       <string>Info</string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/qstardict.qrc" >:/icons/dialog-information.png</iconset>
+      <iconset resource="pixmaps/pixmaps.qrc" >:/icons/dialog-information.png</iconset>
      </property>
     </widget>
    </item>
@@ -112,14 +112,14 @@
       <string>Add</string>
      </property>
      <property name="icon" >
-      <iconset resource="../resources/qstardict.qrc" >:/icons/list-add.png</iconset>
+      <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-add.png</iconset>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="../resources/qstardict.qrc" />
+  <include location="pixmaps/pixmaps.qrc" />
  </resources>
  <connections>
   <connection>

@@ -13,7 +13,7 @@
    <string>QStarDict</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../resources/qstardict.qrc" >:/icons/qstardict.png</iconset>
+  <iconset resource="pixmaps/pixmaps.qrc" >:/icons/qstardict.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
@@ -40,7 +40,7 @@
          <string>Clear</string>
         </property>
         <property name="icon" >
-         <iconset resource="../resources/qstardict.qrc" >:/icons/clear-right.png</iconset>
+         <iconset resource="pixmaps/pixmaps.qrc" >:/icons/clear-right.png</iconset>
         </property>
         <property name="toolButtonStyle" >
          <enum>Qt::ToolButtonIconOnly</enum>
@@ -59,7 +59,7 @@
          <string>Search</string>
         </property>
         <property name="icon" >
-         <iconset resource="../resources/qstardict.qrc" >:/icons/search-filter.png</iconset>
+            <iconset resource="pixmaps/pixmaps.qrc" >:/icons/search-filter.png</iconset>
         </property>
         <property name="toolButtonStyle" >
          <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -136,7 +136,7 @@
   </widget>
   <action name="actionQuit" >
    <property name="icon" >
-    <iconset resource="../resources/qstardict.qrc" >:/icons/application-exit.png</iconset>
+    <iconset resource="pixmaps/pixmaps.qrc" >:/icons/application-exit.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Quit</string>
@@ -157,7 +157,7 @@
   </action>
   <action name="actionSettings" >
    <property name="icon" >
-    <iconset resource="../resources/qstardict.qrc" >:/icons/configure.png</iconset>
+    <iconset resource="pixmaps/pixmaps.qrc" >:/icons/configure.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Configure QStarDict</string>
@@ -173,7 +173,7 @@
   </action>
   <action name="actionSaveToFile" >
    <property name="icon" >
-    <iconset resource="../resources/qstardict.qrc" >:/icons/document-save-as.png</iconset>
+    <iconset resource="pixmaps/pixmaps.qrc" >:/icons/document-save-as.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Save to file</string>
@@ -187,7 +187,7 @@
   <customwidget>
    <class>DictWidget</class>
    <extends>QWidget</extends>
-   <header>src/dictwidget.h</header>
+   <header>dictwidget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -197,7 +197,7 @@
   <tabstop>searchClearButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../resources/qstardict.qrc" />
+  <include location="pixmaps/pixmaps.qrc" />
  </resources>
  <connections>
   <connection>

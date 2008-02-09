@@ -1,5 +1,5 @@
 #############################################################################
-# qstardict.pro - QStarDict, a StarDict clone written with using Qt         #
+# translations.pro - QStarDict, a StarDict clone written with using Qt      #
 # Copyright (C) 2008 Alexander Rodin                                        #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
@@ -18,29 +18,35 @@
 #############################################################################
 
 TEMPLATE = subdirs
-include(qstardict.pri)
-SUBDIRS = qstardict translations
+include(../qstardict.pri)
 
-DISTFILES += \
-    AUTHORS \
-    COPYNG \
-    ChangeLog \
-    INSTALL \
-    README
+TRANSLATIONS += \
+    qstardict-bg_BG.ts \
+    qstardict-cs_CZ.ts \
+    qstardict-de_DE.ts \
+    qstardict-it_IT.ts \
+    qstardict-pl_PL.ts \
+    qstardict-pt_BR.ts \
+    qstardict-ru_RU.ts \
+    qstardict-ua_UA.ts \
+    qstardict-zh_CN.ts \
+    qstardict-zh_TW.ts
 
-isEmpty(NO_DBUS) {
-    message("D-Bus support: enabled")
-} else {
-    message("D-Bus support: disabled")
-}
+COMPILED_TRANSLATIONS += \
+    qstardict-bg_BG.qm \
+    qstardict-cs_CZ.qm \
+    qstardict-de_DE.qm \
+    qstardict-it_IT.qm \
+    qstardict-pl_PL.qm \
+    qstardict-pt_BR.qm \
+    qstardict-ru_RU.qm \
+    qstardict-ua_UA.qm \
+    qstardict-zh_CN.qm \
+    qstardict-zh_TW.qm
+DISTFILES += $$COMPILED_TRANSLATIONS
+
 isEmpty(NO_TRANSLATIONS) {
-    message("Translations: enabled")
-} else {
-    message("Translations: disabled")
+    translations.files = $$COMPILED_TRANSLATIONS
+    translations.path = $$TRANSLATIONS_DIR
+    INSTALLS += translations
 }
-message("Install prefix: "$$INSTALL_PREFIX)
-message("Binary directory: "$$BIN_DIR)
-message("Data directory: "$$DATA_DIR)
-message("Translations directory: "$$TRANSLATIONS_DIR)
-message("Pixmaps directory: "$$PIXMAPS_DIR)
-

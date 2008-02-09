@@ -17,30 +17,64 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-include(qstardict.pri)
-SUBDIRS = qstardict translations
+TEMPLATE = app
+TARGET = qstardict
+include(../qstardict.pri)
 
+FORMS += \
+    adddictionarydialog.ui \
+    mainwindow.ui \
+    settingsdialog.ui
+HEADERS += \
+    lib/dictziplib.hpp \
+    lib/distance.h \
+    lib/file.hpp \
+    lib/lib.h \
+    lib/mapfile.hpp \
+    adddictionarydialog.h \
+    dictcore.h \
+    dictwidget.h \
+    downloadprogressdialog.h \
+    iso639.h \
+    keyboard.h \
+    mainwindow.h \
+    popupwindow.h \
+    resizablepopup.h \
+    selection.h \
+    settingsdialog.h
+unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
+SOURCES += \
+    lib/dictziplib.cpp \
+    lib/distance.cpp \
+    lib/lib.cpp \
+    adddictionarydialog.cpp \
+    dictcore.cpp \
+    dictwidget.cpp \
+    downloadprogressdialog.cpp \
+    iso639.cpp \
+    keyboard.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    popupwindow.cpp \
+    resizablepopup.cpp \
+    selection.cpp \
+    settingsdialog.cpp
+unix:isEmpty(NO_DBUS):SOURCES += dbusadaptor.cpp
+RESOURCES += \
+    pixmaps/pixmaps.qrc
 DISTFILES += \
-    AUTHORS \
-    COPYNG \
-    ChangeLog \
-    INSTALL \
-    README
+    qstardict.png \
+    qstardict.desktop
 
-isEmpty(NO_DBUS) {
-    message("D-Bus support: enabled")
-} else {
-    message("D-Bus support: disabled")
+qstardict.files = qstardict
+qstardict.path = $$BIN_DIR
+INSTALLS += qstardict
+
+unix {
+    desktop_icon.files = qstardict.png
+    desktop_icon.path = $$INSTALL_PREFIX/share/pixmaps
+    desktop_file.files = qstardict.desktop
+    desktop_file.path = $$INSTALL_PREFIX/share/applications
+    INSTALLS += desktop_icon desktop_file
 }
-isEmpty(NO_TRANSLATIONS) {
-    message("Translations: enabled")
-} else {
-    message("Translations: disabled")
-}
-message("Install prefix: "$$INSTALL_PREFIX)
-message("Binary directory: "$$BIN_DIR)
-message("Data directory: "$$DATA_DIR)
-message("Translations directory: "$$TRANSLATIONS_DIR)
-message("Pixmaps directory: "$$PIXMAPS_DIR)
 
