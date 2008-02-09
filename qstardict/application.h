@@ -39,6 +39,9 @@ class Application: public QApplication
 
         int exec();
 
+        static Application *instance()
+        { return qobject_cast<Application*>(QCoreApplication::instance()); }
+
         MainWindow *mainWindow()
         { return m_mainWindow; }
 #ifdef QSTARDICT_WITH_DBUS
