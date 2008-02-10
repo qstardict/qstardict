@@ -20,8 +20,6 @@
 #ifndef DICTPLUGIN_H
 #define DICTPLUGIN_H
 
-#include <QObject>
-
 #include <QStringList>
 
 namespace QStarDict
@@ -30,7 +28,7 @@ namespace QStarDict
 /**
  * This is a base class for all dictionary plugins classes.
  */
-class DictPlugin: public QObject
+class DictPlugin
 {
     public:
         /**
@@ -51,23 +49,15 @@ class DictPlugin: public QObject
         Q_DECLARE_FLAGS(Features, Feature)
 
         /**
-         * Constructor.
-         */
-        DictPlugin(QObject *parent = 0)
-            : QObject(parent),
-              m_features(None)
-        { }
-        /**
          * Destructor
          */
-        virtual ~DictPlugin()
-        { }
+        virtual ~DictPlugin() { }
 
         /**
          * Returns a features supported by dictionary plugin.
          */
-        Features features() const
-        { return m_features; }
+        virtual Features features() const
+        { return Features(None); }
 
         /*
          * Returns true if translation exists in dictionary,
@@ -85,16 +75,10 @@ class DictPlugin: public QObject
          */
         virtual QStringList findSimilarWords(const QString &word)
         { return QStringList(word); }
-
-    protected:
-        void setFeatures(Features features)
-        { m_features = features; }
-
-    private:
-        Features m_features;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictPlugin::Features)
+Q_DECLARE_INTERFACE(DictPlugin, "org.qstardict.DictPlugin/1.0")
 
 }
 
