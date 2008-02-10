@@ -22,13 +22,15 @@
 
 #include <QObject>
 
+#include <QStringList>
+
 namespace QStarDict
 {
 
 /**
  * This is a base class for all dictionary plugins classes.
  */
-class DictPlugin
+class DictPlugin: public QObject
 {
     public:
         /**
@@ -92,7 +94,7 @@ class DictPlugin
         Features m_features;
 };
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(Features, Feature)
+Q_DECLARE_OPERATORS_FOR_FLAGS(DictPlugin::Features)
 
 }
 

@@ -1,5 +1,5 @@
 #############################################################################
-# qstardict.pro - QStarDict, a StarDict clone written with using Qt         #
+# plugins.pro - QStarDict, a StarDict clone written with using Qt           #
 # Copyright (C) 2008 Alexander Rodin                                        #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
@@ -18,29 +18,5 @@
 #############################################################################
 
 TEMPLATE = subdirs
-include(qstardict.pri)
-SUBDIRS = qstardict translations plugins
-
-DISTFILES += \
-    AUTHORS \
-    COPYNG \
-    ChangeLog \
-    INSTALL \
-    README
-
-isEmpty(NO_DBUS) {
-    message("D-Bus support: enabled")
-} else {
-    message("D-Bus support: disabled")
-}
-isEmpty(NO_TRANSLATIONS) {
-    message("Translations: enabled")
-} else {
-    message("Translations: disabled")
-}
-message("Install prefix: "$$INSTALL_PREFIX)
-message("Binary directory: "$$BIN_DIR)
-message("Data directory: "$$DATA_DIR)
-message("Translations directory: "$$TRANSLATIONS_DIR)
-message("Pixmaps directory: "$$PIXMAPS_DIR)
+SUBDIRS = test
 

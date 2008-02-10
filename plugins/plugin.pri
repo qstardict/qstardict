@@ -1,5 +1,5 @@
-#############################################################################
-# qstardict.pro - QStarDict, a StarDict clone written with using Qt         #
+############################################################################
+# plugin.pri - QStarDict, a StarDict clone written with using Qt            #
 # Copyright (C) 2008 Alexander Rodin                                        #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
@@ -17,30 +17,14 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-include(qstardict.pri)
-SUBDIRS = qstardict translations plugins
+isEmpty(TARGET):error(You must set TARGET before including $$_FILE_)
 
-DISTFILES += \
-    AUTHORS \
-    COPYNG \
-    ChangeLog \
-    INSTALL \
-    README
+TEMPLATE = lib
+include(../qstardict.pri)
 
-isEmpty(NO_DBUS) {
-    message("D-Bus support: enabled")
-} else {
-    message("D-Bus support: disabled")
-}
-isEmpty(NO_TRANSLATIONS) {
-    message("Translations: enabled")
-} else {
-    message("Translations: disabled")
-}
-message("Install prefix: "$$INSTALL_PREFIX)
-message("Binary directory: "$$BIN_DIR)
-message("Data directory: "$$DATA_DIR)
-message("Translations directory: "$$TRANSLATIONS_DIR)
-message("Pixmaps directory: "$$PIXMAPS_DIR)
+CONFIG += plugin
+INCLUDEPATH += $$dirname(PWD)
+
+target.path = $$PLUGINS_DIR
+INSTALLS += target
 
