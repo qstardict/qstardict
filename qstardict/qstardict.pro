@@ -34,6 +34,7 @@ HEADERS += \
 #    adddictionarydialog.h \
     application.h \
     dictcore.h \
+    dictplugin.h \
     dictwidget.h \
     downloadprogressdialog.h \
     iso639.h \
