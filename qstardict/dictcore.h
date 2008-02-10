@@ -24,6 +24,8 @@
 
 #include <QStringList>
 
+class QPluginLoader;
+
 namespace QStarDict
 {
 

@@ -20,9 +20,8 @@
 #include "test.h"
 
 Test::Test(QObject *parent)
-    : QStarDict::DictPlugin(parent)
+    : QObject(parent)
 {
-    setFeatures(None);
 }
 
 bool Test::isTranslatable(const QString &word)
@@ -34,6 +33,8 @@ QString Test::translate(const QString &word)
 {
     return "test!";
 }
+
+Q_EXPORT_PLUGIN2(test, Test)
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

@@ -22,9 +22,10 @@
 
 #include <qstardict/dictplugin.h>
 
-class Test: public QStarDict::DictPlugin
+class Test: public QObject, public QStarDict::DictPlugin
 {
     Q_OBJECT
+    Q_INTERFACES(QStarDict::DictPlugin)
 
     public:
         Test(QObject *parent = 0);

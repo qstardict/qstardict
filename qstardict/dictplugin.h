@@ -20,6 +20,7 @@
 #ifndef DICTPLUGIN_H
 #define DICTPLUGIN_H
 
+#include <QtPlugin>
 #include <QStringList>
 
 namespace QStarDict
@@ -44,7 +45,11 @@ class DictPlugin
              * Dictionary plugin can search for similar words using
              * fuzzy algoritms.
              */
-            SearchSimilar = 0x01
+            SearchSimilar = 0x01,
+            /**
+             * Dictionary plugin has a settings dialog.
+             */
+            SettingsDialog = 0x02,
         };
         Q_DECLARE_FLAGS(Features, Feature)
 
@@ -75,12 +80,19 @@ class DictPlugin
          */
         virtual QStringList findSimilarWords(const QString &word)
         { return QStringList(word); }
+
+        /**
+         * Run a settings dialog.
+         */
+        virtual void runSettingsDialog()
+        { };
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictPlugin::Features)
-Q_DECLARE_INTERFACE(DictPlugin, "org.qstardict.DictPlugin/1.0")
 
 }
+
+Q_DECLARE_INTERFACE(QStarDict::DictPlugin, "org.qstardict.DictPlugin/1.0")
 
 #endif // DICTPLUGIN_H
 
