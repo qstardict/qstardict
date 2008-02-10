@@ -22,14 +22,19 @@
 
 #include <QApplication>
 
+#ifdef QSTARDICT_WITH_TRANSLATIONS
+class QTranslator;
+#endif // QSTARDICT_WITH_TRANSLATIONS
+
 namespace QStarDict
 {
 class DictCore;
 class MainWindow;
+class PopupWindow;
 class TrayIcon;
 #ifdef QSTARDICT_WITH_DBUS
 class DBusAdaptor;
-#endif
+#endif // QSTARDICT_WITH_DBUS
 
 /**
  * Main application class.
@@ -43,6 +48,11 @@ class Application: public QApplication
          * Construct new QStarDict application.
          */
         Application(int &argc, char **argv);
+
+        /**
+         * Destructor.
+         */
+        ~Application();
 
         /**
          * Enter the main event loop and wait until exit().
@@ -67,6 +77,12 @@ class Application: public QApplication
         { return m_mainWindow; }
 
         /**
+         * Returns a pointer to the application's popup window.
+         */
+        PopupWindow *popupWindow()
+        { return m_popupWindow; }
+
+        /**
          * Returns a pointer to the tray icon.
          */
         TrayIcon *trayIcon()
@@ -77,14 +93,18 @@ class Application: public QApplication
          */
         DBusAdaptor *dbusAdaptor()
         { return m_dbusAdaptor; }
-#endif
+#endif // QSTARDICT_WITH_DBUS
     private:
+#ifdef QSTARDICT_WITH_TRANSLATIONS
+        QTranslator *m_translator;
+#endif // QSTARDICT_WITH_TRANSLATIONS
         DictCore *m_dictCore;
         MainWindow *m_mainWindow;
+        PopupWindow *m_popupWindow;
         TrayIcon *m_trayIcon;
 #ifdef QSTARDICT_WITH_DBUS
         DBusAdaptor *m_dbusAdaptor;
-#endif
+#endif // QSTARDICT_WITH_DBUS
 };
 
 }

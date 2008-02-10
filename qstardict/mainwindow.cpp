@@ -30,7 +30,6 @@
 #include <QSettings>
 #include <QTextStream>
 #include "dictcore.h"
-#include "popupwindow.h"
 #include "settingsdialog.h"
 
 namespace QStarDict 
@@ -42,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent)
     setupUi(this);
     m_dict = new DictCore(this);
     translationView->setDict(m_dict);
-    popup = new PopupWindow(m_dict, this);
 
     menu_Options->insertAction(menu_Options->actions().first(), wordsListDock->toggleViewAction());
 
@@ -65,9 +63,6 @@ void MainWindow::showTranslation(const QString &text)
 void MainWindow::createConnections()
 {
     connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-    connect(actionScan, SIGNAL(toggled(bool)), popup, SLOT(setScan(bool)));
-    connect(popup, SIGNAL(scanChanged(bool)), actionScan, SLOT(setChecked(bool)));
-    actionScan->setChecked(popup->isScan());
     connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
     connect(wordsList, SIGNAL(itemActivated(QListWidgetItem*)),

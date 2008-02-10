@@ -22,10 +22,10 @@
 #include <QGridLayout>
 #include <QProcess>
 #include <QSettings>
+#include <QRegExp>
 #include "dictwidget.h"
 #include "keyboard.h"
 #include "selection.h"
-#include <QRegExp>
 
 namespace QStarDict
 {
@@ -104,9 +104,9 @@ void PopupWindow::selectionChanged(const QString &text)
 
 void PopupWindow::showTranslation(const QString &text)
 {
-    if ( text.simplified().isEmpty() ) return;
-
-    if ( text.contains( QRegExp( "[&%-/+?\\*#!0123456789]()" ) ) ) return;
+    if (text.simplified().isEmpty() ||
+        text.contains(QRegExp("[&%-/+?\\*#!0123456789]()")))
+        return;
 
     bool isFound = m_dict->isTranslatable(text);
 

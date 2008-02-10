@@ -24,7 +24,7 @@
 #include "trayicon.h"
 #ifdef QSTARDICT_WITH_DBUS
 #include "dbusadaptor.h"
-#endif
+#endif // QSTARDICT_WITH_DBUS
 
 namespace QStarDict
 {
@@ -32,11 +32,35 @@ namespace QStarDict
 Application::Application(int &argc, char **argv)
     : QApplication(argc, argv)
 {
+    setOrganizationName("qstardict");
+    setApplicationName("qstardict");
+
+#ifdef QSTARDICT_WITH_TRANSLATIONS
+    m_translator = new QTranslator;
+    m_translator->load(QSTARDICT_TRANSLATIONS_DIR "/qstardict-" + QLocale::system().name());
+    installTranslator(m_translator);
+#endif // QSTARDICT_WITH_TRANSLATIONS
+
+    m_dictCore = new DictCore;
     m_mainWindow = new MainWindow;
+    m_mainWindow->setDict(m_dictCore);
+    m_popupWindow = new PopupWindow;
+    m_popupWindow->setDict(m_dictCore);
     m_trayIcon = new TrayIcon;
 #ifdef QSTARDICT_WITH_DBUS
     m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
-#endif
+#endif // QSTARDICT_WITH_DBUS
+}
+
+Application::~Application()
+{
+    delete m_trayIcon;
+    delete m_mainWindow;
+    delete m_dictCore;
+#ifdef QSTARDICT_WITH_TRANSLATIONS
+    removeTranslator(m_translator);
+    delete m_translator;
+#endif // QSTARDICT_WITH_TRANSLATIONS
 }
 
 int Application::exec()

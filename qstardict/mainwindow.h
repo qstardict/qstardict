@@ -28,7 +28,6 @@ class QCloseEvent;
 namespace QStarDict {
 
 class DictCore;
-class PopupWindow;
 class SettingsDialog;
 
 /**
@@ -47,12 +46,6 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
          * Destructor.
          */
         ~MainWindow();
-
-        /**
-         * Return popup window.
-         */
-        PopupWindow* popupWindow()
-        { return popup; }
 
         /**
          * Return true if instant search is on, otherwise false.
@@ -101,7 +94,6 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void saveSettings();
 
         DictCore *m_dict;
-        PopupWindow *popup;
         bool m_instantSearch;
 };
 

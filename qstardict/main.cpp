@@ -55,14 +55,6 @@ int main(int argc, char *argv[])
 #endif
 
     QStarDict::Application app(argc, argv);
-#ifdef QSTARDICT_WITH_TRANSLATIONS
-    QTranslator translator;
-    translator.load(QSTARDICT_TRANSLATIONS_DIR "/qstardict-" + QLocale::system().name());
-    app.installTranslator(&translator);
-#endif // QSTARDICT_WITH_TRANSLATIONS
-    app.setOrganizationName("qstardict");
-    app.setApplicationName("qstardict");
-
     return app.exec();
 }
 

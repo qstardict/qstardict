@@ -22,13 +22,7 @@
 
 #include <QObject>
 
-#include <string>
-#include <vector>
-#include <QFlags>
 #include <QStringList>
-#include <QVector>
-
-class Libs;
 
 namespace QStarDict
 {
@@ -42,40 +36,6 @@ class DictCore: public QObject
 
     public:
         /**
-         * This set of flags used to control translations.
-         */
-        enum TranslationFlag
-        {
-            /**
-             * Default parametres.
-             */
-            None                    = 0x01,
-            /**
-             * Simple lookup (only exact matched words).
-             */
-            Simple                  = 0x02,
-            /**
-             * Translation in HTML format.
-             */
-            Html                    = 0x04,
-            /**
-             * Reformat simple text lists to herarchical lists (HTML only).
-             */
-            Reformat                = 0x08,
-            /**
-             * Expand dictionary abberviations to full text.
-             * For example if dictionary contains translation for "_abr."
-             * "abbreviation" then "_abr." in translation will be replaced to
-             * "abbreviation".
-             */
-            ExpandAbbreviations     = 0xf0
-        };
-        /**
-         * The flags used to control translations.
-         */
-        Q_DECLARE_FLAGS(TranslationFlags, TranslationFlag)
-
-        /**
          * Construct dictionary.
          */
         DictCore(QObject *parent = 0);
@@ -85,96 +45,20 @@ class DictCore: public QObject
         ~DictCore();
 
         /**
-         * Set directories for search dictionaries.
+         * Returns true if word is exists in dictionaries,
+         * otherwise false.
          */
-        void setDictDirs(const QStringList &dictDirs)
-        { m_dictDirs = dictDirs; }
+        bool isTranslatable(const QString &word);
         /**
-         * Return dictionaries search path.
+         * Returns translation for word. If word not found, returns
+         * "Not found!"
          */
-        const QStringList& dictDirs() const
-        { return m_dictDirs; }
-
+        QString translate(const QString &word);
         /**
-         * Set dictionaries list. The translations will be returned in
-         * orderedDicts order.
+         * Returns a list of similar words contained in dictionaries.
          */
-        void setDicts(const QStringList &orderedDicts);
-        /**
-         * Return list of dictionaries.
-         */
-        const QStringList& orderedDicts() const
-        { return m_orderedDicts; }
-        /**
-         * Return list of not used but avialable dicts.
-         */
-        QStringList disabledDicts() const;
-        /**
-         * Return list of avialable dictionaries in dictDirs.
-         */
-        QStringList avialableDicts() const;
-
-        /**
-         * Find words that looks like str (using fuzzy algoritms).
-         */
-        QStringList find(const QString &str);
-        /**
-         * Return true if str has a translation in a dictionaries,
-         * otherwise return false.
-         */
-        bool isTranslatable(const QString &str);
-        /**
-         * Return translation of str. The flag parameter is used for
-         * setting translation format.
-         */
-        QString translate(const QString &str, TranslationFlags flags = TranslationFlags(None) | Reformat);
-
-        /**
-         * Return list of dictionaries placed in dir or dir childs.
-         */
-        static QStringList findDicts(const QString &dir);
-
-        /**
-         * Return default local dir when dictionaries are stored.
-         * On UNIX it is $HOME/.stardict/dic.
-         */
-        static QString localDictsDir();
-
-    private:
-        class SearchResult
-        {
-            public:
-                QString dictName;
-                QString def;
-                QString exp;
-
-                SearchResult()
-                { }
-                SearchResult(const QString &_dictName, const QString &_def, const QString &_exp)
-                        : dictName(_dictName),
-                          def(_def),
-                          exp(_exp)
-                { }
-                SearchResult(const char *_dictName, const char *_def, const char *_exp)
-                        : dictName(QString::fromUtf8(_dictName)),
-                          def(QString::fromUtf8(_def)),
-                          exp(QString::fromUtf8(_exp))
-                { }
-        };
-        typedef QVector<SearchResult> SearchResultList;
-
-        void simpleLookup(const std::string &str, SearchResultList &resultList);
-        void lookupWithFuzzy(const std::string &str, SearchResultList &resultList);
-        void lookupWithRule(const std::string &str, SearchResultList &resultList);
-        void lookupData(const std::string &str, SearchResultList &resultList);
-        QString translation(const QString &str, const QString &dict);
-
-        Libs *m_sdLibs;
-        QStringList m_dictDirs;
-        QStringList m_orderedDicts;
+        QStringList findSimilarWords(const QString &word);
 };
-
-Q_DECLARE_OPERATORS_FOR_FLAGS(DictCore::TranslationFlags)
 
 }
 
