@@ -22,8 +22,6 @@
 
 #include "ui_mainwindow.h"
 
-#include <QSystemTrayIcon>
-
 class QMenu;
 class QCloseEvent;
 
@@ -92,21 +90,17 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void on_actionSaveToFile_triggered();
         void on_queryButton_clicked();
 
-        void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
         void wordsListItemActivated(QListWidgetItem *item);
         void wordTranslated(const QString &word);
 
     private:
         friend class SettingsDialog;
 
-        void createTrayIcon();
         void createConnections();
         void loadSettings();
         void saveSettings();
 
         DictCore *m_dict;
-        QSystemTrayIcon *trayIcon;
-        QMenu *trayMenu;
         PopupWindow *popup;
         bool m_instantSearch;
 };

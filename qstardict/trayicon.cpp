@@ -1,5 +1,5 @@
 /*****************************************************************************
- * application.cpp - QStarDict, a StarDict clone written with using Qt       *
+ * trayicon.cpp - QStarDict, a StarDict clone written with using Qt          *
  * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,33 +17,37 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#include "application.h"
-
-#include "dictcore.h"
-#include "mainwindow.h"
 #include "trayicon.h"
-#ifdef QSTARDICT_WITH_DBUS
-#include "dbusadaptor.h"
-#endif
+
+#include <QMenu>
+
+#include "application.h"
+#include "mainwindow.h"
+#include "popupwindow.h"
 
 namespace QStarDict
 {
 
-Application::Application(int &argc, char **argv)
-    : QApplication(argc, argv)
+TrayIcon::TrayIcon(QObject *parent)
+    : QSystemTrayIcon(QIcon(":/icons/qstardict.png"), parent)
 {
-    m_mainWindow = new MainWindow;
-    m_trayIcon = new TrayIcon;
-#ifdef QSTARDICT_WITH_DBUS
-    m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
-#endif
+    QMenu *trayMenu = new QMenu(tr("QStarDict"));
+    QAction *actionScan = new QAction(tr("Scan"), this);
+    actionScan->setCheckable(true);
+    trayMenu->addAction(actionScan);
+    QAction *actionQuit = new QAction(QIcon(":/icons/application-exit.png"), tr("Quit"), this);
+    connect(actionQuit, SIGNAL(triggered()), Application::instance(), SLOT(quit()));
+    trayMenu->addAction(actionQuit);
+    setContextMenu(trayMenu);
+    connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
 }
 
-int Application::exec()
+void TrayIcon::on_activated(QSystemTrayIcon::ActivationReason reason)
 {
-    m_trayIcon->show();
-    m_mainWindow->show();
-    return QApplication::exec();
+    if (reason == QSystemTrayIcon::Trigger)
+        Application::instance()->mainWindow()->setVisible(!
+                Application::instance()->mainWindow()->isVisible());
 }
 
 }

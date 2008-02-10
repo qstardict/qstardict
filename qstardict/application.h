@@ -24,32 +24,64 @@
 
 namespace QStarDict
 {
-
+class DictCore;
 class MainWindow;
+class TrayIcon;
 #ifdef QSTARDICT_WITH_DBUS
 class DBusAdaptor;
 #endif
 
+/**
+ * Main application class.
+ */
 class Application: public QApplication
 {
     Q_OBJECT
 
     public:
+        /**
+         * Construct new QStarDict application.
+         */
         Application(int &argc, char **argv);
 
+        /**
+         * Enter the main event loop and wait until exit().
+         */
         int exec();
 
+        /**
+         * Returns a pointer to the application's QStarDict::Application instance.
+         */
         static Application *instance()
         { return qobject_cast<Application*>(QCoreApplication::instance()); }
 
+        /**
+         * Returns a pointer to the DictCore instance.
+         */
+        DictCore *dictCore()
+        { return m_dictCore; }
+        /**
+         * Returns a pointer to the application's main window.
+         */
         MainWindow *mainWindow()
         { return m_mainWindow; }
+
+        /**
+         * Returns a pointer to the tray icon.
+         */
+        TrayIcon *trayIcon()
+        { return m_trayIcon; }
 #ifdef QSTARDICT_WITH_DBUS
+        /**
+         * Returns a pointer to the DBusAdaptor instance.
+         */
         DBusAdaptor *dbusAdaptor()
         { return m_dbusAdaptor; }
 #endif
     private:
+        DictCore *m_dictCore;
         MainWindow *m_mainWindow;
+        TrayIcon *m_trayIcon;
 #ifdef QSTARDICT_WITH_DBUS
         DBusAdaptor *m_dbusAdaptor;
 #endif

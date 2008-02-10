@@ -46,7 +46,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     menu_Options->insertAction(menu_Options->actions().first(), wordsListDock->toggleViewAction());
 
-    createTrayIcon();
     createConnections();
 
     loadSettings();
@@ -63,16 +62,6 @@ void MainWindow::showTranslation(const QString &text)
     on_queryButton_clicked();
 }
 
-void MainWindow::createTrayIcon()
-{
-    trayIcon = new QSystemTrayIcon(QIcon(":/icons/qstardict.png"), this);
-    trayIcon->show();
-    trayMenu = new QMenu(tr("QStarDict"), this);
-    trayMenu->addAction(actionScan);
-    trayMenu->addAction(actionQuit);
-    trayIcon->setContextMenu(trayMenu);
-}
-
 void MainWindow::createConnections()
 {
     connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -86,8 +75,6 @@ void MainWindow::createConnections()
     connect(wordsList, SIGNAL(itemClicked(QListWidgetItem*)),
             SLOT(wordsListItemActivated(QListWidgetItem*)));
 
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
     connect(translationView, SIGNAL(wordTranslated(const QString&)),
             SLOT(wordTranslated(const QString&)));
 }
@@ -179,12 +166,6 @@ void MainWindow::wordsListItemActivated(QListWidgetItem *item)
     searchBox->setText(item->text());
     translationView->translate(item->text());
     setWindowTitle(tr("%1 - QStarDict").arg(translationView->translatedWord()));
-}
-
-void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
-{
-    if (reason == QSystemTrayIcon::Trigger)
-        setVisible(! isVisible());
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * application.cpp - QStarDict, a StarDict clone written with using Qt       *
+ * trayicon.h - QStarDict, a StarDict clone written with using Qt            *
  * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,36 +17,28 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#include "application.h"
+#ifndef TRAYICON_H
+#define TRAYICON_H
 
-#include "dictcore.h"
-#include "mainwindow.h"
-#include "trayicon.h"
-#ifdef QSTARDICT_WITH_DBUS
-#include "dbusadaptor.h"
-#endif
+#include <QSystemTrayIcon>
 
 namespace QStarDict
 {
 
-Application::Application(int &argc, char **argv)
-    : QApplication(argc, argv)
+class TrayIcon: public QSystemTrayIcon
 {
-    m_mainWindow = new MainWindow;
-    m_trayIcon = new TrayIcon;
-#ifdef QSTARDICT_WITH_DBUS
-    m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
-#endif
-}
+    Q_OBJECT
 
-int Application::exec()
-{
-    m_trayIcon->show();
-    m_mainWindow->show();
-    return QApplication::exec();
-}
+    public:
+        TrayIcon(QObject *parent = 0);
+
+    private slots:
+        void on_activated(QSystemTrayIcon::ActivationReason reason);
+};
 
 }
 
-// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
+#endif // TRAYICON_H
+
+// vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
 

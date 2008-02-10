@@ -42,7 +42,8 @@ HEADERS += \
     popupwindow.h \
     resizablepopup.h \
     selection.h \
-    settingsdialog.h
+    settingsdialog.h \
+    trayicon.h
 unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
 SOURCES += \
     lib/dictziplib.cpp \
@@ -60,7 +61,8 @@ SOURCES += \
     popupwindow.cpp \
     resizablepopup.cpp \
     selection.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    trayicon.cpp
 unix:isEmpty(NO_DBUS):SOURCES += dbusadaptor.cpp
 RESOURCES += \
     pixmaps/pixmaps.qrc
