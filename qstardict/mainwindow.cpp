@@ -30,7 +30,9 @@
 #include <QSettings>
 #include <QTextStream>
 #include "dictcore.h"
-#include "settingsdialog.h"
+#include "application.h"
+#include "popupwindow.h"
+//#include "settingsdialog.h"
 
 namespace QStarDict 
 {
@@ -39,11 +41,10 @@ MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
 {
     setupUi(this);
-    m_dict = new DictCore(this);
+    m_dict = 0;
     translationView->setDict(m_dict);
 
     menu_Options->insertAction(menu_Options->actions().first(), wordsListDock->toggleViewAction());
-
     createConnections();
 
     loadSettings();
@@ -64,7 +65,11 @@ void MainWindow::createConnections()
 {
     connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
-
+    actionScan->setChecked(Application::instance()->popupWindow()->isScan());
+    connect(actionScan, SIGNAL(toggled(bool)), 
+            Application::instance()->popupWindow(), SLOT(setScan(bool)));
+    connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)),
+            actionScan, SLOT(setChecked(bool)));
     connect(wordsList, SIGNAL(itemActivated(QListWidgetItem*)),
             SLOT(wordsListItemActivated(QListWidgetItem*)));
     connect(wordsList, SIGNAL(itemClicked(QListWidgetItem*)),
@@ -82,10 +87,6 @@ void MainWindow::loadSettings()
     setVisible(config.value("MainWindow/visible", true).toBool());
     wordsListDock->setFloating(config.value("MainWindow/wordsListDock/floating", wordsListDock->isFloating()).toBool());
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
-    m_dict->setDictDirs(config.value("DictCore/dictDirs", m_dict->dictDirs()).toStringList());
-    m_dict->setDicts(config.value("DictCore/orderedDicts", m_dict->avialableDicts()).toStringList());
-    translationView->setTranslationFlags(QFlag(config.value("DictWidget/translationFlags",
-                    static_cast<int>(translationView->translationFlags())).toInt()));
     setInstantSearch(config.value("MainWindow/instantSearch", false).toBool());
 }
 
@@ -97,10 +98,6 @@ void MainWindow::saveSettings()
     config.setValue("MainWindow/visible", isVisible());
     config.setValue("MainWindow/wordsListDock/floating", wordsListDock->isFloating());
     config.setValue("MainWindow/wordsListDock/geometry", wordsListDock->geometry());
-    config.setValue("DictCore/dictDirs", m_dict->dictDirs());
-    config.setValue("DictCore/orderedDicts", m_dict->orderedDicts());
-    config.setValue("DictCore/disabledDicts", m_dict->disabledDicts());
-    config.setValue("DictWidget/translationFlags", static_cast<int>(translationView->translationFlags()));
     config.setValue("MainWindow/instantSearch", m_instantSearch);
 }
 
@@ -115,8 +112,8 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    SettingsDialog dialog(this);
-    dialog.exec();
+//    SettingsDialog dialog(this);
+//    dialog.exec();
 }
 
 void MainWindow::on_actionSaveToFile_triggered()
@@ -134,7 +131,7 @@ void MainWindow::on_actionSaveToFile_triggered()
             return;
         }
         QTextStream outputStream(&outputFile);
-        outputStream << m_dict->translate(searchBox->text(), DictCore::Reformat);
+        outputStream << m_dict->translate(searchBox->text());
     }
 }
 
@@ -147,7 +144,7 @@ void MainWindow::on_queryButton_clicked()
         return;
     }
     wordsList->clear();
-    wordsList->addItems(m_dict->find(searchBox->text()));
+    wordsList->addItems(m_dict->findSimilarWords(searchBox->text()));
     translationView->translate(searchBox->text());
 }
 
@@ -167,28 +164,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     hide();
     event->ignore();
-}
-
-QString MainWindow::translate(const QString &text) const
-{
-    return m_dict->translate(text, translationView->translationFlags() & ~DictCore::Html);
-}
-
-QString MainWindow::translateHtml(const QString &text) const
-{
-    return
-	"<html>\n"
-	"<head>\n"
-	"<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">\n"
-	"<title>" + text + "</title>\n"
-	"<style><!--\n" +
-	translationView->cssStyle() + 
-	"--></style>\n"
-	"</head>\n"
-	"<body>\n" +
-	m_dict->translate(text, translationView->translationFlags() | DictCore::Html) +
-	"</body>\n"
-	"</html>\n";
 }
 
 void MainWindow::setInstantSearch(bool instantSearch)

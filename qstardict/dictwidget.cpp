@@ -61,13 +61,12 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     layout->addWidget(translationView);
     setLayout(layout);
     m_dict = 0;
-    m_translationFlags = DictCore::Html | DictCore::Reformat | DictCore::ExpandAbbreviations;
 }
 
 bool DictWidget::translate(const QString &str)
 {
     m_translatedWord = str;
-    QString result = m_dict->translate(str, m_translationFlags);
+    QString result = m_dict->translate(str);
     translationView->setHtml("<style>\n" + translationCSS + "</style>\n" + result);
     emit wordTranslated(str);
     return result.isEmpty();

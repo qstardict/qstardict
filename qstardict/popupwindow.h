@@ -43,7 +43,7 @@ class PopupWindow: public ResizablePopup
         /**
          * Construct new PopupWindow.
          */
-        PopupWindow(DictCore *dict = 0, QWidget *parent = 0);
+        PopupWindow(QWidget *parent = 0);
         /**
          * Destructor.
          */
@@ -64,12 +64,15 @@ class PopupWindow: public ResizablePopup
          */
         bool showIfNotFound() const
         { return m_showIfNotFound; }
+
         /**
-         * Return translation flags that used for translations.
+         * Set the dictionary.
          */
-        DictCore::TranslationFlags translationFlags() const;
+        void setDict(DictCore *dict)
+        { m_dict = dict; }
+
         /**
-         * Return dictionary.
+         * Returns the dictionary.
          */
         DictCore* dict() const
         { return m_dict; }
@@ -103,11 +106,7 @@ class PopupWindow: public ResizablePopup
          */
         void setShowIfNotFound(bool mode)
         { m_showIfNotFound = mode; }
-        /**
-         * Set translation flags. The DictCore::Simple will be by default
-         * appended to flags.
-         */
-        void setTranslationFlags(DictCore::TranslationFlags translationFlags);
+
         /**
          * Popup with translation of text.
          */

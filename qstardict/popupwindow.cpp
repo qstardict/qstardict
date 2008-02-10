@@ -30,13 +30,10 @@
 namespace QStarDict
 {
 
-PopupWindow::PopupWindow(DictCore *dict, QWidget *parent)
+PopupWindow::PopupWindow(QWidget *parent)
         : ResizablePopup(parent)
 {
-    if (! dict)
-        m_dict = new DictCore(this);
-    else
-        m_dict = dict;
+    m_dict = 0;
     translationView = new DictWidget(this);
     translationView->setFrameStyle(QFrame::NoFrame);
     translationView->setDict(m_dict);
@@ -66,8 +63,6 @@ void PopupWindow::loadSettings()
     setWindowOpacity(config.value("PopupWindow/opacity", 1.0).toDouble());
     setTimeoutBeforeHide(config.value("PopupWindow/timeoutBeforeHide", 500).toInt());
     setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
-    setTranslationFlags(static_cast<DictCore::TranslationFlags>(config.value("DictWidget/translationFlags",
-                    static_cast<int>(translationView->translationFlags())).toInt()));
     setPronounceWord(config.value("PopupWindow/pronounceWord", true).toBool());
     setSpeechProgram(config.value("PopupWindow/speechProgram", "festival --tts").toString());
 }
@@ -127,11 +122,6 @@ void PopupWindow::showTranslation(const QString &text)
             m_speechProcess->closeWriteChannel();
         }
     }
-}
-
-void PopupWindow::setTranslationFlags(DictCore::TranslationFlags translationFlags)
-{
-    translationView->setTranslationFlags(translationFlags | DictCore::Simple);
 }
 
 }

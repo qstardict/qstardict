@@ -31,7 +31,7 @@ HEADERS += \
     lib/file.hpp \
     lib/lib.h \
     lib/mapfile.hpp \
-    adddictionarydialog.h \
+#    adddictionarydialog.h \
     application.h \
     dictcore.h \
     dictwidget.h \
@@ -42,14 +42,14 @@ HEADERS += \
     popupwindow.h \
     resizablepopup.h \
     selection.h \
-    settingsdialog.h \
+#    settingsdialog.h \
     trayicon.h
 unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
 SOURCES += \
     lib/dictziplib.cpp \
     lib/distance.cpp \
     lib/lib.cpp \
-    adddictionarydialog.cpp \
+#    adddictionarydialog.cpp \
     application.cpp \
     dictcore.cpp \
     dictwidget.cpp \
@@ -61,7 +61,7 @@ SOURCES += \
     popupwindow.cpp \
     resizablepopup.cpp \
     selection.cpp \
-    settingsdialog.cpp \
+#    settingsdialog.cpp \
     trayicon.cpp
 unix:isEmpty(NO_DBUS):SOURCES += dbusadaptor.cpp
 RESOURCES += \

@@ -34,6 +34,11 @@ TrayIcon::TrayIcon(QObject *parent)
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
     QAction *actionScan = new QAction(tr("Scan"), this);
     actionScan->setCheckable(true);
+    actionScan->setChecked(Application::instance()->popupWindow()->isScan());
+    connect(actionScan, SIGNAL(toggled(bool)),
+            Application::instance()->popupWindow(), SLOT(setScan(bool)));
+    connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)),
+            actionScan, SLOT(setChecked(bool)));
     trayMenu->addAction(actionScan);
     QAction *actionQuit = new QAction(QIcon(":/icons/application-exit.png"), tr("Quit"), this);
     connect(actionQuit, SIGNAL(triggered()), Application::instance(), SLOT(quit()));

@@ -20,6 +20,7 @@
 #include "dbusadaptor.h"
 
 #include <QDBusConnection>
+#include "application.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
 
@@ -51,17 +52,17 @@ void DBusAdaptor::showTranslation(const QString &text)
 
 void DBusAdaptor::showPopup(const QString &text)
 {
-    m_mainWindow->popupWindow()->showTranslation(text);
+    Application::instance()->popupWindow()->showTranslation(text);
 }
 
 QString DBusAdaptor::translate(const QString &text)
 {
-    return m_mainWindow->translate(text);
+    return Application::instance()->dictCore()->translate(text);
 }
 
 QString DBusAdaptor::translateHtml(const QString &text)
 {
-    return m_mainWindow->translateHtml(text);
+    return Application::instance()->dictCore()->translate(text);
 }
 
 }

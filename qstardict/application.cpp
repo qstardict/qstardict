@@ -19,8 +19,13 @@
 
 #include "application.h"
 
+#ifdef QSTARDICT_WITH_TRANSLATIONS
+#include <QLocale>
+#include <QTranslator>
+#endif // QSTARDICT_WITH_TRANSLATIONS
 #include "dictcore.h"
 #include "mainwindow.h"
+#include "popupwindow.h"
 #include "trayicon.h"
 #ifdef QSTARDICT_WITH_DBUS
 #include "dbusadaptor.h"
@@ -42,10 +47,10 @@ Application::Application(int &argc, char **argv)
 #endif // QSTARDICT_WITH_TRANSLATIONS
 
     m_dictCore = new DictCore;
-    m_mainWindow = new MainWindow;
-    m_mainWindow->setDict(m_dictCore);
     m_popupWindow = new PopupWindow;
     m_popupWindow->setDict(m_dictCore);
+    m_mainWindow = new MainWindow;
+    m_mainWindow->setDict(m_dictCore);
     m_trayIcon = new TrayIcon;
 #ifdef QSTARDICT_WITH_DBUS
     m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
@@ -56,6 +61,7 @@ Application::~Application()
 {
     delete m_trayIcon;
     delete m_mainWindow;
+    delete m_popupWindow;
     delete m_dictCore;
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     removeTranslator(m_translator);

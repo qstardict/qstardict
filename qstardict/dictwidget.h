@@ -59,17 +59,6 @@ class DictWidget: public QFrame
         void clear();
 
         /**
-         * Set translation flags.
-         */
-        void setTranslationFlags(DictCore::TranslationFlags flags)
-        { m_translationFlags = flags; }
-        /**
-         * Return translation flags.
-         */
-        DictCore::TranslationFlags translationFlags() const
-        { return m_translationFlags; }
-
-        /**
          * Show translation of str. If no translations found return false, 
          * otherwise true.
          */
@@ -94,7 +83,6 @@ class DictWidget: public QFrame
     private:
         QTextBrowser *translationView;
         DictCore *m_dict;
-        DictCore::TranslationFlags m_translationFlags;
         QString m_translatedWord;
 };
 

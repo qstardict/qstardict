@@ -59,20 +59,23 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
          */
         void setInstantSearch(bool instantSearch);
 
-    public slots:
         /**
-         * Show translation of text.
+         * Set the dictionary.
          */
-        void showTranslation(const QString &text);
+        void setDict(DictCore *dict)
+        { m_dict = dict; }
 
         /**
-         * Return translation of text in plain text format.
+         * Returns the dictionary.
          */
-        QString translate(const QString &text) const;
+        DictCore *dict() const
+        { return m_dict; }
+
+    public slots:
         /**
-         * Return translation of text in HTML format.
+         * Show translation of word.
          */
-        QString translateHtml(const QString &text) const;
+        void showTranslation(const QString &word);
 
     protected:
         void closeEvent(QCloseEvent *event);
