@@ -26,11 +26,6 @@ FORMS += \
     mainwindow.ui \
     settingsdialog.ui
 HEADERS += \
-    lib/dictziplib.hpp \
-    lib/distance.h \
-    lib/file.hpp \
-    lib/lib.h \
-    lib/mapfile.hpp \
 #    adddictionarydialog.h \
     application.h \
     dictcore.h \
@@ -47,9 +42,6 @@ HEADERS += \
     trayicon.h
 unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
 SOURCES += \
-    lib/dictziplib.cpp \
-    lib/distance.cpp \
-    lib/lib.cpp \
 #    adddictionarydialog.cpp \
     application.cpp \
     dictcore.cpp \
