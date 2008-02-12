@@ -58,6 +58,16 @@ class DictPlugin
          */
         virtual ~DictPlugin() { }
 
+        /*
+         * Returns a plugin name.
+         */
+        virtual QString name() const = 0;
+
+        /**
+         * Returns a plugin version.
+         */
+        virtual QString version() const = 0;
+
         /**
          * Returns a features supported by dictionary plugin.
          */
