@@ -54,6 +54,71 @@ class DictPlugin
         Q_DECLARE_FLAGS(Features, Feature)
 
         /**
+         * This class represents a translation.
+         */
+        class Translation
+        {
+            public:
+                /**
+                 * Constructs an empty translation.
+                 */
+                Translation()
+                { }
+
+                /**
+                 * Constructs a translation from strings.
+                 */
+                Translation(const QString &title,
+                        const QString &dictName,
+                        const QString &translation)
+                    : m_title(title),
+                      m_dictName(dictName),
+                      m_translation(translation)
+                { }
+
+                /**
+                 * Returns a translation title.
+                 */
+                const QString &title() const
+                { return m_title; }
+
+                /**
+                 * Returns a dictionary name.
+                 */
+                const QString &dictName() const
+                { return m_dictName; }
+
+                /**
+                 * Returns a translation.
+                 */
+                const QString &traslation() const
+                { return m_translation; }
+
+                /**
+                 * Sets a translation title.
+                 */
+                void setTitle(const QString &title)
+                { m_title = title; }
+
+                /**
+                 * Sets a dictionary name.
+                 */
+                void setDictName(const QString &dictName)
+                { m_dictName = dictName; }
+
+                /**
+                 * Sets a translation.
+                 */
+                void setTranslation(const QString &translation)
+                { m_translation = translation; }
+
+            private:
+                QString m_title;
+                QString m_dictName;
+                QString m_translation;
+        };
+
+        /**
          * Destructor
          */
         virtual ~DictPlugin() { }
@@ -74,27 +139,42 @@ class DictPlugin
         virtual Features features() const
         { return Features(None); }
 
+        /**
+         * Returns a list of avialable dictionaries.
+         */
+        virtual QStringList avialableDicts() const = 0;
+
+        /**
+         * Returns a list of loaded dictionaries.
+         */
+        virtual QStringList loadedDicts() const = 0;
+
+        /**
+         * Set a list of loaded dictionaries.
+         */
+        virtual void setLoadedDicts(const QStringList &loadedDicts);
+
         /*
          * Returns true if translation exists in dictionary,
          * otherwise return false.
          */
-        virtual bool isTranslatable(const QString &word) = 0;
+        virtual bool isTranslatable(const QString &dict, const QString &word) = 0;
         /**
-         * Returns translation for word. If word not found returns
-         * empty string.
+         * Returns translation for word from dictionary. If word not found
+         * returns empty string.
          */
-        virtual QString translate(const QString &word) = 0;
+        virtual Translation translate(const QString &dict, const QString &word) = 0;
         /**
-         * Returns list of similar to "word" words. Works only if
+         * Returns a list of similar to "word" words form dictionary. Works only if
          * SearchSimilar feature is enabled.
          */
-        virtual QStringList findSimilarWords(const QString &word)
-        { return QStringList(word); }
+        virtual QStringList findSimilarWords(const QString &dict, const QString &word)
+        { Q_UNUSED(dict) return QStringList(word); }
 
         /**
          * Run a settings dialog.
          */
-        virtual void runSettingsDialog()
+        virtual void execSettingsDialog()
         { };
 };
 

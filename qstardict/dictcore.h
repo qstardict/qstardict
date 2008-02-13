@@ -23,8 +23,9 @@
 #include <QObject>
 
 #include <QStringList>
-
-class QPluginLoader;
+#include <QPair>
+#include <QPluginLoader>
+#include <QHash>
 
 namespace QStarDict
 {
@@ -60,6 +61,62 @@ class DictCore: public QObject
          * Returns a list of similar words contained in dictionaries.
          */
         QStringList findSimilarWords(const QString &word);
+
+        /**
+         * Returns a list of avialable dictionary plugins.
+         */
+        QStringList avilablePlugins() const;
+
+        /**
+         * Returns a list of loaded dictionary plugins.
+         */
+        QStringList loadedPlugins() const
+        { return QStringList(m_plugins.keys()); }
+
+        /**
+         * Sets a loaded plugins.
+         * If plugin cannot be loaded it will not be added to
+         * loadedPlugins list.
+         */
+        void setLoadedPlugins(const QStringList &loadedPlugins);
+
+        /**
+         * Returns a list of avialable dictionaries.
+         * The first item in pair is a plugin name, the second item
+         * in pair is a dictionary name.
+         */
+        QList<QPair<QString, QString> > avialableDicts() const;
+
+        /**
+         * Returns a list of loaded dictionaries. 
+         * The first item in pair is a plugin name, the second item
+         * in pair is a dictionary name.
+         */
+        QList<QPair<QString, QString> > &loadedDicts() const
+        { return m_loadedDicts; }
+
+        /**
+         * Sets a loaded dictionaries.
+         * The first item in pair is a plugin name, the second item
+         * in pair is a dictionary name.
+         * If dictionary cannot be loaded it will not be added to 
+         * avialableDicts list.
+         */
+        void setLoadedDicts(const QList<QPair<QString, QString> > &loadedDicts);
+
+    private:
+        /**
+         * Save settings.
+         */
+        void saveSettings();
+
+        /**
+         * Load settings.
+         */
+        void loadSettings();
+
+        QHash<QString, QPluginLoader> m_plugins;
+        QList<QPair<QString, QString> > &m_loadedDicts;
 };
 
 }
