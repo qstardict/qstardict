@@ -22,6 +22,8 @@
 
 #include <qstardict/dictplugin.h>
 
+#include <QHash>
+
 class Test: public QObject, public QStarDict::DictPlugin
 {
     Q_OBJECT
@@ -30,8 +32,26 @@ class Test: public QObject, public QStarDict::DictPlugin
     public:
         Test(QObject *parent = 0);
 
-        bool isTranslatable(const QString &word);
-        QString translate(const QString &word);
+        QString name()
+        { return "test"; }
+
+        QString version()
+        { return "1.0"; }
+
+        Features features() 
+        { return Features(SearchSimilar); }
+
+        QStringList avialableDicts();
+        QStringList loadedDicts();
+        void setLoadedDicts(const QStringList &dicts);
+
+        bool isTranslatable(const QString &dict, const QString &word);
+        Translation translate(const QString &dict, const QString &word);
+        QStringList findSimilarWords(const QString &dict, const QString &word);
+
+    private:
+        QStringList m_loadedDicts;
+        QHash<QString, QHash<QString, QString> > m_dicts;
 };
 
 #endif // TEST_H
