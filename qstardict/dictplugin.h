@@ -152,7 +152,7 @@ class DictPlugin
         /**
          * Set a list of loaded dictionaries.
          */
-        virtual void setLoadedDicts(const QStringList &loadedDicts);
+        virtual void setLoadedDicts(const QStringList &loadedDicts) = 0;
 
         /*
          * Returns true if translation exists in dictionary,

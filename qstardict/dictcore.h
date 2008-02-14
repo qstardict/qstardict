@@ -92,8 +92,8 @@ class DictCore: public QObject
          * The first item in pair is a plugin name, the second item
          * in pair is a dictionary name.
          */
-        QList<QPair<QString, QString> > &loadedDicts() const
-        { return m_loadedDicts; }
+//        QList<QPair<QString, QString> > &loadedDicts() const
+//        { return m_loadedDicts; }
 
         /**
          * Sets a loaded dictionaries.
@@ -115,8 +115,8 @@ class DictCore: public QObject
          */
         void loadSettings();
 
-        QHash<QString, QPluginLoader> m_plugins;
-        QList<QPair<QString, QString> > &m_loadedDicts;
+        QHash<QString, QPluginLoader*> m_plugins;
+//        QList<QPair<QString, QString> > &m_loadedDicts;
 };
 
 }
