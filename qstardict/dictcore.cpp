@@ -1,6 +1,6 @@
 /*****************************************************************************
  * dictcore.cpp - QStarDict, a StarDict clone written with using Qt          *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -23,29 +23,59 @@ namespace QStarDict
 {
 
 DictCore::DictCore(QObject *parent)
-        : QObject(parent)
+    : QObject(parent)
 {
+    
 }
 
 DictCore::~DictCore()
 {
+    
 }
 
 bool DictCore::isTranslatable(const QString &word)
 {
-    return true;
+    
 }
 
 QString DictCore::translate(const QString &word)
 {
-    return "Hello!";
+    
 }
 
 QStringList DictCore::findSimilarWords(const QString &word)
 {
-    return QStringList();
+    
 }
 
+QStringList DictCore::avilablePlugins() const
+{
+    
+}
+
+void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
+{
+    
+}
+
+QList<QPair<QString, QString> > DictCore::avialableDicts() const
+{
+    
+}
+
+void DictCore::setLoadedDicts(const QList<QPair<QString, QString> > &loadedDicts)
+{
+    
+}
+
+void DictCore::saveSettings()
+{
+    
+}
+
+void DictCore::loadSettings()
+{
+    
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
