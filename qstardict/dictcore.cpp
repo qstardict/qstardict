@@ -22,6 +22,7 @@
 #include <QFileInfoList>
 #include <QDir>
 #include <QRegExp>
+#include "dictplugin.h"
 
 namespace QStarDict
 {
@@ -100,6 +101,14 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
 QList<QPair<QString, QString> > DictCore::avialableDicts() const
 {
     QList<QPair<QString, QString> > result;
+    foreach (QPluginLoader *plugin, m_plugins)
+    {
+        QString pluginName = qobject_cast<DictPlugin*>(plugin->instance())->name();
+        QStringList dicts = qobject_cast<DictPlugin*>(plugin->instance())->avialableDicts();
+        for (QStringList::const_iterator i = dicts.begin(); i != dicts.end(); ++i)
+            result << QPair<QString, QString>(pluginName, *i);
+    }
+    return result;
 }
 
 void DictCore::setLoadedDicts(const QList<QPair<QString, QString> > &loadedDicts)
