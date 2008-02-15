@@ -65,7 +65,7 @@ class DictCore: public QObject
         /**
          * Returns a list of avialable dictionary plugins.
          */
-        QStringList avilablePlugins() const;
+        QStringList avialablePlugins() const;
 
         /**
          * Returns a list of loaded dictionary plugins.
@@ -92,8 +92,8 @@ class DictCore: public QObject
          * The first item in pair is a plugin name, the second item
          * in pair is a dictionary name.
          */
-//        QList<QPair<QString, QString> > &loadedDicts() const
-//        { return m_loadedDicts; }
+        const QList<QPair<QString, QString> > &loadedDicts() const
+        { return m_loadedDicts; }
 
         /**
          * Sets a loaded dictionaries.

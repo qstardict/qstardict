@@ -22,6 +22,7 @@
 #include <QFileInfoList>
 #include <QDir>
 #include <QRegExp>
+#include <QSettings>
 #include "dictplugin.h"
 
 namespace QStarDict
@@ -58,7 +59,7 @@ QStringList DictCore::findSimilarWords(const QString &word)
     return QStringList();
 }
 
-QStringList DictCore::avilablePlugins() const
+QStringList DictCore::avialablePlugins() const
 {
     QStringList result;
 #ifdef Q_OS_UNIX
@@ -141,12 +142,28 @@ void DictCore::setLoadedDicts(const QList<QPair<QString, QString> > &loadedDicts
 
 void DictCore::saveSettings()
 {
-    
+    QSettings config;
+    config.setValue("DictCore/loadedPlugins", loadedPlugins());
+    QStringList rawDictsList;
+    for (QList<QPair<QString, QString> >::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
+        rawDictsList << i->first << i->second;
+    config.setValue("DictCore/loadedDicts", rawDictsList);
 }
 
 void DictCore::loadSettings()
 {
-    
+    QSettings config;
+    setLoadedPlugins(config.value("DictCore/loadedPlugins", avialablePlugins()).toStringList());
+    QStringList rawDictsList = config.value("DictCore/loadedDicts").toStringList();
+    if (rawDictsList.isEmpty())
+        setLoadedDicts(avialableDicts());
+    else
+    {
+        QList<QPair<QString, QString> > dicts;
+        for (QStringList::const_iterator i = rawDictsList.begin(); i != rawDictsList.end(); ++i)
+            dicts << QPair<QString, QString>(*i, *(++i));
+        setLoadedDicts(dicts);
+    }
 }
 
 }
