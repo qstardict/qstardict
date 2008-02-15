@@ -32,17 +32,17 @@ class Test: public QObject, public QStarDict::DictPlugin
     public:
         Test(QObject *parent = 0);
 
-        QString name()
+        QString name() const
         { return "test"; }
 
-        QString version()
+        QString version() const
         { return "1.0"; }
 
         Features features() 
         { return Features(SearchSimilar); }
 
-        QStringList avialableDicts();
-        QStringList loadedDicts();
+        QStringList avialableDicts() const;
+        QStringList loadedDicts() const;
         void setLoadedDicts(const QStringList &dicts);
 
         bool isTranslatable(const QString &dict, const QString &word);

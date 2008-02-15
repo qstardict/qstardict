@@ -28,12 +28,12 @@ Test::Test(QObject *parent)
     m_dicts["Test 02"]["Linux"] = "A cat's name";
 }
 
-QStringList Test::avialableDicts()
+QStringList Test::avialableDicts() const
 {
     return QStringList("Test 01") << "Test 02";
 }
 
-QStringList Test::loadedDicts()
+QStringList Test::loadedDicts() const
 {
     return m_loadedDicts;
 }
@@ -67,6 +67,8 @@ QStringList Test::findSimilarWords(const QString &dict, const QString &word)
         return QStringList();
     return m_dicts[dict].keys();
 }
+
+Q_EXPORT_PLUGIN2(Test, Test)
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
