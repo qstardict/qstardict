@@ -63,9 +63,8 @@ DISTFILES += \
     qstardict.png \
     qstardict.desktop
 
-qstardict.files = qstardict
-qstardict.path = $$BIN_DIR
-INSTALLS += qstardict
+target.path = $$BIN_DIR
+INSTALLS += target
 
 unix {
     desktop_icon.files = qstardict.png
