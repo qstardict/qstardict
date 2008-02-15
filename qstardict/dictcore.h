@@ -116,7 +116,7 @@ class DictCore: public QObject
         void loadSettings();
 
         QHash<QString, QPluginLoader*> m_plugins;
-//        QList<QPair<QString, QString> > &m_loadedDicts;
+        QList<QPair<QString, QString> > m_loadedDicts;
 };
 
 }

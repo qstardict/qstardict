@@ -43,16 +43,19 @@ DictCore::~DictCore()
 bool DictCore::isTranslatable(const QString &word)
 {
     Q_UNUSED(word)
+    return false;
 }
 
 QString DictCore::translate(const QString &word)
 {
     Q_UNUSED(word)
+    return QString();
 }
 
 QStringList DictCore::findSimilarWords(const QString &word)
 {
     Q_UNUSED(word)
+    return QStringList();
 }
 
 QStringList DictCore::avilablePlugins() const
@@ -113,7 +116,27 @@ QList<QPair<QString, QString> > DictCore::avialableDicts() const
 
 void DictCore::setLoadedDicts(const QList<QPair<QString, QString> > &loadedDicts)
 {
-    
+    QHash<QString, QStringList> dicts;
+    for (QList<QPair<QString, QString> >::const_iterator i = loadedDicts.begin(); i != loadedDicts.end(); ++i)
+    {
+        dicts[i->first] << i->second;
+    }
+    for (QHash<QString, QStringList>::iterator i = dicts.begin(); i != dicts.end(); ++i)
+    {
+        if (m_plugins.contains(i.key()))
+        {
+            qobject_cast<DictPlugin*>(m_plugins[i.key()]->instance())->setLoadedDicts(*i);
+            dicts[i.key()] = qobject_cast<DictPlugin*>(m_plugins[i.key()]->instance())->loadedDicts();
+        }
+        else
+            dicts.erase(i);
+    }
+    m_loadedDicts.clear();
+    for (QList<QPair<QString, QString> >::const_iterator i = loadedDicts.begin(); i != loadedDicts.end(); ++i)
+    {
+        if (dicts.contains(i->first) && dicts[i->first].contains(i->second))
+                m_loadedDicts << *i;
+    }
 }
 
 void DictCore::saveSettings()
