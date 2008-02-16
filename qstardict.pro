@@ -42,5 +42,5 @@ message("Install prefix: "$$INSTALL_PREFIX)
 message("Binary directory: "$$BIN_DIR)
 message("Data directory: "$$DATA_DIR)
 message("Translations directory: "$$TRANSLATIONS_DIR)
-message("Pixmaps directory: "$$PIXMAPS_DIR)
+message("Plugins directory: "$$PLUGINS_DIR)
 
