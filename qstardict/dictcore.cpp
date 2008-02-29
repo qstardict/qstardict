@@ -67,6 +67,8 @@ QStringList DictCore::avialablePlugins() const
                   QDir::Files | QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
         result << i->fileName().remove(QRegExp("^lib")).remove(QRegExp("\\.so"));
+#elif defined Q_OS_WIN
+    // TODO
 #else
 #error "Function DictCore::avialablePlugins() is not implemented on this platform"
 #endif
@@ -87,6 +89,9 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
         }
 #ifdef Q_OS_UNIX
         QString pluginFilename = QSTARDICT_PLUGINS_DIR "/" "lib" + *i + ".so";
+#elif defined Q_OS_WIN
+        // TODO
+        QString pluginFilename = QSTARDICT_PLUGINS_DIR "/" "lib" + *i + ".dll";
 #else
 #error "Function DictCore::setLoadedPlugins(const QStringList &loadedPlugins) is not avialable on this platform"
 #endif

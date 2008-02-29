@@ -54,7 +54,7 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
     return result;
 }
 
-}
+} // namespace
 
 #else // Q_WS_X11
 
@@ -62,12 +62,12 @@ namespace QStarDict
 {
 
 // TODO: write it for other platforms
-Qt::KeyBoardModifiers Keyboard::modifiers()
+Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
     return Qt::NoModifier;
 }
 
-}
+} // namespace
 
 #endif // Q_WS_X11
 

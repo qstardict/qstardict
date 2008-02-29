@@ -26,11 +26,15 @@ QT = \
     xml
 CONFIG += \
     qt \
-    link_pkgconfig \
     warn_on \
     release
-PKGCONFIG += \
-    glib-2.0
+# not available on Win
+unix {
+	CONFIG += \
+		link_pkgconfig
+	PKGCONFIG += \
+    	glib-2.0
+}
 
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
