@@ -185,8 +185,8 @@ void DictCore::loadSettings()
     else
     {
         QList<Dictionary> dicts;
-        for (QStringList::const_iterator i = rawDictsList.begin(); i != rawDictsList.end(); ++i)
-            dicts << Dictionary(*i, *(++i));
+        for (QStringList::const_iterator i = rawDictsList.begin(); i != rawDictsList.end(); i += 2)
+            dicts << Dictionary(*i, *(i + 1));
         setLoadedDicts(dicts);
     }
 }
