@@ -62,8 +62,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         /**
          * Set the dictionary.
          */
-        void setDict(DictCore *dict)
-        { m_dict = dict; }
+        void setDict(DictCore *dict);
 
         /**
          * Returns the dictionary.

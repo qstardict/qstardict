@@ -20,9 +20,12 @@
 #include "dictcore.h"
 
 #include <QFileInfoList>
+#include <QFileInfo>
 #include <QDir>
 #include <QRegExp>
 #include <QSettings>
+#include <QDebug>
+#include <QPluginLoader>
 #include "dictplugin.h"
 
 namespace QStarDict
@@ -43,30 +46,58 @@ DictCore::~DictCore()
 
 bool DictCore::isTranslatable(const QString &word)
 {
-    Q_UNUSED(word)
+    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i) 
+    {
+        if (! m_plugins.contains(i->plugin()))
+            continue;
+        if (qobject_cast<DictPlugin*>(m_plugins[i->plugin()]->instance())->isTranslatable(i->name(), word))
+            return true;
+    }
     return false;
 }
 
 QString DictCore::translate(const QString &word)
 {
-    Q_UNUSED(word)
-    return QString();
+    QString result;
+    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
+    {
+        if (! m_plugins.contains(i->plugin()))
+            continue;
+        DictPlugin *plugin = qobject_cast<DictPlugin*>(m_plugins[i->plugin()]->instance());
+        if (! plugin->isTranslatable(i->name(), word))
+            continue;
+        DictPlugin::Translation translation = plugin->translate(i->name(), word);
+        result += "<p><font class=\"normal\">\n"
+            "<font class=\"dict_name\">" + translation.dictName() + "</font><br>\n"
+            "<font class=\"title\">" + translation.title() + "</font><br>\n"
+            + translation.translation() + "</font></p>\n";
+    }
+    return result;
 }
 
 QStringList DictCore::findSimilarWords(const QString &word)
 {
-    Q_UNUSED(word)
-    return QStringList();
+    QStringList result;
+    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
+    {
+        if (! m_plugins.contains(i->plugin()))
+            continue;
+        DictPlugin *plugin = qobject_cast<DictPlugin*>(m_plugins[i->plugin()]->instance());
+        if (! plugin->features().testFlag(DictPlugin::SearchSimilar))
+            continue;
+        result += plugin->findSimilarWords(i->name(), word);
+    }
+    return result;
 }
 
 QStringList DictCore::avialablePlugins() const
 {
     QStringList result;
 #ifdef Q_OS_UNIX
-    QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("*.so"),
+    QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("lib*.so"),
                   QDir::Files | QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
-        result << i->fileName().remove(QRegExp("^lib")).remove(QRegExp("\\.so"));
+        result << i->fileName().mid(3, i->fileName().length() - 6);
 #elif defined Q_OS_WIN
     // TODO
 #else
@@ -77,16 +108,12 @@ QStringList DictCore::avialablePlugins() const
 
 void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
 {
-    QHash <QString, QPluginLoader*> oldPlugins = m_plugins;
+    for (QHash <QString, QPluginLoader*>::iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
+        delete *i;
     m_plugins.clear();
+
     for (QStringList::const_iterator i = loadedPlugins.begin(); i != loadedPlugins.end(); ++i)
     {
-        if (oldPlugins.contains(*i))
-        {
-            m_plugins[*i] = oldPlugins[*i];
-            oldPlugins.remove(*i);
-            continue;
-        }
 #ifdef Q_OS_UNIX
         QString pluginFilename = QSTARDICT_PLUGINS_DIR "/" "lib" + *i + ".so";
 #elif defined Q_OS_WIN
@@ -98,51 +125,44 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
         QPluginLoader *plugin = new QPluginLoader(pluginFilename);
         if (! plugin->load())
         {
+            qWarning() << plugin->errorString();
             delete plugin;
             continue;
         }
         m_plugins[*i] = plugin;
     }
-    foreach (QPluginLoader *i, oldPlugins)
-        delete i;
 }
 
-QList<QPair<QString, QString> > DictCore::avialableDicts() const
+QList<DictCore::Dictionary> DictCore::avialableDicts() const
 {
-    QList<QPair<QString, QString> > result;
-    foreach (QPluginLoader *plugin, m_plugins)
+    QList<Dictionary> result;
+    for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
     {
-        QString pluginName = qobject_cast<DictPlugin*>(plugin->instance())->name();
-        QStringList dicts = qobject_cast<DictPlugin*>(plugin->instance())->avialableDicts();
-        for (QStringList::const_iterator i = dicts.begin(); i != dicts.end(); ++i)
-            result << QPair<QString, QString>(pluginName, *i);
+        DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
+        QStringList dicts = plugin->avialableDicts();
+        for (QStringList::const_iterator j = dicts.begin(); j != dicts.end(); ++j)
+            result << Dictionary(i.key(), *j);
     }
     return result;
 }
 
-void DictCore::setLoadedDicts(const QList<QPair<QString, QString> > &loadedDicts)
+void DictCore::setLoadedDicts(const QList<Dictionary> &loadedDicts)
 {
     QHash<QString, QStringList> dicts;
-    for (QList<QPair<QString, QString> >::const_iterator i = loadedDicts.begin(); i != loadedDicts.end(); ++i)
+    for (QList<Dictionary>::const_iterator i = loadedDicts.begin(); i != loadedDicts.end(); ++i)
+        dicts[i->plugin()] << i->name();
+    for (QHash<QString, QStringList>::const_iterator i = dicts.begin(); i != dicts.end(); ++i)
     {
-        dicts[i->first] << i->second;
-    }
-    for (QHash<QString, QStringList>::iterator i = dicts.begin(); i != dicts.end(); ++i)
-    {
-        if (m_plugins.contains(i.key()))
-        {
-            qobject_cast<DictPlugin*>(m_plugins[i.key()]->instance())->setLoadedDicts(*i);
-            dicts[i.key()] = qobject_cast<DictPlugin*>(m_plugins[i.key()]->instance())->loadedDicts();
-        }
-        else
-            dicts.erase(i);
+        if (! m_plugins.contains(i.key()))
+            continue;
+        DictPlugin *plugin = qobject_cast<DictPlugin*>(m_plugins[i.key()]->instance());
+        plugin->setLoadedDicts(*i);
+        dicts[i.key()] = plugin->loadedDicts();
     }
     m_loadedDicts.clear();
-    for (QList<QPair<QString, QString> >::const_iterator i = loadedDicts.begin(); i != loadedDicts.end(); ++i)
-    {
-        if (dicts.contains(i->first) && dicts[i->first].contains(i->second))
-                m_loadedDicts << *i;
-    }
+    for (QList<Dictionary>::const_iterator i = loadedDicts.begin(); i != loadedDicts.end(); ++i)
+        if (dicts.contains(i->plugin()) && dicts[i->plugin()].contains(i->name()))
+            m_loadedDicts << *i;
 }
 
 void DictCore::saveSettings()
@@ -150,8 +170,8 @@ void DictCore::saveSettings()
     QSettings config;
     config.setValue("DictCore/loadedPlugins", loadedPlugins());
     QStringList rawDictsList;
-    for (QList<QPair<QString, QString> >::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
-        rawDictsList << i->first << i->second;
+    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
+        rawDictsList << i->plugin() << i->name();
     config.setValue("DictCore/loadedDicts", rawDictsList);
 }
 
@@ -164,9 +184,9 @@ void DictCore::loadSettings()
         setLoadedDicts(avialableDicts());
     else
     {
-        QList<QPair<QString, QString> > dicts;
+        QList<Dictionary> dicts;
         for (QStringList::const_iterator i = rawDictsList.begin(); i != rawDictsList.end(); ++i)
-            dicts << QPair<QString, QString>(*i, *(++i));
+            dicts << Dictionary(*i, *(++i));
         setLoadedDicts(dicts);
     }
 }

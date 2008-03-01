@@ -24,8 +24,9 @@
 
 #include <QStringList>
 #include <QPair>
-#include <QPluginLoader>
 #include <QHash>
+
+class QPluginLoader;
 
 namespace QStarDict
 {
@@ -38,6 +39,33 @@ class DictCore: public QObject
     Q_OBJECT
 
     public:
+        /**
+         * This class represents a dictionary.
+         */
+        class Dictionary
+        {
+            public:
+                Dictionary(const QString &plugin, const QString &name)
+                    : m_plugin(plugin),
+                      m_name(name)
+                {  }
+                Dictionary()
+                { }
+                
+                const QString &plugin() const
+                { return m_plugin; }
+                const QString &name() const
+                { return m_name; }
+                void setPlugin(const QString &plugin)
+                { m_plugin = plugin; }
+                void setName(const QString &name)
+                { m_name = name; }
+
+            private:
+                QString m_plugin;
+                QString m_name;
+        };
+
         /**
          * Construct dictionary.
          */
@@ -85,14 +113,14 @@ class DictCore: public QObject
          * The first item in pair is a plugin name, the second item
          * in pair is a dictionary name.
          */
-        QList<QPair<QString, QString> > avialableDicts() const;
+        QList<Dictionary> avialableDicts() const;
 
         /**
          * Returns a list of loaded dictionaries. 
          * The first item in pair is a plugin name, the second item
          * in pair is a dictionary name.
          */
-        const QList<QPair<QString, QString> > &loadedDicts() const
+        const QList<Dictionary> &loadedDicts() const
         { return m_loadedDicts; }
 
         /**
@@ -102,7 +130,7 @@ class DictCore: public QObject
          * If dictionary cannot be loaded it will not be added to 
          * avialableDicts list.
          */
-        void setLoadedDicts(const QList<QPair<QString, QString> > &loadedDicts);
+        void setLoadedDicts(const QList<Dictionary> &loadedDicts);
 
     private:
         /**
@@ -115,8 +143,8 @@ class DictCore: public QObject
          */
         void loadSettings();
 
+        QList<Dictionary> m_loadedDicts;
         QHash<QString, QPluginLoader*> m_plugins;
-        QList<QPair<QString, QString> > m_loadedDicts;
 };
 
 }

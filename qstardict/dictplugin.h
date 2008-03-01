@@ -91,7 +91,7 @@ class DictPlugin
                 /**
                  * Returns a translation.
                  */
-                const QString &traslation() const
+                const QString &translation() const
                 { return m_translation; }
 
                 /**

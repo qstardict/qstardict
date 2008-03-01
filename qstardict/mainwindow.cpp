@@ -177,6 +177,12 @@ void MainWindow::setInstantSearch(bool instantSearch)
         disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(on_queryButton_clicked()));
 }
 
+void MainWindow::setDict(DictCore *dict)
+{
+    m_dict = dict;
+    translationView->setDict(dict);
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
