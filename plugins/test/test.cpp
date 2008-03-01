@@ -22,53 +22,46 @@
 Test::Test(QObject *parent)
     : QObject(parent)
 {
-    m_dicts["Test 01"]["Linux"] = "Kernel of GNU/Linux operating system";
-    m_dicts["Test 01"]["Linus"] = "Creator of Linux kernel";
-    m_dicts["Test 02"]["cat"] = "A lazy and fluffy pet";
-    m_dicts["Test 02"]["Linux"] = "A cat's name";
+    
+}
+
+QString Test::name() const
+{
+    return "test";
+}
+
+QString Test::version() const
+{
+    return "0.1";
 }
 
 QStringList Test::avialableDicts() const
 {
-    return QStringList("Test 01") << "Test 02";
+    return QStringList("test01") << "test02";
 }
 
 QStringList Test::loadedDicts() const
 {
-    return m_loadedDicts;
+    return QStringList("test01");
 }
 
 void Test::setLoadedDicts(const QStringList &dicts)
 {
-    m_loadedDicts.clear();
-    foreach (QString str, dicts)
-        if (m_dicts.contains(str))
-            m_loadedDicts << str;
+    Q_UNUSED(dicts)
 }
 
 bool Test::isTranslatable(const QString &dict, const QString &word)
 {
-    if (! m_loadedDicts.contains(dict))
-        return false;
-    return m_dicts[dict].contains(word);
-}
-
-QStarDict::DictPlugin::Translation Test::translate(const QString &dict, const QString &word)
-{
-    if (! isTranslatable(dict, word))
-        return Translation();
-    return Translation(word, dict, m_dicts[dict][word]);
-}
-
-QStringList Test::findSimilarWords(const QString &dict, const QString &word)
-{
+    Q_UNUSED(dict)
     Q_UNUSED(word)
-    if (! m_loadedDicts.contains(dict))
-        return QStringList();
-    return m_dicts[dict].keys();
 }
 
-Q_EXPORT_PLUGIN2(Test, Test)
+Test::Translation Test::translate(const QString &dict, const QString &word)
+{
+    return Translation(word, dict, "test translation");
+}
+
+Q_EXPORT_PLUGIN2(test, Test)
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

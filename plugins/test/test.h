@@ -32,14 +32,8 @@ class Test: public QObject, public QStarDict::DictPlugin
     public:
         Test(QObject *parent = 0);
 
-        QString name() const
-        { return "test"; }
-
-        QString version() const
-        { return "1.0"; }
-
-        Features features() 
-        { return Features(SearchSimilar); }
+        QString name() const;
+        QString version() const;
 
         QStringList avialableDicts() const;
         QStringList loadedDicts() const;
@@ -47,11 +41,6 @@ class Test: public QObject, public QStarDict::DictPlugin
 
         bool isTranslatable(const QString &dict, const QString &word);
         Translation translate(const QString &dict, const QString &word);
-        QStringList findSimilarWords(const QString &dict, const QString &word);
-
-    private:
-        QStringList m_loadedDicts;
-        QHash<QString, QHash<QString, QString> > m_dicts;
 };
 
 #endif // TEST_H
