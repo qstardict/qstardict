@@ -90,6 +90,12 @@ bool PopupWindow::isScan() const
     return m_selection->isScan();
 }
 
+void PopupWindow::setDict(DictCore *dict)
+{
+    translationView->setDict(dict);
+    m_dict = dict;
+}
+
 void PopupWindow::selectionChanged(const QString &text)
 {
     if (m_modifierKey && ! Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_modifierKey)))
