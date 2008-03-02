@@ -122,7 +122,7 @@ StarDict::Translation StarDict::translate(const QString &dict, const QString &wo
             QString::fromUtf8(parse_data(m_sdLibs->poGetWordData(ind, dictIndex)).c_str()));
 }
 
-QStringList StarDict::findSimilarWords(const QString &dict, const QString &word)
+QStringList StarDict::findSimilarWords(const QString &word)
 {
     if (! m_loadedDicts.contains(dict))
         return QStringList();
