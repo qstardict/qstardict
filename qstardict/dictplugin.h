@@ -262,7 +262,7 @@ class DictPlugin
          * Works only if SearchSimilar feature is enabled.
          */
         virtual QStringList findSimilarWords(const QString &word)
-        { Q_UNUSED(dict) return QStringList(word); }
+        { return QStringList(word); }
 
         /**
          * Returns an information about dictionary. The dictionary may be not loaded

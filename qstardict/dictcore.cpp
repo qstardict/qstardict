@@ -58,15 +58,16 @@ bool DictCore::isTranslatable(const QString &word)
 
 QString DictCore::translate(const QString &word)
 {
+    QString simplifiedWord = word.simplified();
     QString result;
     for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
     {
         if (! m_plugins.contains(i->plugin()))
             continue;
         DictPlugin *plugin = qobject_cast<DictPlugin*>(m_plugins[i->plugin()]->instance());
-        if (! plugin->isTranslatable(i->name(), word))
+        if (! plugin->isTranslatable(i->name(), simplifiedWord))
             continue;
-        DictPlugin::Translation translation = plugin->translate(i->name(), word);
+        DictPlugin::Translation translation = plugin->translate(i->name(), simplifiedWord);
         result += "<p><font class=\"normal\">\n"
             "<font class=\"dict_name\">" + translation.dictName() + "</font><br>\n"
             "<font class=\"title\">" + translation.title() + "</font><br>\n"
@@ -77,13 +78,14 @@ QString DictCore::translate(const QString &word)
 
 QStringList DictCore::findSimilarWords(const QString &word)
 {
+    QString simplifiedWord = word.simplified();
     QStringList result;
-    for (QHash<QString, QPluginLoader*>::const_iterator i = m_loadedPlugins.begin(); i != m_loadedPlugins.end(); ++i)
+    for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
     {
         DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
-        if (! plugin.features().testFlag(SearchSimilar))
+        if (! plugin->features().testFlag(DictPlugin::SearchSimilar))
             continue;
-        QStringList similar = plugin->findSimilarWords();
+        QStringList similar = plugin->findSimilarWords(simplifiedWord);
         for (QStringList::const_iterator j = similar.begin(); j != similar.end(); ++i)
             if (! result.contains(*j, Qt::CaseSensitive))
                 result << *j;

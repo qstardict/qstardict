@@ -124,8 +124,6 @@ StarDict::Translation StarDict::translate(const QString &dict, const QString &wo
 
 QStringList StarDict::findSimilarWords(const QString &word)
 {
-    if (! m_loadedDicts.contains(dict))
-        return QStringList();
     gchar *fuzzy_res[MaxFuzzy];
     if (! m_sdLibs->LookupWithFuzzy(word.toUtf8().data(), fuzzy_res, MaxFuzzy))
         return QStringList();
