@@ -35,6 +35,11 @@ QString Test::version() const
     return "0.1";
 }
 
+QString Test::description() const
+{
+    return tr("A test plugin");
+}
+
 QStringList Test::avialableDicts() const
 {
     return QStringList("test01") << "test02";

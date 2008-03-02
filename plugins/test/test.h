@@ -34,6 +34,7 @@ class Test: public QObject, public QStarDict::DictPlugin
 
         QString name() const;
         QString version() const;
+        QString description() const;
 
         QStringList avialableDicts() const;
         QStringList loadedDicts() const;
