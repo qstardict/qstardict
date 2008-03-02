@@ -70,9 +70,9 @@ Test::Translation Test::translate(const QString &dict, const QString &word)
 Test::DictInfo Test::dictInfo(const QString &dict)
 {
     if (dict == "test01")
-        return DictInfo("test", "test01", "first test dictionary", 5);
+        return DictInfo("test", "test01");
     else if (dict == "test02")
-        return DictInfo("test", "test02", "second test dictionary");
+        return DictInfo("test", "test02");
     else
         return DictInfo();
 }
