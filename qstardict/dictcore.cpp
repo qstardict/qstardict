@@ -86,7 +86,7 @@ QStringList DictCore::findSimilarWords(const QString &word)
         if (! plugin->features().testFlag(DictPlugin::SearchSimilar))
             continue;
         QStringList similar = plugin->findSimilarWords(simplifiedWord);
-        for (QStringList::const_iterator j = similar.begin(); j != similar.end(); ++i)
+        for (QStringList::const_iterator j = similar.begin(); j != similar.end(); ++j)
             if (! result.contains(*j, Qt::CaseSensitive))
                 result << *j;
     }
