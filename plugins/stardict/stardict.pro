@@ -1,5 +1,5 @@
 #############################################################################
-# plugins.pro - QStarDict, a StarDict clone written with using Qt           #
+# stardict.pro - QStarDict, a StarDict clone written with using Qt          #
 # Copyright (C) 2008 Alexander Rodin                                        #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
@@ -17,6 +17,19 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-SUBDIRS = stardict test
+TARGET = stardict
+include(../plugin.pri)
+
+HEADERS += \
+    stardict.h \
+    dictziplib.hpp \
+    distance.h \
+    file.hpp \
+    lib.h \
+    mapfile.hpp
+SOURCES += \
+    stardict.cpp \
+    dictziplib.cpp \
+    distance.cpp \
+    lib.cpp
 
