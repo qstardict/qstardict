@@ -34,6 +34,7 @@ class TrayIcon: public QSystemTrayIcon
 
     private slots:
         void on_activated(QSystemTrayIcon::ActivationReason reason);
+        void on_actionSettings_triggered();
 };
 
 }
