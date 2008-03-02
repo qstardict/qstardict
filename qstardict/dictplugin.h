@@ -119,6 +119,49 @@ class DictPlugin
         };
 
         /**
+         * This class represents an information about dictionary.
+         */
+        class DictInfo
+        {
+            public:
+                DictInfo()
+                { }
+                DictInfo(const QString &plugin,
+                         const QString &name,
+                         const QString &description = QString(),
+                         long wordsCount = -1)
+                    : m_plugin(plugin),
+                      m_name(name),
+                      m_description(description),
+                      m_wordsCount
+                { }
+
+                const QString &plugin() const
+                { return m_plugin; }
+                const QString &name() const
+                { return m_name; }
+                const QString &description() const
+                { return m_description; }
+                long wordsCount() const
+                { return m_wordsCount; }
+
+                void setPlugin(const QString &plugin)
+                { m_plugin = plugin; }
+                void setName(const QString &name)
+                { m_name = name; }
+                void setDescription(const QString &description)
+                { m_description = description; }
+                void setWordsCount(long wordsCount)
+                { m_wordsCount = wordsCount; }
+
+            private:
+                QString m_plugin;
+                QString m_name;
+                QString m_description;
+                long m_wordsCount;
+        };
+
+        /**
          * Destructor
          */
         virtual ~DictPlugin() { }
@@ -170,6 +213,12 @@ class DictPlugin
          */
         virtual QStringList findSimilarWords(const QString &dict, const QString &word)
         { Q_UNUSED(dict) return QStringList(word); }
+
+        /**
+         * Returns an information about dictionary. The dictionary may be not loaded
+         * but avialable.
+         */
+        virtual DictInfo dictInfo(const QString &dict) = 0;
 
         /**
          * Run a settings dialog.
