@@ -41,6 +41,8 @@ class Test: public QObject, public QStarDict::DictPlugin
 
         bool isTranslatable(const QString &dict, const QString &word);
         Translation translate(const QString &dict, const QString &word);
+
+        DictInfo dictInfo(const QString &dict);
 };
 
 #endif // TEST_H

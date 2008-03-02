@@ -54,11 +54,22 @@ bool Test::isTranslatable(const QString &dict, const QString &word)
 {
     Q_UNUSED(dict)
     Q_UNUSED(word)
+    return true;
 }
 
 Test::Translation Test::translate(const QString &dict, const QString &word)
 {
     return Translation(word, dict, "test translation");
+}
+
+Test::DictInfo Test::dictInfo(const QString &dict)
+{
+    if (dict == "test01")
+        return DictInfo("test", "test01", "first test dictionary", 5);
+    else if (dict == "test02")
+        return DictInfo("test", "test02", "second test dictionary");
+    else
+        return DictInfo();
 }
 
 Q_EXPORT_PLUGIN2(test, Test)
