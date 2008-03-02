@@ -32,7 +32,7 @@
 #include "dictcore.h"
 #include "application.h"
 #include "popupwindow.h"
-//#include "settingsdialog.h"
+#include "settingsdialog.h"
 
 namespace QStarDict 
 {
@@ -112,8 +112,8 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-//    SettingsDialog dialog(this);
-//    dialog.exec();
+    SettingsDialog dialog(this);
+    dialog.exec();
 }
 
 void MainWindow::on_actionSaveToFile_triggered()
