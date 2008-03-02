@@ -66,7 +66,10 @@ class DictPlugin
                 { }
 
                 /**
-                 * Constructs a translation from strings.
+                 * Constructs a translation from data.
+                 * @param title A translation title
+                 * @param dictName A full dictionary name
+                 * @param translation A translation
                  */
                 Translation(const QString &title,
                         const QString &dictName,
@@ -119,13 +122,27 @@ class DictPlugin
         };
 
         /**
-         * This class represents an information about dictionary.
+         * This class represents information about dictionary.
          */
         class DictInfo
         {
             public:
+                /**
+                 * Constructs empty DictInfo object.
+                 */
                 DictInfo()
                 { }
+                /**
+                 * Constructs DictInfo object from data.
+                 * @param plugin A plugin name
+                 * @param name A dictionary name
+                 * @param fullName A full dictionary name
+                 * @param author A dictionary author
+                 * @param email An author e-mail
+                 * @param webSite A dictionary website
+                 * @param desription A dictionary description
+                 * @param wordsCount A count of words that avialable in dictionary
+                 */
                 DictInfo(const QString &plugin,
                          const QString &name,
                          const QString &fullName = QString(),
@@ -190,11 +207,11 @@ class DictPlugin
         };
 
         /**
-         * Destructor
+         * Destructor.
          */
         virtual ~DictPlugin() { }
 
-        /*
+        /**
          * Returns a plugin name.
          */
         virtual QString name() const = 0;
@@ -230,9 +247,9 @@ class DictPlugin
          */
         virtual void setLoadedDicts(const QStringList &loadedDicts) = 0;
 
-        /*
+        /**
          * Returns true if translation exists in dictionary,
-         * otherwise return false.
+         * otherwise returns false.
          */
         virtual bool isTranslatable(const QString &dict, const QString &word) = 0;
         /**
@@ -241,10 +258,10 @@ class DictPlugin
          */
         virtual Translation translate(const QString &dict, const QString &word) = 0;
         /**
-         * Returns a list of similar to "word" words form dictionary. Works only if
-         * SearchSimilar feature is enabled.
+         * Returns a list of similar to "word" words from all loaded dictionaries.
+         * Works only if SearchSimilar feature is enabled.
          */
-        virtual QStringList findSimilarWords(const QString &dict, const QString &word)
+        virtual QStringList findSimilarWords(const QString &word)
         { Q_UNUSED(dict) return QStringList(word); }
 
         /**
