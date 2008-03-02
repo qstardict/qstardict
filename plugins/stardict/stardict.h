@@ -58,34 +58,6 @@ class StarDict: public QObject, public QStarDict::DictPlugin
         void execSettingsDialog();
 
     private:
-        class SearchResult
-        {
-            public:
-                QString dictName;
-                QString def;
-                QString exp;
-
-                SearchResult()
-                { }
-                SearchResult(const QString &_dictName, const QString &_def, const QString &_exp)
-                        : dictName(_dictName),
-                          def(_def),
-                          exp(_exp)
-                { }
-                SearchResult(const char *_dictName, const char *_def, const char *_exp)
-                        : dictName(QString::fromUtf8(_dictName)),
-                          def(QString::fromUtf8(_def)),
-                          exp(QString::fromUtf8(_exp))
-                { }
-        };
-        typedef QVector<SearchResult> SearchResultList;
-
-        void simpleLookup(const std::string &str, SearchResultList &resultList);
-        void lookupWithFuzzy(const std::string &str, SearchResultList &resultList);
-        void lookupWithRule(const std::string &str, SearchResultList &resultList);
-        void lookupData(const std::string &str, SearchResultList &resultList);
-        QString translation(const QString &str, const QString &dict);
-
         Libs *m_sdLibs;
         QStringList m_dictDirs;
         QHash<QString, int> m_loadedDicts;

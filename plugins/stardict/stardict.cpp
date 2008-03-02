@@ -27,15 +27,16 @@
 #include <QStack>
 #include <glib/gmem.h>
 #include <glib/gstrfuncs.h>
-#include "lib/lib.h"
-#include "lib/file.hpp"
+#include "lib.h"
+#include "file.hpp"
 
 namespace
 {
 std::string xdxf2html(const char *p);
 std::string parse_data(const char *data);
 QString html2text(QString html);
-QString whereDict(const QString &name, const QString &path);
+QString whereDict(const QString &name, const QStringList &paths);
+QStringList findDicts(const QString &str);
 const int MaxFuzzy = 24;
 }
 
@@ -74,27 +75,27 @@ void StarDict::setLoadedDicts(const QStringList &loadedDicts)
     for (QStringList::const_iterator dictName = loadedDicts.begin(); dictName != loadedDicts.end(); ++dictName)
         for (QStringList::const_iterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); ++dictDir)
         {
-            QString dictFile = whereDict(*dictName, *dictDir);
+            QString dictFile = whereDict(*dictName, m_dictDirs);
             if (! dictFile.isEmpty())
                 m_sdLibs->load_dict(QDir::toNativeSeparators(dictFile).toUtf8().data());
         }
     m_loadedDicts.clear();
-    for (int i = 0; i < m_sdLibs.ndicts(); ++i)
-        m_loadedDicts[m_sdLibs.dict_name(i)] = i;
+    for (int i = 0; i < m_sdLibs->ndicts(); ++i)
+        m_loadedDicts[QString::fromUtf8(m_sdLibs->dict_name(i).c_str())] = i;
 }
 
-StarDict::DictInfo dictInfo(const QString &dict)
+StarDict::DictInfo StarDict::dictInfo(const QString &dict)
 {
     ::DictInfo nativeInfo;
-    if (! nativeInfo.load_from_ifo_file(whereDict(dict), false))
+    if (! nativeInfo.load_from_ifo_file(whereDict(dict, StarDict::m_dictDirs).toUtf8().data(), false))
         return DictInfo();
     DictInfo result(name(), dict);
     result.setFullName(QString::fromUtf8(nativeInfo.bookname.c_str()));
     result.setAuthor(QString::fromUtf8(nativeInfo.author.c_str()));
     result.setEmail(QString::fromUtf8(nativeInfo.email.c_str()));
-    result.setWebSite(QString::fromUtf8(nativeInfo.webSite.c_str()));
+    result.setWebSite(QString::fromUtf8(nativeInfo.website.c_str()));
     result.setDescription(QString::fromUtf8(nativeInfo.description.c_str()));
-    result.setWordsCount(static_cast<long>(wordcount));
+    result.setWordsCount(static_cast<long>(nativeInfo.wordcount));
     return result;
 }
 
@@ -103,17 +104,38 @@ bool StarDict::isTranslatable(const QString &dict, const QString &word)
     if (! m_loadedDicts.contains(dict))
         return false;
     long ind;
-    return m_sdLibs->SimpleLookupWord(word.simplified().toUtf8().data(), ind, m_loadedDicts[dict]);
+    return m_sdLibs->SimpleLookupWord(word.toUtf8().data(), ind, m_loadedDicts[dict]);
 }
 
-Translation StarDict::translate(const QString &dict, const QString &word)
+StarDict::Translation StarDict::translate(const QString &dict, const QString &word)
 {
-
+    if (! m_loadedDicts.contains(dict))
+        return Translation();
+    if (word.isEmpty())
+        return Translation();
+    int dictIndex = m_loadedDicts[dict];
+    long ind;
+    if (! m_sdLibs->SimpleLookupWord(word.toUtf8().data(), ind, m_loadedDicts[dict]))
+        return Translation();
+    return Translation(QString::fromUtf8(m_sdLibs->poGetWord(ind, dictIndex)),
+            QString::fromUtf8(m_sdLibs->dict_name(dictIndex).c_str()),
+            QString::fromUtf8(parse_data(m_sdLibs->poGetWordData(ind, dictIndex)).c_str()));
 }
 
 QStringList StarDict::findSimilarWords(const QString &dict, const QString &word)
 {
-    
+    if (! m_loadedDicts.contains(dict))
+        return QStringList();
+    gchar *fuzzy_res[MaxFuzzy];
+    if (! m_sdLibs->LookupWithFuzzy(word.toUtf8().data(), fuzzy_res, MaxFuzzy))
+        return QStringList();
+    QStringList result;
+    for (gchar **p = fuzzy_res, **end = fuzzy_res + MaxFuzzy; p != end && *p; ++p)
+    {
+        result << QString::fromUtf8(*p);
+        g_free(*p);
+    }
+    return result;
 }
 
 void StarDict::execSettingsDialog()
@@ -121,30 +143,187 @@ void StarDict::execSettingsDialog()
     
 }
 
-void StarDict::simpleLookup(const std::string &str, SearchResultList &resultList)
+namespace
 {
-    
+std::string xdxf2html(const char *p) // taken from sdcv
+{
+    std::string res;
+    for (; *p; ++p)
+    {
+        if (*p != '<')
+        {
+            if (*p == '\n')
+                res += "<br>";
+            else
+                res += *p;
+            continue;
+        }
+
+        const char *next = strchr(p, '>');
+        if (!next)
+            continue;
+
+        std::string name(p + 1, next - p - 1);
+
+        if (name == "abr")
+            res += "<font class=\"abbreviature\">";
+        else if (name == "/abr")
+            res += "</font>";
+        else if (name == "k")
+        {
+            const char *begin = next;
+            if ((next = strstr(begin, "</k>")) != 0)
+                next += sizeof("</k>") - 1 - 1;
+            else
+                next = begin;
+        }
+        else if (name == "tr")
+            res += "<font class=\"transcription\">[";
+        else if (name == "/tr")
+            res += "]</font>";
+        else if (name == "ex")
+            res += "<font class=\"example\">";
+        else if (name == "/ex")
+            res += "</font>";
+        else if (!name.empty() && name[0] == 'c' && name != "co")
+        {
+            std::string::size_type pos = name.find("code");
+            if (pos != std::string::size_type( -1))
+            {
+                pos += sizeof("code=\"") - 1;
+                std::string::size_type end_pos = name.find("\"");
+                std::string color(name, pos, end_pos - pos);
+                res += "";
+            }
+            else
+            {
+                res += "";
+            }
+        }
+        else if (name == "/c")
+            res += "";
+
+        p = next;
+    }
+    return res;
 }
 
-void StarDict::lookupWithFuzzy(const std::string &str, SearchResultList &resultList)
+std::string parse_data(const char *data) // taken from sdcv
 {
-    
+    using std::string;
+
+    if (!data)
+        return "";
+
+    string res;
+    guint32 data_size, sec_size = 0;
+    gchar *m_str;
+    const gchar *p = data;
+    data_size = *((guint32 *)p);
+    p += sizeof(guint32);
+    while (guint32(p - data) < data_size)
+    {
+        switch (*p++)
+        {
+        case 'm':
+        case 'l':  //need more work...
+        case 'g':
+            sec_size = strlen(p);
+            if (sec_size)
+            {
+                res += "\n";
+                m_str = g_strndup(p, sec_size);
+                res += m_str;
+                g_free(m_str);
+            }
+            ++sec_size;
+            break;
+        case 'x':
+            sec_size = strlen(p);
+            if (sec_size)
+            {
+                res += "\n";
+                m_str = g_strndup(p, sec_size);
+                res += xdxf2html(m_str);
+                g_free(m_str);
+            }
+            ++sec_size;
+            break;
+        case 't':
+            sec_size = strlen(p);
+            if (sec_size)
+            {
+                res += "\n";
+                m_str = g_strndup(p, sec_size);
+                res += "[" + string(m_str) + "]";
+                g_free(m_str);
+            }
+            ++sec_size;
+            break;
+        case 'y':
+            sec_size = strlen(p);
+            ++sec_size;
+            break;
+        case 'W':
+        case 'P':
+            sec_size = *((guint32 *)p);
+            sec_size += sizeof(guint32);
+            break;
+        }
+        p += sec_size;
+    }
+    return res;
 }
 
-void StarDict::lookupWithRule(const std::string &str, SearchResultList &resultList)
+QString html2text(QString html)
 {
-    
+    return html.replace("<br>", "\n").
+                remove(QRegExp("<.*>")).
+                replace("&lt;", "<").
+                replace("&gt;", ">").
+                replace("&amp;", "&").
+                replace("&quot;", "\"");
 }
 
-void StarDict::lookupData(const std::string &str, SearchResultList &resultList)
+QString whereDict(const QString &name, const QStringList &paths)
 {
-    
+    for (QStringList::const_iterator i = paths.begin(); i != paths.end(); ++i)
+    {
+        if (QFile::exists(*i + "/" + name + ".ifo"))
+            return *i + "/" + name + ".ifo";
+
+        QStringList dirs = QDir(*i).entryList(QDir::AllDirs | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+        for (QStringList::const_iterator j = dirs.begin(); j != dirs.end(); ++j)
+        {
+            QString result = whereDict(name, QStringList(*i + "/" + *j));
+            if (! result.isEmpty())
+                return result;
+        }
+    }
+
+    return QString();
 }
 
-QString StarDict::translation(const QString &str, const QString &dict)
+QStringList findDicts(const QString &dir)
 {
-    
+    QFileInfoList result = QDir(dir).entryInfoList(QStringList("*.ifo"), QDir::Files | QDir::AllDirs |
+            QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    QStringList dicts;
+
+    for (QFileInfoList::const_iterator i = result.begin(); i != result.end(); ++i)
+    {
+        if (i->isDir())
+            dicts << findDicts(i->filePath());
+        else
+            dicts << QString(i->fileName()).remove(QRegExp("\\.ifo$"));
+    }
+
+    return dicts;
 }
+
+}
+
+Q_EXPORT_PLUGIN2(stardict, StarDict)
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
