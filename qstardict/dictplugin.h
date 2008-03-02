@@ -177,6 +177,11 @@ class DictPlugin
         virtual QString version() const = 0;
 
         /**
+         * Returns a plugin description.
+         */
+        virtual QString description() const = 0;
+
+        /**
          * Returns a features supported by dictionary plugin.
          */
         virtual Features features() const
