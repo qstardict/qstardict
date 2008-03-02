@@ -78,15 +78,14 @@ QString DictCore::translate(const QString &word)
 QStringList DictCore::findSimilarWords(const QString &word)
 {
     QStringList result;
-    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
+    for (QHash<QString, QPluginLoader*>::const_iterator i = m_loadedPlugins.begin(); i != m_loadedPlugins.end(); ++i)
     {
-        if (! m_plugins.contains(i->plugin()))
-            continue;
-        DictPlugin *plugin = qobject_cast<DictPlugin*>(m_plugins[i->plugin()]->instance());
-        if (! plugin->features().testFlag(DictPlugin::SearchSimilar))
-            continue;
-        result += plugin->findSimilarWords(i->name(), word);
+        QStringList similar = qobject_cast<DictPlugin*>((*i)->instance())->findSimilarWords(word);
+        for (QStringList::const_iterator j = similar.begin(); j != similar.end(); ++i)
+            if (! result.contains(*j, Qt::CaseSensitive))
+                result << *j;
     }
+    result.sort();
     return result;
 }
 
