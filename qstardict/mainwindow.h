@@ -89,8 +89,6 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void wordTranslated(const QString &word);
 
     private:
-        friend class SettingsDialog;
-
         void createConnections();
         void loadSettings();
         void saveSettings();

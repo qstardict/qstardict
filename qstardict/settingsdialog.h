@@ -38,26 +38,10 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
         /**
          * Construct new SettingsDialog widget with parent MainWindow.
          */
-        SettingsDialog(MainWindow *parent);
+        SettingsDialog(QWidget *parent = 0);
 
     private slots:
         void apply();
-
-        void moveUpOrderedDictsButtonClicked();
-        void moveDownOrderedDictsButtonClicked();
-        void moveLeftOrderedDictsButtonClicked();
-        void moveRightOrderedDictsButtonClicked();
-        void on_addDictionaryButton_clicked();
-        
-        void addDictDirsButtonClicked();
-        void removeDictDirsButtonClicked();
-        void moveUpDictDirsButtonClicked();
-        void moveDownDictDirsButtonClicked();
-
-    private:
-        void updateOrder();
-
-        MainWindow *mainWindow;
 };
 
 }

@@ -133,7 +133,7 @@ class DictPlugin
                     : m_plugin(plugin),
                       m_name(name),
                       m_description(description),
-                      m_wordsCount
+                      m_wordsCount(wordsCount)
                 { }
 
                 const QString &plugin() const
