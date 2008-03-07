@@ -41,7 +41,10 @@ DictCore::~DictCore()
 {
     saveSettings();
     foreach (QPluginLoader *loader, m_plugins)
+    {
+        delete loader->instance();
         delete loader;
+    }
 }
 
 bool DictCore::isTranslatable(const QString &word)
@@ -113,7 +116,10 @@ QStringList DictCore::avialablePlugins() const
 void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
 {
     for (QHash <QString, QPluginLoader*>::iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
+    {
+        delete (*i)->instance();
         delete *i;
+    }
     m_plugins.clear();
 
     for (QStringList::const_iterator i = loadedPlugins.begin(); i != loadedPlugins.end(); ++i)
