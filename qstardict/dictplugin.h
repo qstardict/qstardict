@@ -291,7 +291,8 @@ class DictPlugin
 #else
 #error "This function is not implemented on this platform"
 #endif
-            QDir::root().mkpath(path);
+            if (! QDir::root().exists(path))
+                QDir::root().mkpath(path);
             return path;
         }
 };
