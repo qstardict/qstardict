@@ -24,6 +24,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QSettings>
 #include <QStack>
 #include <glib/gmem.h>
 #include <glib/gstrfuncs.h>
@@ -44,16 +45,24 @@ StarDict::StarDict(QObject *parent)
     : QObject(parent)
 {
     m_sdLibs = 0;
+    QSettings settings(workDir() + "/settings.ini", QSettings::IniFormat);
+    m_dictDirs = settings.value("StarDict/dictDirs", m_dictDirs);
+    if (m_dictDirs.isEmpty())
+    {
 #ifdef Q_OS_UNIX
-    m_dictDirs << "/usr/share/stardict/dic";
-    m_dictDirs << QDir::homePath() + "/.stardict/dic";
+        m_dictDirs << "/usr/share/stardict/dic";
+        m_dictDirs << QDir::homePath() + "/.stardict/dic";
 #else
-    m_dictDirs << QCoreApplication::applicationDirPath() + "/dic";
+        m_dictDirs << QCoreApplication::applicationDirPath() + "/dic";
 #endif // Q_OS_UNIX
+        m_dictDirs << workDir() + "/dicts";
+    }
 }
 
 StarDict::~StarDict()
 {
+    QSettings settings(workDir() + "/settings.ini", QSettings::IniFormat);
+    settings.setValue("StarDict/dictDirs", m_dictDirs);
     delete m_sdLibs;
 }
 
