@@ -283,13 +283,17 @@ class DictPlugin
          * Returns a directory that contains plugin's data.
          */
         QString workPath() const
+        {
 #ifdef Q_OS_UNIX
-        { return QDir::homePath() + "/.qstardict/pluginsdata/" + name(); }
+            QString path = QDir::homePath() + "/.qstardict/pluginsdata/" + name();
 #elif define Q_OS_WIN32
-        { return QDir::QCoreApplication::applicationDirPath() + "\\pluginsdata\\" + name(); }
+            QString path = QDir::QCoreApplication::applicationDirPath() + "\\pluginsdata\\" + name();
 #else
 #error "This function is not implemented on this platform"
 #endif
+            QDir::root().mkpath(path);
+            return path;
+        }
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictPlugin::Features)
