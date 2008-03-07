@@ -22,6 +22,8 @@
 
 #include <QtPlugin>
 #include <QStringList>
+#include <QDir>
+#include <QCoreApplication>
 
 namespace QStarDict
 {
@@ -275,6 +277,19 @@ class DictPlugin
          */
         virtual void execSettingsDialog()
         { };
+
+    protected:
+        /**
+         * Returns a directory that contains plugin's data.
+         */
+        QString workPath() const
+#ifdef Q_OS_UNIX
+        { return QDir::homePath() + "/.qstardict/pluginsdata/" + name(); }
+#elif define Q_OS_WIN32
+        { return QDir::QCoreApplication::applicationDirPath() + "\\pluginsdata\\" + name(); }
+#else
+#error "This function is not implemented on this platform"
+#endif
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictPlugin::Features)
