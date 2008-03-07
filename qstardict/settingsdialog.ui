@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>503</width>
-    <height>457</height>
+    <width>409</width>
+    <height>427</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -36,6 +36,62 @@
      <property name="currentIndex" >
       <number>0</number>
      </property>
+     <widget class="QWidget" name="tabGlobalSettings" >
+      <attribute name="title" >
+       <string>Global settings</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QCheckBox" name="instantSearchBox" >
+         <property name="text" >
+          <string>Instant search</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <property name="leftMargin" >
+          <number>0</number>
+         </property>
+         <property name="topMargin" >
+          <number>0</number>
+         </property>
+         <property name="rightMargin" >
+          <number>0</number>
+         </property>
+         <property name="bottomMargin" >
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_7" >
+           <property name="text" >
+            <string>Pronounce words using this command:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="speechProgramEdit" />
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>369</width>
+           <height>171</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tabDictionaries" >
       <attribute name="title" >
        <string>Dictionaries</string>
@@ -484,42 +540,6 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
             </item>
-            <item>
-             <layout class="QHBoxLayout" >
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_7" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-                <property name="text" >
-                 <string>Pronounce using this command:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="speechProgramEdit" >
-                <property name="enabled" >
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
            </layout>
           </item>
           <item row="3" column="0" >
@@ -814,72 +834,6 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabTranslationView" >
-      <attribute name="title" >
-       <string>Translation view</string>
-      </attribute>
-      <layout class="QGridLayout" >
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <property name="horizontalSpacing" >
-        <number>6</number>
-       </property>
-       <property name="verticalSpacing" >
-        <number>6</number>
-       </property>
-       <item row="2" column="0" >
-        <widget class="QCheckBox" name="expandAbbreviationsBox" >
-         <property name="text" >
-          <string>Expand abbreviations</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="reformatTranslationsWarningLabel" >
-         <property name="text" >
-          <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may be not correct displayed</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" >
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0" >
-        <widget class="QCheckBox" name="reformatTranslationsBox" >
-         <property name="text" >
-          <string>Reformat translations</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" >
-        <widget class="QCheckBox" name="instantSearchBox" >
-         <property name="text" >
-          <string>Instant search</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
     </widget>
    </item>
    <item row="1" column="0" >
@@ -931,22 +885,6 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>reformatTranslationsBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>reformatTranslationsWarningLabel</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>38</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>84</x>
-     <y>117</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>useScanModifierBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>modifierKeyBox</receiver>
@@ -959,38 +897,6 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel" >
      <x>273</x>
      <y>137</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pronounceWordBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_7</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>64</x>
-     <y>210</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>62</x>
-     <y>245</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pronounceWordBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>speechProgramEdit</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>149</x>
-     <y>215</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>277</x>
-     <y>250</y>
     </hint>
    </hints>
   </connection>

@@ -33,6 +33,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     setupUi(this);
 
+    // Load global settings
+    instantSearchBox->setChecked(Application::instance()->mainWindow()->isInstantSearch());
+
     // Load popup window settings
     PopupWindow *popup = Application::instance()->popupWindow();
     useScanBox->setChecked(popup->isScan());
@@ -63,38 +66,16 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     popupDefaultWidthSpin->setValue(popup->defaultSize().width());
     popupDefaultHeightSpin->setValue(popup->defaultSize().height());
     pronounceWordBox->setChecked(popup->pronounceWord());
-//    speechProgramEdit->setText(parent->popup->speechProgram());
-//    instantSearchBox->setChecked(parent->isInstantSearch());
-
-#if 0
-    connect(moveUpOrderedDictsButton, SIGNAL(clicked()), SLOT(moveUpOrderedDictsButtonClicked()));
-    connect(moveDownOrderedDictsButton, SIGNAL(clicked()), SLOT(moveDownOrderedDictsButtonClicked()));
-    connect(moveLeftOrderedDictsButton, SIGNAL(clicked()), SLOT(moveLeftOrderedDictsButtonClicked()));
-    connect(moveRightOrderedDictsButton, SIGNAL(clicked()), SLOT(moveRightOrderedDictsButtonClicked()));
-    connect(addDictDirButton, SIGNAL(clicked()), SLOT(addDictDirsButtonClicked()));
-    connect(removeDictDirButton, SIGNAL(clicked()), SLOT(removeDictDirsButtonClicked()));
-    connect(moveUpDictDirButton, SIGNAL(clicked()), SLOT(moveUpDictDirsButtonClicked()));
-    connect(moveDownDictDirButton, SIGNAL(clicked()), SLOT(moveDownDictDirsButtonClicked()));
-#endif
 
     connect(this, SIGNAL(accepted()), SLOT(apply()));
 }
 
 void SettingsDialog::apply()
 {
-#if 0
-    QStringList dirs;
-    QStringList ordered;
+    // Save global settings
+    Application::instance()->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
 
-    for (int i = 0; i < dictDirsList->count(); ++i)
-        dirs << dictDirsList->item(i)->text();
-    mainWindow->m_dict->setDictDirs(dirs);
-    for (int i = 0; i < orderedDictsList->count(); ++i)
-        ordered << orderedDictsList->item(i)->text();
-    mainWindow->m_dict->setDicts(ordered);
-#endif
-
-    // Save the popup window settings
+    // Save popup window settings
     PopupWindow *popup = Application::instance()->popupWindow();
     popup->setScan(useScanBox->isChecked());
     int modifierKey = 0;
@@ -112,24 +93,6 @@ void SettingsDialog::apply()
     popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));
-#if 0
-    DictCore::TranslationFlags translationFlags = mainWindow->translationView->translationFlags();
-    if (reformatTranslationsBox->isChecked())
-        translationFlags |= DictCore::Reformat;
-    else
-        translationFlags &= ~DictCore::Reformat;
-    if (expandAbbreviationsBox->isChecked())
-        translationFlags |= DictCore::ExpandAbbreviations;
-    else
-        translationFlags &= ~DictCore::ExpandAbbreviations;
-    mainWindow->translationView->setTranslationFlags(translationFlags);
-    mainWindow->popup->setTranslationFlags(translationFlags);
-    mainWindow->popup->setPronounceWord(pronounceWordBox->isChecked());
-    mainWindow->popup->setSpeechProgram(speechProgramEdit->text());
-    mainWindow->setInstantSearch(instantSearchBox->isChecked());
-
-    mainWindow->on_queryButton_clicked();
-#endif
 }
 
 }
