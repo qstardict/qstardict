@@ -45,7 +45,7 @@ StarDict::StarDict(QObject *parent)
     : QObject(parent)
 {
     m_sdLibs = 0;
-    QSettings settings(workDir() + "/settings.ini", QSettings::IniFormat);
+    QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
     m_dictDirs = settings.value("StarDict/dictDirs", m_dictDirs);
     if (m_dictDirs.isEmpty())
     {
@@ -61,7 +61,7 @@ StarDict::StarDict(QObject *parent)
 
 StarDict::~StarDict()
 {
-    QSettings settings(workDir() + "/settings.ini", QSettings::IniFormat);
+    QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
     settings.setValue("StarDict/dictDirs", m_dictDirs);
     delete m_sdLibs;
 }
