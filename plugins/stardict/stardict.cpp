@@ -46,7 +46,7 @@ StarDict::StarDict(QObject *parent)
 {
     m_sdLibs = 0;
     QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
-    m_dictDirs = settings.value("StarDict/dictDirs", m_dictDirs);
+    m_dictDirs = settings.value("StarDict/dictDirs", m_dictDirs).toStringList();
     if (m_dictDirs.isEmpty())
     {
 #ifdef Q_OS_UNIX
@@ -55,7 +55,7 @@ StarDict::StarDict(QObject *parent)
 #else
         m_dictDirs << QCoreApplication::applicationDirPath() + "/dic";
 #endif // Q_OS_UNIX
-        m_dictDirs << workDir() + "/dicts";
+        m_dictDirs << workPath() + "/dicts";
     }
 }
 
