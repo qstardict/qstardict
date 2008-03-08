@@ -19,7 +19,9 @@
 
 #include "stardict.h"
 
+#include <list>
 #include <map>
+#include <string>
 #include <utility>
 #include <QCoreApplication>
 #include <QDir>
@@ -36,15 +38,80 @@ namespace
 std::string xdxf2html(const char *p);
 std::string parse_data(const char *data);
 QString html2text(QString html);
-QString whereDict(const QString &name, const QStringList &paths);
-QStringList findDicts(const QString &str);
+QString whereDict(const QString &name, const QStringList &dictDirs);
 const int MaxFuzzy = 24;
+
+class StdList: public std::list<std::string>
+{
+    public:
+        StdList()
+            : std::list<std::string>()
+        { }
+
+        StdList(const QList<QString> &list)
+            : std::list<std::string>()
+        {
+            for (QList<QString>::const_iterator i = list.begin(); i != list.end(); ++i)
+                push_back(i->toUtf8().data());
+        }
+
+        StdList(const std::list<std::string> &list)
+            : std::list<std::string>(list)
+        { }
+
+        QStringList toStringList() const
+        {
+            QStringList list;
+            for (const_iterator i = begin(); i != end(); ++i)
+                list << QString::fromUtf8(i->c_str());
+            return list;
+        }
+};
+
+class IfoListSetter
+{
+    public:
+        IfoListSetter(QStringList *list)
+            : m_list(list)
+        { }
+
+        void operator ()(const std::string &filename, bool)
+        {
+            DictInfo info;
+            if (info.load_from_ifo_file(filename, false))
+                m_list->push_back(QString::fromUtf8(info.bookname.c_str()));
+        }
+
+    private:
+        QStringList *m_list;
+};
+
+class IfoFileFinder
+{
+    public:
+        IfoFileFinder(const QString &name)
+            : m_name(name.toUtf8().data())
+        { }
+
+        void operator()(const std::string &filename, bool)
+        {
+            DictInfo info;
+            if (info.load_from_ifo_file(filename, false) && info.bookname == m_name)
+                m_filename = filename;
+        }
+
+        QString filename()
+        { return QString::fromUtf8(m_filename.c_str()); }
+    private:
+        std::string m_name;
+        std::string m_filename;
+};
 }
 
 StarDict::StarDict(QObject *parent)
     : QObject(parent)
 {
-    m_sdLibs = 0;
+    m_sdLibs = new Libs;
     QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
     m_dictDirs = settings.value("StarDict/dictDirs", m_dictDirs).toStringList();
     if (m_dictDirs.isEmpty())
@@ -69,25 +136,16 @@ StarDict::~StarDict()
 QStringList StarDict::avialableDicts() const
 {
     QStringList result;
-
-    for (QStringList::ConstIterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); ++dictDir)
-        result << findDicts(*dictDir);
+    IfoListSetter setter(&result);
+    for_each_file(StdList(m_dictDirs), ".ifo", StdList(), StdList(), setter);
 
     return result;
 }
 
 void StarDict::setLoadedDicts(const QStringList &loadedDicts)
 {
-    delete m_sdLibs; // yes, it's ugly
-    m_sdLibs = new Libs;
+    m_sdLibs->reload(StdList(m_dictDirs), StdList(loadedDicts), StdList());
 
-    for (QStringList::const_iterator dictName = loadedDicts.begin(); dictName != loadedDicts.end(); ++dictName)
-        for (QStringList::const_iterator dictDir = m_dictDirs.begin(); dictDir != m_dictDirs.end(); ++dictDir)
-        {
-            QString dictFile = whereDict(*dictName, m_dictDirs);
-            if (! dictFile.isEmpty())
-                m_sdLibs->load_dict(QDir::toNativeSeparators(dictFile).toUtf8().data());
-        }
     m_loadedDicts.clear();
     for (int i = 0; i < m_sdLibs->ndicts(); ++i)
         m_loadedDicts[QString::fromUtf8(m_sdLibs->dict_name(i).c_str())] = i;
@@ -152,6 +210,13 @@ void StarDict::execSettingsDialog()
 
 namespace
 {
+QString whereDict(const QString &name, const QStringList &dictDirs)
+{
+    IfoFileFinder finder(name);
+    for_each_file(StdList(dictDirs), ".ifo", StdList(), StdList(), finder);
+    return finder.filename();
+}
+
 std::string xdxf2html(const char *p) // taken from sdcv
 {
     std::string res;
@@ -290,42 +355,6 @@ QString html2text(QString html)
                 replace("&gt;", ">").
                 replace("&amp;", "&").
                 replace("&quot;", "\"");
-}
-
-QString whereDict(const QString &name, const QStringList &paths)
-{
-    for (QStringList::const_iterator i = paths.begin(); i != paths.end(); ++i)
-    {
-        if (QFile::exists(*i + "/" + name + ".ifo"))
-            return *i + "/" + name + ".ifo";
-
-        QStringList dirs = QDir(*i).entryList(QDir::AllDirs | QDir::NoSymLinks | QDir::NoDotAndDotDot);
-        for (QStringList::const_iterator j = dirs.begin(); j != dirs.end(); ++j)
-        {
-            QString result = whereDict(name, QStringList(*i + "/" + *j));
-            if (! result.isEmpty())
-                return result;
-        }
-    }
-
-    return QString();
-}
-
-QStringList findDicts(const QString &dir)
-{
-    QFileInfoList result = QDir(dir).entryInfoList(QStringList("*.ifo"), QDir::Files | QDir::AllDirs |
-            QDir::NoDotAndDotDot | QDir::NoSymLinks);
-    QStringList dicts;
-
-    for (QFileInfoList::const_iterator i = result.begin(); i != result.end(); ++i)
-    {
-        if (i->isDir())
-            dicts << findDicts(i->filePath());
-        else
-            dicts << QString(i->fileName()).remove(QRegExp("\\.ifo$"));
-    }
-
-    return dicts;
 }
 
 }
