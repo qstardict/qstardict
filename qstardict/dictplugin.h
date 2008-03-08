@@ -275,8 +275,8 @@ class DictPlugin
         /**
          * Run a settings dialog.
          */
-        virtual void execSettingsDialog()
-        { };
+        virtual void execSettingsDialog(QWidget *parent = 0)
+        { Q_UNUSED(parent) }
 
     protected:
         /**
