@@ -1,5 +1,5 @@
 /*****************************************************************************
- * stardict.h - QStarDict, a StarDict clone written with using Qt            *
+ * settingsdialog.h - QStarDict, a StarDict clone written with using Qt      *
  * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,55 +17,34 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef STARDICT_H
-#define STARDICT_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <qstardict/dictplugin.h>
+#include <QDialog>
+#include "ui_settingsdialog.h"
 
-#include <string>
-#include <QVector>
-#include <QHash>
-#include "lib.h"
+class StarDict;
 
-class StarDict: public QObject, public QStarDict::DictPlugin
+class SettingsDialog: public QDialog, private Ui::SettingsDialog
 {
     Q_OBJECT
-    Q_INTERFACES(QStarDict::DictPlugin)
-    
+
     public:
-        StarDict(QObject *parent = 0);
-        ~StarDict();
+        SettingsDialog(StarDict *plugin, QWidget *parent = 0);
 
-        QString name() const
-        { return "stardict"; }
-        QString version() const
-        { return "0.1"; }
-        QString description() const
-        { return tr("The StarDict plugin"); }
-        Features features() const
-        { return Features(SearchSimilar | SettingsDialog); }
+    private slots:
+        void on_addDictDirsButton_clicked();
+        void on_removeDictDirsButton_clicked();
+        void on_moveUpDictDirsButton_clicked();
+        void on_moveDownDictDirsButton_clicked();
 
-        QStringList avialableDicts() const;
-        QStringList loadedDicts() const
-        { return m_loadedDicts.keys(); }
-        void setLoadedDicts(const QStringList &loadedDicts);
-        DictInfo dictInfo(const QString &dict);
-
-        bool isTranslatable(const QString &dict, const QString &word);
-        Translation translate(const QString &dict, const QString &word);
-        virtual QStringList findSimilarWords(const QString &word);
-
-        void execSettingsDialog();
+        void apply();
 
     private:
-        friend class SettingsDialog;
-
-        Libs *m_sdLibs;
-        QStringList m_dictDirs;
-        QHash<QString, int> m_loadedDicts;
+        StarDict *m_plugin;
 };
 
-#endif // STARDICT_H
+#endif // SETTINGSDIALOG_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
 

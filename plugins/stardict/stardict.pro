@@ -26,10 +26,16 @@ HEADERS += \
     distance.h \
     file.hpp \
     lib.h \
-    mapfile.hpp
+    mapfile.hpp \
+    settingsdialog.h
 SOURCES += \
     stardict.cpp \
     dictziplib.cpp \
     distance.cpp \
-    lib.cpp
+    lib.cpp \
+    settingsdialog.cpp
+FORMS += \
+    settingsdialog.ui
+RESOURCES += \
+    pixmaps/pixmaps.qrc
 
