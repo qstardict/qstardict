@@ -32,12 +32,11 @@
 #include <glib/gstrfuncs.h>
 #include "lib.h"
 #include "file.hpp"
+#include "settingsdialog.h"
 
 namespace
 {
-std::string xdxf2html(const char *p);
-std::string parse_data(const char *data);
-QString html2text(QString html);
+void xdxf2html(QString &str);
 QString whereDict(const QString &name, const QStringList &dictDirs);
 const int MaxFuzzy = 24;
 
@@ -114,6 +113,8 @@ StarDict::StarDict(QObject *parent)
     m_sdLibs = new Libs;
     QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
     m_dictDirs = settings.value("StarDict/dictDirs", m_dictDirs).toStringList();
+    m_reformatLists = settings.value("StarDict/reformatLists", true).toBool();
+    m_expandAbbreviations = settings.value("StarDict/expandAbbreviations", true).toBool();
     if (m_dictDirs.isEmpty())
     {
 #ifdef Q_OS_UNIX
@@ -130,6 +131,8 @@ StarDict::~StarDict()
 {
     QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
     settings.setValue("StarDict/dictDirs", m_dictDirs);
+    settings.setValue("StarDict/reformatLists", m_reformatLists);
+    settings.setValue("StarDict/expandAbbreviations", m_expandAbbreviations);
     delete m_sdLibs;
 }
 
@@ -186,7 +189,8 @@ StarDict::Translation StarDict::translate(const QString &dict, const QString &wo
         return Translation();
     return Translation(QString::fromUtf8(m_sdLibs->poGetWord(ind, dictIndex)),
             QString::fromUtf8(m_sdLibs->dict_name(dictIndex).c_str()),
-            QString::fromUtf8(parse_data(m_sdLibs->poGetWordData(ind, dictIndex)).c_str()));
+            parseData(m_sdLibs->poGetWordData(ind, dictIndex), dictIndex, true,
+                m_reformatLists, m_expandAbbreviations));
 }
 
 QStringList StarDict::findSimilarWords(const QString &word)
@@ -203,9 +207,195 @@ QStringList StarDict::findSimilarWords(const QString &word)
     return result;
 }
 
-void StarDict::execSettingsDialog()
+void StarDict::execSettingsDialog(QWidget *parent)
 {
-    
+    ::SettingsDialog dialog(this, parent);
+    dialog.exec();
+}
+
+QString StarDict::parseData(const char *data, int dictIndex, bool htmlSpaces, bool reformatLists, bool expandAbbreviations)
+{
+    QString result;
+    quint32 dataSize = *reinterpret_cast<const quint32*>(data);
+    const char *dataEnd = data + dataSize;
+    const char *ptr = data + sizeof(quint32);
+    while (ptr < dataEnd)
+    {
+        switch (*ptr++)
+        {
+            case 'm':
+            case 'l':
+            case 'g':
+            {
+                QString str = QString::fromUtf8(ptr);
+                ptr += str.toUtf8().length() + 1;
+                result += str;
+                break;
+            }
+            case 'x':
+            {
+                QString str = QString::fromUtf8(ptr);
+                ptr += str.toUtf8().length() + 1;
+                xdxf2html(str);
+                result += str;
+                break;
+            }
+            case 't':
+            {
+                QString str = QString::fromUtf8(ptr);
+                ptr += str.toUtf8().length() + 1;
+                result += "<font class=\"example\">";
+                result += str;
+                result += "</font>";
+                break;
+            }
+            case 'y':
+            {
+                ptr += strlen(ptr) + 1;
+                break;
+            }
+            case 'W':
+            case 'P':
+            {
+                ptr += *reinterpret_cast<const quint32*>(ptr) + sizeof(quint32);
+                break;
+            }
+        }
+    }
+
+    if (expandAbbreviations)
+    {
+        QRegExp regExp("_\\S+[\\.:]");
+        int pos = 0;
+        while ((pos = regExp.indexIn(result, pos)) != -1)
+        {
+            long ind;
+            if (m_sdLibs->SimpleLookupWord(result.mid(pos, regExp.matchedLength()).toUtf8().data(), ind, dictIndex))
+            {
+                QString expanded = "<font class=\"explanation\">";
+                expanded += parseData(m_sdLibs->poGetWordData(ind, dictIndex));
+                if (result[pos + regExp.matchedLength() - 1] == ':')
+                    expanded += ':';
+                expanded += "</font>";
+                result.replace(pos, regExp.matchedLength(), expanded);
+                pos += expanded.length();
+            }
+            else
+                pos += regExp.matchedLength();
+        }
+    }
+    if (reformatLists)
+    {
+        int pos = 0;
+        QStack<QChar> openedLists;
+        while (pos < result.length())
+        {
+            if (result[pos].isDigit())
+            {
+                int n = 0;
+                while (result[pos + n].isDigit())
+                    ++n;
+                pos += n;
+                if (result[pos] == '&' && result.mid(pos + 1, 3) == "gt;")
+                    result.replace(pos, 4, ">");
+                QChar marker = result[pos];
+                QString replacement;
+                if (marker == '>' || marker == '.' || marker == ')')
+                {
+                    if (n == 1 && result[pos - 1] == '1') // open new list
+                    {
+                        if (openedLists.contains(marker))
+                        {
+                            replacement = "</li></ol>";
+                            while (openedLists.size() && openedLists.top() != marker)
+                            {
+                                replacement += "</li></ol>";
+                                openedLists.pop();
+                            }
+                        }
+                        openedLists.push(marker);
+                        replacement += "<ol>";
+                    }
+                    else
+                    {
+                        while (openedLists.size() && openedLists.top() != marker)
+                        {
+                            replacement += "</li></ol>";
+                            openedLists.pop();
+                        }
+                        replacement += "</li>";
+                    }
+                    replacement += "<li>";
+                    pos -= n;
+                    n += pos;
+                    while (result[pos - 1].isSpace())
+                        --pos;
+                    while (result[n + 1].isSpace())
+                        ++n;
+                    result.replace(pos, n - pos + 1, replacement);
+                    pos += replacement.length();
+                }
+                else
+                    ++pos;
+            }
+            else
+                ++pos;
+        }
+        while (openedLists.size())
+        {
+            result += "</li></ol>";
+            openedLists.pop();
+        }
+    }
+    if (htmlSpaces)
+    {
+        int n = 0;
+        while (result[n].isSpace())
+            ++n;
+        result.remove(0, n);
+        n = 0;
+        while (result[result.length() - 1 - n].isSpace())
+            ++n;
+        result.remove(result.length() - 1 - n, n);
+
+        for (int pos = 0; pos < result.length();)
+        {
+            switch (result[pos].toAscii())
+            {
+                case '[':
+                    result.insert(pos, "<font class=\"transcription\">");
+                    pos += 28 + 1; // sizeof "<font class=\"transcription\">" + 1
+                    break;
+                case ']':
+                    result.insert(pos + 1, "</font>");
+                    pos += 7 + 1; // sizeof "</font>" + 1
+                    break;
+                case '\t':
+                    result.insert(pos, "&nbsp;&nbsp;&nbsp;&nbsp;");
+                    pos += 24 + 1; // sizeof "&nbsp;&nbsp;&nbsp;&nbsp;" + 1
+                    break;
+                case '\n':
+                {
+                    int count = 1;
+                    n = 1;
+                    while (result[pos + n].isSpace())
+                    {
+                        if (result[pos + n] == '\n')
+                            ++count;
+                        ++n;
+                    }
+                    if (count > 1)
+                        result.replace(pos, n, "</p><p>");
+                    else
+                        result.replace(pos, n, "<br>");
+                    break;
+                }
+                default:
+                    ++pos;
+            }
+        }
+    }
+    return result;
 }
 
 namespace
@@ -217,144 +407,14 @@ QString whereDict(const QString &name, const QStringList &dictDirs)
     return finder.filename();
 }
 
-std::string xdxf2html(const char *p) // taken from sdcv
+void xdxf2html(QString &str)
 {
-    std::string res;
-    for (; *p; ++p)
-    {
-        if (*p != '<')
-        {
-            if (*p == '\n')
-                res += "<br>";
-            else
-                res += *p;
-            continue;
-        }
-
-        const char *next = strchr(p, '>');
-        if (!next)
-            continue;
-
-        std::string name(p + 1, next - p - 1);
-
-        if (name == "abr")
-            res += "<font class=\"abbreviature\">";
-        else if (name == "/abr")
-            res += "</font>";
-        else if (name == "k")
-        {
-            const char *begin = next;
-            if ((next = strstr(begin, "</k>")) != 0)
-                next += sizeof("</k>") - 1 - 1;
-            else
-                next = begin;
-        }
-        else if (name == "tr")
-            res += "<font class=\"transcription\">[";
-        else if (name == "/tr")
-            res += "]</font>";
-        else if (name == "ex")
-            res += "<font class=\"example\">";
-        else if (name == "/ex")
-            res += "</font>";
-        else if (!name.empty() && name[0] == 'c' && name != "co")
-        {
-            std::string::size_type pos = name.find("code");
-            if (pos != std::string::size_type( -1))
-            {
-                pos += sizeof("code=\"") - 1;
-                std::string::size_type end_pos = name.find("\"");
-                std::string color(name, pos, end_pos - pos);
-                res += "";
-            }
-            else
-            {
-                res += "";
-            }
-        }
-        else if (name == "/c")
-            res += "";
-
-        p = next;
-    }
-    return res;
-}
-
-std::string parse_data(const char *data) // taken from sdcv
-{
-    using std::string;
-
-    if (!data)
-        return "";
-
-    string res;
-    guint32 data_size, sec_size = 0;
-    gchar *m_str;
-    const gchar *p = data;
-    data_size = *((guint32 *)p);
-    p += sizeof(guint32);
-    while (guint32(p - data) < data_size)
-    {
-        switch (*p++)
-        {
-        case 'm':
-        case 'l':  //need more work...
-        case 'g':
-            sec_size = strlen(p);
-            if (sec_size)
-            {
-                res += "\n";
-                m_str = g_strndup(p, sec_size);
-                res += m_str;
-                g_free(m_str);
-            }
-            ++sec_size;
-            break;
-        case 'x':
-            sec_size = strlen(p);
-            if (sec_size)
-            {
-                res += "\n";
-                m_str = g_strndup(p, sec_size);
-                res += xdxf2html(m_str);
-                g_free(m_str);
-            }
-            ++sec_size;
-            break;
-        case 't':
-            sec_size = strlen(p);
-            if (sec_size)
-            {
-                res += "\n";
-                m_str = g_strndup(p, sec_size);
-                res += "[" + string(m_str) + "]";
-                g_free(m_str);
-            }
-            ++sec_size;
-            break;
-        case 'y':
-            sec_size = strlen(p);
-            ++sec_size;
-            break;
-        case 'W':
-        case 'P':
-            sec_size = *((guint32 *)p);
-            sec_size += sizeof(guint32);
-            break;
-        }
-        p += sec_size;
-    }
-    return res;
-}
-
-QString html2text(QString html)
-{
-    return html.replace("<br>", "\n").
-                remove(QRegExp("<.*>")).
-                replace("&lt;", "<").
-                replace("&gt;", ">").
-                replace("&amp;", "&").
-                replace("&quot;", "\"");
+    str.replace("<abr>", "<font class=\"abbreviature\">");
+    str.replace("<tr>", "<font class=\"transcription\">[");
+    str.replace("</tr>", "]</font>");
+    str.replace("<ex>", "<font class=\"example\">");
+    str.replace(QRegExp("<k>.*<\\/k>"), "");
+    str.replace(QRegExp("(<\\/abr>)|(<\\ex>)"), "</font");
 }
 
 }

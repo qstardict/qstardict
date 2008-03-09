@@ -55,14 +55,19 @@ class StarDict: public QObject, public QStarDict::DictPlugin
         Translation translate(const QString &dict, const QString &word);
         virtual QStringList findSimilarWords(const QString &word);
 
-        void execSettingsDialog();
+        void execSettingsDialog(QWidget *parent);
+
+        friend class SettingsDialog;
 
     private:
-        friend class SettingsDialog;
+        QString parseData(const char *data, int dictIndex = -1,
+                bool htmlSpaces = false, bool reformatLists = false, bool expandAbbreviations = false);
 
         Libs *m_sdLibs;
         QStringList m_dictDirs;
         QHash<QString, int> m_loadedDicts;
+        bool m_reformatLists;
+        bool m_expandAbbreviations;
 };
 
 #endif // STARDICT_H
