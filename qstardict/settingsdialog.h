@@ -23,6 +23,8 @@
 #include <QDialog>
 #include "ui_settingsdialog.h"
 
+class QStandardItemModel;
+
 namespace QStarDict
 {
 class MainWindow;
@@ -41,7 +43,22 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
         SettingsDialog(QWidget *parent = 0);
 
     private slots:
+        void on_dictsMoveUpButton_clicked();
+        void on_dictsMoveDownButton_clicked();
+        void on_dictsShowInfoButton_clicked();
+
+        void on_pluginsMoveUpButton_clicked();
+        void on_pluginsMoveDownButton_clicked();
+        void on_pluginsShowInfoButton_clicked();
+        void on_pluginsConfigureButton_clicked();
+
         void apply();
+
+    private:
+        void loadDictsList();
+        void loadPluginsList();
+        QStandardItemModel *m_dictsModel;
+        QStandardItemModel *m_pluginsModel;
 };
 
 }

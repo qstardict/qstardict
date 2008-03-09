@@ -5,12 +5,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>409</width>
-    <height>427</height>
+    <width>482</width>
+    <height>466</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>QStarDict Settings</string>
+  </property>
+  <property name="toolTip" >
+   <string>Show information about dictionary</string>
   </property>
   <layout class="QGridLayout" >
    <property name="leftMargin" >
@@ -31,10 +34,20 @@
    <property name="verticalSpacing" >
     <number>6</number>
    </property>
+   <item row="1" column="0" >
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0" >
-    <widget class="QTabWidget" name="reformatWarningLabel" >
+    <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabGlobalSettings" >
       <attribute name="title" >
@@ -96,334 +109,22 @@
       <attribute name="title" >
        <string>Dictionaries</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <property name="horizontalSpacing" >
-        <number>6</number>
-       </property>
-       <property name="verticalSpacing" >
-        <number>6</number>
-       </property>
-       <item row="0" column="0" >
-        <widget class="QGroupBox" name="doctBpx" >
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QGroupBox" name="groupBox_3" >
          <property name="title" >
-          <string>Order</string>
+          <string>Dictionaries</string>
          </property>
-         <layout class="QGridLayout" >
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
-           <number>6</number>
-          </property>
-          <item row="0" column="0" >
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="label" >
-              <property name="text" >
-               <string>Disabled dictionaries:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="disabledDictsList" />
-            </item>
-           </layout>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QTableView" name="dictsTableView" />
           </item>
-          <item row="0" column="1" >
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <layout class="QGridLayout" >
-              <property name="leftMargin" >
-               <number>0</number>
-              </property>
-              <property name="topMargin" >
-               <number>0</number>
-              </property>
-              <property name="rightMargin" >
-               <number>0</number>
-              </property>
-              <property name="bottomMargin" >
-               <number>0</number>
-              </property>
-              <property name="horizontalSpacing" >
-               <number>6</number>
-              </property>
-              <property name="verticalSpacing" >
-               <number>6</number>
-              </property>
-              <item row="1" column="0" >
-               <widget class="QToolButton" name="moveLeftOrderedDictsButton" >
-                <property name="toolTip" >
-                 <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Disable dictionary&lt;/p>&lt;/body>&lt;/html></string>
-                </property>
-                <property name="text" >
-                 <string>Left</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-left.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1" >
-               <widget class="QToolButton" name="moveDownOrderedDictsButton" >
-                <property name="toolTip" >
-                 <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Move down&lt;/p>&lt;/body>&lt;/html></string>
-                </property>
-                <property name="text" >
-                 <string>Down</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-down.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1" >
-               <widget class="QToolButton" name="moveUpOrderedDictsButton" >
-                <property name="text" >
-                 <string>Up</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-up.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2" >
-               <widget class="QToolButton" name="moveRightOrderedDictsButton" >
-                <property name="toolTip" >
-                 <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Enable dictionary&lt;/p>&lt;/body>&lt;/html></string>
-                </property>
-                <property name="text" >
-                 <string>Right</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-right.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1" >
-               <widget class="QToolButton" name="addDictionaryButton" >
-                <property name="toolTip" >
-                 <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Download new dictionaries...&lt;/p>&lt;/body>&lt;/html></string>
-                </property>
-                <property name="text" >
-                 <string>Download...</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="pixmaps/pixmaps.qrc" >:/icons/download.png</iconset>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>20</width>
-                <height>16</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="2" >
-           <layout class="QVBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="label_2" >
-              <property name="text" >
-               <string>Ordered dictionaries:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="orderedDictsList" />
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="dictDirsBox" >
-         <property name="title" >
-          <string>Directories</string>
-         </property>
-         <layout class="QGridLayout" >
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
-           <number>6</number>
-          </property>
-          <item row="0" column="0" >
-           <widget class="QListWidget" name="dictDirsList" />
-          </item>
-          <item row="1" column="0" >
+          <item>
            <layout class="QHBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
-            </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
             <item>
-             <widget class="QToolButton" name="addDictDirButton" >
+             <widget class="QToolButton" name="dictsMoveUpButton" >
               <property name="toolTip" >
-               <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Add directory&lt;/p>&lt;/body>&lt;/html></string>
-              </property>
-              <property name="text" >
-               <string>Add</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-add.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="removeDictDirButton" >
-              <property name="toolTip" >
-               <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Remove directory&lt;/p>&lt;/body>&lt;/html></string>
-              </property>
-              <property name="text" >
-               <string>Remove</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-remove.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="moveUpDictDirButton" >
-              <property name="toolTip" >
-               <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Move up&lt;/p>&lt;/body>&lt;/html></string>
+               <string>Move up</string>
               </property>
               <property name="text" >
                <string>Up</string>
@@ -434,12 +135,9 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="moveDownDictDirButton" >
+             <widget class="QToolButton" name="dictsMoveDownButton" >
               <property name="toolTip" >
-               <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Move down&lt;/p>&lt;/body>&lt;/html></string>
+               <string>Move down</string>
               </property>
               <property name="text" >
                <string>Down</string>
@@ -450,14 +148,108 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
+             <widget class="QToolButton" name="dictsShowInfoButton" >
+              <property name="text" >
+               <string>Show info</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/dialog-information.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer>
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
               <property name="sizeHint" >
                <size>
-                <width>342</width>
-                <height>26</height>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_4" >
+         <property name="title" >
+          <string>Plugins</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QTableView" name="pluginsTableView" />
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QToolButton" name="pluginsMoveUpButton" >
+              <property name="toolTip" >
+               <string>Move up</string>
+              </property>
+              <property name="text" >
+               <string>Up</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-up.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="pluginsMoveDownButton" >
+              <property name="toolTip" >
+               <string>Move down</string>
+              </property>
+              <property name="text" >
+               <string>Down</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-down.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="pluginsShowInfoButton" >
+              <property name="toolTip" >
+               <string>Show information about plugin</string>
+              </property>
+              <property name="text" >
+               <string>Info</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/dialog-information.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="pluginsConfigureButton" >
+              <property name="toolTip" >
+               <string>Configure plugin</string>
+              </property>
+              <property name="text" >
+               <string>Configure</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/configure.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
                </size>
               </property>
              </spacer>
@@ -836,16 +628,6 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </item>
-   <item row="1" column="0" >
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons" >
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources>
@@ -859,8 +641,8 @@ p, li { white-space: pre-wrap; }
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>321</x>
-     <y>450</y>
+     <x>330</x>
+     <y>587</y>
     </hint>
     <hint type="destinationlabel" >
      <x>410</x>
@@ -875,8 +657,8 @@ p, li { white-space: pre-wrap; }
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>397</x>
-     <y>450</y>
+     <x>406</x>
+     <y>587</y>
     </hint>
     <hint type="destinationlabel" >
      <x>410</x>

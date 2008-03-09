@@ -20,6 +20,8 @@
 #include "settingsdialog.h"
 
 #include <QFileDialog>
+#include <QStandardItemModel>
+#include <QHeaderView>
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
@@ -32,6 +34,12 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         : QDialog(parent)
 {
     setupUi(this);
+
+    m_dictsModel = new QStandardItemModel(this);
+    m_dictsModel->setHorizontalHeaderLabels(
+            QStringList() << tr("Enabled") << tr("Name") << tr("Plugin") << tr("Words count"));
+    loadDictsList();
+    dictsTableView->setModel(m_dictsModel);
 
     // Load global settings
     instantSearchBox->setChecked(Application::instance()->mainWindow()->isInstantSearch());
@@ -93,6 +101,45 @@ void SettingsDialog::apply()
     popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));
+}
+
+void SettingsDialog::loadDictsList()
+{
+}
+
+void SettingsDialog::on_dictsMoveUpButton_clicked()
+{
+
+}
+
+void SettingsDialog::on_dictsMoveDownButton_clicked()
+{
+
+}
+
+void SettingsDialog::on_dictsShowInfoButton_clicked()
+{
+
+}
+
+void SettingsDialog::on_pluginsMoveUpButton_clicked()
+{
+
+}
+
+void SettingsDialog::on_pluginsMoveDownButton_clicked()
+{
+
+}
+
+void SettingsDialog::on_pluginsShowInfoButton_clicked()
+{
+
+}
+
+void SettingsDialog::on_pluginsConfigureButton_clicked()
+{
+
 }
 
 }

@@ -147,7 +147,6 @@ class DictPlugin
                  */
                 DictInfo(const QString &plugin,
                          const QString &name,
-                         const QString &fullName = QString(),
                          const QString &author = QString(),
                          const QString &email = QString(),
                          const QString &webSite = QString(),
@@ -155,7 +154,6 @@ class DictPlugin
                          long wordsCount = -1)
                     : m_plugin(plugin),
                       m_name(name),
-                      m_fullName(fullName),
                       m_author(author),
                       m_email(email),
                       m_webSite(webSite),
@@ -167,8 +165,6 @@ class DictPlugin
                 { return m_plugin; }
                 const QString &name() const
                 { return m_name; }
-                const QString &fullName() const
-                { return m_fullName; }
                 const QString &author() const
                 { return m_author; }
                 const QString &email() const 
@@ -184,8 +180,6 @@ class DictPlugin
                 { m_plugin = plugin; }
                 void setName(const QString &name)
                 { m_name = name; }
-                void setFullName(const QString &fullName)
-                { m_fullName = fullName; }
                 void setAuthor(const QString &author)
                 { m_author = author; }
                 void setEmail(const QString &email)
@@ -200,7 +194,6 @@ class DictPlugin
             private:
                 QString m_plugin;
                 QString m_name;
-                QString m_fullName;
                 QString m_author;
                 QString m_email;
                 QString m_webSite;
