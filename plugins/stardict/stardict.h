@@ -49,7 +49,7 @@ class StarDict: public QObject, public QStarDict::DictPlugin
         QStringList loadedDicts() const
         { return m_loadedDicts.keys(); }
         void setLoadedDicts(const QStringList &loadedDicts);
-        DictInfo dictInfo(const QString &dict);
+        QStarDict::DictInfo dictInfo(const QString &dict);
 
         bool isTranslatable(const QString &dict, const QString &word);
         Translation translate(const QString &dict, const QString &word);

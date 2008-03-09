@@ -95,8 +95,9 @@ class IfoFileFinder
         void operator()(const std::string &filename, bool)
         {
             DictInfo info;
-            if (info.load_from_ifo_file(filename, false) && info.bookname == m_name)
+            if (info.load_from_ifo_file(filename, false) && info.bookname == m_name) {
                 m_filename = filename;
+            }
         }
 
         QString filename()
@@ -154,12 +155,12 @@ void StarDict::setLoadedDicts(const QStringList &loadedDicts)
         m_loadedDicts[QString::fromUtf8(m_sdLibs->dict_name(i).c_str())] = i;
 }
 
-StarDict::DictInfo StarDict::dictInfo(const QString &dict)
+QStarDict::DictInfo StarDict::dictInfo(const QString &dict)
 {
     ::DictInfo nativeInfo;
-    if (! nativeInfo.load_from_ifo_file(whereDict(dict, StarDict::m_dictDirs).toUtf8().data(), false))
-        return DictInfo();
-    DictInfo result(name(), dict);
+    if (nativeInfo.load_from_ifo_file(whereDict(dict, StarDict::m_dictDirs).toUtf8().data(), false))
+        return QStarDict::DictInfo();
+    QStarDict::DictInfo result(name(), dict);
     result.setAuthor(QString::fromUtf8(nativeInfo.author.c_str()));
     result.setEmail(QString::fromUtf8(nativeInfo.email.c_str()));
     result.setWebSite(QString::fromUtf8(nativeInfo.website.c_str()));
