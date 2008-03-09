@@ -160,7 +160,6 @@ StarDict::DictInfo StarDict::dictInfo(const QString &dict)
     if (! nativeInfo.load_from_ifo_file(whereDict(dict, StarDict::m_dictDirs).toUtf8().data(), false))
         return DictInfo();
     DictInfo result(name(), dict);
-    result.setFullName(QString::fromUtf8(nativeInfo.bookname.c_str()));
     result.setAuthor(QString::fromUtf8(nativeInfo.author.c_str()));
     result.setEmail(QString::fromUtf8(nativeInfo.email.c_str()));
     result.setWebSite(QString::fromUtf8(nativeInfo.website.c_str()));
