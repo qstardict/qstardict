@@ -105,6 +105,36 @@ void SettingsDialog::apply()
 
 void SettingsDialog::loadDictsList()
 {
+    m_dictsModel->clear();
+    int i;
+    QList<DictCore::Dictionary> loadedDicts = Application::instance()->dictCore()->loadedDicts();
+    for (i = 0; i < loadedDicts.size(); ++i)
+    {
+        QStandardItem *item = new QStandardItem();
+        item->setCheckable(true);
+        item->setCheckState(Qt::Checked);
+        m_dictsModel->setItem(i, 0, item);
+        m_dictsModel->setItem(i, 1, new QStandardItem(loadedDicts[i].name()));
+        m_dictsModel->setItem(i, 2, new QStandardItem(loadedDicts[i].plugin()));
+        long wordsCount = Application::instance()->dictCore()->dictInfo(loadedDicts[i]).wordsCount();
+        m_dictsModel->setItem(i, 3, new QStandardItem(QString::number(wordsCount)));
+    }
+    QList<DictCore::Dictionary> dicts = Application::instance()->dictCore()->avialableDicts();
+    for (QList<DictCore::Dictionary>::const_iterator iter = dicts.begin(); iter != dicts.end(); ++iter)
+    {
+        if (! loadedDicts.contains(*iter))
+        {
+            ++i;
+            QStandardItem *item = new QStandardItem();
+            item->setCheckable(true);
+            item->setCheckState(Qt::Unchecked);
+            m_dictsModel->setItem(i, 0, item);
+            m_dictsModel->setItem(i, 1, new QStandardItem(iter->name()));
+            m_dictsModel->setItem(i, 2, new QStandardItem(iter->plugin()));
+            long wordsCount = Application::instance()->dictCore()->dictInfo(*iter).wordsCount();
+            m_dictsModel->setItem(i, 3, new QStandardItem(QString::number(wordsCount)));
+        }
+    }
 }
 
 void SettingsDialog::on_dictsMoveUpButton_clicked()

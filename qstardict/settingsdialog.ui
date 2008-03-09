@@ -117,7 +117,23 @@
          </property>
          <layout class="QVBoxLayout" >
           <item>
-           <widget class="QTableView" name="dictsTableView" />
+           <widget class="QTableView" name="dictsTableView" >
+            <property name="editTriggers" >
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="selectionMode" >
+             <enum>QAbstractItemView::SingleSelection</enum>
+            </property>
+            <property name="selectionBehavior" >
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="showGrid" >
+             <bool>false</bool>
+            </property>
+            <property name="sortingEnabled" >
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" >

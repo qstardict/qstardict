@@ -26,6 +26,8 @@
 #include <QPair>
 #include <QHash>
 
+#include "dictplugin.h"
+
 class QPluginLoader;
 
 namespace QStarDict
@@ -60,6 +62,8 @@ class DictCore: public QObject
                 { m_plugin = plugin; }
                 void setName(const QString &name)
                 { m_name = name; }
+                bool operator == (const Dictionary &dict)
+                { return m_name == dict.m_name && m_plugin == dict.m_plugin; }
 
             private:
                 QString m_plugin;
@@ -131,6 +135,8 @@ class DictCore: public QObject
          * avialableDicts list.
          */
         void setLoadedDicts(const QList<Dictionary> &loadedDicts);
+
+        DictInfo dictInfo(const Dictionary &dict);
 
     private:
         /**
