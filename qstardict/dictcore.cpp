@@ -203,6 +203,24 @@ void DictCore::loadSettings()
     }
 }
 
+void DictCore::reloadDicts()
+{
+    QList<Dictionary> loaded;
+    for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
+    {
+        DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
+        plugin->setLoadedDicts(plugin->loadedDicts());
+        QStringList loadedNames = plugin->loadedDicts();
+        for (QStringList::const_iterator j = loadedNames.begin(); j != loadedNames.end(); ++j)
+            loaded << Dictionary(i.key(), *j);
+    }
+    QList<Dictionary> oldLoaded = m_loadedDicts;
+    m_loadedDicts.clear();
+    for (QList<Dictionary>::iterator i = oldLoaded.begin(); i != oldLoaded.end(); ++i)
+        if (loaded.contains(*i))
+            m_loadedDicts << *i;
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

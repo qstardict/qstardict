@@ -137,6 +137,11 @@ class DictCore: public QObject
         void setLoadedDicts(const QList<Dictionary> &loadedDicts);
 
         /**
+         * Reload loaded dicts.
+         */
+        void reloadDicts();
+
+        /**
          * Returns pointer to plugin instance or 0 if not loaded.
          */
         DictPlugin *plugin(const QString &plugin)

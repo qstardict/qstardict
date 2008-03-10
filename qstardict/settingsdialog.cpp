@@ -251,7 +251,7 @@ void SettingsDialog::on_pluginsConfigureButton_clicked()
     DictPlugin *plugin = Application::instance()->dictCore()->plugin(m_pluginsModel->item(currentRow, 1)->text());
     if (plugin && plugin->execSettingsDialog(this) == QDialog::Accepted)
     {
-        Application::instance()->dictCore()->setLoadedDicts(Application::instance()->dictCore()->loadedDicts());
+        Application::instance()->dictCore()->reloadDicts();
         loadDictsList();
     }
 }
