@@ -67,6 +67,27 @@ class StdList: public std::list<std::string>
         }
 };
 
+class IfoSetter
+{
+    public:
+        IfoSetter(const char *dict, ::DictInfo *info)
+            : m_dict(dict),
+              m_info(info)
+        { }
+
+        void operator ()(const std::string &filename, bool)
+        {
+            ::DictInfo info;
+            info.wordcount = -1;
+            if (info.load_from_ifo_file(filename, false) && info.bookname == m_dict)
+                *m_info = info;
+        }
+
+    private:
+        char const * m_dict;
+        DictInfo *m_info;
+};
+
 class IfoListSetter
 {
     public:
@@ -158,8 +179,9 @@ void StarDict::setLoadedDicts(const QStringList &loadedDicts)
 QStarDict::DictInfo StarDict::dictInfo(const QString &dict)
 {
     ::DictInfo nativeInfo;
-    if (nativeInfo.load_from_ifo_file(whereDict(dict, StarDict::m_dictDirs).toUtf8().data(), false))
-        return QStarDict::DictInfo();
+    nativeInfo.wordcount = -1;
+    IfoSetter setter(dict.toUtf8().data(), &nativeInfo);
+    for_each_file(StdList(m_dictDirs), ".ifo", StdList(), StdList(), setter);
     QStarDict::DictInfo result(name(), dict);
     result.setAuthor(QString::fromUtf8(nativeInfo.author.c_str()));
     result.setEmail(QString::fromUtf8(nativeInfo.email.c_str()));
