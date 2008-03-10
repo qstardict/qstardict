@@ -33,7 +33,7 @@
 #include "lib.h"
 #include "file.hpp"
 #include "settingsdialog.h"
-
+#include <QDebug>
 namespace
 {
 void xdxf2html(QString &str);
@@ -67,27 +67,6 @@ class StdList: public std::list<std::string>
         }
 };
 
-class IfoSetter
-{
-    public:
-        IfoSetter(const char *dict, ::DictInfo *info)
-            : m_dict(dict),
-              m_info(info)
-        { }
-
-        void operator ()(const std::string &filename, bool)
-        {
-            ::DictInfo info;
-            info.wordcount = -1;
-            if (info.load_from_ifo_file(filename, false) && info.bookname == m_dict)
-                *m_info = info;
-        }
-
-    private:
-        char const * m_dict;
-        DictInfo *m_info;
-};
-
 class IfoListSetter
 {
     public:
@@ -109,23 +88,22 @@ class IfoListSetter
 class IfoFileFinder
 {
     public:
-        IfoFileFinder(const QString &name)
-            : m_name(name.toUtf8().data())
+        IfoFileFinder(const QString &name, QString *filename)
+            : m_name(name.toUtf8().data()),
+              m_filename(filename)
         { }
 
         void operator()(const std::string &filename, bool)
         {
             DictInfo info;
             if (info.load_from_ifo_file(filename, false) && info.bookname == m_name) {
-                m_filename = filename;
+                *m_filename = QString::fromUtf8(filename.c_str());
             }
         }
 
-        QString filename()
-        { return QString::fromUtf8(m_filename.c_str()); }
     private:
         std::string m_name;
-        std::string m_filename;
+        QString *m_filename;
 };
 }
 
@@ -169,25 +147,31 @@ QStringList StarDict::avialableDicts() const
 
 void StarDict::setLoadedDicts(const QStringList &loadedDicts)
 {
-    m_sdLibs->reload(StdList(m_dictDirs), StdList(loadedDicts), StdList());
+    QStringList avialable = avialableDicts();
+    StdList disabled;
+    for (QStringList::const_iterator i = avialable.begin(); i != avialable.end(); ++i)
+    {
+        if (! loadedDicts.contains(*i))
+            disabled.push_back(i->toUtf8().data());
+    }
+    m_sdLibs->reload(StdList(m_dictDirs), StdList(loadedDicts), disabled);
 
     m_loadedDicts.clear();
     for (int i = 0; i < m_sdLibs->ndicts(); ++i)
         m_loadedDicts[QString::fromUtf8(m_sdLibs->dict_name(i).c_str())] = i;
 }
 
-QStarDict::DictInfo StarDict::dictInfo(const QString &dict)
+StarDict::DictInfo StarDict::dictInfo(const QString &dict)
 {
     ::DictInfo nativeInfo;
-    nativeInfo.wordcount = -1;
-    IfoSetter setter(dict.toUtf8().data(), &nativeInfo);
-    for_each_file(StdList(m_dictDirs), ".ifo", StdList(), StdList(), setter);
-    QStarDict::DictInfo result(name(), dict);
+    nativeInfo.wordcount = 0;
+    if (! nativeInfo.load_from_ifo_file(whereDict(dict, m_dictDirs).toUtf8().data(), false)) {
+        return DictInfo();
+    }
+    DictInfo result(name(), dict);
     result.setAuthor(QString::fromUtf8(nativeInfo.author.c_str()));
-    result.setEmail(QString::fromUtf8(nativeInfo.email.c_str()));
-    result.setWebSite(QString::fromUtf8(nativeInfo.website.c_str()));
     result.setDescription(QString::fromUtf8(nativeInfo.description.c_str()));
-    result.setWordsCount(static_cast<long>(nativeInfo.wordcount));
+    result.setWordsCount(nativeInfo.wordcount ? static_cast<long>(nativeInfo.wordcount) : -1);
     return result;
 }
 
@@ -229,10 +213,10 @@ QStringList StarDict::findSimilarWords(const QString &word)
     return result;
 }
 
-void StarDict::execSettingsDialog(QWidget *parent)
+int StarDict::execSettingsDialog(QWidget *parent)
 {
     ::SettingsDialog dialog(this, parent);
-    dialog.exec();
+    return dialog.exec();
 }
 
 QString StarDict::parseData(const char *data, int dictIndex, bool htmlSpaces, bool reformatLists, bool expandAbbreviations)
@@ -424,9 +408,10 @@ namespace
 {
 QString whereDict(const QString &name, const QStringList &dictDirs)
 {
-    IfoFileFinder finder(name);
+    QString filename;
+    IfoFileFinder finder(name, &filename);
     for_each_file(StdList(dictDirs), ".ifo", StdList(), StdList(), finder);
-    return finder.filename();
+    return filename;
 }
 
 void xdxf2html(QString &str)

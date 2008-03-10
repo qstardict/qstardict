@@ -41,7 +41,12 @@ class StarDict: public QObject, public QStarDict::DictPlugin
         QString version() const
         { return "0.1"; }
         QString description() const
-        { return tr("The StarDict plugin"); }
+        { return "The StarDict plugin"; }
+        QStringList authors() const
+        { return QStringList()
+            << "Hu Zheng <huzheng_001@163.com>"
+            << "Opera Wang <wangvisual@sohu.com>"
+            << "Alexander Rodin <rodin.alexander@gmail.com>"; }
         Features features() const
         { return Features(SearchSimilar | SettingsDialog); }
 
@@ -49,13 +54,13 @@ class StarDict: public QObject, public QStarDict::DictPlugin
         QStringList loadedDicts() const
         { return m_loadedDicts.keys(); }
         void setLoadedDicts(const QStringList &loadedDicts);
-        QStarDict::DictInfo dictInfo(const QString &dict);
+        DictInfo dictInfo(const QString &dict);
 
         bool isTranslatable(const QString &dict, const QString &word);
         Translation translate(const QString &dict, const QString &word);
         virtual QStringList findSimilarWords(const QString &word);
 
-        void execSettingsDialog(QWidget *parent);
+        int execSettingsDialog(QWidget *parent);
 
         friend class SettingsDialog;
 

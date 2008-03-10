@@ -20,7 +20,7 @@
      </property>
      <layout class="QGridLayout" >
       <item row="0" column="0" >
-       <widget class="QCheckBox" name="reformatTranslationsBox" >
+       <widget class="QCheckBox" name="reformatListsBox" >
         <property name="toolTip" >
          <string>If enabled all lists in translation wil be formated using HTML &lt;li> tag (may be slow)</string>
         </property>
@@ -41,6 +41,9 @@
       </item>
       <item row="2" column="0" >
        <widget class="QLabel" name="reformatTranslationsWarningLabel" >
+        <property name="visible" >
+         <bool>false</bool>
+        </property>
         <property name="text" >
          <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may be not correct displayed</string>
         </property>
@@ -224,7 +227,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>reformatTranslationsBox</sender>
+   <sender>reformatListsBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>reformatTranslationsWarningLabel</receiver>
    <slot>setVisible(bool)</slot>

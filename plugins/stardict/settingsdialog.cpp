@@ -28,10 +28,14 @@ SettingsDialog::SettingsDialog(StarDict *plugin, QWidget *parent)
 {
     setupUi(this);
 
+    reformatListsBox->setChecked(m_plugin->m_reformatLists);
+    expandAbbreviationsBox->setChecked(m_plugin->m_expandAbbreviations);
     dictDirsList->addItems(m_plugin->m_dictDirs);
+
+    connect(this, SIGNAL(accepted()), SLOT(apply()));
 }
 
-void SettingsDialog::on_addDictDirsButton_clicked()
+void SettingsDialog::on_addDictDirButton_clicked()
 {
     QString dirName = QFileDialog::getExistingDirectory(this, tr("Select dictionaries directory"));
     if (! dirName.isEmpty())
@@ -40,12 +44,12 @@ void SettingsDialog::on_addDictDirsButton_clicked()
     }
 }
 
-void SettingsDialog::on_removeDictDirsButton_clicked()
+void SettingsDialog::on_removeDictDirButton_clicked()
 {
     delete dictDirsList->takeItem(dictDirsList->currentRow());
 }
 
-void SettingsDialog::on_moveUpDictDirsButton_clicked()
+void SettingsDialog::on_moveUpDictDirButton_clicked()
 {
     if (dictDirsList->currentRow() > 0)
     {
@@ -55,7 +59,7 @@ void SettingsDialog::on_moveUpDictDirsButton_clicked()
     }
 }
 
-void SettingsDialog::on_moveDownDictDirsButton_clicked()
+void SettingsDialog::on_moveDownDictDirButton_clicked()
 {
     if (dictDirsList->currentRow() < dictDirsList->count() - 1)
     dictDirsList->insertItem(dictDirsList->currentRow(),
@@ -64,6 +68,8 @@ void SettingsDialog::on_moveDownDictDirsButton_clicked()
 
 void SettingsDialog::apply()
 {
+    m_plugin->m_reformatLists = reformatListsBox->isChecked();
+    m_plugin->m_expandAbbreviations = expandAbbreviationsBox->isChecked();
     m_plugin->m_dictDirs.clear();
     for (int i = 0; i < dictDirsList->count(); ++i)
         m_plugin->m_dictDirs << dictDirsList->item(i)->text();

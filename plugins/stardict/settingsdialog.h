@@ -33,10 +33,10 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
         SettingsDialog(StarDict *plugin, QWidget *parent = 0);
 
     private slots:
-        void on_addDictDirsButton_clicked();
-        void on_removeDictDirsButton_clicked();
-        void on_moveUpDictDirsButton_clicked();
-        void on_moveDownDictDirsButton_clicked();
+        void on_addDictDirButton_clicked();
+        void on_removeDictDirButton_clicked();
+        void on_moveUpDictDirButton_clicked();
+        void on_moveDownDictDirButton_clicked();
 
         void apply();
 
