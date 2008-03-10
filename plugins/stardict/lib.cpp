@@ -1649,7 +1649,7 @@ static inline void unicode_strdown(gunichar *str)
     }
 }
 
-bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_size)
+bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_size, int iLib)
 {
     if (sWord[0] == '\0')
         return false;
@@ -1674,69 +1674,69 @@ bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_si
     ucs4_str2 = g_utf8_to_ucs4_fast(sWord, -1, &ucs4_str2_len);
     unicode_strdown(ucs4_str2);
 
-    for (std::vector<Dict *>::size_type iLib = 0; iLib<oLib.size(); iLib++)
+//    for (std::vector<Dict *>::size_type iLib = 0; iLib<oLib.size(); iLib++)
+//    {
+    if (progress_func)
+        progress_func();
+
+    //if (stardict_strcmp(sWord, poGetWord(0,iLib))>=0 && stardict_strcmp(sWord, poGetWord(narticles(iLib)-1,iLib))<=0) {
+    //there are Chinese dicts and English dicts...
+    if (TRUE)
     {
-        if (progress_func)
-            progress_func();
-
-        //if (stardict_strcmp(sWord, poGetWord(0,iLib))>=0 && stardict_strcmp(sWord, poGetWord(narticles(iLib)-1,iLib))<=0) {
-        //there are Chinese dicts and English dicts...
-        if (TRUE)
+        const int iwords = narticles(iLib);
+        for (int index = 0; index < iwords; index++)
         {
-            const int iwords = narticles(iLib);
-            for (int index = 0; index < iwords; index++)
-            {
-                sCheck = poGetWord(index, iLib);
-                // tolower and skip too long or too short words
-                iCheckWordLen = g_utf8_strlen(sCheck, -1);
-                if (iCheckWordLen - ucs4_str2_len >= iMaxDistance ||
-                        ucs4_str2_len - iCheckWordLen >= iMaxDistance)
-                    continue;
-                ucs4_str1 = g_utf8_to_ucs4_fast(sCheck, -1, NULL);
-                if (iCheckWordLen > ucs4_str2_len)
-                    ucs4_str1[ucs4_str2_len] = 0;
-                unicode_strdown(ucs4_str1);
+            sCheck = poGetWord(index, iLib);
+            // tolower and skip too long or too short words
+            iCheckWordLen = g_utf8_strlen(sCheck, -1);
+            if (iCheckWordLen - ucs4_str2_len >= iMaxDistance ||
+                    ucs4_str2_len - iCheckWordLen >= iMaxDistance)
+                continue;
+            ucs4_str1 = g_utf8_to_ucs4_fast(sCheck, -1, NULL);
+            if (iCheckWordLen > ucs4_str2_len)
+                ucs4_str1[ucs4_str2_len] = 0;
+            unicode_strdown(ucs4_str1);
 
-                iDistance = oEditDistance.CalEditDistance(ucs4_str1, ucs4_str2, iMaxDistance);
-                g_free(ucs4_str1);
-                if (iDistance < iMaxDistance && iDistance < ucs4_str2_len)
+            iDistance = oEditDistance.CalEditDistance(ucs4_str1, ucs4_str2, iMaxDistance);
+            g_free(ucs4_str1);
+            if (iDistance < iMaxDistance && iDistance < ucs4_str2_len)
+            {
+                // when ucs4_str2_len=1,2 we need less fuzzy.
+                Found = true;
+                bool bAlreadyInList = false;
+                int iMaxDistanceAt = 0;
+                for (int j = 0; j < reslist_size; j++)
                 {
-                    // when ucs4_str2_len=1,2 we need less fuzzy.
-                    Found = true;
-                    bool bAlreadyInList = false;
-                    int iMaxDistanceAt = 0;
+                    if (oFuzzystruct[j].pMatchWord &&
+                            strcmp(oFuzzystruct[j].pMatchWord, sCheck) == 0 )
+                    { //already in list
+                        bAlreadyInList = true;
+                        break;
+                    }
+                    //find the position,it will certainly be found (include the first time) as iMaxDistance is set by last time.
+                    if (oFuzzystruct[j].iMatchWordDistance == iMaxDistance )
+                    {
+                        iMaxDistanceAt = j;
+                    }
+                }
+                if (!bAlreadyInList)
+                {
+                    if (oFuzzystruct[iMaxDistanceAt].pMatchWord)
+                        g_free(oFuzzystruct[iMaxDistanceAt].pMatchWord);
+                    oFuzzystruct[iMaxDistanceAt].pMatchWord = g_strdup(sCheck);
+                    oFuzzystruct[iMaxDistanceAt].iMatchWordDistance = iDistance;
+                    // calc new iMaxDistance
+                    iMaxDistance = iDistance;
                     for (int j = 0; j < reslist_size; j++)
                     {
-                        if (oFuzzystruct[j].pMatchWord &&
-                                strcmp(oFuzzystruct[j].pMatchWord, sCheck) == 0 )
-                        { //already in list
-                            bAlreadyInList = true;
-                            break;
-                        }
-                        //find the position,it will certainly be found (include the first time) as iMaxDistance is set by last time.
-                        if (oFuzzystruct[j].iMatchWordDistance == iMaxDistance )
-                        {
-                            iMaxDistanceAt = j;
-                        }
-                    }
-                    if (!bAlreadyInList)
-                    {
-                        if (oFuzzystruct[iMaxDistanceAt].pMatchWord)
-                            g_free(oFuzzystruct[iMaxDistanceAt].pMatchWord);
-                        oFuzzystruct[iMaxDistanceAt].pMatchWord = g_strdup(sCheck);
-                        oFuzzystruct[iMaxDistanceAt].iMatchWordDistance = iDistance;
-                        // calc new iMaxDistance
-                        iMaxDistance = iDistance;
-                        for (int j = 0; j < reslist_size; j++)
-                        {
-                            if (oFuzzystruct[j].iMatchWordDistance > iMaxDistance)
-                                iMaxDistance = oFuzzystruct[j].iMatchWordDistance;
-                        } // calc new iMaxDistance
-                    }   // add to list
-                }   // find one
-            }   // each word
-        }   // ok for search
-    }   // each lib
+                        if (oFuzzystruct[j].iMatchWordDistance > iMaxDistance)
+                            iMaxDistance = oFuzzystruct[j].iMatchWordDistance;
+                    } // calc new iMaxDistance
+                }   // add to list
+            }   // find one
+        }   // each word
+    }   // ok for search
+//    }   // each lib
     g_free(ucs4_str2);
 
     if (Found) // sort with distance

@@ -248,8 +248,8 @@ class DictPlugin
          * Returns a list of similar to "word" words from all loaded dictionaries.
          * Works only if SearchSimilar feature is enabled.
          */
-        virtual QStringList findSimilarWords(const QString &word)
-        { return QStringList(word); }
+        virtual QStringList findSimilarWords(const QString &dict, const QString &word)
+        { Q_UNUSED(dict); return QStringList(word); }
 
         /**
          * Returns an information about dictionary. The dictionary may be not loaded

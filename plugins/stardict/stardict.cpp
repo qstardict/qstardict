@@ -199,10 +199,12 @@ StarDict::Translation StarDict::translate(const QString &dict, const QString &wo
                 m_reformatLists, m_expandAbbreviations));
 }
 
-QStringList StarDict::findSimilarWords(const QString &word)
+QStringList StarDict::findSimilarWords(const QString &dict, const QString &word)
 {
+    if (! m_loadedDicts.contains(dict))
+        return QStringList();
     gchar *fuzzy_res[MaxFuzzy];
-    if (! m_sdLibs->LookupWithFuzzy(word.toUtf8().data(), fuzzy_res, MaxFuzzy))
+    if (! m_sdLibs->LookupWithFuzzy(word.toUtf8().data(), fuzzy_res, MaxFuzzy, m_loadedDicts[dict]))
         return QStringList();
     QStringList result;
     for (gchar **p = fuzzy_res, **end = fuzzy_res + MaxFuzzy; p != end && *p; ++p)

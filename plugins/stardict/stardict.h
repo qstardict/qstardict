@@ -58,7 +58,7 @@ class StarDict: public QObject, public QStarDict::DictPlugin
 
         bool isTranslatable(const QString &dict, const QString &word);
         Translation translate(const QString &dict, const QString &word);
-        virtual QStringList findSimilarWords(const QString &word);
+        virtual QStringList findSimilarWords(const QString &dict, const QString &word);
 
         int execSettingsDialog(QWidget *parent);
 

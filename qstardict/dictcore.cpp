@@ -83,12 +83,14 @@ QStringList DictCore::findSimilarWords(const QString &word)
 {
     QString simplifiedWord = word.simplified();
     QStringList result;
-    for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
+    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
     {
-        DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
+        if (! m_plugins.contains(i->plugin()))
+            continue;
+        DictPlugin *plugin = qobject_cast<DictPlugin*>(m_plugins[i->plugin()]->instance());
         if (! plugin->features().testFlag(DictPlugin::SearchSimilar))
             continue;
-        QStringList similar = plugin->findSimilarWords(simplifiedWord);
+        QStringList similar = plugin->findSimilarWords(i->name(), simplifiedWord);
         for (QStringList::const_iterator j = similar.begin(); j != similar.end(); ++j)
             if (! result.contains(*j, Qt::CaseSensitive))
                 result << *j;
