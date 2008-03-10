@@ -180,7 +180,7 @@ class Libs
         bool SimpleLookupWord(const gchar* sWord, glong & iWordIndex, int iLib);
 
 
-        bool LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_size, int iLib);
+        bool LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_size, gint iLib);
         gint LookupWithRule(const gchar *sWord, gchar *reslist[]);
         bool LookupData(const gchar *sWord, std::vector<gchar *> *reslist);
     private:

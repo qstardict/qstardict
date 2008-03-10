@@ -1649,7 +1649,7 @@ static inline void unicode_strdown(gunichar *str)
     }
 }
 
-bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_size, int iLib)
+bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_size, gint iLib)
 {
     if (sWord[0] == '\0')
         return false;
