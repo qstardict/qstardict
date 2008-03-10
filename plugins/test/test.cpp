@@ -67,14 +67,14 @@ Test::Translation Test::translate(const QString &dict, const QString &word)
     return Translation(word, dict, "test translation");
 }
 
-QStarDict::DictInfo Test::dictInfo(const QString &dict)
+Test::DictInfo Test::dictInfo(const QString &dict)
 {
     if (dict == "test01")
-        return QStarDict::DictInfo("test", "test01");
+        return DictInfo("test", "test01");
     else if (dict == "test02")
-        return QStarDict::DictInfo("test", "test02");
+        return DictInfo("test", "test02");
     else
-        return QStarDict::DictInfo();
+        return DictInfo();
 }
 
 Q_EXPORT_PLUGIN2(test, Test)

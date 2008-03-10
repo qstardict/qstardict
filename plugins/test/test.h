@@ -35,6 +35,8 @@ class Test: public QObject, public QStarDict::DictPlugin
         QString name() const;
         QString version() const;
         QString description() const;
+        QStringList authors() const
+        { return QStringList("Alexander Rodin <rodin.alexander@gmail.com>"); }
 
         QStringList avialableDicts() const;
         QStringList loadedDicts() const;
@@ -43,7 +45,7 @@ class Test: public QObject, public QStarDict::DictPlugin
         bool isTranslatable(const QString &dict, const QString &word);
         Translation translate(const QString &dict, const QString &word);
 
-        QStarDict::DictInfo dictInfo(const QString &dict);
+        DictInfo dictInfo(const QString &dict);
 };
 
 #endif // TEST_H
