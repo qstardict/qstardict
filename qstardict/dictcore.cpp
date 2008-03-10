@@ -201,13 +201,6 @@ void DictCore::loadSettings()
     }
 }
 
-DictInfo DictCore::dictInfo(const DictCore::Dictionary &dict)
-{
-    if (m_plugins.contains(dict.plugin()))
-        return qobject_cast<DictPlugin*>(m_plugins[dict.plugin()]->instance())->dictInfo(dict.name());
-    return DictInfo();
-}
-
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

@@ -24,7 +24,6 @@
 #include <QStringList>
 #include <QDir>
 #include <QCoreApplication>
-#include "dictinfo.h"
 
 namespace QStarDict
 {
@@ -55,6 +54,71 @@ class DictPlugin
             SettingsDialog = 0x02,
         };
         Q_DECLARE_FLAGS(Features, Feature)
+
+        /**
+         * This class represents information about dictionary.
+         */
+        class DictInfo
+        {
+            public:
+                /**
+                 * Constructs empty DictInfo object.
+                 */
+                DictInfo()
+                    : m_wordsCount(-1L)
+                { }
+                /**
+                 * Constructs DictInfo object from data.
+                 * @param plugin A plugin name
+                 * @param name A dictionary name
+                 * @param fullName A full dictionary name
+                 * @param author A dictionary author
+                 * @param email An author e-mail
+                 * @param webSite A dictionary website
+                 * @param desription A dictionary description
+                 * @param wordsCount A count of words that avialable in dictionary
+                 */
+                DictInfo(const QString &plugin,
+                         const QString &name,
+                         const QString &author = QString(),
+                         const QString &description = QString(),
+                         long wordsCount = -1L)
+                    : m_plugin(plugin),
+                      m_name(name),
+                      m_author(author),
+                      m_description(description),
+                      m_wordsCount(wordsCount)
+                { }
+
+                const QString &plugin() const
+                { return m_plugin; }
+                const QString &name() const
+                { return m_name; }
+                const QString &author() const
+                { return m_author; }
+                const QString &description() const
+                { return m_description; }
+                long wordsCount() const
+                { return m_wordsCount; }
+
+                void setPlugin(const QString &plugin)
+                { m_plugin = plugin; }
+                void setName(const QString &name)
+                { m_name = name; }
+                void setAuthor(const QString &author)
+                { m_author = author; }
+                void setDescription(const QString &description)
+                { m_description = description; }
+                void setWordsCount(long wordsCount)
+                { m_wordsCount = wordsCount; }
+
+            private:
+                QString m_plugin;
+                QString m_name;
+                QString m_author;
+                QString m_description;
+                long m_wordsCount;
+        };
 
         /**
          * This class represents a translation.
@@ -130,19 +194,24 @@ class DictPlugin
         virtual ~DictPlugin() { }
 
         /**
-         * Returns a plugin name.
+         * Returns the plugin name.
          */
         virtual QString name() const = 0;
 
         /**
-         * Returns a plugin version.
+         * Returns the plugin version.
          */
         virtual QString version() const = 0;
 
         /**
-         * Returns a plugin description.
+         * Returns the plugin description.
          */
         virtual QString description() const = 0;
+
+        /**
+         * Returns the plugin authors.
+         */
+        virtual QStringList authors() const = 0;
 
         /**
          * Returns a features supported by dictionary plugin.
@@ -189,10 +258,10 @@ class DictPlugin
         virtual DictInfo dictInfo(const QString &dict) = 0;
 
         /**
-         * Run a settings dialog.
+         * Run a settings dialog and return QDialog::DialogCode.
          */
-        virtual void execSettingsDialog(QWidget *parent = 0)
-        { Q_UNUSED(parent) }
+        virtual int execSettingsDialog(QWidget *parent = 0)
+        { Q_UNUSED(parent); return 0; }
 
     protected:
         /**

@@ -25,10 +25,10 @@
 #include <QStringList>
 #include <QPair>
 #include <QHash>
+#include <QPluginLoader>
 
 #include "dictplugin.h"
 
-class QPluginLoader;
 
 namespace QStarDict
 {
@@ -136,7 +136,11 @@ class DictCore: public QObject
          */
         void setLoadedDicts(const QList<Dictionary> &loadedDicts);
 
-        DictInfo dictInfo(const Dictionary &dict);
+        /**
+         * Returns pointer to plugin instance or 0 if not loaded.
+         */
+        DictPlugin *plugin(const QString &plugin)
+        { return m_plugins.contains(plugin) ? qobject_cast<DictPlugin*>(m_plugins[plugin]->instance()) : 0; }
 
     private:
         /**
@@ -149,8 +153,8 @@ class DictCore: public QObject
          */
         void loadSettings();
 
-        QList<Dictionary> m_loadedDicts;
         QHash<QString, QPluginLoader*> m_plugins;
+        QList<Dictionary> m_loadedDicts;
 };
 
 }

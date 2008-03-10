@@ -54,9 +54,11 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
 
         void apply();
 
-    private:
+    private slots:
         void loadDictsList();
         void loadPluginsList();
+
+    private:
         QStandardItemModel *m_dictsModel;
         QStandardItemModel *m_pluginsModel;
 };
