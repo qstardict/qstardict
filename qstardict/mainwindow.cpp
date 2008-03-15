@@ -29,6 +29,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QTextStream>
+#include <QToolBar>
 #include "dictcore.h"
 #include "application.h"
 #include "popupwindow.h"
@@ -43,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent)
     setupUi(this);
     m_dict = 0;
     translationView->setDict(m_dict);
+
+    menu_File->insertActions(actionQuit, translationView->toolBar()->actions());
 
     menu_Options->insertAction(menu_Options->actions().first(), wordsListDock->toggleViewAction());
     createConnections();
