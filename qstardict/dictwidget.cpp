@@ -21,6 +21,9 @@
 
 #include <QScrollBar>
 #include <QVBoxLayout>
+#include <QToolBar>
+#include <QAction>
+#include <QIcon>
 #include "dictbrowser.h"
 
 namespace QStarDict
@@ -34,8 +37,23 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     m_translationView->setFrameStyle(QFrame::NoFrame);
     m_translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
     m_translationView->horizontalScrollBar()->setCursor(Qt::ArrowCursor);
+    connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)), SLOT(on_translationView_sourceChanged(const QUrl&)));
+
+    m_toolBar = new QToolBar(this);
+    m_actionBackward = m_toolBar->addAction(QIcon(":/icons/go-previous.png"), tr("Go to previous translation"),
+            m_translationView, SLOT(backward()));
+    m_actionBackward->setDisabled(true);
+    connect(m_translationView, SIGNAL(backwardAvailable(bool)), m_actionBackward, SLOT(setEnabled(bool)));
+
+    m_actionForward = m_toolBar->addAction(QIcon(":/icons/go-next.png"), tr("Go to next translation"),
+            m_translationView, SLOT(forward()));
+    m_actionForward->setDisabled(true);
+    connect(m_translationView, SIGNAL(forwardAvailable(bool)), m_actionForward, SLOT(setEnabled(bool)));
+
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
+    layout->setSpacing(0);
+    layout->addWidget(m_toolBar);
     layout->addWidget(m_translationView);
     setLayout(layout);
 }
@@ -43,32 +61,11 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
 void DictWidget::translate(const QString &str)
 {
     m_translationView->setSource(str);
-    emit wordTranslated(str);
 }
 
-QString DictWidget::translatedWord() const
+void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 {
-    return m_translationView->source().toString();
-}
-
-void DictWidget::clear()
-{
-    m_translationView->clear();
-}
-
-QString DictWidget::cssStyle()
-{
-    return DictBrowser::cssStyle();
-}
-
-void DictWidget::setDict(DictCore *dict)
-{
-    m_translationView->setDict(dict);
-}
-
-const DictCore* DictWidget::dict() const
-{
-    return m_translationView->dict();
+    emit wordTranslated(name.toString());
 }
 
 }

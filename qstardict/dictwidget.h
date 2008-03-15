@@ -23,11 +23,13 @@
 #include <QFrame>
 
 #include "dictcore.h"
+#include "dictbrowser.h"
+
+class QToolBar;
+class QAction;
 
 namespace QStarDict
 {
-
-class DictBrowser;
 
 /**
  * The DictBrowser widget provides view of translations from given dictionary.
@@ -47,16 +49,19 @@ class DictWidget: public QFrame
          * Warning: DictWidget will copy only a pointer to dict. So set dictionaries
          * allocated from heap and don't destroy it befor DictWidget.
          */
-        void setDict(DictCore *dict);
+        void setDict(DictCore *dict)
+        { m_translationView->setDict(dict); }
         /**
          * Return pointer to dictionary.
          */
-        const DictCore* dict() const;
+        const DictCore* dict() const
+        { return m_translationView->dict(); }
         /**
          * Clear translation text.
          */
-        void clear();
-
+        void clear()
+        { m_translationView->clear(); }
+        
         /**
          * Show translation of str.
          */
@@ -64,13 +69,15 @@ class DictWidget: public QFrame
         /**
          * Return last translated word.
          */
-        QString translatedWord() const;
+        QString translatedWord() const
+        { return m_translationView->source().toString(); }
 
         /**
          * Return CSS style used by DictWidget. It can be used to generate
          * HTML translation with like DictWidget apperance.
          */
-        static QString cssStyle();
+        static QString cssStyle()
+        { return DictBrowser::cssStyle(); }
 
     signals:
         /**
@@ -78,8 +85,14 @@ class DictWidget: public QFrame
          */
         void wordTranslated(const QString &word);
 
+    private slots:
+        void on_translationView_sourceChanged(const QUrl &name);
+
     private:
         DictBrowser *m_translationView;
+        QToolBar *m_toolBar;
+        QAction *m_actionBackward;
+        QAction *m_actionForward;
 };
 
 }
