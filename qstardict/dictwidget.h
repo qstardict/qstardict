@@ -73,6 +73,12 @@ class DictWidget: public QFrame
         { return m_translationView->source().toString(); }
 
         /**
+         * Return toolbar.
+         */
+        QToolBar *toolBar()
+        { return m_toolBar; }
+
+        /**
          * Return CSS style used by DictWidget. It can be used to generate
          * HTML translation with like DictWidget apperance.
          */
