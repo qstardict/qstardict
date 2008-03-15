@@ -87,12 +87,14 @@ class DictWidget: public QFrame
 
     private slots:
         void on_translationView_sourceChanged(const QUrl &name);
+        void saveToFile();
 
     private:
         DictBrowser *m_translationView;
         QToolBar *m_toolBar;
         QAction *m_actionBackward;
         QAction *m_actionForward;
+        QAction *m_actionSaveToFile;
 };
 
 }

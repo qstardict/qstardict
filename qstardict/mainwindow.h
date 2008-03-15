@@ -82,7 +82,6 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
     private slots:
         void on_actionAbout_triggered();
         void on_actionSettings_triggered();
-        void on_actionSaveToFile_triggered();
         void on_queryButton_clicked();
 
         void wordsListItemActivated(QListWidgetItem *item);

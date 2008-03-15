@@ -116,25 +116,6 @@ void MainWindow::on_actionSettings_triggered()
     dialog.exec();
 }
 
-void MainWindow::on_actionSaveToFile_triggered()
-{
-    on_queryButton_clicked();
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save translation"),
-                       QDir::homePath() + "/" + searchBox->text() + ".txt");
-    if (! fileName.isEmpty())
-    {
-        QFile outputFile(fileName);
-        if (! outputFile.open(QIODevice::WriteOnly | QIODevice::Text))
-        {
-            QMessageBox::warning(this, tr("Error"),
-                                 tr("Cannot save translation"));
-            return;
-        }
-        QTextStream outputStream(&outputFile);
-        outputStream << m_dict->translate(searchBox->text());
-    }
-}
-
 void MainWindow::on_queryButton_clicked()
 {
     if (searchBox->text().isEmpty())

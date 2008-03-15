@@ -24,6 +24,11 @@
 #include <QToolBar>
 #include <QAction>
 #include <QIcon>
+#include <QFileDialog>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
 #include "dictbrowser.h"
 
 namespace QStarDict
@@ -50,6 +55,9 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     m_actionForward->setDisabled(true);
     connect(m_translationView, SIGNAL(forwardAvailable(bool)), m_actionForward, SLOT(setEnabled(bool)));
 
+    m_actionSaveToFile = m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("Save to file"),
+            this, SLOT(saveToFile()));
+
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
@@ -66,6 +74,30 @@ void DictWidget::translate(const QString &str)
 void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 {
     emit wordTranslated(name.toString());
+}
+
+void DictWidget::saveToFile()
+{
+    QFileDialog dialog(this, tr("Save translation"),
+                       QDir::homePath() + "/" + translatedWord() + ".html");
+    dialog.setFilters(QStringList() << tr("HTML files (*.html, *.htm)") << tr("Text files (*.txt)"));
+    if (dialog.exec() && dialog.selectedFiles().size())
+    {
+        QString fileName = dialog.selectedFiles().first();
+        QFile outputFile(fileName);
+        if (! outputFile.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            QMessageBox::warning(this, tr("Error"),
+                                 tr("Cannot save translation as %1").arg(fileName));
+            return;
+        }
+        QTextStream outputStream(&outputFile);
+        QString filter = dialog.selectedFilter();
+        if (filter == tr("HTML files (*.html, *.htm)"))
+            outputStream << m_translationView->toHtml();
+        else
+            outputStream << m_translationView->toPlainText();
+    }
 }
 
 }
