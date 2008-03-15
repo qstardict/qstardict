@@ -1,5 +1,5 @@
 /*****************************************************************************
- * dictwidget.cpp - QStarDict, a StarDict clone written with using Qt        *
+ * dictbrowser.cpp - QStarDict, a StarDict clone written with using Qt       *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,58 +17,50 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#include "dictwidget.h"
-
-#include <QScrollBar>
-#include <QVBoxLayout>
 #include "dictbrowser.h"
+
+namespace
+{
+const QString translationCSS = 
+    "font.normal {\n"
+        " }\n"
+    "font.dict_name {\n"
+        "color: blue;\n"
+        "font-style: italic; }\n"
+    "font.title {\n"
+        "font-size: x-large;\n"
+        "font-weight: bold; }\n"
+    "font.explanation {\n"
+        "color: #7f7f7f;\n"
+        "font-style: italic; }\n"
+    "font.abbreviature {\n"
+        "font-style: italic; }\n"
+    "font.example {\n"
+        "font-style: italic; }\n"
+    "font.transcription {\n"
+    "font-weight: bold; }\n";
+}
 
 namespace QStarDict
 {
 
-DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
-    : QFrame(parent, f)
+QString DictBrowser::cssStyle()
 {
-    m_translationView = new DictBrowser(this);
-    setFrameStyle(m_translationView->frameStyle());
-    m_translationView->setFrameStyle(QFrame::NoFrame);
-    m_translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
-    m_translationView->horizontalScrollBar()->setCursor(Qt::ArrowCursor);
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
-    layout->addWidget(m_translationView);
-    setLayout(layout);
+    return translationCSS;
 }
 
-void DictWidget::translate(const QString &str)
+QVariant DictBrowser::loadResource(int type, const QUrl &name)
 {
-    m_translationView->setSource(str);
-    emit wordTranslated(str);
-}
-
-QString DictWidget::translatedWord() const
-{
-    return m_translationView->source().toString();
-}
-
-void DictWidget::clear()
-{
-    m_translationView->clear();
-}
-
-QString DictWidget::cssStyle()
-{
-    return DictBrowser::cssStyle();
-}
-
-void DictWidget::setDict(DictCore *dict)
-{
-    m_translationView->setDict(dict);
-}
-
-const DictCore* DictWidget::dict() const
-{
-    return m_translationView->dict();
+    if (type == QTextDocument::HtmlResource)
+    {
+        QString result = m_dict->translate(name.toString());
+        if (result.isEmpty())
+            result = "<table><tr><td><img src=\":/icons/dialog-warning.png\" width=64 height=64/></td><td valign=middle>" +
+                tr("The word <b>%1</b> is not found.").arg(name.toString()) +
+                "</td></tr></table>";
+        return "<style>\n" + translationCSS + "</style>\n" + result;
+    }
+    return QTextBrowser::loadResource(type, name);
 }
 
 }

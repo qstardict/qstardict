@@ -1,5 +1,5 @@
 /*****************************************************************************
- * dictwidget.h - QStarDict, a StarDict clone written with using Qt          *
+ * dictbrowser.h - QStarDict, a StarDict clone written with using Qt         *
  * Copyright (C) 2007 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -17,54 +17,42 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef DICTWIDGET_H
-#define DICTWIDGET_H
+#ifndef DICTBROWSER_H
+#define DICTBROWSER_H
 
-#include <QFrame>
+#include <QTextBrowser>
 
 #include "dictcore.h"
 
 namespace QStarDict
 {
 
-class DictBrowser;
-
 /**
  * The DictBrowser widget provides view of translations from given dictionary.
  */
-class DictWidget: public QFrame
+class DictBrowser: public QTextBrowser
 {
-    Q_OBJECT
-
     public:
         /**
          * Construct empty DictWidget.
          */
-        DictWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);
+        DictBrowser(QWidget *parent = 0)
+            : QTextBrowser(parent),
+              m_dict(0)
+        { }
 
         /**
          * Set source dictionary.
-         * Warning: DictWidget will copy only a pointer to dict. So set dictionaries
+         * Warning: DictBrowser will copy only a pointer to dict. So set dictionaries
          * allocated from heap and don't destroy it befor DictWidget.
          */
-        void setDict(DictCore *dict);
+        void setDict(DictCore *dict)
+        { m_dict = dict; }
         /**
          * Return pointer to dictionary.
          */
-        const DictCore* dict() const;
-        /**
-         * Clear translation text.
-         */
-        void clear();
-
-        /**
-         * Show translation of str.
-         */
-        void translate(const QString &str);
-        /**
-         * Return last translated word.
-         */
-        QString translatedWord() const;
+        const DictCore* dict() const
+        { return m_dict; }
 
         /**
          * Return CSS style used by DictWidget. It can be used to generate
@@ -72,19 +60,15 @@ class DictWidget: public QFrame
          */
         static QString cssStyle();
 
-    signals:
-        /**
-         * Emits when translated word is shown.
-         */
-        void wordTranslated(const QString &word);
+        QVariant loadResource(int type, const QUrl &name);
 
     private:
-        DictBrowser *m_translationView;
+        DictCore *m_dict;
 };
 
 }
 
-#endif // DICTWIDGET_H
+#endif // DICTBROWSER_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
