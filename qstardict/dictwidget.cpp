@@ -29,6 +29,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QTextDocument>
 #include "dictbrowser.h"
 
 namespace QStarDict
@@ -94,7 +95,7 @@ void DictWidget::saveToFile()
         QTextStream outputStream(&outputFile);
         QString filter = dialog.selectedFilter();
         if (filter == tr("HTML files (*.html, *.htm)"))
-            outputStream << m_translationView->toHtml();
+            outputStream << m_translationView->document()->toHtml("UTF-8");
         else
             outputStream << m_translationView->toPlainText();
     }

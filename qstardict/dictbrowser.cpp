@@ -58,7 +58,9 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
             result = "<table><tr><td><img src=\":/icons/dialog-warning.png\" width=64 height=64/></td><td valign=middle>" +
                 tr("The word <b>%1</b> is not found.").arg(name.toString()) +
                 "</td></tr></table>";
-        return "<style>\n" + translationCSS + "</style>\n" + result;
+        return "<title>Translation for \"" + name.toString() + "\"</title>\n"
+            "<style>\n" + translationCSS + "</style>\n"
+            + result;
     }
     return QTextBrowser::loadResource(type, name);
 }
