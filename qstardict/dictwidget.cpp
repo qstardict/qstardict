@@ -43,6 +43,7 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     m_translationView->setFrameStyle(QFrame::NoFrame);
     m_translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
     m_translationView->horizontalScrollBar()->setCursor(Qt::ArrowCursor);
+    m_translationView->setOpenExternalLinks(true);
     connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)), SLOT(on_translationView_sourceChanged(const QUrl&)));
 
     m_toolBar = new QToolBar(this);
