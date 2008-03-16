@@ -22,6 +22,8 @@
 
 #include <QTextBrowser>
 
+#include <QTextCursor>
+#include <QTextCharFormat>
 #include "dictcore.h"
 
 namespace QStarDict
@@ -38,7 +40,8 @@ class DictBrowser: public QTextBrowser
          */
         DictBrowser(QWidget *parent = 0)
             : QTextBrowser(parent),
-              m_dict(0)
+              m_dict(0),
+              m_highlighted(false)
         { }
 
         /**
@@ -62,8 +65,16 @@ class DictBrowser: public QTextBrowser
 
         QVariant loadResource(int type, const QUrl &name);
 
+    protected:
+        void mouseMoveEvent(QMouseEvent *event);
+        void mousePressEvent(QMouseEvent *event);
+
     private:
         DictCore *m_dict;
+
+        QTextCursor m_oldCursor;
+        QTextCharFormat m_oldFormat;
+        bool m_highlighted;
 };
 
 }

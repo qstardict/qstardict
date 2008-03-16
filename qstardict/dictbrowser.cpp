@@ -19,6 +19,16 @@
 
 #include "dictbrowser.h"
 
+#include <QDesktopServices>
+#include <QMouseEvent>
+#include <QTextBlock>
+#include <QTextCharFormat>
+#include <QTextDocument>
+#include <QTextDocumentFragment>
+#include "keyboard.h"
+
+#include <QDebug>
+
 namespace
 {
 const QString translationCSS = 
@@ -63,6 +73,52 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
             + result;
     }
     return QTextBrowser::loadResource(type, name);
+}
+
+void DictBrowser::mouseMoveEvent(QMouseEvent *event)
+{
+    if (m_highlighted)
+    {
+        m_oldCursor.setCharFormat(m_oldFormat);
+        m_highlighted = false;
+    }
+    if (Keyboard::activeModifiers().testFlag(Qt::ControlModifier))
+    {
+        QTextCursor cursor = cursorForPosition(event->pos());
+        cursor.select(QTextCursor::WordUnderCursor);
+        QString selection = cursor.selection().toPlainText().simplified();
+        if (m_dict->isTranslatable(selection))
+        {
+            m_oldCursor = cursor;
+            m_oldFormat = cursor.charFormat();
+
+            QTextCharFormat format = m_oldFormat;
+            format.setForeground(Qt::blue);
+            format.setFontUnderline(true);
+            cursor.setCharFormat(format);
+
+            m_highlighted = true;
+        }
+    }
+
+    QTextBrowser::mouseMoveEvent(event);
+}
+
+void DictBrowser::mousePressEvent(QMouseEvent *event)
+{
+    if (Keyboard::activeModifiers().testFlag(Qt::ControlModifier))
+    {
+        QTextCursor cursor = cursorForPosition(event->pos());
+        cursor.select(QTextCursor::WordUnderCursor);
+        QString selection = cursor.selection().toPlainText().simplified();
+        if (m_dict->isTranslatable(selection))
+        {
+            setSource(selection);
+            if (m_highlighted)
+                m_highlighted = false;
+        }
+    }
+    QTextBrowser::mousePressEvent(event);
 }
 
 }
