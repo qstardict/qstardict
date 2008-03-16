@@ -22,7 +22,6 @@ TARGET = qstardict
 include(../qstardict.pri)
 
 FORMS += \
-    adddictionarydialog.ui \
     mainwindow.ui \
     settingsdialog.ui
 HEADERS += \
