@@ -19,6 +19,7 @@
 
 #include "trayicon.h"
 
+#include <QClipboard>
 #include <QMenu>
 
 #include "application.h"
@@ -54,9 +55,18 @@ TrayIcon::TrayIcon(QObject *parent)
 
 void TrayIcon::on_activated(QSystemTrayIcon::ActivationReason reason)
 {
-    if (reason == QSystemTrayIcon::Trigger)
-        Application::instance()->mainWindow()->setVisible(!
-                Application::instance()->mainWindow()->isVisible());
+    switch (reason)
+    {
+        case QSystemTrayIcon::Trigger:
+            Application::instance()->mainWindow()->setVisible(!
+                    Application::instance()->mainWindow()->isVisible());
+            break;
+        case QSystemTrayIcon::MiddleClick:
+            Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));
+            break;
+        default:
+            ; // nothing
+    }
 }
 
 void TrayIcon::on_actionSettings_triggered()

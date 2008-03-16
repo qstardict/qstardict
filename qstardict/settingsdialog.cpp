@@ -26,7 +26,6 @@
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
-#include "adddictionarydialog.h"
 #include "application.h"
 
 namespace QStarDict {
