@@ -26,29 +26,24 @@ FORMS += \
     mainwindow.ui \
     settingsdialog.ui
 HEADERS += \
-#    adddictionarydialog.h \
     application.h \
+    dictbrowser.h \
     dictcore.h \
     dictplugin.h \
     dictwidget.h \
-    downloadprogressdialog.h \
-    iso639.h \
     keyboard.h \
     mainwindow.h \
     popupwindow.h \
     resizablepopup.h \
     selection.h \
     settingsdialog.h \
-    trayicon.h \
-    dictbrowser.h
+    trayicon.h
 unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
 SOURCES += \
-#    adddictionarydialog.cpp \
     application.cpp \
+    dictbrowser.cpp \
     dictcore.cpp \
     dictwidget.cpp \
-    downloadprogressdialog.cpp \
-    iso639.cpp \
     keyboard.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -56,8 +51,7 @@ SOURCES += \
     resizablepopup.cpp \
     selection.cpp \
     settingsdialog.cpp \
-    trayicon.cpp \
-    dictbrowser.cpp
+    trayicon.cpp
 unix:isEmpty(NO_DBUS):SOURCES += dbusadaptor.cpp
 RESOURCES += \
     pixmaps/pixmaps.qrc
