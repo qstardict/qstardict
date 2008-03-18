@@ -54,9 +54,12 @@ const QString translationCSS =
 namespace QStarDict
 {
 
-QString DictBrowser::cssStyle()
+DictBrowser::DictBrowser(QWidget *parent)
+    : QTextBrowser(parent),
+      m_dict(0),
+      m_highlighted(false)
 {
-    return translationCSS;
+    document()->setDefaultStyleSheet(translationCSS);
 }
 
 QVariant DictBrowser::loadResource(int type, const QUrl &name)
@@ -69,7 +72,6 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
                 tr("The word <b>%1</b> is not found.").arg(name.toString()) +
                 "</td></tr></table>";
         return "<title>Translation for \"" + name.toString() + "\"</title>\n"
-            "<style>\n" + translationCSS + "</style>\n"
             + result;
     }
     return QTextBrowser::loadResource(type, name);

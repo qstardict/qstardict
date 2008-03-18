@@ -78,13 +78,6 @@ class DictWidget: public QFrame
         QToolBar *toolBar()
         { return m_toolBar; }
 
-        /**
-         * Return CSS style used by DictWidget. It can be used to generate
-         * HTML translation with like DictWidget apperance.
-         */
-        static QString cssStyle()
-        { return DictBrowser::cssStyle(); }
-
     signals:
         /**
          * Emits when translated word is shown.

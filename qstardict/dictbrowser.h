@@ -38,11 +38,7 @@ class DictBrowser: public QTextBrowser
         /**
          * Construct empty DictWidget.
          */
-        DictBrowser(QWidget *parent = 0)
-            : QTextBrowser(parent),
-              m_dict(0),
-              m_highlighted(false)
-        { }
+        DictBrowser(QWidget *parent = 0);
 
         /**
          * Set source dictionary.
@@ -56,12 +52,6 @@ class DictBrowser: public QTextBrowser
          */
         const DictCore* dict() const
         { return m_dict; }
-
-        /**
-         * Return CSS style used by DictWidget. It can be used to generate
-         * HTML translation with like DictWidget apperance.
-         */
-        static QString cssStyle();
 
         QVariant loadResource(int type, const QUrl &name);
 
