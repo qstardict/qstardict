@@ -88,6 +88,7 @@ class DictWidget: public QFrame
         void on_translationView_sourceChanged(const QUrl &name);
         void saveToFile();
         void speak();
+        void print();
 
     private:
         DictBrowser *m_translationView;
@@ -96,6 +97,7 @@ class DictWidget: public QFrame
         QAction *m_actionForward;
         QAction *m_actionSaveToFile;
         QAction *m_actionSpeak;
+        QAction *m_actionPrint;
 };
 
 }

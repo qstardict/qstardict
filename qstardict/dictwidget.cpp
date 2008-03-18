@@ -30,6 +30,8 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QTextDocument>
+#include <QPrinter>
+#include <QPrintDialog>
 #include "application.h"
 #include "dictbrowser.h"
 #include "speaker.h"
@@ -61,6 +63,9 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
 
     m_actionSaveToFile = m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("Save to file"),
             this, SLOT(saveToFile()));
+
+    m_actionPrint = m_toolBar->addAction(QIcon(":/icons/document-print.png"), tr("Print translation"),
+            this, SLOT(print()));
 
     m_actionSpeak = m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak word"),
             this, SLOT(speak()));
@@ -110,6 +115,14 @@ void DictWidget::saveToFile()
 void DictWidget::speak()
 {
     Application::instance()->speaker()->speak(translatedWord());
+}
+
+void DictWidget::print()
+{
+    QPrinter printer;
+    QPrintDialog dialog(&printer, this);
+    if (dialog.exec() == QDialog::Accepted)
+        m_translationView->print(&printer);
 }
 
 }
