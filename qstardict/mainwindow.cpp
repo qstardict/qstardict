@@ -144,14 +144,22 @@ void MainWindow::timerEvent(QTimerEvent *event)
 {
     if (event->timerId() == m_queryTimer)
     {
+        killTimer(m_queryTimer);
         m_queryTimer = 0;
         on_queryButton_clicked();
     }
+    else
+        QMainWindow::timerEvent(event);
 }
 
 void MainWindow::wordTranslated(const QString &word)
 {
     setWindowTitle(tr("%1 - QStarDict").arg(word));
+    if (m_queryTimer)
+    {
+        killTimer(m_queryTimer);
+        m_queryTimer = 0;
+    }
 }
 
 void MainWindow::wordsListItemActivated(QListWidgetItem *item)
