@@ -119,7 +119,7 @@ void DictWidget::speak()
 
 void DictWidget::print()
 {
-    QPrinter printer;
+    QPrinter printer(QPrinter::HighResolution);
     QPrintDialog dialog(&printer, this);
     if (dialog.exec() == QDialog::Accepted)
         m_translationView->print(&printer);

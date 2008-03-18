@@ -71,10 +71,10 @@ QString DictCore::translate(const QString &word)
         if (! plugin->isTranslatable(i->name(), simplifiedWord))
             continue;
         DictPlugin::Translation translation = plugin->translate(i->name(), simplifiedWord);
-        result += "<p><font class=\"normal\">\n"
+        result += "<p>\n"
             "<font class=\"dict_name\">" + translation.dictName() + "</font><br>\n"
             "<font class=\"title\">" + translation.title() + "</font><br>\n"
-            + translation.translation() + "</font></p>\n";
+            + translation.translation() + "</p>\n";
     }
     return result;
 }

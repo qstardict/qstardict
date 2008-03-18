@@ -32,8 +32,8 @@
 namespace
 {
 const QString translationCSS = 
-    "font.normal {\n"
-        " }\n"
+    "p {\n"
+        "font-size: x-medium; }\n"
     "font.dict_name {\n"
         "color: blue;\n"
         "font-style: italic; }\n"
@@ -48,7 +48,7 @@ const QString translationCSS =
     "font.example {\n"
         "font-style: italic; }\n"
     "font.transcription {\n"
-    "font-weight: bold; }\n";
+        "font-weight: bold; }\n";
 }
 
 namespace QStarDict
