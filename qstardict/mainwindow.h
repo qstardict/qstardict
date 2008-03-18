@@ -78,6 +78,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
 
     protected:
         void closeEvent(QCloseEvent *event);
+        void timerEvent(QTimerEvent *event);
 
     private slots:
         void on_actionAbout_triggered();
@@ -86,6 +87,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
 
         void wordsListItemActivated(QListWidgetItem *item);
         void wordTranslated(const QString &word);
+        void queryEdited(const QString &);
 
     private:
         void createConnections();
@@ -94,6 +96,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
 
         DictCore *m_dict;
         bool m_instantSearch;
+        int m_queryTimer;
 };
 
 }

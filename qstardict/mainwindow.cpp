@@ -29,6 +29,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QTextStream>
+#include <QTimerEvent>
 #include <QToolBar>
 #include "dictcore.h"
 #include "application.h"
@@ -132,6 +133,22 @@ void MainWindow::on_queryButton_clicked()
     translationView->translate(searchBox->text());
 }
 
+void MainWindow::queryEdited(const QString &)
+{
+    if (m_queryTimer)
+        killTimer(m_queryTimer);
+    m_queryTimer = startTimer(200);
+}
+
+void MainWindow::timerEvent(QTimerEvent *event)
+{
+    if (event->timerId() == m_queryTimer)
+    {
+        m_queryTimer = 0;
+        on_queryButton_clicked();
+    }
+}
+
 void MainWindow::wordTranslated(const QString &word)
 {
     setWindowTitle(tr("%1 - QStarDict").arg(word));
@@ -156,9 +173,9 @@ void MainWindow::setInstantSearch(bool instantSearch)
         return;
     m_instantSearch = instantSearch;
     if (m_instantSearch)
-        connect(searchBox, SIGNAL(textEdited(const QString&)), SLOT(on_queryButton_clicked()));
+        connect(searchBox, SIGNAL(textEdited(const QString&)), SLOT(queryEdited(const QString&)));
     else
-        disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(on_queryButton_clicked()));
+        disconnect(searchBox, SIGNAL(textEdited(const QString&)), this, SLOT(queryEdited(const QString&)));
 }
 
 void MainWindow::setDict(DictCore *dict)
