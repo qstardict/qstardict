@@ -30,7 +30,9 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QTextDocument>
+#include "application.h"
 #include "dictbrowser.h"
+#include "speaker.h"
 
 namespace QStarDict
 {
@@ -59,6 +61,9 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
 
     m_actionSaveToFile = m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("Save to file"),
             this, SLOT(saveToFile()));
+
+    m_actionSpeak = m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak word"),
+            this, SLOT(speak()));
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
@@ -100,6 +105,11 @@ void DictWidget::saveToFile()
         else
             outputStream << m_translationView->toPlainText();
     }
+}
+
+void DictWidget::speak()
+{
+    Application::instance()->speaker()->speak(translatedWord());
 }
 
 }

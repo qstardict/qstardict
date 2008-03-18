@@ -36,6 +36,7 @@ HEADERS += \
     resizablepopup.h \
     selection.h \
     settingsdialog.h \
+    speaker.h \
     trayicon.h
 unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
 SOURCES += \
@@ -50,6 +51,7 @@ SOURCES += \
     resizablepopup.cpp \
     selection.cpp \
     settingsdialog.cpp \
+    speaker.cpp \
     trayicon.cpp
 unix:isEmpty(NO_DBUS):SOURCES += dbusadaptor.cpp
 RESOURCES += \

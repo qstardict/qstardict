@@ -20,12 +20,13 @@
 #include "popupwindow.h"
 
 #include <QGridLayout>
-#include <QProcess>
 #include <QSettings>
 #include <QRegExp>
 #include "dictwidget.h"
 #include "keyboard.h"
 #include "selection.h"
+#include "application.h"
+#include "speaker.h"
 
 namespace QStarDict
 {
@@ -41,7 +42,6 @@ PopupWindow::PopupWindow(QWidget *parent)
     QGridLayout *mainLayout = new QGridLayout(this);
     mainLayout->setMargin(0);
     mainLayout->addWidget(translationView);
-    m_speechProcess = new QProcess(this);
 
     m_selection = new Selection(this);
     connect(m_selection, SIGNAL(changed(const QString&)), this, SLOT(selectionChanged(const QString&)));
@@ -64,7 +64,6 @@ void PopupWindow::loadSettings()
     setTimeoutBeforeHide(config.value("PopupWindow/timeoutBeforeHide", 500).toInt());
     setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
     setPronounceWord(config.value("PopupWindow/pronounceWord", true).toBool());
-    setSpeechProgram(config.value("PopupWindow/speechProgram", "festival --tts").toString());
 }
 
 void PopupWindow::saveSettings()
@@ -117,16 +116,7 @@ void PopupWindow::showTranslation(const QString &text)
         translationView->translate(sourceText);
         popup();
         if (isFound && m_pronounceWord)
-        {
-            if (m_speechProcess->state() != QProcess::NotRunning)
-            m_speechProcess->kill();
-            
-            m_speechProcess->start(m_speechProgram, QIODevice::WriteOnly);
-            if (! m_speechProcess->waitForStarted())
-            return;
-            m_speechProcess->write(sourceText.toUtf8());
-            m_speechProcess->closeWriteChannel();
-        }
+            Application::instance()->speaker()->speak(text);
     }
 }
 

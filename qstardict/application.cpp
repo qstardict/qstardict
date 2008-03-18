@@ -26,6 +26,7 @@
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
+#include "speaker.h"
 #include "trayicon.h"
 #ifdef QSTARDICT_WITH_DBUS
 #include "dbusadaptor.h"
@@ -49,6 +50,7 @@ Application::Application(int &argc, char **argv)
     m_dictCore = new DictCore;
     m_popupWindow = new PopupWindow;
     m_popupWindow->setDict(m_dictCore);
+    m_speaker = new Speaker;
     m_mainWindow = new MainWindow;
     m_mainWindow->setDict(m_dictCore);
     m_trayIcon = new TrayIcon;
@@ -62,6 +64,7 @@ Application::~Application()
     delete m_trayIcon;
     delete m_mainWindow;
     delete m_popupWindow;
+    delete m_speaker;
     delete m_dictCore;
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     removeTranslator(m_translator);

@@ -47,7 +47,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabGlobalSettings" >
       <attribute name="title" >
@@ -86,7 +86,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="speechProgramEdit" />
+          <widget class="QLineEdit" name="speechCmdEdit" >
+           <property name="toolTip" >
+            <string>Enter cmd for the speaching program.&lt;br>If cmd contains "%s" it will be replaced to word, else word will be writen to stdin of speech process.</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

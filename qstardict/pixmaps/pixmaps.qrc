@@ -17,6 +17,7 @@
         <file>list-remove.png</file>
         <file>qstardict.png</file>
         <file>search-filter.png</file>
+        <file>speaker.png</file>
         <file>view-refresh.png</file>
     </qresource>
 </RCC>

@@ -23,8 +23,6 @@
 #include "resizablepopup.h"
 #include "dictcore.h"
 
-class QProcess;
-
 namespace QStarDict
 {
 
@@ -81,12 +79,6 @@ class PopupWindow: public ResizablePopup
          */
         bool pronounceWord() const
         { return m_pronounceWord; }
-        /**
-         * Return program using that shown words will be prnounced.
-         */
-        const QString &speechProgram() const
-        { return m_speechProgram; }
-
     public slots:
         /**
          * Enable or disable scanning of selection.
@@ -115,11 +107,6 @@ class PopupWindow: public ResizablePopup
          */
         void setPronounceWord(bool pronounceWord)
         { m_pronounceWord = pronounceWord; }
-        /**
-         * Set speech program for words pronouncing.
-         */
-        void setSpeechProgram(const QString &speechProgram)
-        { m_speechProgram = speechProgram; }
 
     private slots:
         void selectionChanged(const QString &text);
@@ -136,9 +123,7 @@ class PopupWindow: public ResizablePopup
         int m_modifierKey;
         bool m_showIfNotFound;
         Selection *m_selection;
-	bool m_pronounceWord;
-	QString m_speechProgram;
-	QProcess *m_speechProcess;
+    	bool m_pronounceWord;
 };
 
 }

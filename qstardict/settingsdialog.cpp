@@ -27,6 +27,7 @@
 #include "mainwindow.h"
 #include "popupwindow.h"
 #include "application.h"
+#include "speaker.h"
 
 namespace QStarDict {
 
@@ -49,6 +50,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     // Load global settings
     instantSearchBox->setChecked(Application::instance()->mainWindow()->isInstantSearch());
+    speechCmdEdit->setText(Application::instance()->speaker()->speechCmd());
 
     // Load popup window settings
     PopupWindow *popup = Application::instance()->popupWindow();
@@ -103,6 +105,7 @@ void SettingsDialog::apply()
 
     // Save global settings
     Application::instance()->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
+    Application::instance()->speaker()->setSpeechCmd(speechCmdEdit->text());
 
     // Save popup window settings
     PopupWindow *popup = Application::instance()->popupWindow();
