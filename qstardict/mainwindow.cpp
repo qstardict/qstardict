@@ -25,6 +25,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QListWidgetItem>
+#include <QKeyEvent>
 #include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
@@ -190,6 +191,17 @@ void MainWindow::setDict(DictCore *dict)
 {
     m_dict = dict;
     translationView->setDict(dict);
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->text().size())
+        if (! searchBox->hasFocus())
+        {
+            searchBox->setText(event->text());
+            searchBox->setFocus(Qt::OtherFocusReason);
+        }
+    QMainWindow::keyPressEvent(event);
 }
 
 }
