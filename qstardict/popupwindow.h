@@ -108,6 +108,9 @@ class PopupWindow: public ResizablePopup
         void setPronounceWord(bool pronounceWord)
         { m_pronounceWord = pronounceWord; }
 
+    protected:
+        void mouseDoubleClickEvent(QMouseEvent *event);
+
     private slots:
         void selectionChanged(const QString &text);
 

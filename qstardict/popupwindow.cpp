@@ -20,6 +20,7 @@
 #include "popupwindow.h"
 
 #include <QGridLayout>
+#include <QMouseEvent>
 #include <QSettings>
 #include <QRegExp>
 #include "dictwidget.h"
@@ -119,6 +120,12 @@ void PopupWindow::showTranslation(const QString &text)
         if (isFound && m_pronounceWord)
             Application::instance()->speaker()->speak(simpl);
     }
+}
+
+void PopupWindow::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    ResizablePopup::mouseDoubleClickEvent(event);
+    hide();
 }
 
 }
