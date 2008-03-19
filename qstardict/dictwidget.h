@@ -61,6 +61,12 @@ class DictWidget: public QFrame
          */
         void clear()
         { m_translationView->clear(); }
+
+        /**
+         * Clear history.
+         */
+        void clearHistory()
+        { m_translationView->clearHistory(); }
         
         /**
          * Show translation of str.

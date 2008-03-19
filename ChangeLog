@@ -61,5 +61,7 @@
 	- add basic Windows support
 	- add plugins support
 	- add toolbar to dictionary widget
+	- add for links in translations (by pressing Ctrl and clicking on the word)
 	- improve instant search
+	- improve popup window
 

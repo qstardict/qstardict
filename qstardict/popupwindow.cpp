@@ -104,19 +104,20 @@ void PopupWindow::selectionChanged(const QString &text)
 
 void PopupWindow::showTranslation(const QString &text)
 {
-    if (text.simplified().isEmpty() ||
-        text.contains(QRegExp("[&%-/+?\\*#!0123456789]()")))
+    QString simpl = text.simplified();
+    simpl.remove(QRegExp("[&%-/+?\\*#!:\\(\\)\\[\\]]+"));
+    if (simpl.isEmpty())
         return;
 
-    bool isFound = m_dict->isTranslatable(text);
+    bool isFound = m_dict->isTranslatable(simpl);
 
     if (m_showIfNotFound || isFound)
     {
-        QString sourceText = text.simplified();
-        translationView->translate(sourceText);
+        translationView->clearHistory();
+        translationView->translate(simpl);
         popup();
         if (isFound && m_pronounceWord)
-            Application::instance()->speaker()->speak(text);
+            Application::instance()->speaker()->speak(simpl);
     }
 }
 
