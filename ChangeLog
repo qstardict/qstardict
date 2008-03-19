@@ -52,7 +52,6 @@
 * Version 0.09
 	- add polish translation
 	- fix bug with instant search
-	- add support for dictionaries repository
 	- add italian translation
 	- fix bug with simlinks to dictionaries
 	- add german translation
@@ -60,4 +59,7 @@
 	- update the german translation
 	- reorganize project
 	- add basic Windows support
+	- add plugins support
+	- add toolbar to dictionary widget
+	- improve instant search
 
