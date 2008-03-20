@@ -71,10 +71,7 @@ class DictPlugin
                  * Constructs DictInfo object from data.
                  * @param plugin A plugin name
                  * @param name A dictionary name
-                 * @param fullName A full dictionary name
                  * @param author A dictionary author
-                 * @param email An author e-mail
-                 * @param webSite A dictionary website
                  * @param desription A dictionary description
                  * @param wordsCount A count of words that avialable in dictionary
                  */
