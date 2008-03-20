@@ -1,5 +1,5 @@
 #############################################################################
-# plugins.pro - QStarDict, a StarDict clone written with using Qt           #
+# web.pro - QStarDict, a StarDict clone written with using Qt               #
 # Copyright (C) 2008 Alexander Rodin                                        #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
@@ -17,6 +17,18 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-SUBDIRS = stardict test web
+TARGET = web
+include(../plugin.pri)
+
+HEADERS += \
+    settingsdialog.h \
+    web.h
+SOURCES += \
+    settingsdialog.cpp \
+    web.cpp
+FORMS += \
+    adddictionarydialog.ui \
+    settingsdialog.ui
+RESOURCES += \
+    pixmaps/pixmaps.qrc
 
