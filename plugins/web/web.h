@@ -37,7 +37,7 @@ class Web: public QObject, public QStarDict::DictPlugin
         QString version() const
         { return "0.01"; }
         QString description() const
-        { return tr("A plugin for web dictionaries."); }
+        { return tr("An experimental plugin for WEB dictionaries.<br><b><font color=red>Warning:</font></b> now this plugin is unstable"); }
         QStringList authors() const
         { return QStringList("Alexander Rodin <rodin.alexander@gmail.com>"); }
         Features features() const
