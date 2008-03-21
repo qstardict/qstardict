@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>482</width>
-    <height>466</height>
+    <width>478</width>
+    <height>536</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -47,7 +47,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabGlobalSettings" >
       <attribute name="title" >
@@ -220,32 +220,6 @@
           <item>
            <layout class="QHBoxLayout" >
             <item>
-             <widget class="QToolButton" name="pluginsMoveUpButton" >
-              <property name="toolTip" >
-               <string>Move up</string>
-              </property>
-              <property name="text" >
-               <string>Up</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-up.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="pluginsMoveDownButton" >
-              <property name="toolTip" >
-               <string>Move down</string>
-              </property>
-              <property name="text" >
-               <string>Down</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-down.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QToolButton" name="pluginsShowInfoButton" >
               <property name="toolTip" >
                <string>Show information about plugin</string>
@@ -268,6 +242,65 @@
               </property>
               <property name="icon" >
                <iconset resource="pixmaps/pixmaps.qrc" >:/icons/configure.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_5" >
+         <property name="title" >
+          <string>Profiles</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="profilesBox" >
+            <property name="toolTip" >
+             <string>Current profile</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QToolButton" name="profilesAddButton" >
+              <property name="toolTip" >
+               <string>Add new profile</string>
+              </property>
+              <property name="text" >
+               <string>Add</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-add.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="profilesRemoveButton" >
+              <property name="toolTip" >
+               <string>Remove current profile</string>
+              </property>
+              <property name="text" >
+               <string>Remove</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-remove.png</iconset>
               </property>
              </widget>
             </item>

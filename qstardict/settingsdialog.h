@@ -23,7 +23,10 @@
 #include <QDialog>
 #include "ui_settingsdialog.h"
 
+#include "dictcore.h"
+
 class QStandardItemModel;
+class QStandardItem;
 
 namespace QStarDict
 {
@@ -42,23 +45,29 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
          */
         SettingsDialog(QWidget *parent = 0);
 
+        void accept();
+        void reject();
+
     private slots:
         void on_dictsMoveUpButton_clicked();
         void on_dictsMoveDownButton_clicked();
         void on_dictsShowInfoButton_clicked();
 
-        void on_pluginsMoveUpButton_clicked();
-        void on_pluginsMoveDownButton_clicked();
         void on_pluginsShowInfoButton_clicked();
         void on_pluginsConfigureButton_clicked();
+        void pluginsItemChanged(QStandardItem *item);
 
-        void apply();
+        void on_profilesAddButton_clicked();
+        void on_profilesRemoveButton_clicked();
+        void on_profilesBox_currentIndexChanged(const QString &text);
 
     private slots:
         void loadDictsList();
         void loadPluginsList();
 
     private:
+        QStringList m_oldPlugins;
+        QList<DictCore::Dictionary> m_oldDicts;
         QStandardItemModel *m_dictsModel;
         QStandardItemModel *m_pluginsModel;
 };

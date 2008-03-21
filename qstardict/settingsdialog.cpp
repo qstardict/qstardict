@@ -23,6 +23,8 @@
 #include <QMessageBox>
 #include <QStandardItemModel>
 #include <QHeaderView>
+#include <QInputDialog>
+#include <QSettings>
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
@@ -36,6 +38,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     setupUi(this);
 
+
+    DictCore *dict = Application::instance()->dictCore();
+    m_oldPlugins = dict->loadedPlugins();
+    m_oldDicts = dict->loadedDicts();
 
     m_pluginsModel = new QStandardItemModel(this);
     m_pluginsModel->setHorizontalHeaderLabels(
@@ -83,25 +89,27 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     popupDefaultHeightSpin->setValue(popup->defaultSize().height());
     pronounceWordBox->setChecked(popup->pronounceWord());
 
-    connect(this, SIGNAL(accepted()), SLOT(apply()));
+    connect(m_pluginsModel, SIGNAL(itemChanged(QStandardItem*)),
+            SLOT(pluginsItemChanged(QStandardItem*)));
 }
 
-void SettingsDialog::apply()
+void SettingsDialog::accept()
 {
     // Save dicts and plugins settings
+    DictCore *dict = Application::instance()->dictCore();
     QStringList loadedPlugins;
     int rowCount = m_pluginsModel->rowCount();
     for (int i = 0; i < rowCount; ++i)
         if (m_pluginsModel->item(i, 0)->checkState() == Qt::Checked)
             loadedPlugins << m_pluginsModel->item(i, 1)->text();
-    Application::instance()->dictCore()->setLoadedPlugins(loadedPlugins);
+    dict->setLoadedPlugins(loadedPlugins);
 
     QList<DictCore::Dictionary> loadedDicts;
     rowCount = m_dictsModel->rowCount();
     for (int i = 0; i < rowCount; ++i)
         if (m_dictsModel->item(i, 0)->checkState() == Qt::Checked)
             loadedDicts << DictCore::Dictionary(m_dictsModel->item(i, 2)->text(), m_dictsModel->item(i, 1)->text());
-    Application::instance()->dictCore()->setLoadedDicts(loadedDicts);
+    dict->setLoadedDicts(loadedDicts);
 
     // Save global settings
     Application::instance()->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
@@ -125,12 +133,23 @@ void SettingsDialog::apply()
     popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));
+
+    QDialog::accept();
+}
+
+void SettingsDialog::reject()
+{
+    DictCore *dict = Application::instance()->dictCore();
+    dict->setLoadedPlugins(m_oldPlugins);
+    dict->setLoadedDicts(m_oldDicts);
+    QDialog::reject();
 }
 
 void SettingsDialog::loadDictsList()
 {
     int i;
     QList<DictCore::Dictionary> loadedDicts = Application::instance()->dictCore()->loadedDicts();
+    m_dictsModel->setRowCount(0);
     for (i = 0; i < loadedDicts.size(); ++i)
     {
         QStandardItem *item = new QStandardItem();
@@ -159,8 +178,9 @@ void SettingsDialog::loadDictsList()
 void SettingsDialog::loadPluginsList()
 {
     m_pluginsModel->setRowCount(0);
-    QStringList plugins = Application::instance()->dictCore()->avialablePlugins();
-    QStringList loaded = Application::instance()->dictCore()->loadedPlugins();
+    DictCore *dict = Application::instance()->dictCore();
+    QStringList plugins = dict->avialablePlugins();
+    QStringList loaded = dict->loadedPlugins();
     for (int i = 0; i < plugins.size(); ++i)
     {
         QStandardItem *item = new QStandardItem();
@@ -208,26 +228,6 @@ void SettingsDialog::on_dictsShowInfoButton_clicked()
             tr("<b>Description:</b> %1").arg(info.description()));
 }
 
-void SettingsDialog::on_pluginsMoveUpButton_clicked()
-{
-    int currentRow = pluginsTableView->currentIndex().row();
-    if (currentRow > 0)
-    {
-        m_pluginsModel->insertRow(currentRow - 1, m_pluginsModel->takeRow(currentRow));
-        pluginsTableView->selectRow(currentRow - 1);
-    }
-}
-
-void SettingsDialog::on_pluginsMoveDownButton_clicked()
-{
-    int currentRow = pluginsTableView->currentIndex().row();
-    if (currentRow < m_pluginsModel->rowCount() - 1)
-    {
-        m_pluginsModel->insertRow(currentRow + 1, m_pluginsModel->takeRow(currentRow));
-        pluginsTableView->selectRow(currentRow + 1);
-    }
-}
-
 void SettingsDialog::on_pluginsShowInfoButton_clicked()
 {
     int currentRow = pluginsTableView->currentIndex().row();
@@ -250,12 +250,48 @@ void SettingsDialog::on_pluginsConfigureButton_clicked()
     int currentRow = pluginsTableView->currentIndex().row();
     if (currentRow == -1)
         return;
-    DictPlugin *plugin = Application::instance()->dictCore()->plugin(m_pluginsModel->item(currentRow, 1)->text());
+    DictCore *dict = Application::instance()->dictCore();
+    DictPlugin *plugin = dict->plugin(m_pluginsModel->item(currentRow, 1)->text());
     if (plugin && plugin->execSettingsDialog(this) == QDialog::Accepted)
     {
-        Application::instance()->dictCore()->reloadDicts();
+        dict->reloadDicts();
         loadDictsList();
     }
+}
+
+void SettingsDialog::pluginsItemChanged(QStandardItem *item)
+{
+    if (item->isCheckable())
+    {
+        DictCore *dict = Application::instance()->dictCore();
+        QStringList loadedPlugins;
+        int rowCount = m_pluginsModel->rowCount();
+        for (int i = 0; i < rowCount; ++i)
+            if (m_pluginsModel->item(i, 0)->checkState() == Qt::Checked)
+                loadedPlugins << m_pluginsModel->item(i, 1)->text();
+        dict->setLoadedPlugins(loadedPlugins);
+        dict->reloadDicts();
+        loadDictsList();
+    }
+}
+
+void SettingsDialog::on_profilesAddButton_clicked()
+{
+    QString profile = QInputDialog::getText(this,
+            tr("Add new profile"),
+            tr("Enter profile name:"));
+    if (profile.isEmpty())
+        return;
+}
+
+void SettingsDialog::on_profilesRemoveButton_clicked()
+{
+
+}
+
+void SettingsDialog::on_profilesBox_currentIndexChanged(const QString &text)
+{
+
 }
 
 }
