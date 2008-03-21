@@ -34,6 +34,7 @@ namespace QStarDict
  */
 class DictBrowser: public QTextBrowser
 {
+    Q_OBJECT
     public:
         /**
          * Construct empty DictWidget.
