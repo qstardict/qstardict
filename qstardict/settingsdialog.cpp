@@ -48,11 +48,18 @@ SettingsDialog::SettingsDialog(QWidget *parent)
             QStringList() << tr("Enabled") << tr("Name"));
     loadPluginsList();
     pluginsTableView->setModel(m_pluginsModel);
+    pluginsTableView->verticalHeader()->hide();
+    pluginsTableView->setColumnWidth(0, 60);
+    pluginsTableView->setColumnWidth(1, 320);
 
     m_dictsModel = new QStandardItemModel(this);
     m_dictsModel->setHorizontalHeaderLabels(QStringList() << tr("Enabled") << tr("Name") << tr("Plugin"));
     loadDictsList();
     dictsTableView->setModel(m_dictsModel);
+    dictsTableView->verticalHeader()->hide();
+    dictsTableView->setColumnWidth(0, 60);
+    dictsTableView->setColumnWidth(1, 200);
+    dictsTableView->setColumnWidth(2, 120);
 
     // Load global settings
     instantSearchBox->setChecked(Application::instance()->mainWindow()->isInstantSearch());
@@ -273,25 +280,6 @@ void SettingsDialog::pluginsItemChanged(QStandardItem *item)
         dict->reloadDicts();
         loadDictsList();
     }
-}
-
-void SettingsDialog::on_profilesAddButton_clicked()
-{
-    QString profile = QInputDialog::getText(this,
-            tr("Add new profile"),
-            tr("Enter profile name:"));
-    if (profile.isEmpty())
-        return;
-}
-
-void SettingsDialog::on_profilesRemoveButton_clicked()
-{
-
-}
-
-void SettingsDialog::on_profilesBox_currentIndexChanged(const QString &text)
-{
-
 }
 
 }

@@ -57,10 +57,6 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
         void on_pluginsConfigureButton_clicked();
         void pluginsItemChanged(QStandardItem *item);
 
-        void on_profilesAddButton_clicked();
-        void on_profilesRemoveButton_clicked();
-        void on_profilesBox_currentIndexChanged(const QString &text);
-
     private slots:
         void loadDictsList();
         void loadPluginsList();

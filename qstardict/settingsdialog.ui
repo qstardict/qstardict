@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>478</width>
-    <height>536</height>
+    <width>463</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -47,7 +47,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabGlobalSettings" >
       <attribute name="title" >
@@ -194,6 +194,12 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_4" >
+         <property name="maximumSize" >
+          <size>
+           <width>16777215</width>
+           <height>196</height>
+          </size>
+         </property>
          <property name="title" >
           <string>Plugins</string>
          </property>
@@ -242,65 +248,6 @@
               </property>
               <property name="icon" >
                <iconset resource="pixmaps/pixmaps.qrc" >:/icons/configure.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_5" >
-         <property name="title" >
-          <string>Profiles</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <item>
-           <widget class="QComboBox" name="profilesBox" >
-            <property name="toolTip" >
-             <string>Current profile</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" >
-            <item>
-             <widget class="QToolButton" name="profilesAddButton" >
-              <property name="toolTip" >
-               <string>Add new profile</string>
-              </property>
-              <property name="text" >
-               <string>Add</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-add.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="profilesRemoveButton" >
-              <property name="toolTip" >
-               <string>Remove current profile</string>
-              </property>
-              <property name="text" >
-               <string>Remove</string>
-              </property>
-              <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/list-remove.png</iconset>
               </property>
              </widget>
             </item>
