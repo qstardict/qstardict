@@ -40,7 +40,7 @@ QString Test::description() const
     return tr("A test plugin");
 }
 
-QStringList Test::avialableDicts() const
+QStringList Test::availableDicts() const
 {
     return QStringList("test01") << "test02";
 }

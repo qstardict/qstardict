@@ -73,7 +73,7 @@ class DictPlugin
                  * @param name A dictionary name
                  * @param author A dictionary author
                  * @param desription A dictionary description
-                 * @param wordsCount A count of words that avialable in dictionary
+                 * @param wordsCount A count of words that available in dictionary
                  */
                 DictInfo(const QString &plugin,
                          const QString &name,
@@ -217,9 +217,9 @@ class DictPlugin
         { return Features(None); }
 
         /**
-         * Returns a list of avialable dictionaries.
+         * Returns a list of available dictionaries.
          */
-        virtual QStringList avialableDicts() const = 0;
+        virtual QStringList availableDicts() const = 0;
 
         /**
          * Returns a list of loaded dictionaries.
@@ -250,7 +250,7 @@ class DictPlugin
 
         /**
          * Returns an information about dictionary. The dictionary may be not loaded
-         * but avialable.
+         * but available.
          */
         virtual DictInfo dictInfo(const QString &dict) = 0;
 

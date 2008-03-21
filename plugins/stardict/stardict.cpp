@@ -136,7 +136,7 @@ StarDict::~StarDict()
     delete m_sdLibs;
 }
 
-QStringList StarDict::avialableDicts() const
+QStringList StarDict::availableDicts() const
 {
     QStringList result;
     IfoListSetter setter(&result);
@@ -147,9 +147,9 @@ QStringList StarDict::avialableDicts() const
 
 void StarDict::setLoadedDicts(const QStringList &loadedDicts)
 {
-    QStringList avialable = avialableDicts();
+    QStringList available = availableDicts();
     StdList disabled;
-    for (QStringList::const_iterator i = avialable.begin(); i != avialable.end(); ++i)
+    for (QStringList::const_iterator i = available.begin(); i != available.end(); ++i)
     {
         if (! loadedDicts.contains(*i))
             disabled.push_back(i->toUtf8().data());

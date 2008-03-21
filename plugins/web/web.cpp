@@ -34,7 +34,7 @@ Web::Web(QObject *parent)
 {
 }
 
-QStringList Web::avialableDicts() const
+QStringList Web::availableDicts() const
 {
     QStringList result = QDir(workPath()).entryList(QStringList("*.webdict"), QDir::Files, QDir::Name);
     result.replaceInStrings(".webdict", "");

@@ -166,7 +166,7 @@ void SettingsDialog::loadDictsList()
         m_dictsModel->setItem(i, 1, new QStandardItem(loadedDicts[i].name()));
         m_dictsModel->setItem(i, 2, new QStandardItem(loadedDicts[i].plugin()));
     }
-    QList<DictCore::Dictionary> dicts = Application::instance()->dictCore()->avialableDicts();
+    QList<DictCore::Dictionary> dicts = Application::instance()->dictCore()->availableDicts();
     for (QList<DictCore::Dictionary>::const_iterator iter = dicts.begin(); iter != dicts.end(); ++iter)
     {
         if (! loadedDicts.contains(*iter))
@@ -186,7 +186,7 @@ void SettingsDialog::loadPluginsList()
 {
     m_pluginsModel->setRowCount(0);
     DictCore *dict = Application::instance()->dictCore();
-    QStringList plugins = dict->avialablePlugins();
+    QStringList plugins = dict->availablePlugins();
     QStringList loaded = dict->loadedPlugins();
     for (int i = 0; i < plugins.size(); ++i)
     {

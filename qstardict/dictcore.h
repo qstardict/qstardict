@@ -95,9 +95,9 @@ class DictCore: public QObject
         QStringList findSimilarWords(const QString &word);
 
         /**
-         * Returns a list of avialable dictionary plugins.
+         * Returns a list of available dictionary plugins.
          */
-        QStringList avialablePlugins() const;
+        QStringList availablePlugins() const;
 
         /**
          * Returns a list of loaded dictionary plugins.
@@ -113,11 +113,11 @@ class DictCore: public QObject
         void setLoadedPlugins(const QStringList &loadedPlugins);
 
         /**
-         * Returns a list of avialable dictionaries.
+         * Returns a list of available dictionaries.
          * The first item in pair is a plugin name, the second item
          * in pair is a dictionary name.
          */
-        QList<Dictionary> avialableDicts() const;
+        QList<Dictionary> availableDicts() const;
 
         /**
          * Returns a list of loaded dictionaries. 
@@ -132,7 +132,7 @@ class DictCore: public QObject
          * The first item in pair is a plugin name, the second item
          * in pair is a dictionary name.
          * If dictionary cannot be loaded it will not be added to 
-         * avialableDicts list.
+         * availableDicts list.
          */
         void setLoadedDicts(const QList<Dictionary> &loadedDicts);
 

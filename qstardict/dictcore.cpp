@@ -99,7 +99,7 @@ QStringList DictCore::findSimilarWords(const QString &word)
     return result;
 }
 
-QStringList DictCore::avialablePlugins() const
+QStringList DictCore::availablePlugins() const
 {
     QStringList result;
 #ifdef Q_OS_UNIX
@@ -110,7 +110,7 @@ QStringList DictCore::avialablePlugins() const
 #elif defined Q_OS_WIN
     // TODO
 #else
-#error "Function DictCore::avialablePlugins() is not implemented on this platform"
+#error "Function DictCore::availablePlugins() is not implemented on this platform"
 #endif
     return result;
 }
@@ -132,7 +132,7 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
         // TODO
         QString pluginFilename = QSTARDICT_PLUGINS_DIR "/" "lib" + *i + ".dll";
 #else
-#error "Function DictCore::setLoadedPlugins(const QStringList &loadedPlugins) is not avialable on this platform"
+#error "Function DictCore::setLoadedPlugins(const QStringList &loadedPlugins) is not available on this platform"
 #endif
         QPluginLoader *plugin = new QPluginLoader(pluginFilename);
         if (! plugin->load())
@@ -145,13 +145,13 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
     }
 }
 
-QList<DictCore::Dictionary> DictCore::avialableDicts() const
+QList<DictCore::Dictionary> DictCore::availableDicts() const
 {
     QList<Dictionary> result;
     for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
     {
         DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
-        QStringList dicts = plugin->avialableDicts();
+        QStringList dicts = plugin->availableDicts();
         for (QStringList::const_iterator j = dicts.begin(); j != dicts.end(); ++j)
             result << Dictionary(i.key(), *j);
     }
@@ -190,10 +190,10 @@ void DictCore::saveSettings()
 void DictCore::loadSettings()
 {
     QSettings config;
-    setLoadedPlugins(config.value("DictCore/loadedPlugins", avialablePlugins()).toStringList());
+    setLoadedPlugins(config.value("DictCore/loadedPlugins", availablePlugins()).toStringList());
     QStringList rawDictsList = config.value("DictCore/loadedDicts").toStringList();
     if (rawDictsList.isEmpty())
-        setLoadedDicts(avialableDicts());
+        setLoadedDicts(availableDicts());
     else
     {
         QList<Dictionary> dicts;
