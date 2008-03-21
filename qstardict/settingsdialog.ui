@@ -640,6 +640,28 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>instantSearchBox</tabstop>
+  <tabstop>speechCmdEdit</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>dictsTableView</tabstop>
+  <tabstop>dictsMoveUpButton</tabstop>
+  <tabstop>dictsMoveDownButton</tabstop>
+  <tabstop>dictsShowInfoButton</tabstop>
+  <tabstop>pluginsTableView</tabstop>
+  <tabstop>pluginsShowInfoButton</tabstop>
+  <tabstop>pluginsConfigureButton</tabstop>
+  <tabstop>useScanBox</tabstop>
+  <tabstop>showIfNotFoundBox</tabstop>
+  <tabstop>useScanModifierBox</tabstop>
+  <tabstop>modifierKeyBox</tabstop>
+  <tabstop>timeoutBeforeHideSpin</tabstop>
+  <tabstop>pronounceWordBox</tabstop>
+  <tabstop>popupDefaultWidthSpin</tabstop>
+  <tabstop>popupDefaultHeightSpin</tabstop>
+  <tabstop>popupOpacitySpin</tabstop>
+ </tabstops>
  <resources>
   <include location="pixmaps/pixmaps.qrc" />
  </resources>
