@@ -141,7 +141,7 @@
     <message>
         <location filename="../dictbrowser.cpp" line="72"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Слово &lt;b&gt;%1&lt;/b&gt; не найдено.</translation>
     </message>
 </context>
 <context>
@@ -149,27 +149,27 @@
     <message>
         <location filename="../dictwidget.cpp" line="54"/>
         <source>Go to previous translation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перейти к предыдущему переводу</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="59"/>
         <source>Go to next translation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перейти к следующему переводу</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="64"/>
         <source>Save to file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить в файл</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="67"/>
         <source>Print translation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить перевод</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="70"/>
         <source>Speak word</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Произнести слово</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="93"/>
@@ -179,12 +179,12 @@
     <message>
         <location filename="../dictwidget.cpp" line="108"/>
         <source>HTML files (*.html, *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTML-файлы (*.html, *.htm)</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="95"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Текстовые файлы (*.txt)</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="102"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../dictwidget.cpp" line="103"/>
         <source>Cannot save translation as %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Невозможно сохранить перевод как %1</translation>
     </message>
 </context>
 <context>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="113"/>
         <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt-версия программы StarDict&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="115"/>
