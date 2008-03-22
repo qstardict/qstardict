@@ -142,31 +142,6 @@
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="54"/>
-        <source>Go to previous translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="59"/>
-        <source>Go to next translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="64"/>
-        <source>Save to file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="67"/>
-        <source>Print translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="70"/>
-        <source>Speak word</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../dictwidget.cpp" line="93"/>
         <source>Save translation</source>
         <translation type="unfinished">Зберегти переклад</translation>
@@ -189,6 +164,31 @@
     <message>
         <location filename="../dictwidget.cpp" line="103"/>
         <source>Cannot save translation as %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="54"/>
+        <source>Go to &amp;previous translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="59"/>
+        <source>Go to &amp;next translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="64"/>
+        <source>&amp;Save to file</source>
+        <translation type="unfinished">&amp;Зберегти в файл</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="70"/>
+        <source>Speak &amp;word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="67"/>
+        <source>Prin&amp;t translation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru_RU">
+<defaultcodec></defaultcodec>
 <context>
     <name>DictCore</name>
     <message>
@@ -149,27 +150,27 @@
     <message>
         <location filename="../dictwidget.cpp" line="54"/>
         <source>Go to previous translation</source>
-        <translation type="unfinished">Перейти к предыдущему переводу</translation>
+        <translation type="obsolete">Перейти к предыдущему переводу</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="59"/>
         <source>Go to next translation</source>
-        <translation type="unfinished">Перейти к следующему переводу</translation>
+        <translation type="obsolete">Перейти к следующему переводу</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="64"/>
         <source>Save to file</source>
-        <translation type="unfinished">Сохранить в файл</translation>
+        <translation type="obsolete">Сохранить в файл</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="67"/>
         <source>Print translation</source>
-        <translation type="unfinished">Сохранить перевод</translation>
+        <translation type="obsolete">Сохранить перевод</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="70"/>
         <source>Speak word</source>
-        <translation type="unfinished">Произнести слово</translation>
+        <translation type="obsolete">Произнести слово</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="93"/>
@@ -195,6 +196,31 @@
         <location filename="../dictwidget.cpp" line="103"/>
         <source>Cannot save translation as %1</source>
         <translation type="unfinished">Невозможно сохранить перевод как %1</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="54"/>
+        <source>Go to &amp;previous translation</source>
+        <translation type="unfinished">Перейти к &amp;предыдущему переводу</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="59"/>
+        <source>Go to &amp;next translation</source>
+        <translation type="unfinished">Перейти к &amp;следующему переводу</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="64"/>
+        <source>&amp;Save to file</source>
+        <translation type="unfinished">&amp;Сохранить в файл</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="70"/>
+        <source>Speak &amp;word</source>
+        <translation type="unfinished">П&amp;роизнести слово</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="67"/>
+        <source>Prin&amp;t translation</source>
+        <translation type="unfinished">Напечата&amp;ть перевод</translation>
     </message>
 </context>
 <context>
