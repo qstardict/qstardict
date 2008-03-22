@@ -50,7 +50,7 @@ class StarDict: public QObject, public QStarDict::DictPlugin
         Features features() const
         { return Features(SearchSimilar | SettingsDialog); }
 
-        QStringList avialableDicts() const;
+        QStringList availableDicts() const;
         QStringList loadedDicts() const
         { return m_loadedDicts.keys(); }
         void setLoadedDicts(const QStringList &loadedDicts);
