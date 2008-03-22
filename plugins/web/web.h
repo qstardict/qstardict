@@ -43,7 +43,7 @@ class Web: public QObject, public QStarDict::DictPlugin
         Features features() const
         { return Features(SettingsDialog); }
 
-        QStringList avialableDicts() const;
+        QStringList availableDicts() const;
         QStringList loadedDicts() const
         { return m_loadedDicts.keys(); }
         void setLoadedDicts(const QStringList &dicts);
