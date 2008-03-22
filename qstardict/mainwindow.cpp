@@ -92,7 +92,7 @@ void MainWindow::loadSettings()
     setVisible(config.value("MainWindow/visible", true).toBool());
     wordsListDock->setFloating(config.value("MainWindow/wordsListDock/floating", wordsListDock->isFloating()).toBool());
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
-    setInstantSearch(config.value("MainWindow/instantSearch", false).toBool());
+    setInstantSearch(config.value("MainWindow/instantSearch", true).toBool());
 }
 
 void MainWindow::saveSettings()
