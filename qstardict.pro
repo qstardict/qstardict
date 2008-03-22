@@ -20,7 +20,6 @@
 TEMPLATE = subdirs
 include(qstardict.pri)
 SUBDIRS = qstardict plugins
-isEmpty(NO_TRANSLATIONS):SUBDIRS += translations
 
 DISTFILES += \
     AUTHORS \
