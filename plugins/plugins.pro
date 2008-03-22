@@ -18,5 +18,5 @@
 #############################################################################
 
 TEMPLATE = subdirs
-SUBDIRS = stardict test web
+SUBDIRS = stardict web
 
