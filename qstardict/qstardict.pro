@@ -60,6 +60,8 @@ DISTFILES += \
     qstardict.png \
     qstardict.desktop
 
+isEmpty(NO_TRANSLATIONS):include("translations/translations.pri")
+
 target.path = $$BIN_DIR
 INSTALLS += target
 

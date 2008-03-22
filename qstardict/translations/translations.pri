@@ -1,5 +1,5 @@
 #############################################################################
-# translations.pro - QStarDict, a StarDict clone written with using Qt      #
+# translations.pri - QStarDict, a StarDict clone written with using Qt      #
 # Copyright (C) 2008 Alexander Rodin                                        #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
@@ -17,32 +17,29 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-include(../qstardict.pri)
-
 TRANSLATIONS += \
-    qstardict-bg_BG.ts \
-    qstardict-cs_CZ.ts \
-    qstardict-de_DE.ts \
-    qstardict-it_IT.ts \
-    qstardict-pl_PL.ts \
-    qstardict-pt_BR.ts \
-    qstardict-ru_RU.ts \
-    qstardict-ua_UA.ts \
-    qstardict-zh_CN.ts \
-    qstardict-zh_TW.ts
+    translations/qstardict-bg_BG.ts \
+    translations/qstardict-cs_CZ.ts \
+    translations/qstardict-de_DE.ts \
+    translations/qstardict-it_IT.ts \
+    translations/qstardict-pl_PL.ts \
+    translations/qstardict-pt_BR.ts \
+    translations/qstardict-ru_RU.ts \
+    translations/qstardict-ua_UA.ts \
+    translations/qstardict-zh_CN.ts \
+    translations/qstardict-zh_TW.ts
 
 COMPILED_TRANSLATIONS += \
-    qstardict-bg_BG.qm \
-    qstardict-cs_CZ.qm \
-    qstardict-de_DE.qm \
-    qstardict-it_IT.qm \
-    qstardict-pl_PL.qm \
-    qstardict-pt_BR.qm \
-    qstardict-ru_RU.qm \
-    qstardict-ua_UA.qm \
-    qstardict-zh_CN.qm \
-    qstardict-zh_TW.qm
+    translations/qstardict-bg_BG.qm \
+    translations/qstardict-cs_CZ.qm \
+    translations/qstardict-de_DE.qm \
+    translations/qstardict-it_IT.qm \
+    translations/qstardict-pl_PL.qm \
+    translations/qstardict-pt_BR.qm \
+    translations/qstardict-ru_RU.qm \
+    translations/qstardict-ua_UA.qm \
+    translations/qstardict-zh_CN.qm \
+    translations/qstardict-zh_TW.qm
 DISTFILES += $$COMPILED_TRANSLATIONS
 
 isEmpty(NO_TRANSLATIONS) {
