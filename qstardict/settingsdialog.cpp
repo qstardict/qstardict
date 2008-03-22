@@ -230,8 +230,8 @@ void SettingsDialog::on_dictsShowInfoButton_clicked()
             tr("Information about dictionary \"%1\"").arg(dict),
             tr("<b>Name:</b> %1<br>").arg(dict) +
             tr("<b>Plugin:</b> %1<br>").arg(plugin) +
-            tr("<b>Author</b>: %1<br>").arg(info.author()) +
-            tr("<b>Words count</b>: %1<br>").arg((info.wordsCount() == -1) ? tr("unknown") : QString::number(info.wordsCount())) +
+            tr("<b>Author:</b> %1<br>").arg(info.author()) +
+            tr("<b>Words count:</b> %1<br>").arg((info.wordsCount() == -1) ? tr("unknown") : QString::number(info.wordsCount())) +
             tr("<b>Description:</b> %1").arg(info.description()));
 }
 
