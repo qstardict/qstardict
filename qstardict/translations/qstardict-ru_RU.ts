@@ -326,87 +326,77 @@
     <message>
         <location filename="../settingsdialog.cpp" line="56"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Включен</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="56"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Название</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="56"/>
         <source>Plugin</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Плагин</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="230"/>
         <source>Information about dictionary &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Информация о словаре &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="248"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Название:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="232"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="233"/>
-        <source>&lt;b&gt;Author&lt;/b&gt;: %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="234"/>
-        <source>&lt;b&gt;Words count&lt;/b&gt;: %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Плагин:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="234"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">неизвестно</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="252"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Описание:&lt;/b&gt; %1</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="247"/>
         <source>Information about %1 plugin</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Информация о плагине %1</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="249"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Версия:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="250"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Авторы:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="250"/>
         <source>&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="251"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Возможность искать похожие слова:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="251"/>
         <source>yes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">есть</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="251"/>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">нет</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="13"/>
@@ -416,12 +406,12 @@
     <message>
         <location filename="../settingsdialog.ui" line="16"/>
         <source>Show information about dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показать информацию о словаре</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="54"/>
         <source>Global settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Общие настройки</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="60"/>
@@ -431,12 +421,12 @@
     <message>
         <location filename="../settingsdialog.ui" line="84"/>
         <source>Pronounce words using this command:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Произносить слова, используя программу:</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="91"/>
         <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Введите команду для запуска программы.&lt;br&gt;Если команда содержит выражение &quot;%s&quot;, оно будет заменено на слово; иначе слово будет записано в стандартный поток ввода процесса.</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="120"/>
@@ -446,7 +436,7 @@
     <message>
         <location filename="../settingsdialog.ui" line="144"/>
         <source>Move up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переместить вверх</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="147"/>
@@ -456,7 +446,7 @@
     <message>
         <location filename="../settingsdialog.ui" line="157"/>
         <source>Move down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переместить вниз</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="160"/>
@@ -466,32 +456,32 @@
     <message>
         <location filename="../settingsdialog.ui" line="170"/>
         <source>Show info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показывать информацию</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="204"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Плагины</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="231"/>
         <source>Show information about plugin</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показать информацию о плагине</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="234"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Информация</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="244"/>
         <source>Configure plugin</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Настроить плагин</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="247"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Настроить</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="276"/>
@@ -582,6 +572,16 @@
         <location filename="../settingsdialog.ui" line="602"/>
         <source>Default height</source>
         <translation type="unfinished">Высота по умолчанию</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="233"/>
+        <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Автор:&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="234"/>
+        <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Количество слов:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
 </context>
 <context>

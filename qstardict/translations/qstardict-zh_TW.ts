@@ -323,16 +323,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="233"/>
-        <source>&lt;b&gt;Author&lt;/b&gt;: %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="234"/>
-        <source>&lt;b&gt;Words count&lt;/b&gt;: %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../settingsdialog.cpp" line="234"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
@@ -551,6 +541,16 @@
         <location filename="../settingsdialog.ui" line="602"/>
         <source>Default height</source>
         <translation type="unfinished">預設高度</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="233"/>
+        <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="234"/>
+        <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
