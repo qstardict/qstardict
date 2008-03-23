@@ -86,10 +86,8 @@ Web::Translation Web::translate(const QString &dict, const QString &word)
     QUrl url(m_loadedDicts[dict].query.replace("%s", word));
     QEventLoop loop;
     QHttp http(url.host(), url.port(80), &loop);
-    QHttpRequestHeader header("GET", url.path() + "?" + url.encodedQuery());
-    header.setValue("User-Agent", "QStarDict");
-    http.request(header);
     connect(&http, SIGNAL(done(bool)), &loop, SLOT(quit()));
+    http.get(url.path() + "?" + url.encodedQuery());
     loop.exec();
     QTextCodec *codec = QTextCodec::codecForName(m_loadedDicts[dict].codec);
     QString translation;
