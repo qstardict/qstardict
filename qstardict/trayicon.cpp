@@ -31,16 +31,18 @@ namespace QStarDict
 {
 
 TrayIcon::TrayIcon(QObject *parent)
-    : QSystemTrayIcon(QIcon(":/icons/qstardict.png"), parent)
+    : QSystemTrayIcon(parent)
 {
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
     QAction *actionScan = new QAction(tr("&Scan"), this);
     actionScan->setCheckable(true);
     actionScan->setChecked(Application::instance()->popupWindow()->isScan());
+    setScanEnabled(Application::instance()->popupWindow()->isScan());
     connect(actionScan, SIGNAL(toggled(bool)),
             Application::instance()->popupWindow(), SLOT(setScan(bool)));
     connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)),
             actionScan, SLOT(setChecked(bool)));
+    connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)), SLOT(setScanEnabled(bool)));
     trayMenu->addAction(actionScan);
     QAction *actionSettings = new QAction(QIcon(":/icons/configure.png"), tr("&Configure QStarDict"), this);
     connect(actionSettings, SIGNAL(triggered()), SLOT(on_actionSettings_triggered()));
@@ -73,6 +75,12 @@ void TrayIcon::on_actionSettings_triggered()
 {
     SettingsDialog dialog(Application::instance()->mainWindow());
     dialog.exec();
+}
+
+void TrayIcon::setScanEnabled(bool enabled)
+{
+    QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
+    setIcon(icon);
 }
 
 }
