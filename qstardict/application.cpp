@@ -75,7 +75,6 @@ Application::~Application()
 int Application::exec()
 {
     m_trayIcon->show();
-    m_mainWindow->show();
     return QApplication::exec();
 }
 
