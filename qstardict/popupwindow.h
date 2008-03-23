@@ -21,7 +21,9 @@
 #define POPUPWINDOW_H
 
 #include "resizablepopup.h"
+
 #include "dictcore.h"
+#include "dictwidget.h"
 
 namespace QStarDict
 {
@@ -79,6 +81,13 @@ class PopupWindow: public ResizablePopup
          */
         bool pronounceWord() const
         { return m_pronounceWord; }
+
+        void setDefaultStyleSheet(const QString &css)
+        { translationView->setDefaultStyleSheet(css); }
+
+        QString defaultStyleSheet() const
+        { return translationView->defaultStyleSheet(); }
+
     public slots:
         /**
          * Enable or disable scanning of selection.

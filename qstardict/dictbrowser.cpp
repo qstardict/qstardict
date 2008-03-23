@@ -32,13 +32,13 @@
 namespace
 {
 const QString translationCSS = 
-    "p {\n"
-        "font-size: x-medium; }\n"
+    "body {\n"
+        "font-size: 10pt; }\n"
     "font.dict_name {\n"
         "color: blue;\n"
         "font-style: italic; }\n"
     "font.title {\n"
-        "font-size: x-large;\n"
+        "font-size: 16pt;\n"
         "font-weight: bold; }\n"
     "font.explanation {\n"
         "color: #7f7f7f;\n"
@@ -72,7 +72,7 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
                 tr("The word <b>%1</b> is not found.").arg(name.toString()) +
                 "</td></tr></table>";
         return "<title>Translation for \"" + name.toString() + "\"</title>\n"
-            + result;
+            + "<body>" + result + "</body>";
     }
     return QTextBrowser::loadResource(type, name);
 }

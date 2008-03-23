@@ -636,10 +636,28 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Apperance</string>
+      </attribute>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" >
+        <widget class="QStarDict::CSSEdit" native="1" name="apperanceCSSEdit" />
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QStarDict::CSSEdit</class>
+   <extends>QWidget</extends>
+   <header>cssedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>instantSearchBox</tabstop>
   <tabstop>speechCmdEdit</tabstop>

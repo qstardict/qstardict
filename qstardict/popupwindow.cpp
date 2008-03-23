@@ -65,6 +65,7 @@ void PopupWindow::loadSettings()
     setTimeoutBeforeHide(config.value("PopupWindow/timeoutBeforeHide", 500).toInt());
     setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
     setPronounceWord(config.value("PopupWindow/pronounceWord", true).toBool());
+    setDefaultStyleSheet(config.value("PopupWindow/defaultStyleSheet", defaultStyleSheet()).toString());
 }
 
 void PopupWindow::saveSettings()
@@ -77,6 +78,7 @@ void PopupWindow::saveSettings()
     config.setValue("PopupWindow/timeoutBeforeHide", timeoutBeforeHide());
     config.setValue("PopupWindow/defaultSize", defaultSize());
     config.setValue("PopupWindow/pronounceWord", pronounceWord());
+    config.setValue("PopupWindow/defaultStyleSheet", defaultStyleSheet());
 }
 
 void PopupWindow::setScan(bool scan)

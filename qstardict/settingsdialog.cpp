@@ -96,6 +96,18 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     popupDefaultHeightSpin->setValue(popup->defaultSize().height());
     pronounceWordBox->setChecked(popup->pronounceWord());
 
+    // Load translations CSS
+    QHash<QString, QString> cssAliases;
+    cssAliases["body"] = tr("All translation");
+    cssAliases["font.dict_name"] = tr("Dictionary name");
+    cssAliases["font.title"] = tr("Title");
+    cssAliases["font.explanation"] = tr("Explanation");
+    cssAliases["font.abrreviation"] = tr("Abbreviation");
+    cssAliases["font.example"] = tr("Example");
+    cssAliases["font.transcription"] = tr("Transcription");
+    apperanceCSSEdit->setElementsAliases(cssAliases);
+    apperanceCSSEdit->setCSS(Application::instance()->mainWindow()->defaultStyleSheet());
+
     connect(m_pluginsModel, SIGNAL(itemChanged(QStandardItem*)),
             SLOT(pluginsItemChanged(QStandardItem*)));
 }
@@ -140,6 +152,9 @@ void SettingsDialog::accept()
     popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));
+
+    // Save translations CSS
+    Application::instance()->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
 
     QDialog::accept();
 }

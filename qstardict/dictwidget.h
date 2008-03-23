@@ -84,6 +84,12 @@ class DictWidget: public QFrame
         QToolBar *toolBar()
         { return m_toolBar; }
 
+        void setDefaultStyleSheet(const QString &css)
+        { m_translationView->document()->setDefaultStyleSheet(css); }
+
+        QString defaultStyleSheet() const
+        { return m_translationView->document()->defaultStyleSheet(); }
+
     signals:
         /**
          * Emits when translated word is shown.

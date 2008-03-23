@@ -70,6 +70,12 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         DictCore *dict() const
         { return m_dict; }
 
+        void setDefaultStyleSheet(const QString &css)
+        { translationView->setDefaultStyleSheet(css); }
+
+        QString defaultStyleSheet() const
+        { return translationView->defaultStyleSheet(); }
+
     public slots:
         /**
          * Show translation of word.

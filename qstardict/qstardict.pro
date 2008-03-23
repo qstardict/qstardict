@@ -22,10 +22,12 @@ TARGET = qstardict
 include(../qstardict.pri)
 
 FORMS += \
+    cssedit.ui \
     mainwindow.ui \
     settingsdialog.ui
 HEADERS += \
     application.h \
+    cssedit.h \
     dictbrowser.h \
     dictcore.h \
     dictplugin.h \
@@ -41,6 +43,7 @@ HEADERS += \
 unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
 SOURCES += \
     application.cpp \
+    cssedit.cpp \
     dictbrowser.cpp \
     dictcore.cpp \
     dictwidget.cpp \
