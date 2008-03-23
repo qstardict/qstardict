@@ -105,11 +105,6 @@ class DictWidget: public QFrame
     private:
         DictBrowser *m_translationView;
         QToolBar *m_toolBar;
-        QAction *m_actionBackward;
-        QAction *m_actionForward;
-        QAction *m_actionSaveToFile;
-        QAction *m_actionSpeak;
-        QAction *m_actionPrint;
 };
 
 }

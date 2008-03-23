@@ -51,23 +51,23 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)), SLOT(on_translationView_sourceChanged(const QUrl&)));
 
     m_toolBar = new QToolBar(this);
-    m_actionBackward = m_toolBar->addAction(QIcon(":/icons/go-previous.png"), tr("Go to &previous translation"),
+    QAction *actionBackward = m_toolBar->addAction(QIcon(":/icons/go-previous.png"), tr("Go to &previous translation"),
             m_translationView, SLOT(backward()));
-    m_actionBackward->setDisabled(true);
-    connect(m_translationView, SIGNAL(backwardAvailable(bool)), m_actionBackward, SLOT(setEnabled(bool)));
+    actionBackward->setDisabled(true);
+    connect(m_translationView, SIGNAL(backwardAvailable(bool)), actionBackward, SLOT(setEnabled(bool)));
 
-    m_actionForward = m_toolBar->addAction(QIcon(":/icons/go-next.png"), tr("Go to &next translation"),
+    QAction *actionForward = m_toolBar->addAction(QIcon(":/icons/go-next.png"), tr("Go to &next translation"),
             m_translationView, SLOT(forward()));
-    m_actionForward->setDisabled(true);
-    connect(m_translationView, SIGNAL(forwardAvailable(bool)), m_actionForward, SLOT(setEnabled(bool)));
+    actionForward->setDisabled(true);
+    connect(m_translationView, SIGNAL(forwardAvailable(bool)), actionForward, SLOT(setEnabled(bool)));
 
-    m_actionSaveToFile = m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("&Save to file"),
+    m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("&Save to file"),
             this, SLOT(saveToFile()));
 
-    m_actionPrint = m_toolBar->addAction(QIcon(":/icons/document-print.png"), tr("Prin&t translation"),
+    m_toolBar->addAction(QIcon(":/icons/document-print.png"), tr("Prin&t translation"),
             this, SLOT(print()));
 
-    m_actionSpeak = m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak &word"),
+    m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak &word"),
             this, SLOT(speak()));
 
     QVBoxLayout *layout = new QVBoxLayout(this);
