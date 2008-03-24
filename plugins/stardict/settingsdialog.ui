@@ -45,7 +45,7 @@
          <bool>false</bool>
         </property>
         <property name="text" >
-         <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformated translations may be not correct displayed</string>
+         <string>&lt;b>&lt;font color="red">Warning!&lt;/font>&lt;/b> Reformatted translations may display incorrectly.</string>
         </property>
        </widget>
       </item>

@@ -25,11 +25,23 @@
 #include <QHeaderView>
 #include <QInputDialog>
 #include <QSettings>
+#include <math.h>
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
 #include "application.h"
 #include "speaker.h"
+
+namespace
+{
+int toPercents(double value)
+{
+    int integralValue = static_cast<int>(value * 100.0);
+    if (value * 100.0 - 0.5 > integralValue)
+        ++integralValue;
+    return integralValue;
+}
+}
 
 namespace QStarDict {
 
@@ -90,7 +102,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         modifierKeyBox->setCurrentIndex(modifierKeyBox->findText(modifierName));
     }
     showIfNotFoundBox->setChecked(popup->showIfNotFound());
-    popupOpacitySpin->setValue(static_cast<int>(popup->windowOpacity() * 100));
+    popupOpacitySpin->setValue(toPercents(popup->windowOpacity()));
     timeoutBeforeHideSpin->setValue(popup->timeoutBeforeHide() / 1000.0);
     popupDefaultWidthSpin->setValue(popup->defaultSize().width());
     popupDefaultHeightSpin->setValue(popup->defaultSize().height());
@@ -152,6 +164,7 @@ void SettingsDialog::accept()
     popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));
+    popup->setPronounceWord(pronounceWordBox->isChecked());
 
     // Save translations CSS
     Application::instance()->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
