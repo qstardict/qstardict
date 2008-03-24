@@ -83,7 +83,6 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void showTranslation(const QString &word);
 
     protected:
-        void closeEvent(QCloseEvent *event);
         void timerEvent(QTimerEvent *event);
         void keyPressEvent(QKeyEvent *event);
 

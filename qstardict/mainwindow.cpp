@@ -172,12 +172,6 @@ void MainWindow::wordsListItemActivated(QListWidgetItem *item)
     setWindowTitle(tr("%1 - QStarDict").arg(translationView->translatedWord()));
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
-{
-    hide();
-    event->ignore();
-}
-
 void MainWindow::setInstantSearch(bool instantSearch)
 {
     if (instantSearch == m_instantSearch)

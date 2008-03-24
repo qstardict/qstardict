@@ -40,6 +40,7 @@ Application::Application(int &argc, char **argv)
 {
     setOrganizationName("qstardict");
     setApplicationName("qstardict");
+    setQuitOnLastWindowClosed(false);
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     m_translator = new QTranslator;
