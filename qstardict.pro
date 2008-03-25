@@ -28,10 +28,12 @@ DISTFILES += \
     INSTALL \
     README
 
-isEmpty(NO_DBUS) {
-    message("D-Bus support: enabled")
-} else {
-    message("D-Bus support: disabled")
+unix {
+    isEmpty(NO_DBUS) {
+        message("D-Bus support: enabled")
+    } else {
+        message("D-Bus support: disabled")
+    }
 }
 isEmpty(NO_TRANSLATIONS) {
     message("Translations: enabled")
