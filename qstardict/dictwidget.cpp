@@ -29,12 +29,31 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QMouseEvent>
 #include <QTextDocument>
 #include <QPrinter>
 #include <QPrintDialog>
 #include "application.h"
 #include "dictbrowser.h"
 #include "speaker.h"
+
+namespace
+{
+class DictWidgetToolbar: public QToolBar
+{
+    public:
+        DictWidgetToolbar(QWidget *parent = 0)
+            : QToolBar(parent)
+        { }
+
+    protected:
+        virtual void mouseDoubleClickEvent(QMouseEvent *event)
+        {
+            if (! actionAt(event->pos()))
+                QToolBar::mouseDoubleClickEvent(event);
+        }
+};
+}
 
 namespace QStarDict
 {
@@ -50,7 +69,8 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     m_translationView->setOpenExternalLinks(true);
     connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)), SLOT(on_translationView_sourceChanged(const QUrl&)));
 
-    m_toolBar = new QToolBar(this);
+    m_toolBar = new DictWidgetToolbar(this);
+    m_toolBar->setMouseTracking(true);
     QAction *actionBackward = m_toolBar->addAction(QIcon(":/icons/go-previous.png"), tr("Go to &previous translation"),
             m_translationView, SLOT(backward()));
     actionBackward->setDisabled(true);
