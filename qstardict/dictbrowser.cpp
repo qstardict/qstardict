@@ -63,14 +63,15 @@ DictBrowser::DictBrowser(QWidget *parent)
 
 QVariant DictBrowser::loadResource(int type, const QUrl &name)
 {
-    if (type == QTextDocument::HtmlResource)
+    if (type == QTextDocument::HtmlResource && name.scheme() == "qstardict")
     {
-        QString result = m_dict->translate(name.toString());
+        QString str = name.toString(QUrl::RemoveScheme);
+        QString result = m_dict->translate(str);
         if (result.isEmpty())
             result = "<table><tr><td><img src=\":/icons/dialog-warning.png\" width=64 height=64/></td><td valign=middle>" +
-                tr("The word <b>%1</b> is not found.").arg(name.toString()) +
+                tr("The word <b>%1</b> is not found.").arg(str) +
                 "</td></tr></table>";
-        return "<title>Translation for \"" + name.toString() + "\"</title>\n"
+        return "<title>Translation for \"" + str + "\"</title>\n"
             + "<body>" + result + "</body>";
     }
     return QTextBrowser::loadResource(type, name);

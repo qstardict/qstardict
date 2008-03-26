@@ -69,4 +69,6 @@
 	- change tray icon if scanning disabled
 	- add font editor
 	- some improves and bugfixes
+* Version 0.11
+	- fix bug with bad source word
 

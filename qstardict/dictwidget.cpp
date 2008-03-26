@@ -100,7 +100,7 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
 
 void DictWidget::translate(const QString &str)
 {
-    m_translationView->setSource(str);
+    m_translationView->setSource(QUrl("qstardict:" + str));
 }
 
 void DictWidget::on_translationView_sourceChanged(const QUrl &name)
