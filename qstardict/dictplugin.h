@@ -35,7 +35,7 @@ class DictPlugin
 {
     public:
         /**
-         * This enum describe a features of dictionary plugin.
+         * This enum describes a features of dictionary plugin.
          */
         enum Feature
         {
@@ -62,13 +62,13 @@ class DictPlugin
         {
             public:
                 /**
-                 * Constructs empty DictInfo object.
+                 * Construct empty DictInfo object.
                  */
                 DictInfo()
                     : m_wordsCount(-1L)
                 { }
                 /**
-                 * Constructs DictInfo object from data.
+                 * Construct DictInfo object from data.
                  * @param plugin A plugin name
                  * @param name A dictionary name
                  * @param author A dictionary author
@@ -118,19 +118,19 @@ class DictPlugin
         };
 
         /**
-         * This class represents a translation.
+         * This class represent a translation.
          */
         class Translation
         {
             public:
                 /**
-                 * Constructs an empty translation.
+                 * Construct an empty translation.
                  */
                 Translation()
                 { }
 
                 /**
-                 * Constructs a translation from data.
+                 * Construct a translation from data.
                  * @param title A translation title
                  * @param dictName A full dictionary name
                  * @param translation A translation
@@ -144,37 +144,37 @@ class DictPlugin
                 { }
 
                 /**
-                 * Returns a translation title.
+                 * Return the translation title.
                  */
                 const QString &title() const
                 { return m_title; }
 
                 /**
-                 * Returns a dictionary name.
+                 * Return the dictionary name.
                  */
                 const QString &dictName() const
                 { return m_dictName; }
 
                 /**
-                 * Returns a translation.
+                 * Return the translation.
                  */
                 const QString &translation() const
                 { return m_translation; }
 
                 /**
-                 * Sets a translation title.
+                 * Set a translation title.
                  */
                 void setTitle(const QString &title)
                 { m_title = title; }
 
                 /**
-                 * Sets a dictionary name.
+                 * Set a dictionary name.
                  */
                 void setDictName(const QString &dictName)
                 { m_dictName = dictName; }
 
                 /**
-                 * Sets a translation.
+                 * Set a translation.
                  */
                 void setTranslation(const QString &translation)
                 { m_translation = translation; }
@@ -191,38 +191,38 @@ class DictPlugin
         virtual ~DictPlugin() { }
 
         /**
-         * Returns the plugin name.
+         * Return the plugin name.
          */
         virtual QString name() const = 0;
 
         /**
-         * Returns the plugin version.
+         * Return the plugin version.
          */
         virtual QString version() const = 0;
 
         /**
-         * Returns the plugin description.
+         * Return the plugin description.
          */
         virtual QString description() const = 0;
 
         /**
-         * Returns the plugin authors.
+         * Return the plugin authors.
          */
         virtual QStringList authors() const = 0;
 
         /**
-         * Returns a features supported by dictionary plugin.
+         * Return a features supported by dictionary plugin.
          */
         virtual Features features() const
         { return Features(None); }
 
         /**
-         * Returns a list of available dictionaries.
+         * Return a list of available dictionaries.
          */
         virtual QStringList availableDicts() const = 0;
 
         /**
-         * Returns a list of loaded dictionaries.
+         * Return a list of loaded dictionaries.
          */
         virtual QStringList loadedDicts() const = 0;
 
@@ -232,24 +232,24 @@ class DictPlugin
         virtual void setLoadedDicts(const QStringList &loadedDicts) = 0;
 
         /**
-         * Returns true if translation exists in dictionary,
+         * Return true if translation exists in dictionary,
          * otherwise returns false.
          */
         virtual bool isTranslatable(const QString &dict, const QString &word) = 0;
         /**
-         * Returns translation for word from dictionary. If word not found
+         * Return translation for word from dictionary. If word not found
          * returns empty string.
          */
         virtual Translation translate(const QString &dict, const QString &word) = 0;
         /**
-         * Returns a list of similar to "word" words from all loaded dictionaries.
+         * Return a list of similar to "word" words from all loaded dictionaries.
          * Works only if SearchSimilar feature is enabled.
          */
         virtual QStringList findSimilarWords(const QString &dict, const QString &word)
         { Q_UNUSED(dict); return QStringList(word); }
 
         /**
-         * Returns an information about dictionary. The dictionary may be not loaded
+         * Return an information about dictionary. The dictionary may be not loaded
          * but available.
          */
         virtual DictInfo dictInfo(const QString &dict) = 0;
@@ -262,17 +262,12 @@ class DictPlugin
 
     protected:
         /**
-         * Returns a directory that contains plugin's data.
+         * Return a directory that contains plugin's data.
          */
         QString workPath() const
         {
-#ifdef Q_OS_UNIX
             QString path = QDir::homePath() + "/.qstardict/pluginsdata/" + name();
-#elif define Q_OS_WIN32
-            QString path = QDir::QCoreApplication::applicationDirPath() + "\\pluginsdata\\" + name();
-#else
-#error "This function is not implemented on this platform"
-#endif
+
             if (! QDir::root().exists(path))
                 QDir::root().mkpath(path);
             return path;

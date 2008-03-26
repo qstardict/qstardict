@@ -125,7 +125,7 @@ void MainWindow::on_actionSettings_triggered()
 
 void MainWindow::on_queryButton_clicked()
 {
-    if (searchBox->text().isEmpty())
+    if (searchBox->text().simplified().isEmpty())
     {
         setWindowTitle(tr("QStarDict"));
         translationView->clear();
@@ -157,7 +157,10 @@ void MainWindow::timerEvent(QTimerEvent *event)
 
 void MainWindow::wordTranslated(const QString &word)
 {
-    setWindowTitle(tr("%1 - QStarDict").arg(word));
+    if (word.simplified().isEmpty())
+        setWindowTitle(tr("QStarDict"));
+    else
+        setWindowTitle(tr("%1 - QStarDict").arg(word));
     if (m_queryTimer)
     {
         killTimer(m_queryTimer);

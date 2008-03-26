@@ -145,6 +145,12 @@ void DictWidget::print()
         m_translationView->print(&printer);
 }
 
+void DictWidget::setDefaultStyleSheet(const QString &css)
+{
+    m_translationView->document()->setDefaultStyleSheet(css);
+    m_translationView->reload();
+}
+
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

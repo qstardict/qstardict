@@ -65,14 +65,20 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         void setDict(DictCore *dict);
 
         /**
-         * Returns the dictionary.
+         * Return the dictionary.
          */
         DictCore *dict() const
         { return m_dict; }
 
+        /**
+         * Set default style sheet for translations.
+         */
         void setDefaultStyleSheet(const QString &css)
         { translationView->setDefaultStyleSheet(css); }
 
+        /**
+         * Return default style sheet.
+         */
         QString defaultStyleSheet() const
         { return translationView->defaultStyleSheet(); }
 
