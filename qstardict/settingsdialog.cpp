@@ -114,7 +114,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     cssAliases["font.dict_name"] = tr("Dictionary name");
     cssAliases["font.title"] = tr("Title");
     cssAliases["font.explanation"] = tr("Explanation");
-    cssAliases["font.abrreviation"] = tr("Abbreviation");
+    cssAliases["font.abbreviature"] = tr("Abbreviation");
     cssAliases["font.example"] = tr("Example");
     cssAliases["font.transcription"] = tr("Transcription");
     apperanceCSSEdit->setElementsAliases(cssAliases);
@@ -168,6 +168,9 @@ void SettingsDialog::accept()
 
     // Save translations CSS
     Application::instance()->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
+    Application::instance()->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
+
+    Application::instance()->mainWindow()->reload();
 
     QDialog::accept();
 }

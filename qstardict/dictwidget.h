@@ -84,11 +84,13 @@ class DictWidget: public QFrame
         QToolBar *toolBar()
         { return m_toolBar; }
 
-        void setDefaultStyleSheet(const QString &css)
-        { m_translationView->document()->setDefaultStyleSheet(css); }
+        void setDefaultStyleSheet(const QString &css);
 
         QString defaultStyleSheet() const
         { return m_translationView->document()->defaultStyleSheet(); }
+        
+        void reload()
+        { m_translationView->reload(); }
 
     signals:
         /**

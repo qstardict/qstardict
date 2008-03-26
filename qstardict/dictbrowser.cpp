@@ -25,7 +25,6 @@
 #include <QTextCharFormat>
 #include <QTextDocument>
 #include <QTextDocumentFragment>
-#include "keyboard.h"
 
 #include <QDebug>
 
@@ -84,7 +83,7 @@ void DictBrowser::mouseMoveEvent(QMouseEvent *event)
         m_oldCursor.setCharFormat(m_oldFormat);
         m_highlighted = false;
     }
-    if (Keyboard::activeModifiers().testFlag(Qt::ControlModifier))
+    if (event->modifiers().testFlag(Qt::ControlModifier))
     {
         QTextCursor cursor = cursorForPosition(event->pos());
         cursor.select(QTextCursor::WordUnderCursor);
@@ -108,7 +107,7 @@ void DictBrowser::mouseMoveEvent(QMouseEvent *event)
 
 void DictBrowser::mousePressEvent(QMouseEvent *event)
 {
-    if (Keyboard::activeModifiers().testFlag(Qt::ControlModifier))
+    if (event->modifiers().testFlag(Qt::ControlModifier))
     {
         QTextCursor cursor = cursorForPosition(event->pos());
         cursor.select(QTextCursor::WordUnderCursor);

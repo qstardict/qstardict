@@ -254,7 +254,7 @@ void CSSEdit::colorSelectClicked()
         colorButton->setText(color.name());
         QPalette palette = colorButton->palette();
         palette.setColor(QPalette::Normal, QPalette::ButtonText, color);
-        m_colorButton->setPalette(palette);
+        colorButton->setPalette(palette);
         if (parentElement[propertyName] == color.name())
             element->remove(propertyName);
         else
@@ -266,6 +266,7 @@ void CSSEdit::colorSelectClicked()
 void CSSEdit::updatePreview()
 {
     QString html = "<style>" +  css()  +  "</style>";
+    html += "<body>";
     for (QHash<QString, Element>::const_iterator i = m_elements.begin(); i != m_elements.end(); ++i)
     {
         QString alias;
@@ -283,6 +284,7 @@ void CSSEdit::updatePreview()
             html += "<" + parent + " class=\'" + class_ + "\'>" + alias + "</" + parent + "><br>";
         }
     }
+    html += "</body>";
     m_preview->setHtml(html);
 }
 
