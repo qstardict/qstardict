@@ -82,6 +82,8 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         QString defaultStyleSheet() const
         { return translationView->defaultStyleSheet(); }
 
+        void reload();
+
     public slots:
         /**
          * Show translation of word.

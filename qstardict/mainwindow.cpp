@@ -129,11 +129,19 @@ void MainWindow::on_queryButton_clicked()
     {
         setWindowTitle(tr("QStarDict"));
         translationView->clear();
+        wordsList->clear();
         return;
     }
     wordsList->clear();
     wordsList->addItems(m_dict->findSimilarWords(searchBox->text()));
     translationView->translate(searchBox->text());
+}
+
+void MainWindow::reload()
+{
+    wordsList->clear();
+    wordsList->addItems(m_dict->findSimilarWords(translationView->translatedWord()));
+    translationView->reload();
 }
 
 void MainWindow::queryEdited(const QString &)

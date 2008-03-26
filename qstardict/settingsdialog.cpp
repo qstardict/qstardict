@@ -170,6 +170,8 @@ void SettingsDialog::accept()
     Application::instance()->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
     Application::instance()->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
 
+    Application::instance()->mainWindow()->reload();
+
     QDialog::accept();
 }
 

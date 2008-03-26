@@ -88,6 +88,9 @@ class DictWidget: public QFrame
 
         QString defaultStyleSheet() const
         { return m_translationView->document()->defaultStyleSheet(); }
+        
+        void reload()
+        { m_translationView->reload(); }
 
     signals:
         /**
