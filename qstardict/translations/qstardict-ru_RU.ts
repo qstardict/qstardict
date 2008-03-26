@@ -518,7 +518,7 @@
     <message>
         <location filename="../settingsdialog.cpp" line="113"/>
         <source>All translation</source>
-        <translation>Вся статья</translation>
+        <translation type="unfinished">Весь перевод</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="114"/>
