@@ -36,6 +36,7 @@ namespace QStarDict
 ResizablePopup::ResizablePopup(QWidget *parent)
     : QFrame(parent, Qt::Popup)
 {
+    m_isMoving = false;
     m_resizeDirection = None;
     m_timeoutBeforeHide = 0;
     m_timerCloseId = 0;
@@ -109,6 +110,15 @@ void ResizablePopup::mouseMoveEvent(QMouseEvent *event)
     
     if (cursor().shape() != cursorShape)
         setCursor(cursorShape);
+    else
+        if (event->buttons().testFlag(Qt::LeftButton))
+        {
+            if (m_isMoving)
+                move(pos() + (event->globalPos() - m_oldCursorPos));
+            m_oldCursorPos = event->globalPos();
+            return;
+        }
+    m_isMoving = false;
 }
 
 void ResizablePopup::mousePressEvent(QMouseEvent *event)
@@ -147,6 +157,9 @@ void ResizablePopup::mousePressEvent(QMouseEvent *event)
         if (m_resizeDirection)
             m_timerResizeId = startTimer(8);
     }
+
+    m_isMoving = true;
+    m_oldCursorPos = event->globalPos();
 }
 
 void ResizablePopup::mouseReleaseEvent(QMouseEvent*)
@@ -229,6 +242,22 @@ void ResizablePopup::stopResize()
         killTimer(m_timerResizeId);
         m_timerResizeId = 0;
     }
+}
+
+bool ResizablePopup::event(QEvent *event)
+{
+    if (event->type() == QEvent::WindowUnblocked)
+    {
+        if (m_timerCloseId)
+        {
+            killTimer(m_timerCloseId);
+            m_timerCloseId = 0;
+        }
+        show();
+        return true;
+    }
+    else
+        return QFrame::event(event);
 }
 
 }
