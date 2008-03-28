@@ -116,8 +116,8 @@ void PopupWindow::showTranslation(const QString &text)
 
     if (m_showIfNotFound || isFound)
     {
-        translationView->clearHistory();
         translationView->translate(simpl);
+        translationView->clearHistory();
         popup();
         if (isFound && m_pronounceWord)
             Application::instance()->speaker()->speak(simpl);

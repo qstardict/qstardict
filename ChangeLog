@@ -74,4 +74,5 @@
 	- fix bug with removed last letter in translation
 * Version 0.12
 	- update italian translation
+	- add support for popup window moving
 

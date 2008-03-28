@@ -77,6 +77,7 @@ class ResizablePopup: public QFrame
         void mousePressEvent(QMouseEvent*);
         void mouseReleaseEvent(QMouseEvent*);
         void timerEvent(QTimerEvent*);
+        bool event(QEvent *event);
 
     private:
         void stopResize();
@@ -94,6 +95,8 @@ class ResizablePopup: public QFrame
             BottomLeft,
             BottomRight
         };
+        QPoint m_oldCursorPos;
+        bool m_isMoving;
         QSize m_defaultSize;
         ResizeDirection m_resizeDirection;
         int m_timeoutBeforeHide;
