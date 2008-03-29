@@ -79,4 +79,6 @@
 	- fix critical bug with popup window
 * Version 0.12.2
 	- fix bug with building on Ubuntu Hardy
+* Version 0.12.3
+	- update simplified chinese translation
 
