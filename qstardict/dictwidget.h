@@ -76,7 +76,7 @@ class DictWidget: public QFrame
          * Return last translated word.
          */
         QString translatedWord() const
-        { return m_translationView->source().toString(); }
+        { return m_translationView->source().toString(QUrl::RemoveScheme); }
 
         /**
          * Return toolbar.
