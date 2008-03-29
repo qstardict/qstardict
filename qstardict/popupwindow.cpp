@@ -124,12 +124,6 @@ void PopupWindow::showTranslation(const QString &text)
     }
 }
 
-void PopupWindow::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    ResizablePopup::mouseDoubleClickEvent(event);
-    hide();
-}
-
 }
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
