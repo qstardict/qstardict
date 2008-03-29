@@ -268,6 +268,8 @@ QString StarDict::parseData(const char *data, int dictIndex, bool htmlSpaces, bo
                 ptr += *reinterpret_cast<const quint32*>(ptr) + sizeof(quint32);
                 break;
             }
+            default:
+                ; // nothing
         }
     }
 
@@ -364,7 +366,7 @@ QString StarDict::parseData(const char *data, int dictIndex, bool htmlSpaces, bo
         n = 0;
         while (result[result.length() - 1 - n].isSpace())
             ++n;
-        result.remove(result.length() - 1 - n, n);
+        result.remove(result.length() - n, n);
 
         for (int pos = 0; pos < result.length();)
         {
