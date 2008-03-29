@@ -176,6 +176,11 @@ void ResizablePopup::mouseReleaseEvent(QMouseEvent*)
 void ResizablePopup::mouseDoubleClickEvent(QMouseEvent*)
 {
     m_isPopuped = false;
+    if (m_timerCloseId)
+    {
+        killTimer(m_timerCloseId);
+        m_timerCloseId = 0;
+    }
     hide();
 }
 
