@@ -75,6 +75,8 @@
 * Version 0.12
 	- update italian translation
 	- add support for popup window moving
-* Version 0.13
+* Version 0.12.1
 	- fix critical bug with popup window
+* Version 0.12.2
+	- fix bug with building on Ubuntu Hardy
 

@@ -34,6 +34,7 @@ unix {
 		link_pkgconfig
 	PKGCONFIG += \
     	glib-2.0
+    LIBS += -lz
 }
 
 unix:DEFINES += HAVE_MMAP
