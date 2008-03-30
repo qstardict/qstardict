@@ -17,7 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-VERSION = 0.12.4-svn
+VERSION = 0.12.4
 
 QT = \
     core \
