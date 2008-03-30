@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru_RU">
-<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -97,7 +96,7 @@
 <context>
     <name>QStarDict::DictBrowser</name>
     <message>
-        <location filename="../dictbrowser.cpp" line="71"/>
+        <location filename="../dictbrowser.cpp" line="72"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
         <translation>Слово &lt;b&gt;%1&lt;/b&gt; не найдено.</translation>
     </message>
@@ -105,52 +104,52 @@
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="113"/>
+        <location filename="../dictwidget.cpp" line="114"/>
         <source>Save translation</source>
         <translation>Сохранить перевод</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="128"/>
+        <location filename="../dictwidget.cpp" line="129"/>
         <source>HTML files (*.html, *.htm)</source>
         <translation>HTML-файлы (*.html, *.htm)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="115"/>
+        <location filename="../dictwidget.cpp" line="116"/>
         <source>Text files (*.txt)</source>
         <translation>Текстовые файлы (*.txt)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="122"/>
+        <location filename="../dictwidget.cpp" line="123"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="123"/>
+        <location filename="../dictwidget.cpp" line="124"/>
         <source>Cannot save translation as %1</source>
         <translation>Невозможно сохранить перевод как %1</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="74"/>
+        <location filename="../dictwidget.cpp" line="75"/>
         <source>Go to &amp;previous translation</source>
         <translation>Перейти к &amp;предыдущему переводу</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="79"/>
+        <location filename="../dictwidget.cpp" line="80"/>
         <source>Go to &amp;next translation</source>
         <translation>Перейти к &amp;следующему переводу</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="84"/>
+        <location filename="../dictwidget.cpp" line="85"/>
         <source>&amp;Save to file</source>
         <translation>&amp;Сохранить в файл</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="90"/>
+        <location filename="../dictwidget.cpp" line="91"/>
         <source>Speak &amp;word</source>
         <translation>П&amp;роизнести слово</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="87"/>
+        <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
         <translation>Напечата&amp;ть перевод</translation>
     </message>
@@ -178,7 +177,7 @@
         <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="183"/>
         <source>%1 - QStarDict</source>
         <translation>%1 - QStarDict</translation>
     </message>
@@ -271,62 +270,62 @@
         <translation>Плагин</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="259"/>
+        <location filename="../settingsdialog.cpp" line="261"/>
         <source>Information about dictionary &quot;%1&quot;</source>
         <translation>Информация о словаре &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="277"/>
+        <location filename="../settingsdialog.cpp" line="279"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Название:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="261"/>
+        <location filename="../settingsdialog.cpp" line="263"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Плагин:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="263"/>
+        <location filename="../settingsdialog.cpp" line="265"/>
         <source>unknown</source>
         <translation>неизвестно</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
+        <location filename="../settingsdialog.cpp" line="283"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation>&lt;b&gt;Описание:&lt;/b&gt; %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="276"/>
+        <location filename="../settingsdialog.cpp" line="278"/>
         <source>Information about %1 plugin</source>
         <translation>Информация о плагине %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="278"/>
+        <location filename="../settingsdialog.cpp" line="280"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Версия:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="279"/>
+        <location filename="../settingsdialog.cpp" line="281"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Авторы:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="279"/>
+        <location filename="../settingsdialog.cpp" line="281"/>
         <source>&lt;br&gt;</source>
         <translation>&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="282"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Возможность искать похожие слова:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="282"/>
         <source>yes</source>
         <translation>есть</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="282"/>
         <source>no</source>
         <translation>нет</translation>
     </message>
@@ -428,12 +427,12 @@
     <message>
         <location filename="../settingsdialog.ui" line="344"/>
         <source>Pronounce the word</source>
-        <translation>Произность слово</translation>
+        <translation>Произносить слово</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="370"/>
         <source>Timeout before hide after mouse over</source>
-        <translation>Задержка перед сокрытием после отведения указателя мыши</translation>
+        <translation>Задержка перед скрытием после отведения указателя мыши</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="377"/>
@@ -506,19 +505,19 @@
         <translation>Высота по умолчанию</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="262"/>
+        <location filename="../settingsdialog.cpp" line="264"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Автор:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="263"/>
+        <location filename="../settingsdialog.cpp" line="265"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Количество слов:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="113"/>
         <source>All translation</source>
-        <translation type="unfinished">Весь перевод</translation>
+        <translation>Весь перевод</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="114"/>

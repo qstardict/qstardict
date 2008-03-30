@@ -9,10 +9,6 @@ To disable translations add
     NO_TRANSLATIONS=1
 to qmake arguments.
 
-To disable compiling translations into executable add
-    SEPARATE_TRANSLATIONS=1
-to qmake arguments.
-
 To build and install:
 1)	qmake [switches]
 2)	make
