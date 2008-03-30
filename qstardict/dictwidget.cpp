@@ -106,7 +106,7 @@ void DictWidget::translate(const QString &str)
 
 void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 {
-    emit wordTranslated(name.toString());
+    emit wordTranslated(name.toString(QUrl::RemoveScheme));
 }
 
 void DictWidget::saveToFile()

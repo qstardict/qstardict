@@ -83,4 +83,6 @@
 	- update simplified chinese translation
 * Version 0.12.4
 	- update polish translation
+* Version 0.12.5
+	- fix bug with main window title
 
