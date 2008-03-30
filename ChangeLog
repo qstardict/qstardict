@@ -71,4 +71,18 @@
 	- some improves and bugfixes
 * Version 0.11
 	- fix bug with bad source word
+	- fix bug with removed last letter in translation
+* Version 0.12
+	- update italian translation
+	- add support for popup window moving
+* Version 0.12.1
+	- fix critical bug with popup window
+* Version 0.12.2
+	- fix bug with building on Ubuntu Hardy
+* Version 0.12.3
+	- update simplified chinese translation
+* Version 0.12.4
+	- update polish translation
+* Version 0.12.5
+	- fix bug with main window title
 

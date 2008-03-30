@@ -1,12 +1,10 @@
 [Desktop Entry]
+Version=1.0
 Comment=QStarDict is Qt version of StarDict
-Encoding=UTF-8
 Exec=qstardict
-GenericName=QStarDict
+GenericName=Dictionary
 Icon=qstardict
 Name=QStarDict
-StartupNotify=true
-Terminal=false
 Type=Application
 Categories=Qt;Dictionary;Utility
 

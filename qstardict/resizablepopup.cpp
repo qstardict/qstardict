@@ -36,10 +36,12 @@ namespace QStarDict
 ResizablePopup::ResizablePopup(QWidget *parent)
     : QFrame(parent, Qt::Popup)
 {
+    m_isMoving = false;
     m_resizeDirection = None;
     m_timeoutBeforeHide = 0;
     m_timerCloseId = 0;
     m_timerResizeId = 0;
+    m_isPopuped = false;
     setMouseTracking(true);
     setLineWidth(1);
     setMidLineWidth(2);
@@ -62,6 +64,7 @@ void ResizablePopup::popup()
         newPosition.setY(QApplication::desktop()->height() - height());
     move(newPosition);
     show();
+    m_isPopuped = true;
 }
 
 void ResizablePopup::enterEvent(QEvent*)
@@ -82,7 +85,10 @@ void ResizablePopup::leaveEvent(QEvent*)
     if (m_timeoutBeforeHide < 0)
         return;
     if (m_timeoutBeforeHide == 0)
+    {
+        m_isPopuped = false;
         hide();
+    }
     else if (! m_timerCloseId)
         m_timerCloseId = startTimer(m_timeoutBeforeHide);
 }
@@ -109,6 +115,15 @@ void ResizablePopup::mouseMoveEvent(QMouseEvent *event)
     
     if (cursor().shape() != cursorShape)
         setCursor(cursorShape);
+    else
+        if (event->buttons().testFlag(Qt::LeftButton))
+        {
+            if (m_isMoving)
+                move(pos() + (event->globalPos() - m_oldCursorPos));
+            m_oldCursorPos = event->globalPos();
+            return;
+        }
+    m_isMoving = false;
 }
 
 void ResizablePopup::mousePressEvent(QMouseEvent *event)
@@ -120,6 +135,7 @@ void ResizablePopup::mousePressEvent(QMouseEvent *event)
             killTimer(m_timerCloseId);
             m_timerCloseId = 0;
         }
+        m_isPopuped = false;
         hide();
         return;
     }
@@ -147,11 +163,25 @@ void ResizablePopup::mousePressEvent(QMouseEvent *event)
         if (m_resizeDirection)
             m_timerResizeId = startTimer(8);
     }
+
+    m_isMoving = true;
+    m_oldCursorPos = event->globalPos();
 }
 
 void ResizablePopup::mouseReleaseEvent(QMouseEvent*)
 {
     stopResize();
+}
+
+void ResizablePopup::mouseDoubleClickEvent(QMouseEvent*)
+{
+    m_isPopuped = false;
+    if (m_timerCloseId)
+    {
+        killTimer(m_timerCloseId);
+        m_timerCloseId = 0;
+    }
+    hide();
 }
 
 void ResizablePopup::timerEvent(QTimerEvent *event)
@@ -162,6 +192,7 @@ void ResizablePopup::timerEvent(QTimerEvent *event)
     }
     else if (event->timerId() == m_timerCloseId)
     {
+        m_isPopuped = false;
         hide();
         killTimer(m_timerCloseId);
         m_timerCloseId = 0;
@@ -229,6 +260,22 @@ void ResizablePopup::stopResize()
         killTimer(m_timerResizeId);
         m_timerResizeId = 0;
     }
+}
+
+bool ResizablePopup::event(QEvent *event)
+{
+    if (event->type() == QEvent::WindowUnblocked && m_isPopuped)
+    {
+        if (m_timerCloseId)
+        {
+            killTimer(m_timerCloseId);
+            m_timerCloseId = 0;
+        }
+        show();
+        return true;
+    }
+    else
+        return QFrame::event(event);
 }
 
 }
