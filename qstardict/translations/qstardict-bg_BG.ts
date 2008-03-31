@@ -96,7 +96,7 @@
 <context>
     <name>QStarDict::DictBrowser</name>
     <message>
-        <location filename="../dictbrowser.cpp" line="71"/>
+        <location filename="../dictbrowser.cpp" line="72"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -104,52 +104,52 @@
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="113"/>
+        <location filename="../dictwidget.cpp" line="114"/>
         <source>Save translation</source>
         <translation type="unfinished">Запази превода</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="128"/>
+        <location filename="../dictwidget.cpp" line="129"/>
         <source>HTML files (*.html, *.htm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="115"/>
+        <location filename="../dictwidget.cpp" line="116"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="122"/>
+        <location filename="../dictwidget.cpp" line="123"/>
         <source>Error</source>
         <translation type="unfinished">Грешка</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="123"/>
+        <location filename="../dictwidget.cpp" line="124"/>
         <source>Cannot save translation as %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="74"/>
+        <location filename="../dictwidget.cpp" line="75"/>
         <source>Go to &amp;previous translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="79"/>
+        <location filename="../dictwidget.cpp" line="80"/>
         <source>Go to &amp;next translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="84"/>
+        <location filename="../dictwidget.cpp" line="85"/>
         <source>&amp;Save to file</source>
         <translation type="unfinished">&amp;Запази във файл</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="90"/>
+        <location filename="../dictwidget.cpp" line="91"/>
         <source>Speak &amp;word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="87"/>
+        <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -177,7 +177,7 @@
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="183"/>
         <source>%1 - QStarDict</source>
         <translation type="unfinished">%1 - QStarDict</translation>
     </message>
@@ -270,62 +270,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="259"/>
+        <location filename="../settingsdialog.cpp" line="261"/>
         <source>Information about dictionary &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="277"/>
+        <location filename="../settingsdialog.cpp" line="279"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="261"/>
+        <location filename="../settingsdialog.cpp" line="263"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="263"/>
+        <location filename="../settingsdialog.cpp" line="265"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
+        <location filename="../settingsdialog.cpp" line="283"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="276"/>
+        <location filename="../settingsdialog.cpp" line="278"/>
         <source>Information about %1 plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="278"/>
+        <location filename="../settingsdialog.cpp" line="280"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="279"/>
+        <location filename="../settingsdialog.cpp" line="281"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="279"/>
+        <location filename="../settingsdialog.cpp" line="281"/>
         <source>&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="282"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="282"/>
         <source>yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="282"/>
         <source>no</source>
         <translation type="unfinished"></translation>
     </message>
@@ -505,12 +505,12 @@
         <translation type="unfinished">Подразбираща се височина</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="262"/>
+        <location filename="../settingsdialog.cpp" line="264"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="263"/>
+        <location filename="../settingsdialog.cpp" line="265"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>

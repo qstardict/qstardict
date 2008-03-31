@@ -71,6 +71,7 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
 
     m_toolBar = new DictWidgetToolbar(this);
     m_toolBar->setMouseTracking(true);
+
     QAction *actionBackward = m_toolBar->addAction(QIcon(":/icons/go-previous.png"), tr("Go to &previous translation"),
             m_translationView, SLOT(backward()));
     actionBackward->setDisabled(true);
@@ -105,7 +106,7 @@ void DictWidget::translate(const QString &str)
 
 void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 {
-    emit wordTranslated(name.toString());
+    emit wordTranslated(name.toString(QUrl::RemoveScheme));
 }
 
 void DictWidget::saveToFile()

@@ -41,6 +41,9 @@ Speaker::~Speaker()
 
 void Speaker::speak(const QString &word)
 {
+    if (m_speechCmd.isEmpty())
+        return;
+
     if (m_speechProcess->state() != QProcess::NotRunning)
     m_speechProcess->kill();
     
