@@ -87,4 +87,6 @@
 	- fix bug with main window title
 * Version 0.12.6
 	- update german translation
+* Version 0.12.7
+	- fix bug with empty speech cmd
 
