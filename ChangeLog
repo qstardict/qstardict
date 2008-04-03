@@ -89,4 +89,6 @@
 	- update german translation
 * Version 0.12.7
 	- fix bug with empty speech cmd
+* Version 0.12.8
+	- add localization for standard Qt dialogs
 

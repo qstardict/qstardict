@@ -45,6 +45,7 @@ Application::Application(int &argc, char **argv)
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     m_translator = new QTranslator;
     m_translator->load(QSTARDICT_TRANSLATIONS_DIR "/qstardict-" + QLocale::system().name());
+    m_translator->load(QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "/qt_" + QLocale::system().name());
     installTranslator(m_translator);
 #endif // QSTARDICT_WITH_TRANSLATIONS
 
