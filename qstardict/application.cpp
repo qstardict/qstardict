@@ -45,9 +45,11 @@ Application::Application(int &argc, char **argv)
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     m_translator = new QTranslator;
-    m_translator->load(QSTARDICT_TRANSLATIONS_DIR "/qstardict-" + QLocale::system().name());
-    m_translator->load(QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "/qt_" + QLocale::system().name());
+    m_translator->load("qstardict-" + QLocale::system().name(), QSTARDICT_TRANSLATIONS_DIR);
     installTranslator(m_translator);
+    m_qtTranslator = new QTranslator;
+    m_qtTranslator->load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    installTranslator(m_qtTranslator);
 #endif // QSTARDICT_WITH_TRANSLATIONS
 
     m_dictCore = new DictCore;
@@ -72,6 +74,8 @@ Application::~Application()
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     removeTranslator(m_translator);
     delete m_translator;
+    removeTranslator(m_qtTranslator);
+    delete m_qtTranslator;
 #endif // QSTARDICT_WITH_TRANSLATIONS
 }
 

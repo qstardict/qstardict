@@ -104,6 +104,7 @@ class Application: public QApplication
     private:
 #ifdef QSTARDICT_WITH_TRANSLATIONS
         QTranslator *m_translator;
+        QTranslator *m_qtTranslator;
 #endif // QSTARDICT_WITH_TRANSLATIONS
         DictCore *m_dictCore;
         MainWindow *m_mainWindow;
