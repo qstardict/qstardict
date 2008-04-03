@@ -20,6 +20,7 @@
 #include "application.h"
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
+#include <QLibraryInfo>
 #include <QLocale>
 #include <QTranslator>
 #endif // QSTARDICT_WITH_TRANSLATIONS
