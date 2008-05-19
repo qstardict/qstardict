@@ -202,12 +202,16 @@ void MainWindow::setDict(DictCore *dict)
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    if (event->text().size())
+    if (event->text().size() || event->key() == Qt::Key_Escape)
+    {
         if (! searchBox->hasFocus())
         {
             searchBox->setText(event->text());
             searchBox->setFocus(Qt::OtherFocusReason);
         }
+        if (event->key() == Qt::Key_Escape)
+            searchBox->clear();
+    }
     QMainWindow::keyPressEvent(event);
 }
 
