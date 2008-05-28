@@ -47,7 +47,9 @@ void Speaker::speak(const QString &word)
     if (m_speechProcess->state() != QProcess::NotRunning)
     m_speechProcess->kill();
     
-    m_speechProcess->start(m_speechCmd.replace("%s", word), QIODevice::WriteOnly);
+    QString s = m_speechCmd;
+    s.replace("%s", word);
+    m_speechProcess->start(s, QIODevice::WriteOnly);
     if (! m_speechProcess->waitForStarted())
         return;
     if (! m_speechCmd.contains("%s"))
