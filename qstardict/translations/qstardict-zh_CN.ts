@@ -151,7 +151,7 @@
     <message>
         <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
-        <translation></translation>
+        <translation>¥Ú”°∑≠“Î(&amo;t)</translation>
     </message>
 </context>
 <context>
