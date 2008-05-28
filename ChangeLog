@@ -92,4 +92,5 @@
 * Version 0.12.8
 	- add localization for standard Qt dialogs
 	- add support for Escape key in main window
+	- update ukrainian translation
 
