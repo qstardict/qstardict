@@ -95,7 +95,6 @@ QStringList DictCore::findSimilarWords(const QString &word)
             if (! result.contains(*j, Qt::CaseSensitive))
                 result << *j;
     }
-    result.sort();
     return result;
 }
 
