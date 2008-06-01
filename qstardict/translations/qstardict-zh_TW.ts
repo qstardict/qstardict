@@ -1,576 +1,464 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
-        <location filename="../cssedit.ui" line="16"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>預覽</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="30"/>
         <source>Element</source>
-        <translation type="unfinished"></translation>
+        <translation>元素</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="37"/>
         <source>Foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>前景</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="44"/>
         <source>Background</source>
-        <translation type="unfinished"></translation>
+        <translation>背景</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="51"/>
         <source>Select element</source>
-        <translation type="unfinished"></translation>
+        <translation>選取元素</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="68"/>
         <source>Click to select color</source>
-        <translation type="unfinished"></translation>
+        <translation>點選色彩</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="71"/>
         <source>#000000</source>
-        <translation type="unfinished"></translation>
+        <translation>#000000</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="78"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>字型</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="85"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>大小</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="92"/>
         <source>Select font</source>
-        <translation type="unfinished"></translation>
+        <translation>選取字型</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="99"/>
         <source>Select font size</source>
-        <translation type="unfinished"></translation>
+        <translation>選取字型大小</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="102"/>
         <source>pt</source>
-        <translation type="unfinished"></translation>
+        <translation>pt</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="127"/>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>粗體</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="130"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="147"/>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>斜體</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="150"/>
         <source>I</source>
-        <translation type="unfinished"></translation>
+        <translation>I</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="167"/>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>底線</translation>
     </message>
     <message>
-        <location filename="../cssedit.ui" line="170"/>
         <source>U</source>
-        <translation type="unfinished"></translation>
+        <translation>U</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::DictBrowser</name>
     <message>
-        <location filename="../dictbrowser.cpp" line="72"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>找不到單字 &lt;b&gt;%1&lt;/b&gt; </translation>
     </message>
 </context>
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="114"/>
         <source>Save translation</source>
-        <translation type="unfinished">儲存翻譯</translation>
+        <translation>儲存翻譯</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="129"/>
         <source>HTML files (*.html, *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML檔案(*.html, *.htm)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="116"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>文字檔</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="123"/>
         <source>Error</source>
-        <translation type="unfinished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="124"/>
         <source>Cannot save translation as %1</source>
-        <translation type="unfinished"></translation>
+        <translation>無法將翻譯儲存為 %1</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="75"/>
         <source>Go to &amp;previous translation</source>
-        <translation type="unfinished"></translation>
+        <translation>前一個翻譯 (&amp;p)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="80"/>
         <source>Go to &amp;next translation</source>
-        <translation type="unfinished"></translation>
+        <translation>後一個翻譯 (&amp;n)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="85"/>
         <source>&amp;Save to file</source>
-        <translation type="unfinished">儲存到檔案(&amp;S)</translation>
+        <translation>儲存到檔案(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="91"/>
         <source>Speak &amp;word</source>
-        <translation type="unfinished"></translation>
+        <translation>讀出單字 (&amp;w)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
-        <translation type="unfinished"></translation>
+        <translation>列印翻譯(&amp;t)</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="114"/>
         <source>About QStarDict</source>
-        <translation type="unfinished">關於 QStarDict</translation>
+        <translation>關於 QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="115"/>
         <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="117"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation type="unfinished">版權  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+        <translation>版權  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="13"/>
         <source>QStarDict</source>
-        <translation type="unfinished">QStarDict</translation>
+        <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="183"/>
         <source>%1 - QStarDict</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="58"/>
         <source>Clear the search box</source>
-        <translation type="unfinished">清除搜尋框</translation>
+        <translation>清除搜尋框</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="61"/>
         <source>Clear</source>
-        <translation type="unfinished">清除</translation>
+        <translation>清除</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="77"/>
         <source>Fuzzy query</source>
-        <translation type="unfinished">糢糊查詢</translation>
+        <translation>模糊查詢</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="80"/>
         <source>Search</source>
-        <translation type="unfinished">搜尋</translation>
+        <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="105"/>
         <source>Words list</source>
-        <translation type="unfinished">字彙清單</translation>
+        <translation>字彙清單</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="147"/>
         <source>&amp;File</source>
-        <translation type="unfinished">檔案(&amp;F)</translation>
+        <translation>檔案(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="153"/>
         <source>&amp;Help</source>
-        <translation type="unfinished">說明(&amp;H)</translation>
+        <translation>說明(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="160"/>
         <source>&amp;Settings</source>
-        <translation type="unfinished">設定(&amp;S)</translation>
+        <translation>&amp;設定</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="174"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished">離開(&amp;Q)</translation>
+        <translation>離開(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="177"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished">Ctrl+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="182"/>
         <source>&amp;About</source>
-        <translation type="unfinished">關於 (&amp;A)</translation>
+        <translation>關於(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="187"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished">關於 &amp;Qt</translation>
+        <translation> 關於  Qt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="195"/>
         <source>&amp;Configure QStarDict</source>
-        <translation type="unfinished">設定 QStarDict (&amp;C)</translation>
+        <translation>設定 QStarDict(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="203"/>
         <source>&amp;Scan</source>
-        <translation type="unfinished">取詞(&amp;S)</translation>
+        <translation>取詞(&amp;S)</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::SettingsDialog</name>
     <message>
-        <location filename="../settingsdialog.cpp" line="68"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="68"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="68"/>
         <source>Plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>外掛程式</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="261"/>
         <source>Information about dictionary &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>字典&quot;%1&quot; 的資訊</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="279"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;字典名稱:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="263"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;外掛程式：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="265"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>未知</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="283"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;說明：&lt;/b&gt; %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="278"/>
         <source>Information about %1 plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>關於外掛程式 %1 的資訊</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;版本：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;作者：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
         <source>&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;可以搜尋相似單字：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
         <source>yes</source>
-        <translation type="unfinished"></translation>
+        <translation>是</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation>否</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="13"/>
         <source>QStarDict Settings</source>
-        <translation type="unfinished">QStarDict 設定</translation>
+        <translation>QStarDict 設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="16"/>
         <source>Show information about dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示字典資訊</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="57"/>
         <source>Global settings</source>
-        <translation type="unfinished"></translation>
+        <translation>全域設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="63"/>
         <source>Instant search</source>
-        <translation type="unfinished"></translation>
+        <translation>即時搜尋</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="87"/>
         <source>Pronounce words using this command:</source>
-        <translation type="unfinished"></translation>
+        <translation>使用如下指令發音</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="94"/>
         <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="123"/>
         <source>Dictionaries</source>
-        <translation type="unfinished">字典</translation>
+        <translation>字典</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="147"/>
         <source>Move up</source>
-        <translation type="unfinished"></translation>
+        <translation>上移</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="150"/>
         <source>Up</source>
-        <translation type="unfinished">上</translation>
+        <translation>上</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="160"/>
         <source>Move down</source>
-        <translation type="unfinished"></translation>
+        <translation>下移</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="163"/>
         <source>Down</source>
-        <translation type="unfinished">下</translation>
+        <translation>下</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="173"/>
         <source>Show info</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示資訊</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="207"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>外掛程式</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="234"/>
         <source>Show information about plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示外掛程式資訊</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="237"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>資訊</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="247"/>
         <source>Configure plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>設定外掛程式</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="250"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="279"/>
         <source>Popup window</source>
-        <translation type="unfinished">快顯視窗</translation>
+        <translation>快顯視窗</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="303"/>
         <source>Behavior</source>
-        <translation type="unfinished">狀態</translation>
+        <translation>行為</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="344"/>
         <source>Pronounce the word</source>
-        <translation type="unfinished"></translation>
+        <translation>單字發音</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="370"/>
         <source>Timeout before hide after mouse over</source>
-        <translation type="unfinished">在滑鼠滑過後隱藏前逾時</translation>
+        <translation>滑鼠懸停隱藏逾時</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="377"/>
         <source>Don&apos;t hide</source>
-        <translation type="unfinished">勿隱藏</translation>
+        <translation>不隱藏</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="380"/>
         <source> sec</source>
-        <translation type="unfinished">秒</translation>
+        <translation> 秒</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="424"/>
         <source>Show only if modifier pressed</source>
-        <translation type="unfinished">顯示，僅當按下</translation>
+        <translation>顯示，僅當按下</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="435"/>
         <source>Alt</source>
-        <translation type="unfinished">Alt</translation>
+        <translation>Alt</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="440"/>
         <source>Control</source>
-        <translation type="unfinished">Control</translation>
+        <translation>Control</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="445"/>
         <source>Shift</source>
-        <translation type="unfinished">Shift</translation>
+        <translation>Shift</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="450"/>
         <source>Win</source>
-        <translation type="unfinished">Win</translation>
+        <translation>Win</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="460"/>
         <source>Scan selection</source>
-        <translation type="unfinished">選擇區取詞</translation>
+        <translation>選取區取詞</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="470"/>
         <source>Show if word not found</source>
-        <translation type="unfinished">當未找到字時顯示</translation>
+        <translation>當未找到字時顯示</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="644"/>
         <source>Apperance</source>
-        <translation type="unfinished">外觀</translation>
+        <translation>外觀</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="521"/>
         <source>Opacity</source>
-        <translation type="unfinished">不透明度</translation>
+        <translation>不透明度</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="528"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="566"/>
         <source>Default width</source>
-        <translation type="unfinished">預設寬度</translation>
+        <translation>預設寬度</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="605"/>
         <source>Default height</source>
-        <translation type="unfinished">預設高度</translation>
+        <translation>預設高度</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="264"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;作者:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="265"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;單字數:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="113"/>
         <source>All translation</source>
-        <translation type="unfinished"></translation>
+        <translation>所有的翻譯</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="114"/>
         <source>Dictionary name</source>
-        <translation type="unfinished"></translation>
+        <translation>字典名稱</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="115"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>標題</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="116"/>
         <source>Explanation</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="117"/>
         <source>Abbreviation</source>
-        <translation type="unfinished"></translation>
+        <translation>縮寫</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="118"/>
         <source>Example</source>
-        <translation type="unfinished"></translation>
+        <translation>範例</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="119"/>
         <source>Transcription</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>QStarDict::TrayIcon</name>
     <message>
-        <location filename="../trayicon.cpp" line="36"/>
         <source>QStarDict</source>
-        <translation type="unfinished">QStarDict</translation>
+        <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="37"/>
         <source>&amp;Scan</source>
-        <translation type="unfinished">取詞(&amp;S)</translation>
+        <translation>取詞(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="47"/>
         <source>&amp;Configure QStarDict</source>
-        <translation type="unfinished">設定 QStarDict (&amp;C)</translation>
+        <translation>設定 QStarDict(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="50"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished">離開(&amp;Q)</translation>
+        <translation>離開(&amp;Q)</translation>
     </message>
 </context>
 </TS>
