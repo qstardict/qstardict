@@ -56,20 +56,32 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 
 } // namespace
 
-#else // Q_WS_X11
+#elif Q_WS_WIN // Q_WS_X11
+
+#include <winuser.h>
 
 namespace QStarDict
 {
 
-// TODO: write it for other platforms
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
-    return Qt::NoModifier;
+    Qt::KeyboardModifiers result;
+
+    if (GetAsyncKeyState(VK_ALT) & 0x8000)
+        result |= Qt::AltModifier;
+    if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+        result |= Qt::ControlModifier;
+    if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
+        result |= Qt::ShiftModifier;
+    if (GetAsyncKeyState(VK_MENU) & 0x8000)
+        result |= Qt::MetaModifier;
+
+    return result;
 }
 
 } // namespace
 
-#endif // Q_WS_X11
+#endif // Q_WS_WIN
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
