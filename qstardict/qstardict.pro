@@ -57,6 +57,7 @@ SOURCES += \
     speaker.cpp \
     trayicon.cpp
 unix:isEmpty(NO_DBUS):SOURCES += dbusadaptor.cpp
+
 RESOURCES += \
     pixmaps/pixmaps.qrc
 DISTFILES += \
