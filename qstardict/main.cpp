@@ -22,13 +22,11 @@
 #ifdef Q_OS_UNIX
 #include <QDateTime>
 #include <QDir>
-#include <QFile>
 #include <QFileInfo>
-#include <QTextStream>
+#include <QSettings>
 #include <unistd.h>
 #elif defined(Q_OS_WIN) // Q_OS_UNIX
 #include <windows.h>
-#include <QMessageBox>
 #endif // Q_OS_WIN
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
@@ -39,27 +37,22 @@
 int main(int argc, char *argv[])
 {
 #ifdef Q_OS_UNIX
-    QFile lockFile(QDir::homePath() + "/.qstardict/qstardict.pid");
-    lockFile.open(QIODevice::ReadOnly);
-    QTextStream lockStream(&lockFile);
-    QString oldPid = lockStream.readLine();
-    QString oldTime = lockStream.readLine();
-    if (oldPid.length() && QDir("/proc/" + oldPid).exists() &&
-       oldTime == QFileInfo("/proc/" + oldPid).created().toString())
+    QSettings lockFile(QDir::homePath() + "/.qstardict/qstardict.pid", QSettings::IniFormat);
+    QString lastPid = lockFile.value("LastStart/pid").toString();
+    if (lastPid.length() && QDir("/proc/" + lastPid).exists() &&
+        lockFile.value("LastStart/time").toDateTime() == QFileInfo("/proc/" + lastPid).created())
     {
-        qWarning("qstardict: Already running");
+        qDebug("qstardict: already running");
         return 0;
     }
-    lockFile.close();
-    lockFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
-    lockStream << getpid() << endl
-               << QFileInfo("/proc/" + QString::number(getpid())).created().toString() << endl;
-    lockFile.close();
+    lockFile.setValue("LastStart/pid", getpid());
+    lockFile.setValue("LastStart/time", QFileInfo("/proc/" + QString::number(getpid())).created());
+    lockFile.sync();
 #elif defined(Q_OS_WIN) // Q_OS_UNIX
     int hMutex = CreateMutex(NULL, true, "qstardict");
     if (GetLastError == ERROR_ALREADY_EXISTS)
     {
-        QMessageBox::warning(0, tr("Warning"), tr("Another instance of QStarDict is already running"));
+        MessageBox(0, "Warning", "QStarDict is already running", MB_ICONWARNING);
         return 0;
     }
 #endif // Q_OS_WIN
