@@ -21,10 +21,12 @@ TEMPLATE = subdirs
 include(qstardict.pri)
 SUBDIRS = qstardict plugins
 
-DISTFILES += \
+DOCS += \
     AUTHORS \
     COPYNG \
     ChangeLog \
+    THANKS
+DISTFILES += $$DOCS \
     INSTALL \
     README
 
@@ -45,4 +47,9 @@ message("Binary directory: "$$BIN_DIR)
 message("Data directory: "$$DATA_DIR)
 isEmpty(NO_TRANSLATIONS):message("Translations directory: "$$TRANSLATIONS_DIR)
 message("Plugins directory: "$$PLUGINS_DIR)
+message("Documentation directory: "$$DOCS_DIR)
+
+docs.files = $$DOCS
+docs.path = $$DOCS_DIR
+INSTALLS += docs
 

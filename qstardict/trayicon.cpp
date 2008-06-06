@@ -81,6 +81,7 @@ void TrayIcon::setScanEnabled(bool enabled)
 {
     QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
     setIcon(icon);
+    setToolTip(tr("QStarDict: scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
 }
 
 }
