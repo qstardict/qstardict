@@ -26,7 +26,10 @@
 #include <QFileInfo>
 #include <QTextStream>
 #include <unistd.h>
-#endif
+#elif defined(Q_OS_WIN) // Q_OS_UNIX
+#include <windows.h>
+#include <QMessageBox>
+#endif // Q_OS_WIN
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
 #include <QLocale>
@@ -52,7 +55,14 @@ int main(int argc, char *argv[])
     lockStream << getpid() << endl
                << QFileInfo("/proc/" + QString::number(getpid())).created().toString() << endl;
     lockFile.close();
-#endif
+#elif defined(Q_OS_WIN) // Q_OS_UNIX
+    int hMutex = CreateMutex(NULL, true, "qstardict");
+    if (GetLastError == ERROR_ALREADY_EXISTS)
+    {
+        QMessageBox::warning(0, tr("Warning"), tr("Another instance of QStarDict is already running"));
+        return 0;
+    }
+#endif // Q_OS_WIN
 
     QStarDict::Application app(argc, argv);
     return app.exec();
