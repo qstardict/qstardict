@@ -112,11 +112,18 @@ void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 void DictWidget::saveToFile()
 {
     QFileDialog dialog(this, tr("Save translation"),
-                       QDir::homePath() + "/" + translatedWord() + ".html");
+                       QDir::homePath() + "/" + translatedWord());
     dialog.setFilters(QStringList() << tr("HTML files (*.html, *.htm)") << tr("Text files (*.txt)"));
     if (dialog.exec() && dialog.selectedFiles().size())
     {
         QString fileName = dialog.selectedFiles().first();
+        QString filter = dialog.selectedFilter();
+        if (filter == tr("HTML files (*.html, *.htm)") && 
+            ! (fileName.endsWith(".html", Qt::CaseInsensitive) || fileName.endsWith(".htm", Qt::CaseInsensitive)))
+            fileName += ".html";
+        else if (filter == tr("Text files (*.txt)") && ! fileName.endsWith(".txt", Qt::CaseInsensitive))
+            fileName += ".txt";
+
         QFile outputFile(fileName);
         if (! outputFile.open(QIODevice::WriteOnly | QIODevice::Text))
         {
@@ -125,7 +132,6 @@ void DictWidget::saveToFile()
             return;
         }
         QTextStream outputStream(&outputFile);
-        QString filter = dialog.selectedFilter();
         if (filter == tr("HTML files (*.html, *.htm)"))
             outputStream << m_translationView->document()->toHtml("UTF-8");
         else
