@@ -119,11 +119,10 @@ StarDict::StarDict(QObject *parent)
     {
 #ifdef Q_OS_UNIX
         m_dictDirs << "/usr/share/stardict/dic";
-        m_dictDirs << QDir::homePath() + "/.stardict/dic";
 #else
         m_dictDirs << QCoreApplication::applicationDirPath() + "/dic";
-#endif // Q_OS_UNIX
-        m_dictDirs << workPath() + "/dicts";
+#endif // Q_OS_UNIX				
+        m_dictDirs << QDir::homePath() + "/.stardict/dic";
     }
 }
 
@@ -433,4 +432,3 @@ void xdxf2html(QString &str)
 Q_EXPORT_PLUGIN2(stardict, StarDict)
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
-

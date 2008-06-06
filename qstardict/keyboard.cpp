@@ -56,8 +56,9 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 
 } // namespace
 
-#elif Q_WS_WIN // Q_WS_X11
+#elif defined(Q_WS_WIN) // Q_WS_X11
 
+#include <windows.h>
 #include <winuser.h>
 
 namespace QStarDict
@@ -67,13 +68,13 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
     Qt::KeyboardModifiers result;
 
-    if (GetAsyncKeyState(VK_ALT) & 0x8000)
+    if (GetAsyncKeyState(VK_MENU) & 0x8000)
         result |= Qt::AltModifier;
     if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
         result |= Qt::ControlModifier;
     if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
         result |= Qt::ShiftModifier;
-    if (GetAsyncKeyState(VK_MENU) & 0x8000)
+    if ((GetAsyncKeyState(VK_LWIN) & 0x8000) || (GetAsyncKeyState(VK_RWIN) & 0x8000))
         result |= Qt::MetaModifier;
 
     return result;

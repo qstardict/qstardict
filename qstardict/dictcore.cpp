@@ -108,10 +108,10 @@ QStringList DictCore::availablePlugins() const
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
         result << i->fileName().mid(3, i->fileName().length() - 6);
 #elif defined Q_OS_WIN
-    QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("lib*.dll"),
+    QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("*0.dll"),
                   QDir::Files | QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
-        result << i->fileName().mid(3, i->fileName().length() - 7);
+        result << i->fileName().left(i->fileName().length() - 5);
 #else
 #error "Function DictCore::availablePlugins() is not implemented on this platform"
 #endif
@@ -133,7 +133,7 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
         QString pluginFilename = static_cast<QString>(QSTARDICT_PLUGINS_DIR) + "/" "lib" + *i + ".so";
 #elif defined Q_OS_WIN
         // TODO
-        QString pluginFilename = static_cast<QString>(QSTARDICT_PLUGINS_DIR) + "/" "lib" + *i + ".dll";
+        QString pluginFilename = static_cast<QString>(QSTARDICT_PLUGINS_DIR) + "/" + *i + "0.dll";
 #else
 #error "Function DictCore::setLoadedPlugins(const QStringList &loadedPlugins) is not available on this platform"
 #endif

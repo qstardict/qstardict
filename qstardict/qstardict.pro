@@ -40,7 +40,8 @@ HEADERS += \
     settingsdialog.h \
     speaker.h \
     trayicon.h
-unix:isEmpty(NO_DBUS):HEADERS += dbusadaptor.h
+unix:isEmpty(NO_DBUS):HEADERS += \
+    dbusadaptor.h
 SOURCES += \
     application.cpp \
     cssedit.cpp \
@@ -56,10 +57,13 @@ SOURCES += \
     settingsdialog.cpp \
     speaker.cpp \
     trayicon.cpp
-unix:isEmpty(NO_DBUS):SOURCES += dbusadaptor.cpp
+unix:isEmpty(NO_DBUS):SOURCES += \
+    dbusadaptor.cpp
 
 RESOURCES += \
     pixmaps/pixmaps.qrc
+win32:RC_FILE += \
+    qstardict.rc
 DISTFILES += \
     qstardict.png \
     qstardict.desktop

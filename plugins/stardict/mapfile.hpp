@@ -65,12 +65,20 @@ inline bool MapFile::open(const char *file_name, unsigned long file_size)
         return false;
     }
 #elif defined( _WIN32)
-    hFile = CreateFile(file_name, GENERIC_READ, 0, NULL, OPEN_ALWAYS,
+#ifdef UNICODE
+    gunichar2 *fn = g_utf8_to_utf16(file_name, -1, NULL, NULL, NULL);
+#else // UNICODE
+    gchar *fn = file_name;
+#endif // UNICODE
+    hFile = CreateFile(fn, GENERIC_READ, 0, NULL, OPEN_ALWAYS,
                        FILE_ATTRIBUTE_NORMAL, 0);
+#ifdef UNICODE
+    g_free(fn);
+#endif // UNICODE
     hFileMap = CreateFileMapping(hFile, NULL, PAGE_READONLY, 0,
                                  file_size, NULL);
     data = (gchar *)MapViewOfFile(hFileMap, FILE_MAP_READ, 0, 0, file_size);
-#else
+#else // defined( _WIN32)
 
     gsize read_len;
     if (!g_file_get_contents(file_name, &data, &read_len, NULL))

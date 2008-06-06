@@ -19,8 +19,47 @@
 
 #include "selection.h"
 
+#ifdef Q_WS_WIN
+#include <windows.h>
+
+namespace
+{
+
+QString currentSelection()
+{
+    POINT Point;
+    HWND hWindow;
+    DWORD dwStart, dwEnd;
+    char szWindowText[256];
+
+    if (! GetCursorPos(&Point))
+        return QString();
+
+    if( ! (hWindow = WindowFromPoint(Point)))
+        return QString();
+
+    SendMessage(hWindow, WM_GETTEXT, 256, (LPARAM)szWindowText);
+    SendMessage(hWindow, EM_GETSEL, (WPARAM)&dwStart, (LPARAM)&dwEnd);
+
+    return QString::fromLocal8Bit(szWindowText);
+}
+
+}
+
+#else // Q_WS_WIN
+
 #include <QApplication>
 #include <QClipboard>
+
+namespace
+{
+
+inline QString currentSelection()
+{ return QApplication::clipboard()->text(QClipboard::Selection); }
+
+}
+
+#endif // Q_WS_WIN
 
 namespace QStarDict
 {
@@ -40,7 +79,7 @@ void Selection::setScan(bool scan)
     m_scan = scan;
     if (m_scan)
     {
-        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
+        m_lastState = currentSelection();
         m_timerId = startTimer(300);
     }
     else
@@ -49,9 +88,9 @@ void Selection::setScan(bool scan)
 
 void Selection::timerEvent(QTimerEvent*)
 {
-    if (m_lastState != QApplication::clipboard()->text(QClipboard::Selection))
+    if (m_lastState != currentSelection())
     {
-        m_lastState = QApplication::clipboard()->text(QClipboard::Selection);
+        m_lastState = currentSelection();
         emit changed(m_lastState);
     }
 }

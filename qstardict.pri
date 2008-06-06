@@ -28,14 +28,12 @@ CONFIG += \
     qt \
     warn_on \
     release
-# not available on Win
-unix {
-	CONFIG += \
-		link_pkgconfig
-	PKGCONFIG += \
-    	glib-2.0
-    LIBS += -lz
-}
+CONFIG += \
+    link_pkgconfig
+    PKGCONFIG += \
+    glib-2.0
+unix:LIBS += -lz
+windows:LIBS += -lzdll
 
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
@@ -44,29 +42,29 @@ unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
 isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
 
 unix {
-#    isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/usr
-#    isEmpty(BIN_DIR):BIN_DIR=$$INSTALL_PREFIX/bin
-#    isEmpty(DATA_DIR):DATA_DIR=$$INSTALL_PREFIX/share/qstardict
-#    isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$DATA_DIR/translations
-#    isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$INSTALL_PREFIX/lib/qstardict/plugins
-
-#    DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
-#    DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
-#    DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
-#    DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
-#    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
-#    DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
-#} else:win32 {
-    isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=
-    isEmpty(BIN_DIR):BIN_DIR=$$INSTALL_PREFIX
-    isEmpty(DATA_DIR):DATA_DIR=$$INSTALL_PREFIX/data
-    isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$INSTALL_PREFIX/translations
-    isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$INSTALL_PREFIX/plugins
+    isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/usr
+    isEmpty(BIN_DIR):BIN_DIR=$$INSTALL_PREFIX/bin
+    isEmpty(DATA_DIR):DATA_DIR=$$INSTALL_PREFIX/share/qstardict
+    isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$DATA_DIR/translations
+    isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$INSTALL_PREFIX/lib/qstardict/plugins
 
     DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
-    DEFINES += QSTARDICT_INSTALL_PREFIX=\\\(QApplication::applicationDirPath\\\(\\\)+\\\"$$INSTALL_PREFIX\\\"\\\)
-    DEFINES += QSTARDICT_BIN_DIR=\\\(QApplication::applicationDirPath\\\(\\\)+\\\"$$BIN_DIR\\\"\\\)
-    DEFINES += QSTARDICT_DATA_DIR=\\\(QApplication::applicationDirPath\\\(\\\)+\\\"$$DATA_DIR\\\"\\\)
-    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\(QApplication::applicationDirPath\\\(\\\)+\\\"$$TRANSLATIONS_DIR\\\"\\\)
-    DEFINES += QSTARDICT_PLUGINS_DIR=\\\(QApplication::applicationDirPath\\\(\\\)+\\\"$$PLUGINS_DIR\\\"\\\)
+    DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
+    DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
+    DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
+    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
+    DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
+} else:win32 {
+    isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/
+    isEmpty(BIN_DIR):BIN_DIR=$$INSTALL_PREFIX
+    isEmpty(DATA_DIR):DATA_DIR=$$INSTALL_PREFIX"data"
+    isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$INSTALL_PREFIX"translations"
+    isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$INSTALL_PREFIX"plugins"
+
+    DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
+    DEFINES += QSTARDICT_INSTALL_PREFIX=\(QApplication::applicationDirPath\(\)+\\\"$$INSTALL_PREFIX\\\"\)
+    DEFINES += QSTARDICT_BIN_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$BIN_DIR\\\"\)
+    DEFINES += QSTARDICT_DATA_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$DATA_DIR\\\"\)
+    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$TRANSLATIONS_DIR\\\"\)
+    DEFINES += QSTARDICT_PLUGINS_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$PLUGINS_DIR\\\"\)
 }
