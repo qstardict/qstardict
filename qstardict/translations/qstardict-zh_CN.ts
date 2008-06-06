@@ -109,22 +109,22 @@
         <translation>保存翻译</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="129"/>
+        <location filename="../dictwidget.cpp" line="135"/>
         <source>HTML files (*.html, *.htm)</source>
         <translation>HTML文件(*.html, *.htm)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="116"/>
+        <location filename="../dictwidget.cpp" line="124"/>
         <source>Text files (*.txt)</source>
         <translation>文本文件</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="123"/>
+        <location filename="../dictwidget.cpp" line="130"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="124"/>
+        <location filename="../dictwidget.cpp" line="131"/>
         <source>Cannot save translation as %1</source>
         <translation>不能将翻译保存为 %1</translation>
     </message>
@@ -151,7 +151,7 @@
     <message>
         <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
-        <translation>��ӡ����(&amo;t)</translation>
+        <translation>��ӡ����(t)</translation>
     </message>
 </context>
 <context>
@@ -571,6 +571,21 @@
         <location filename="../trayicon.cpp" line="50"/>
         <source>&amp;Quit</source>
         <translation>离开(&amp;Q)</translation>
+    </message>
+    <message>
+        <location filename="../trayicon.cpp" line="84"/>
+        <source>QStarDict: scanning is %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trayicon.cpp" line="84"/>
+        <source>enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trayicon.cpp" line="84"/>
+        <source>disabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

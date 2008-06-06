@@ -109,22 +109,22 @@
         <translation>Zapisz tłumaczenie</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="129"/>
+        <location filename="../dictwidget.cpp" line="135"/>
         <source>HTML files (*.html, *.htm)</source>
         <translation>Pliki HTML (*.html, *.htm)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="116"/>
+        <location filename="../dictwidget.cpp" line="124"/>
         <source>Text files (*.txt)</source>
         <translation>Pliki tekstowe (*.txt)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="123"/>
+        <location filename="../dictwidget.cpp" line="130"/>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="124"/>
+        <location filename="../dictwidget.cpp" line="131"/>
         <source>Cannot save translation as %1</source>
         <translation>Nie mogę zapisać tłumaczenia jako %1</translation>
     </message>
@@ -571,6 +571,21 @@
         <location filename="../trayicon.cpp" line="50"/>
         <source>&amp;Quit</source>
         <translation>&amp;Zamknij</translation>
+    </message>
+    <message>
+        <location filename="../trayicon.cpp" line="84"/>
+        <source>QStarDict: scanning is %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trayicon.cpp" line="84"/>
+        <source>enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trayicon.cpp" line="84"/>
+        <source>disabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
