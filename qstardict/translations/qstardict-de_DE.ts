@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -442,7 +443,7 @@
     <message>
         <location filename="../settingsdialog.ui" line="380"/>
         <source> sec</source>
-        <translation type="unfinished"></translation>
+        <translation>Sek.</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="424"/>
@@ -575,17 +576,17 @@
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>QStarDict: scanning is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>QStarDict: Scannen ist %1</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>aktiviert</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>deaktiviert</translation>
     </message>
 </context>
 </TS>
