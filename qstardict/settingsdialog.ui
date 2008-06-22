@@ -13,7 +13,7 @@
    <string>QStarDict Settings</string>
   </property>
   <property name="toolTip" >
-   <string>Show information about dictionary</string>
+   <string/>
   </property>
   <layout class="QGridLayout" >
    <property name="leftMargin" >
@@ -50,7 +50,7 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabGlobalSettings" >
       <attribute name="title" >
@@ -169,6 +169,9 @@
             </item>
             <item>
              <widget class="QToolButton" name="dictsShowInfoButton" >
+              <property name="toolTip" >
+               <string>Show information about dictionary</string>
+              </property>
               <property name="text" >
                <string>Show info</string>
               </property>
