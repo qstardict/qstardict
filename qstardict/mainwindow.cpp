@@ -113,7 +113,7 @@ void MainWindow::on_actionAbout_triggered()
     QMessageBox::about(this,
             tr("About QStarDict"),
             tr("<b>QStarDict %1 </b> - Qt version of StarDict<br>").arg(QSTARDICT_VERSION) +
-            tr("Copyright (C) 2007 Alexander Rodin "
+            tr("Copyright (C) 2007-2008 Alexander Rodin "
                "<a href=\"http://qstardict.ylsoftware.com\">http://qstardict.ylsoftware.com</a>"));
 }
 
