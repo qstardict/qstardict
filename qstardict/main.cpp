@@ -27,6 +27,7 @@
 #include <unistd.h>
 #elif defined(Q_OS_WIN) // Q_OS_UNIX
 #include <windows.h>
+#include <QMessageBox>
 #endif // Q_OS_WIN
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
@@ -49,10 +50,12 @@ int main(int argc, char *argv[])
     lockFile.setValue("LastStart/time", QFileInfo("/proc/" + QString::number(getpid())).created());
     lockFile.sync();
 #elif defined(Q_OS_WIN) // Q_OS_UNIX
-    int hMutex = CreateMutex(NULL, true, "qstardict");
-    if (GetLastError == ERROR_ALREADY_EXISTS)
+    HANDLE hMutex = CreateMutex(NULL, true, (LPCTSTR)"qstardict");
+    if (GetLastError() == ERROR_ALREADY_EXISTS)
     {
-        MessageBox(0, "Warning", "QStarDict is already running", MB_ICONWARNING);
+        QMessageBox::information(0, "Warning", "QStarDict is already running");
+        // Strange encoding issue...
+        // MessageBox(0, (LPCWSTR)"Warning", (LPCWSTR)"QStarDict is already running", MB_ICONWARNING);
         return 0;
     }
 #endif // Q_OS_WIN

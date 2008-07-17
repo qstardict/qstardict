@@ -49,6 +49,19 @@ isEmpty(NO_TRANSLATIONS):message("Translations directory: "$$TRANSLATIONS_DIR)
 message("Plugins directory: "$$PLUGINS_DIR)
 message("Documentation directory: "$$DOCS_DIR)
 
+win32 {
+    isEmpty(GLIB2PATH) {
+        error("No Glib2 library path (GLIB2PATH) is set.")
+	} else {
+        message("Glib2 location is set to $$GLIB2PATH")
+	}
+    isEmpty(ZLIBPATH) {
+        error("No zlib library path (ZLIBPATH) is set.")
+	} else {
+        message("Zlib location is set to $$ZLIBPATH")
+	}
+}
+
 docs.files = $$DOCS
 docs.path = $$DOCS_DIR
 INSTALLS += docs

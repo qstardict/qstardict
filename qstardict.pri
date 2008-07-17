@@ -17,7 +17,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-VERSION = 0.12.9.9999
+VERSION = 0.12.9
+unix:VERSION += "-svn"
 
 QT = \
     core \
@@ -28,12 +29,20 @@ CONFIG += \
     qt \
     warn_on \
     release
-CONFIG += \
-    link_pkgconfig
-    PKGCONFIG += \
-    glib-2.0
-unix:LIBS += -lz
-windows:LIBS += -lzdll
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += glib-2.0
+    LIBS += -lz
+}
+win32 {
+    CONFIG += windows
+    LIBS += -lzdll -lglib-2.0 -luser32
+    INCLUDEPATH += $$GLIB2PATH/include/glib-2.0 \
+                   $$GLIB2PATH/lib/glib-2.0/include \
+                   $$ZLIBPATH/include
+    QMAKE_LIBDIR += $$GLIB2PATH/lib \
+                    $$ZLIBPATH/lib
+}
 
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
@@ -56,7 +65,12 @@ unix {
     isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
     DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
 } else:win32 {
-    isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=
+     isEmpty(INSTALL_PREFIX) {
+         INSTALL_PREFIX=
+     } else {
+        # handle path backslashes in defines correctly
+         INSTALL_PREFIX = $$re_escape($$INSTALL_PREFIX)
+    }
     isEmpty(BIN_DIR):BIN_DIR=$$INSTALL_PREFIX/
     isEmpty(DATA_DIR):DATA_DIR=$$INSTALL_PREFIX/data
     isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$INSTALL_PREFIX/translations
@@ -64,10 +78,15 @@ unix {
     isEmpty(DOCS_DIR):DOCS_DIR=$$INSTALL_PREFIX/docs
 
     DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
-    DEFINES += QSTARDICT_INSTALL_PREFIX=\(QApplication::applicationDirPath\(\)+\\\"$$INSTALL_PREFIX\\\"\)
-    DEFINES += QSTARDICT_BIN_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$BIN_DIR\\\"\)
-    DEFINES += QSTARDICT_DATA_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$DATA_DIR\\\"\)
-    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$TRANSLATIONS_DIR\\\"\)
-    DEFINES += QSTARDICT_PLUGINS_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$PLUGINS_DIR\\\"\)
+#    DEFINES += QSTARDICT_INSTALL_PREFIX=\(QApplication::applicationDirPath\(\)+\\\"$$INSTALL_PREFIX\\\"\)
+#    DEFINES += QSTARDICT_BIN_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$BIN_DIR\\\"\)
+#    DEFINES += QSTARDICT_DATA_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$DATA_DIR\\\"\)
+#    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$TRANSLATIONS_DIR\\\"\)
+#    DEFINES += QSTARDICT_PLUGINS_DIR=\(QApplication::applicationDirPath\(\)+\\\"$$PLUGINS_DIR\\\"\)
+    DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
+    DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
+    DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
+    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
+    DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
 }
 

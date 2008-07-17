@@ -29,11 +29,18 @@
 #  include "config.h"
 #endif
 
+#include <QtGlobal>
+
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#ifdef Q_OS_UNIX
 #include <unistd.h>
+#endif
+#ifdef Q_OS_WIN32
+#include <io.h>
+#endif
 #include <limits.h>
 #include <fcntl.h>
 
@@ -296,7 +303,11 @@ bool dictData::open(const std::string& fname, int computeCRC)
 
     this->initialized = 0;
 
+#ifdef Q_OS_UNIX
     if (stat(fname.c_str(), &sb) || !S_ISREG(sb.st_mode))
+#elif def Q_OS_WIN32
+    if (_stat(fname.c_str(), &sb) || !(sb.stMode & _S_IFREG))
+#endif
     {
         //err_warning( __FUNCTION__,
         //   "%s is not a regular file -- ignoring\n", fname );
