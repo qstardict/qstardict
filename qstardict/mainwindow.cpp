@@ -210,7 +210,12 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             searchBox->setFocus(Qt::OtherFocusReason);
         }
         if (event->key() == Qt::Key_Escape)
-            searchBox->clear();
+        {
+            if (searchBox->text().isEmpty())
+                close();
+            else
+                searchBox->clear();
+        }
     }
     QMainWindow::keyPressEvent(event);
 }
