@@ -151,7 +151,7 @@
     <message>
         <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
-        <translation>��ӡ����(t)</translation>
+        <translation>打印翻译(t)</translation>
     </message>
 </context>
 <context>
