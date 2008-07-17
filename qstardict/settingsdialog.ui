@@ -16,22 +16,10 @@
    <string/>
   </property>
   <layout class="QGridLayout" >
-   <property name="leftMargin" >
+   <property name="margin" >
     <number>9</number>
    </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
-   <property name="horizontalSpacing" >
-    <number>6</number>
-   </property>
-   <property name="verticalSpacing" >
+   <property name="spacing" >
     <number>6</number>
    </property>
    <item row="1" column="0" >
@@ -40,7 +28,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons" >
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
      <property name="centerButtons" >
       <bool>false</bool>
@@ -50,9 +38,17 @@
    <item row="0" column="0" >
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabGlobalSettings" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>441</width>
+        <height>414</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Global settings</string>
       </attribute>
@@ -69,16 +65,7 @@
          <property name="spacing" >
           <number>6</number>
          </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
+         <property name="margin" >
           <number>0</number>
          </property>
          <item>
@@ -102,7 +89,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>369</width>
            <height>171</height>
@@ -113,6 +100,14 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabDictionaries" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>441</width>
+        <height>414</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Dictionaries</string>
       </attribute>
@@ -150,7 +145,8 @@
                <string>Up</string>
               </property>
               <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-up.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >
+                <normaloff>:/icons/arrow-up.png</normaloff>:/icons/arrow-up.png</iconset>
               </property>
              </widget>
             </item>
@@ -163,7 +159,8 @@
                <string>Down</string>
               </property>
               <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/arrow-down.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >
+                <normaloff>:/icons/arrow-down.png</normaloff>:/icons/arrow-down.png</iconset>
               </property>
              </widget>
             </item>
@@ -176,7 +173,8 @@
                <string>Show info</string>
               </property>
               <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/dialog-information.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >
+                <normaloff>:/icons/dialog-information.png</normaloff>:/icons/dialog-information.png</iconset>
               </property>
              </widget>
             </item>
@@ -185,7 +183,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -240,7 +238,8 @@
                <string>Info</string>
               </property>
               <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/dialog-information.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >
+                <normaloff>:/icons/dialog-information.png</normaloff>:/icons/dialog-information.png</iconset>
               </property>
              </widget>
             </item>
@@ -253,7 +252,8 @@
                <string>Configure</string>
               </property>
               <property name="icon" >
-               <iconset resource="pixmaps/pixmaps.qrc" >:/icons/configure.png</iconset>
+               <iconset resource="pixmaps/pixmaps.qrc" >
+                <normaloff>:/icons/configure.png</normaloff>:/icons/configure.png</iconset>
               </property>
              </widget>
             </item>
@@ -262,7 +262,7 @@
               <property name="orientation" >
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" >
+              <property name="sizeHint" stdset="0" >
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -278,26 +278,22 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabPopupWindow" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>640</width>
+        <height>409</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Popup window</string>
       </attribute>
       <layout class="QGridLayout" >
-       <property name="leftMargin" >
+       <property name="margin" >
         <number>9</number>
        </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <property name="horizontalSpacing" >
-        <number>6</number>
-       </property>
-       <property name="verticalSpacing" >
+       <property name="spacing" >
         <number>6</number>
        </property>
        <item row="0" column="0" >
@@ -306,22 +302,10 @@
           <string>Behavior</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
+          <property name="margin" >
            <number>9</number>
           </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
+          <property name="spacing" >
            <number>6</number>
           </property>
           <item row="4" column="0" >
@@ -329,16 +313,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -355,16 +330,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -406,16 +372,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -483,22 +440,10 @@
           <string>Apperance</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
+          <property name="margin" >
            <number>9</number>
           </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
+          <property name="spacing" >
            <number>6</number>
           </property>
           <item row="2" column="0" >
@@ -506,16 +451,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -551,16 +487,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -590,16 +517,7 @@
             <property name="spacing" >
              <number>6</number>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
-            </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
+            <property name="margin" >
              <number>0</number>
             </property>
             <item>
@@ -632,7 +550,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>20</width>
            <height>101</height>
@@ -643,6 +561,14 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>640</width>
+        <height>409</height>
+       </rect>
+      </property>
       <attribute name="title" >
        <string>Apperance</string>
       </attribute>
