@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -168,8 +169,8 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
-        <source>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+        <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>
@@ -262,7 +263,7 @@
     <message>
         <location filename="../settingsdialog.cpp" line="68"/>
         <source>Name</source>
-        <translation>Imię</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="68"/>
@@ -357,7 +358,7 @@
     <message>
         <location filename="../settingsdialog.ui" line="94"/>
         <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz komendę dla syntezatora mowy.&lt;br&gt;Jeśli komenda zawiera &quot;%s&quot; to będzie ona zastąpiona słowem lub słowo zostanie zapisane do stdin procesu mówienia.</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="123"/>
@@ -580,12 +581,12 @@
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>włączone</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>wyłączone</translation>
     </message>
 </context>
 </TS>
