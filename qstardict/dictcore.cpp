@@ -132,11 +132,11 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
 #ifdef Q_OS_UNIX
         QString pluginFilename = static_cast<QString>(QSTARDICT_PLUGINS_DIR) + "/" "lib" + *i + ".so";
 #elif defined Q_OS_WIN
-        // TODO
         QString pluginFilename = static_cast<QString>(QSTARDICT_PLUGINS_DIR) + "/" + *i + "0.dll";
 #else
 #error "Function DictCore::setLoadedPlugins(const QStringList &loadedPlugins) is not available on this platform"
 #endif
+
         QPluginLoader *plugin = new QPluginLoader(pluginFilename);
         if (! plugin->load())
         {

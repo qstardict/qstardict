@@ -1,0 +1,20 @@
+qmake params for Windows:
+
+GLIB2PATH - path to the Glib-2.x development environment (includes, ...)
+
+ZLIBPATH - path to the Zlib development environment (includes, ...)
+
+sample usage:
+qmake GLIB2PATH=d:\oss\glib\ ZLIBPATH=d:\oss\zlib\
+
+
+
+
+Requirements:
+
+Glib2 development env.
+
+Glib2 runtime env.
+
+Zlib env.
+

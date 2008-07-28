@@ -19,6 +19,7 @@
 
 TARGET = stardict
 include(../plugin.pri)
+win32:CONFIG += plugin
 
 HEADERS += \
     stardict.h \

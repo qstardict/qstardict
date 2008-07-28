@@ -34,7 +34,7 @@ unix {
     LIBS += -lz
 }
 win32 {
-    CONFIG += windows
+    CONFIG += console
     LIBS += -lzdll -lglib-2.0 -luser32
     INCLUDEPATH += $$GLIB2PATH/include/glib-2.0 \
                    $$GLIB2PATH/lib/glib-2.0/include \
