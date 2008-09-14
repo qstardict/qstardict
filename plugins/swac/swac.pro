@@ -1,6 +1,8 @@
 #############################################################################
-# plugins.pro - QStarDict, a StarDict clone written with using Qt           #
-# Copyright (C) 2008 Alexander Rodin                                        #
+# swac.pro                                                                  #
+# This file is a part of QStarDict, a StarDict clone written with using Qt  #
+# swac.cpp - Plugin for words audio collections SWAC                        #
+# Copyright (C) 2008 Nicolas Vion <nico@picapo.net>                         #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
 # it under the terms of the GNU General Public License as published by      #
@@ -17,6 +19,13 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-SUBDIRS = stardict web swac
+TARGET = swac
+include(../plugin.pri)
 
+QT += sql
+
+HEADERS += \
+    swac.h
+
+SOURCES += \
+    swac.cpp
