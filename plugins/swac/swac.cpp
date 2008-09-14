@@ -75,7 +75,7 @@ Swac::DictInfo Swac::dictInfo(const QString &dict)
 }
 
 
-QSqlQuery Swac::search(const QString &dict, const QString &word, const QString &fields)
+QSqlQuery Swac::search(const QString &dict, const QString &word, const QString &fields, const int limit)
 {
     QSqlQuery query(*db);
     query.prepare(
@@ -84,7 +84,7 @@ QSqlQuery Swac::search(const QString &dict, const QString &word, const QString &
         + "INNER JOIN sounds ON alphaidx.sounds_idx = sounds.idx "
         + "INNER JOIN packages ON sounds.packages_idx = packages.idx "
         + "WHERE packages.packid = ?1 AND (alphaidx.str = ?2 OR sounds.SWAC_TEXT = ?2) "
-        + "LIMIT 128;" 
+        + "LIMIT " + QString::number(limit) +";" 
     );
     query.addBindValue(dict);
     query.addBindValue(word);
@@ -96,13 +96,13 @@ QSqlQuery Swac::search(const QString &dict, const QString &word, const QString &
 
 bool Swac::isTranslatable(const QString &dict, const QString &word)
 {
-    QSqlQuery query = search(dict, word, "SWAC_TEXT");
+    QSqlQuery query = search(dict, word, "SWAC_TEXT", 1);
     return query.first();
 }
 
 Swac::Translation Swac::translate(const QString &dict, const QString &word)
 {
-    QSqlQuery query = search(dict, word, "SWAC_TEXT, packages.path, filename, SWAC_SPEAK_NAME");
+    QSqlQuery query = search(dict, word, "SWAC_TEXT, packages.path, filename, SWAC_SPEAK_NAME", 128);
     QString article("<ul>");
     while (query.next())
     {

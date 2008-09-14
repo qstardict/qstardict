@@ -61,7 +61,7 @@ public:
 //    friend class SettingsDialog;
 
 private:
-    QSqlQuery search(const QString &dict, const QString &word, const QString &fields);
+    QSqlQuery search(const QString &dict, const QString &word, const QString &fields, const int limit);
 
     QSqlDatabase *db;
     QStringList m_loadedDicts;
