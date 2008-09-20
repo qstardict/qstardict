@@ -25,8 +25,7 @@
 #include <QTextCharFormat>
 #include <QTextDocument>
 #include <QTextDocumentFragment>
-
-#include <QDebug>
+#include "dictplugin.h"
 
 namespace
 {
@@ -59,6 +58,9 @@ DictBrowser::DictBrowser(QWidget *parent)
       m_highlighted(false)
 {
     document()->setDefaultStyleSheet(translationCSS);
+    setOpenLinks(false);
+    setOpenExternalLinks(false);
+    connect(this, SIGNAL(anchorClicked(const QUrl &)), SLOT(on_anchorClicked(const QUrl &)));
 }
 
 QVariant DictBrowser::loadResource(int type, const QUrl &name)
@@ -73,6 +75,13 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
                 "</td></tr></table>";
         return "<title>Translation for \"" + str + "\"</title>\n"
             + "<body>" + result + "</body>";
+    }
+    else if (name.scheme() == "plugin")
+    {
+        DictPlugin *plugin = m_dict->plugin(name.host());
+        if (! plugin)
+            return QVariant();
+        return plugin->resource(type, name);
     }
     return QTextBrowser::loadResource(type, name);
 }
@@ -121,6 +130,15 @@ void DictBrowser::mousePressEvent(QMouseEvent *event)
         }
     }
     QTextBrowser::mousePressEvent(event);
+}
+
+void DictBrowser::on_anchorClicked(const QUrl &link)
+{
+    QString scheme = link.scheme();
+    if (scheme == "plugin" || scheme == "qrc")
+        setSource(link);
+    else
+        QDesktopServices::openUrl(link);
 }
 
 }

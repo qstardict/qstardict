@@ -24,6 +24,7 @@
 #include <QStringList>
 #include <QDir>
 #include <QCoreApplication>
+#include <QVariant>
 
 namespace QStarDict
 {
@@ -247,6 +248,13 @@ class DictPlugin
          */
         virtual QStringList findSimilarWords(const QString &dict, const QString &word)
         { Q_UNUSED(dict); return QStringList(word); }
+        
+        /**
+         * Return a required resource. Scheme of URLs:
+         *   plugin://plugin_name/...
+         */
+        virtual QVariant resource(int type, const QUrl &name)
+        { Q_UNUSED(type) Q_UNUSED(name) return QVariant(); }
 
         /**
          * Return an information about dictionary. The dictionary may be not loaded

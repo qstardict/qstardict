@@ -60,6 +60,9 @@ class DictBrowser: public QTextBrowser
         void mouseMoveEvent(QMouseEvent *event);
         void mousePressEvent(QMouseEvent *event);
 
+    private slots:
+        void on_anchorClicked(const QUrl &link);
+
     private:
         DictCore *m_dict;
 

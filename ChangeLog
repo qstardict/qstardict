@@ -101,6 +101,7 @@
 * Version 0.12.9
 	- update german translation
 	- fix typo in the COPYING filename
-* Version 0.12.10
+* Version 0.13.0
 	- add french translation
-
+	- improve Windows port
+	- add SWAC plugin
