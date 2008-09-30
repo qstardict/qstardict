@@ -75,15 +75,14 @@ Swac::DictInfo Swac::dictInfo(const QString &dict)
 }
 
 
-QSqlQuery Swac::search(const QString &dict, const QString &word, const QString &fields, const int limit)
-{
+QSqlQuery Swac::search(const QString &dict, const QString &word, const QString &fields, const int limit) {
     QSqlQuery query(*db);
     query.prepare(
         "SELECT " + fields + " "
         + "FROM alphaidx" + " "
         + "INNER JOIN sounds ON alphaidx.sounds_idx = sounds.idx "
         + "INNER JOIN packages ON sounds.packages_idx = packages.idx "
-        + "WHERE packages.packid = ?1 AND (alphaidx.str = ?2 OR sounds.SWAC_TEXT = ?2) "
+        + "WHERE packages.packid = ?1 AND alphaidx.str = ?2 "
         + "LIMIT " + QString::number(limit) +";" 
     );
     query.addBindValue(dict);
