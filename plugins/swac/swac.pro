@@ -29,3 +29,7 @@ HEADERS += \
 
 SOURCES += \
     swac.cpp
+
+RESOURCES += \
+    pixmaps/pixmaps.qrc
+

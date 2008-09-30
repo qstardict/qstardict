@@ -102,12 +102,11 @@ bool Swac::isTranslatable(const QString &dict, const QString &word)
 Swac::Translation Swac::translate(const QString &dict, const QString &word)
 {
     QSqlQuery query = search(dict, word, "SWAC_TEXT, packages.path, filename, SWAC_SPEAK_NAME", 128);
-    QString article("<ul>");
+    QString article("");
     while (query.next())
     {
-        article += "<li><a href=\"" + query.value(1).toString() + query.value(2).toString() + "\">" + query.value(0).toString() + "</a></li>\n";
+        article += "<img src=':/icons/sound.png'/> &nbsp; <a href=\"" + query.value(1).toString() + query.value(2).toString() + "\">" + query.value(0).toString() + "</a><br/>\n";
     }
-    article += "</ul>";
 
     return Translation(word, dict, article);
 }
