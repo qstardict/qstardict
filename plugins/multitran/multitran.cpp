@@ -1,5 +1,6 @@
 /*****************************************************************************
- * multitran.cpp - QStarDict, a StarDict clone written using Qt              *
+ * This file is a part of QStarDict, a StarDict clone written using Qt       *
+ * multitran.cpp - Plugin for multitran-data (multitran.sf.net)              *
  * Copyright (C) 2008 Nick Shaforostoff                                      *
  * Copyright (C) 2004 Stanislav Ievlev                                       *
  *                                                                           *
@@ -22,7 +23,7 @@
 //#include "settingsdialog.h"
 
 #include <QCoreApplication>
-#include <QSettings>
+// #include <QSettings>
 #include <QDebug>
 #include <QTextCodec>
 
@@ -160,14 +161,14 @@ std::string do_translate(const std::string& text,mt::lang_code from,mt::lang_cod
 Multitran::Multitran(QObject *parent)
     : QObject(parent)
 {
-//     QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
+//     QSettings settings("qstardict","qstardict");
 //     m_dictDirs = settings.value("Multitran/dictDirs", m_dictDirs).toStringList();
 //     m_reformatLists = settings.value("Multitran/reformatLists", true).toBool();
 }
 
 Multitran::~Multitran()
 {
-//     QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
+//     QSettings settings("qstardict","qstardict");
 //     settings.setValue("Multitran/dictDirs", m_dictDirs);
 //     settings.setValue("Multitran/reformatLists", m_reformatLists);
 }
@@ -188,7 +189,7 @@ Multitran::DictInfo Multitran::dictInfo(const QString &dict)
 
     DictInfo result(name(), dict);
     result.setAuthor("Multitran.ru");
-    result.setDescription("Excerpt of multitran.ru");
+    result.setDescription("1 mln words excerpt of multitran.ru");
     result.setWordsCount(-1);
     return result;
 }
@@ -200,7 +201,7 @@ bool Multitran::isTranslatable(const QString &dict, const QString &word)
 
 Multitran::Translation Multitran::translate(const QString &dict, const QString &word)
 {
-    qWarning()<<"Multitran::translate";
+//     qWarning()<<"Multitran::translate";
     QTextCodec* c=QTextCodec::codecForMib(2251);
     std::string text=c->fromUnicode(word).data();
     std::string from_lang,to_lang;

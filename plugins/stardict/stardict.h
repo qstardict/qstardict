@@ -1,5 +1,5 @@
 /*****************************************************************************
- * stardict.h - QStarDict, a StarDict clone written with using Qt            *
+ * stardict.h - QStarDict, a StarDict clone written using Qt                 *
  * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -20,12 +20,13 @@
 #ifndef STARDICT_H
 #define STARDICT_H
 
-#include <qstardict/dictplugin.h>
+#include "lib.h"
+#include "../dictplugin.h"
 
 #include <string>
 #include <QVector>
 #include <QHash>
-#include "lib.h"
+
 
 class StarDict: public QObject, public QStarDict::DictPlugin
 {

@@ -27,7 +27,7 @@
 #include <QHash>
 #include <QPluginLoader>
 
-#include "dictplugin.h"
+#include "../plugins/dictplugin.h"
 
 
 namespace QStarDict

@@ -20,7 +20,7 @@
 #ifndef WEB_H
 #define WEB_H
 
-#include <qstardict/dictplugin.h>
+#include "../dictplugin.h"
 
 #include <QHash>
 

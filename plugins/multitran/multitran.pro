@@ -26,13 +26,7 @@ HEADERS += multitran.h
 
 SOURCES += multitran.cpp
 
-; FORMS += \
-;     settingsdialog.ui
-; RESOURCES += \
-;     pixmaps/pixmaps.qrc
+; FORMS += settingsdialog.ui
+; RESOURCES += pixmaps/pixmaps.qrc
 
-LIBS += \
-    -lmtquery \
-    -lmtsupport \
-    -lbtree \
-    -lfacet
+LIBS += -lmtquery -lmtsupport -lbtree -lfacet

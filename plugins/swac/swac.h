@@ -1,5 +1,5 @@
 /*****************************************************************************
- * This file is a part of QStarDict, a StarDict clone written with using Qt  *
+ * This file is a part of QStarDict, a StarDict clone written using Qt       *
  * swac.cpp - Plugin for words audio collections SWAC                        *
  * Copyright (C) 2008 Nicolas Vion <nico@picapo.net>                         *
  *                                                                           *
@@ -21,7 +21,7 @@
 #ifndef SWAC_H
 #define SWAC_H
 
-#include <qstardict/dictplugin.h>
+#include "../dictplugin.h"
 
 #include <QSqlDatabase>
 #include <QSqlQuery>

@@ -1,5 +1,6 @@
 /*****************************************************************************
- * multitran.h - QStarDict, a StarDict clone written using Qt                *
+ * This file is a part of QStarDict, a StarDict clone written using Qt       *
+ * multitran.cpp - Plugin for multitran-data (multitran.sf.net)              *
  * Copyright (C) 2008 Nick Shaforostoff                                      *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -20,7 +21,7 @@
 #ifndef MULTITRAN_H
 #define MULTITRAN_H
 
-#include <qstardict/dictplugin.h>
+#include "../dictplugin.h"
 
 #include <string>
 #include <QVector>
@@ -36,7 +37,7 @@ class Multitran: public QObject, public QStarDict::DictPlugin
         ~Multitran();
 
         QString name() const
-        { return "Multitran"; }
+        { return "multitran"; }
         QString version() const
         { return "0.1"; }
         QString description() const

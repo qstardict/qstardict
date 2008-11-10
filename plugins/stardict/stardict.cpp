@@ -1,5 +1,5 @@
 /*****************************************************************************
- * stardict.cpp - QStarDict, a StarDict clone written with using Qt          *
+ * stardict.cpp - QStarDict, a StarDict clone written using Qt               *
  * Copyright (C) 2008 Alexander Rodin                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -111,7 +111,8 @@ StarDict::StarDict(QObject *parent)
     : QObject(parent)
 {
     m_sdLibs = new Libs;
-    QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
+    QSettings settings("qstardict","qstardict");
+
     m_dictDirs = settings.value("StarDict/dictDirs", m_dictDirs).toStringList();
     m_reformatLists = settings.value("StarDict/reformatLists", true).toBool();
     m_expandAbbreviations = settings.value("StarDict/expandAbbreviations", true).toBool();
@@ -128,7 +129,7 @@ StarDict::StarDict(QObject *parent)
 
 StarDict::~StarDict()
 {
-    QSettings settings(workPath() + "/settings.ini", QSettings::IniFormat);
+    QSettings settings("qstardict","qstardict");
     settings.setValue("StarDict/dictDirs", m_dictDirs);
     settings.setValue("StarDict/reformatLists", m_reformatLists);
     settings.setValue("StarDict/expandAbbreviations", m_expandAbbreviations);

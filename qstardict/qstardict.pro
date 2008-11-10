@@ -30,7 +30,7 @@ HEADERS += \
     cssedit.h \
     dictbrowser.h \
     dictcore.h \
-    dictplugin.h \
+    ../plugins/dictplugin.h \
     dictwidget.h \
     keyboard.h \
     mainwindow.h \
