@@ -1,0 +1,27 @@
+You need the following external libraries to compile the plugin:
+libmtsupport
+libbtree
+libfacet
+libmtquery
+
+
+FILE=libmtsupport-0.0.1alpha2
+wget http://youonlylivetwice.info/multitran/$FILE.7z && 7z x $FILE.7z && cd $FILE && make && sudo make install
+
+FILE=libbtree-0.0.1alpha2
+wget http://youonlylivetwice.info/multitran/$FILE.7z && 7z x $FILE.7z && cd $FILE && make && sudo make install
+
+FILE=libfacet-0.0.1alpha2
+wget http://youonlylivetwice.info/multitran/$FILE.7z && 7z x $FILE.7z && cd $FILE && make && sudo make install
+
+FILE=libmtquery-0.0.1alpha3-shaforostoff
+wget http://youonlylivetwice.info/multitran/$FILE.7z && 7z x $FILE.7z && cd $FILE && make && sudo make install
+
+Then put this dir into qstardict/plugins and run qmake && make && sudo make install
+
+
+
+Download multitran-data.tar.bz2 from multitran.sf.net
+tar xjf multitran-data.tar.bz2 && cd multitran-data && make && sudo make install
+
+See multitran.sf.net and multitran.ru for details

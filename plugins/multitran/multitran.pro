@@ -1,6 +1,6 @@
 #############################################################################
-# plugins.pro - QStarDict, a StarDict clone written using Qt                #
-# Copyright (C) 2008 Alexander Rodin                                        #
+# multitran.pro - QStarDict, a StarDict clone written using Qt              #
+# Copyright (C) 2008 Nick Shaforostoff                                      #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
 # it under the terms of the GNU General Public License as published by      #
@@ -17,6 +17,22 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TEMPLATE = subdirs
-SUBDIRS = stardict web swac multitran
+TARGET = multitran
+include(../plugin.pri)
+win32:CONFIG += plugin
 
+HEADERS += multitran.h
+
+
+SOURCES += multitran.cpp
+
+; FORMS += \
+;     settingsdialog.ui
+; RESOURCES += \
+;     pixmaps/pixmaps.qrc
+
+LIBS += \
+    -lmtquery \
+    -lmtsupport \
+    -lbtree \
+    -lfacet
