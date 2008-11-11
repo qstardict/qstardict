@@ -24,7 +24,6 @@
 
 #include <QCoreApplication>
 // #include <QSettings>
-#include <QDebug>
 #include <QTextCodec>
 
 
@@ -93,20 +92,15 @@ int compare_articles(const mt::article& a1,const mt::article& a2)
 
 struct show
 {
-    show(std::string& r_): r(r_) {}
+    show(std::string& r_, bool& found_): r(r_),found(found_) {}
     void operator()(mt::article_set as)
     {
         mt::file_map& subj = txtdb_type::instance(mt::datapath+mt::path_separator()+"subjects.txt");
         mt::file_map& spart = txtdb_type::instance(mt::datapath+mt::path_separator()+"speechparts.txt");
 
-        if (as.articles_.empty())
+        if (!as.articles_.empty())
         {
-            r+=as.untranslated_;
-            r+="  - words not found";
-            r+="\n";
-        }
-        else
-        {
+            found=true;
             std::sort(as.articles_.begin(),as.articles_.end(),compare_articles);
 
             int prev_lgk = -1;
@@ -123,9 +117,9 @@ struct show
                 }
                 if (prev_subject != a.subject())
                 {
-                    r+="<tr><td></td><td><i>";
+                    r+="<tr><td></td><td><font class=\"explanation\">";
                     r+=subj.any_name(a.subject());
-                    r+="</i></td><td>";
+                    r+="</font></td><td>";
                     r+=a.translated();
                     prev_subject = a.subject();
                 }
@@ -136,17 +130,21 @@ struct show
         }
     }
     std::string &r;
+    bool& found;
 };
 
 std::string do_translate(const std::string& text,mt::lang_code from,mt::lang_code to)
 {
+    bool found=false;
     std::string r="<table>";
     mt::phrase ph;
     mt::fill_phrase(ph,text,from);
     mt::translation tr(ph,from,to);
-    std::for_each(tr.asets().begin(), tr.asets().end(), show(r));
+    std::for_each(tr.asets().begin(), tr.asets().end(), show(r,found));
     r+="</table>";
-    return r;
+    if (found)
+        return r;
+    return "";
 }
 
 
@@ -189,7 +187,7 @@ Multitran::DictInfo Multitran::dictInfo(const QString &dict)
 
     DictInfo result(name(), dict);
     result.setAuthor("Multitran.ru");
-    result.setDescription("1 mln words excerpt of multitran.ru");
+    result.setDescription(tr("1 mln words excerpt of multitran.ru"));
     result.setWordsCount(-1);
     return result;
 }
@@ -201,7 +199,6 @@ bool Multitran::isTranslatable(const QString &dict, const QString &word)
 
 Multitran::Translation Multitran::translate(const QString &dict, const QString &word)
 {
-//     qWarning()<<"Multitran::translate";
     QTextCodec* c=QTextCodec::codecForMib(2251);
     std::string text=c->fromUnicode(word).data();
     std::string from_lang,to_lang;
@@ -215,7 +212,6 @@ Multitran::Translation Multitran::translate(const QString &dict, const QString &
         from_lang="russian";
     else
         from_lang="english";
-//             if (from_lang.empty() && to_lang.empty()) from_lang="english";
 
     mt::linguas avail_langs;
     mt::linguas::iterator lang = std::max_element(avail_langs.begin(),
@@ -228,11 +224,12 @@ Multitran::Translation Multitran::translate(const QString &dict, const QString &
         return Translation();
     }
 
-    QString queryResult;//="<hr width=50%><center><b>multitran</b><center><hr width=50%>";
-    queryResult+=c->toUnicode(do_translate(lower_str(lang->first,text),
+    //"<hr width=50%><center><b>multitran</b><center><hr width=50%>";
+    QString queryResult=c->toUnicode(do_translate(lower_str(lang->first,text),
                         lang->first,lang->second).c_str());
 
-
+    if (queryResult.isEmpty())
+        return Translation();
 
     return Translation(word,"Multitran",queryResult);
 }
