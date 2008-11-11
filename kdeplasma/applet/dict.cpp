@@ -233,43 +233,6 @@ void QStarDictApplet::dataUpdated(const QString& source, const Plasma::DataEngin
     updateGeometry();
 }
 
-QString QStarDictApplet::wnToHtml(const QString &text)
-{
-    QList<QString> splitText = text.split('\n');
-    QString def;
-    def += "<dl>\n";
-    bool isFirst=true;
-    while (!splitText.empty()) {
-        QString currentLine = splitText.takeFirst();
-        if (currentLine.startsWith("151")) {
-            isFirst = true;
-            continue;
-        }
-        if (currentLine.startsWith('.')) {
-            def += "</dd>";
-            continue;
-        }
-        if (!(currentLine.startsWith("150") || currentLine.startsWith("151")
-           || currentLine.startsWith("250") || currentLine.startsWith("552"))) {
-            if (isFirst) {
-                def += "<dt><b>" + currentLine + "</b></dt>\n<dd>";
-                isFirst = false;
-                continue;
-            } else {
-                if (currentLine.contains(QRegExp("([1-9]{1,2}:)"))) {
-                    def += "\n<br>\n";
-                }
-                currentLine.replace(QRegExp("^([\\s\\S]*[1-9]{1,2}:)"), "<b>\\1</b>");
-                def += currentLine;
-                continue;
-            }
-        }
-
-    }
-    def += "</dl>";
-    return def;
-}
-
 void QStarDictApplet::define()
 {
 

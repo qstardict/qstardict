@@ -60,8 +60,6 @@ class QStarDictApplet: public Plasma::Applet
         void createConfigurationInterface(KConfigDialog *parent);
 
     private:
-        QString wnToHtml(const QString& text);
-
         QString m_source;
         QTimer* m_timer;
         //QGraphicsPixmapItem *m_graphicsIcon;
