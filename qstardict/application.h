@@ -114,6 +114,8 @@ class Application: public QApplication
 #ifdef QSTARDICT_WITH_DBUS
         DBusAdaptor *m_dbusAdaptor;
 #endif // QSTARDICT_WITH_DBUS
+
+        QString commandLineText();
 };
 
 }

@@ -23,6 +23,7 @@
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QTranslator>
+#include <QStringList>
 #endif // QSTARDICT_WITH_TRANSLATIONS
 #include "dictcore.h"
 #include "mainwindow.h"
@@ -81,8 +82,22 @@ Application::~Application()
 
 int Application::exec()
 {
+    QString text = commandLineText();
+    if (text != QString::null)
+        m_mainWindow->showTranslation(text);
     m_trayIcon->show();
     return QApplication::exec();
+}
+
+QString Application::commandLineText()
+{
+    QStringList args(arguments());
+    for(int i = 1; i < args.count(); ++i)
+    {
+        if(! args.at(i).startsWith('-'))
+            return args.at(i);
+    }
+    return QString::null;
 }
 
 }
