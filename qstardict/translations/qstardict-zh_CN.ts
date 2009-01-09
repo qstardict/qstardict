@@ -151,7 +151,7 @@
     <message>
         <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
-        <translation>打印翻译(t)</translation>
+        <translation>打印 (&amp;t)</translation>
     </message>
 </context>
 <context>
@@ -168,8 +168,8 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
-        <source>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>版权  (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+        <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation>版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>
