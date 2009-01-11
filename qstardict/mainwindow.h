@@ -84,6 +84,8 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
 
         void reload();
 
+        void saveSettings();
+
     public slots:
         /**
          * Show translation of word.
@@ -106,7 +108,6 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
     private:
         void createConnections();
         void loadSettings();
-        void saveSettings();
 
         DictCore *m_dict;
         bool m_instantSearch;

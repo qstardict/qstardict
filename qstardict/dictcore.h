@@ -147,11 +147,12 @@ class DictCore: public QObject
         DictPlugin *plugin(const QString &plugin)
         { return m_plugins.contains(plugin) ? qobject_cast<DictPlugin*>(m_plugins[plugin]->instance()) : 0; }
 
-    private:
         /**
          * Save settings.
          */
         void saveSettings();
+
+    private:
 
         /**
          * Load settings.

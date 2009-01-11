@@ -151,6 +151,7 @@ void SettingsDialog::accept()
     popup->setScan(useScanBox->isChecked());
     int modifierKey = 0;
     if (useScanModifierBox->isChecked())
+    {
         if (modifierKeyBox->currentText() == "Shift")
             modifierKey = Qt::ShiftModifier;
         else if (modifierKeyBox->currentText() == "Control")
@@ -159,6 +160,7 @@ void SettingsDialog::accept()
             modifierKey = Qt::AltModifier;
         else if (modifierKeyBox->currentText() == "Win")
             modifierKey = Qt::MetaModifier;
+    }
     popup->setShowIfNotFound(showIfNotFoundBox->isChecked());
     popup->setModifierKey(modifierKey);
     popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
@@ -171,6 +173,10 @@ void SettingsDialog::accept()
     Application::instance()->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
 
     Application::instance()->mainWindow()->reload();
+
+    Application::instance()->dictCore()->saveSettings();
+    Application::instance()->mainWindow()->saveSettings();
+    Application::instance()->mainWindow()->saveSettings();
 
     QDialog::accept();
 }

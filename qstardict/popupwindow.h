@@ -117,6 +117,8 @@ class PopupWindow: public ResizablePopup
         void setPronounceWord(bool pronounceWord)
         { m_pronounceWord = pronounceWord; }
 
+        void saveSettings();
+
     private slots:
         void selectionChanged(const QString &text);
 
@@ -125,7 +127,6 @@ class PopupWindow: public ResizablePopup
 
     private:
         void loadSettings();
-        void saveSettings();
 
         DictWidget *translationView;
         DictCore* m_dict;
