@@ -96,7 +96,7 @@
 <context>
     <name>QStarDict::DictBrowser</name>
     <message>
-        <location filename="../dictbrowser.cpp" line="72"/>
+        <location filename="../dictbrowser.cpp" line="74"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
         <translation>找不到单词 &lt;b&gt;%1&lt;/b&gt; </translation>
     </message>
@@ -169,7 +169,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+        <translation type="obsolete">版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>
@@ -251,6 +251,11 @@
         <source>&amp;Scan</source>
         <translation>取词(&amp;S)</translation>
     </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="117"/>
+        <source>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation type="unfinished">版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt; {2007-2008 ?}</translation>
+    </message>
 </context>
 <context>
     <name>QStarDict::SettingsDialog</name>
@@ -270,62 +275,62 @@
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="261"/>
+        <location filename="../settingsdialog.cpp" line="267"/>
         <source>Information about dictionary &quot;%1&quot;</source>
         <translation>字典&quot;%1&quot; 的信息</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="279"/>
+        <location filename="../settingsdialog.cpp" line="285"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="263"/>
+        <location filename="../settingsdialog.cpp" line="269"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;插件：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="265"/>
+        <location filename="../settingsdialog.cpp" line="271"/>
         <source>unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="283"/>
+        <location filename="../settingsdialog.cpp" line="289"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation>&lt;b&gt;描述：&lt;/b&gt; %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="278"/>
+        <location filename="../settingsdialog.cpp" line="284"/>
         <source>Information about %1 plugin</source>
         <translation>关于插件 %1 的信息</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="286"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;版本：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
+        <location filename="../settingsdialog.cpp" line="287"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;作者：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
+        <location filename="../settingsdialog.cpp" line="287"/>
         <source>&lt;br&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
+        <location filename="../settingsdialog.cpp" line="288"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;可以搜索相似单词：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
+        <location filename="../settingsdialog.cpp" line="288"/>
         <source>yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
+        <location filename="../settingsdialog.cpp" line="288"/>
         <source>no</source>
         <translation>否</translation>
     </message>
@@ -335,52 +340,52 @@
         <translation>QStarDict 设置</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="16"/>
+        <location filename="../settingsdialog.ui" line="170"/>
         <source>Show information about dictionary</source>
         <translation>显示字典信息</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="57"/>
+        <location filename="../settingsdialog.ui" line="53"/>
         <source>Global settings</source>
         <translation>全局设置</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="63"/>
+        <location filename="../settingsdialog.ui" line="59"/>
         <source>Instant search</source>
         <translation>即搜</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="87"/>
+        <location filename="../settingsdialog.ui" line="74"/>
         <source>Pronounce words using this command:</source>
         <translation>使用如下命令发音</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="94"/>
+        <location filename="../settingsdialog.ui" line="81"/>
         <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="123"/>
+        <location filename="../settingsdialog.ui" line="118"/>
         <source>Dictionaries</source>
         <translation>字典</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="147"/>
+        <location filename="../settingsdialog.ui" line="142"/>
         <source>Move up</source>
         <translation>上移</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="150"/>
+        <location filename="../settingsdialog.ui" line="145"/>
         <source>Up</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="160"/>
+        <location filename="../settingsdialog.ui" line="156"/>
         <source>Move down</source>
         <translation>下移</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="163"/>
+        <location filename="../settingsdialog.ui" line="159"/>
         <source>Down</source>
         <translation>下</translation>
     </message>
@@ -390,127 +395,127 @@
         <translation>显示信息</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="207"/>
+        <location filename="../settingsdialog.ui" line="208"/>
         <source>Plugins</source>
         <translation>插件</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="234"/>
+        <location filename="../settingsdialog.ui" line="235"/>
         <source>Show information about plugin</source>
         <translation>显示插件信息</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="237"/>
+        <location filename="../settingsdialog.ui" line="238"/>
         <source>Info</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="247"/>
+        <location filename="../settingsdialog.ui" line="249"/>
         <source>Configure plugin</source>
         <translation>设定插件</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="250"/>
+        <location filename="../settingsdialog.ui" line="252"/>
         <source>Configure</source>
         <translation>设定</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="279"/>
+        <location filename="../settingsdialog.ui" line="290"/>
         <source>Popup window</source>
         <translation>弹出窗口</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="303"/>
+        <location filename="../settingsdialog.ui" line="302"/>
         <source>Behavior</source>
         <translation>行为</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="344"/>
+        <location filename="../settingsdialog.ui" line="322"/>
         <source>Pronounce the word</source>
         <translation>单词发音</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="370"/>
+        <location filename="../settingsdialog.ui" line="339"/>
         <source>Timeout before hide after mouse over</source>
         <translation>鼠标悬停隐藏超时</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="377"/>
+        <location filename="../settingsdialog.ui" line="346"/>
         <source>Don&apos;t hide</source>
         <translation>不隐藏</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="380"/>
+        <location filename="../settingsdialog.ui" line="349"/>
         <source> sec</source>
         <translation> 秒</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="424"/>
+        <location filename="../settingsdialog.ui" line="384"/>
         <source>Show only if modifier pressed</source>
         <translation>显示，仅当按下</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="435"/>
+        <location filename="../settingsdialog.ui" line="395"/>
         <source>Alt</source>
         <translation>Alt</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="440"/>
+        <location filename="../settingsdialog.ui" line="400"/>
         <source>Control</source>
         <translation>Control</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="445"/>
+        <location filename="../settingsdialog.ui" line="405"/>
         <source>Shift</source>
         <translation>Shift</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="450"/>
+        <location filename="../settingsdialog.ui" line="410"/>
         <source>Win</source>
         <translation>Win</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="460"/>
+        <location filename="../settingsdialog.ui" line="420"/>
         <source>Scan selection</source>
         <translation>选择区取词</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="470"/>
+        <location filename="../settingsdialog.ui" line="430"/>
         <source>Show if word not found</source>
         <translation>当未找到词时显示</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="644"/>
+        <location filename="../settingsdialog.ui" line="573"/>
         <source>Apperance</source>
         <translation>外观</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="521"/>
+        <location filename="../settingsdialog.ui" line="460"/>
         <source>Opacity</source>
         <translation>不透明度</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="528"/>
+        <location filename="../settingsdialog.ui" line="467"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="566"/>
+        <location filename="../settingsdialog.ui" line="496"/>
         <source>Default width</source>
         <translation>默认宽度</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="605"/>
+        <location filename="../settingsdialog.ui" line="526"/>
         <source>Default height</source>
         <translation>默认高度</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="264"/>
+        <location filename="../settingsdialog.cpp" line="270"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="265"/>
+        <location filename="../settingsdialog.cpp" line="271"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation></translation>
     </message>

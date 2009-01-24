@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pl_PL">
-<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -97,7 +96,7 @@
 <context>
     <name>QStarDict::DictBrowser</name>
     <message>
-        <location filename="../dictbrowser.cpp" line="72"/>
+        <location filename="../dictbrowser.cpp" line="74"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
         <translation>Słowo &lt;b&gt;%1&lt;/b&gt; nie zostało znalezione.</translation>
     </message>
@@ -170,7 +169,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+        <translation type="obsolete">Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>
@@ -252,6 +251,11 @@
         <source>&amp;Scan</source>
         <translation>&amp;Skanuj</translation>
     </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="117"/>
+        <source>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation type="unfinished">Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt; {2007-2008 ?}</translation>
+    </message>
 </context>
 <context>
     <name>QStarDict::SettingsDialog</name>
@@ -271,62 +275,62 @@
         <translation>Wtyczka</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="261"/>
+        <location filename="../settingsdialog.cpp" line="267"/>
         <source>Information about dictionary &quot;%1&quot;</source>
         <translation>Informacja o słowniku &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="279"/>
+        <location filename="../settingsdialog.cpp" line="285"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Imię:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="263"/>
+        <location filename="../settingsdialog.cpp" line="269"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Wtyczka:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="265"/>
+        <location filename="../settingsdialog.cpp" line="271"/>
         <source>unknown</source>
         <translation>nieznany</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="283"/>
+        <location filename="../settingsdialog.cpp" line="289"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation>&lt;b&gt;Opis:&lt;/b&gt; %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="278"/>
+        <location filename="../settingsdialog.cpp" line="284"/>
         <source>Information about %1 plugin</source>
         <translation>Informację o wtyczce %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="280"/>
+        <location filename="../settingsdialog.cpp" line="286"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Wersja:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
+        <location filename="../settingsdialog.cpp" line="287"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Autorzy:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="281"/>
+        <location filename="../settingsdialog.cpp" line="287"/>
         <source>&lt;br&gt;</source>
         <translation>&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
+        <location filename="../settingsdialog.cpp" line="288"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Może wyszukać podobne słowa:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
+        <location filename="../settingsdialog.cpp" line="288"/>
         <source>yes</source>
         <translation>tak</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="282"/>
+        <location filename="../settingsdialog.cpp" line="288"/>
         <source>no</source>
         <translation>nie</translation>
     </message>
@@ -336,52 +340,52 @@
         <translation>Ustawienia QStarDict</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="16"/>
+        <location filename="../settingsdialog.ui" line="170"/>
         <source>Show information about dictionary</source>
         <translation>Pokaż informacje o słowniku</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="57"/>
+        <location filename="../settingsdialog.ui" line="53"/>
         <source>Global settings</source>
         <translation>Globalne opcje</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="63"/>
+        <location filename="../settingsdialog.ui" line="59"/>
         <source>Instant search</source>
         <translation>Błyskawiczne szukanie</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="87"/>
+        <location filename="../settingsdialog.ui" line="74"/>
         <source>Pronounce words using this command:</source>
         <translation>Wymów słowo używając tego polecenia:</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="94"/>
+        <location filename="../settingsdialog.ui" line="81"/>
         <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
         <translation>Wpisz komendę dla syntezatora mowy.&lt;br&gt;Jeśli komenda zawiera &quot;%s&quot; to będzie ona zastąpiona słowem lub słowo zostanie zapisane do stdin procesu mówienia.</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="123"/>
+        <location filename="../settingsdialog.ui" line="118"/>
         <source>Dictionaries</source>
         <translation>Słowniki</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="147"/>
+        <location filename="../settingsdialog.ui" line="142"/>
         <source>Move up</source>
         <translation>Przesuń w górę</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="150"/>
+        <location filename="../settingsdialog.ui" line="145"/>
         <source>Up</source>
         <translation>Góra</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="160"/>
+        <location filename="../settingsdialog.ui" line="156"/>
         <source>Move down</source>
         <translation>Przesuń w dół</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="163"/>
+        <location filename="../settingsdialog.ui" line="159"/>
         <source>Down</source>
         <translation>Dół</translation>
     </message>
@@ -391,127 +395,127 @@
         <translation>Pokaż info</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="207"/>
+        <location filename="../settingsdialog.ui" line="208"/>
         <source>Plugins</source>
         <translation>Wtyczki</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="234"/>
+        <location filename="../settingsdialog.ui" line="235"/>
         <source>Show information about plugin</source>
         <translation>Pokaż informacje o wtyczce</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="237"/>
+        <location filename="../settingsdialog.ui" line="238"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="247"/>
+        <location filename="../settingsdialog.ui" line="249"/>
         <source>Configure plugin</source>
         <translation>Konfiguruj wtyczkę</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="250"/>
+        <location filename="../settingsdialog.ui" line="252"/>
         <source>Configure</source>
         <translation>Konfiguruj</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="279"/>
+        <location filename="../settingsdialog.ui" line="290"/>
         <source>Popup window</source>
         <translation>Okno popup</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="303"/>
+        <location filename="../settingsdialog.ui" line="302"/>
         <source>Behavior</source>
         <translation>Zachowanie</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="344"/>
+        <location filename="../settingsdialog.ui" line="322"/>
         <source>Pronounce the word</source>
         <translation>Wymów słowo</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="370"/>
+        <location filename="../settingsdialog.ui" line="339"/>
         <source>Timeout before hide after mouse over</source>
         <translation>Opóźnienie zanim ukryje po najechaniu myszką</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="377"/>
+        <location filename="../settingsdialog.ui" line="346"/>
         <source>Don&apos;t hide</source>
         <translation>Nie ukrywaj</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="380"/>
+        <location filename="../settingsdialog.ui" line="349"/>
         <source> sec</source>
         <translation> sec</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="424"/>
+        <location filename="../settingsdialog.ui" line="384"/>
         <source>Show only if modifier pressed</source>
         <translation>Pokaż tylko jeśli modyfikator zostanie naciśnięty</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="435"/>
+        <location filename="../settingsdialog.ui" line="395"/>
         <source>Alt</source>
         <translation>Alt</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="440"/>
+        <location filename="../settingsdialog.ui" line="400"/>
         <source>Control</source>
         <translation>Control</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="445"/>
+        <location filename="../settingsdialog.ui" line="405"/>
         <source>Shift</source>
         <translation>Shift</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="450"/>
+        <location filename="../settingsdialog.ui" line="410"/>
         <source>Win</source>
         <translation>Win</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="460"/>
+        <location filename="../settingsdialog.ui" line="420"/>
         <source>Scan selection</source>
         <translation>Skanuj zaznaczenie</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="470"/>
+        <location filename="../settingsdialog.ui" line="430"/>
         <source>Show if word not found</source>
         <translation>Pokaż jeśli słowo nie zostało znalezione</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="644"/>
+        <location filename="../settingsdialog.ui" line="573"/>
         <source>Apperance</source>
         <translation>Wygląd</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="521"/>
+        <location filename="../settingsdialog.ui" line="460"/>
         <source>Opacity</source>
         <translation>Nieprzezroczystość</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="528"/>
+        <location filename="../settingsdialog.ui" line="467"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="566"/>
+        <location filename="../settingsdialog.ui" line="496"/>
         <source>Default width</source>
         <translation>Domyślna szerokość</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="605"/>
+        <location filename="../settingsdialog.ui" line="526"/>
         <source>Default height</source>
         <translation>Domyślna wysokość</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="264"/>
+        <location filename="../settingsdialog.cpp" line="270"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Autor:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="265"/>
+        <location filename="../settingsdialog.cpp" line="271"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Ilość słów:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
