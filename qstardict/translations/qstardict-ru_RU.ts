@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru_RU">
+<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -575,17 +576,17 @@
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>QStarDict: scanning is %1</source>
-        <translation type="unfinished">QStarDict: сканирование %1</translation>
+        <translation>QStarDict: сканирование %1</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>enabled</source>
-        <translation type="unfinished">включено</translation>
+        <translation>включено</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>disabled</source>
-        <translation type="unfinished">выключено</translation>
+        <translation>выключено</translation>
     </message>
 </context>
 </TS>
