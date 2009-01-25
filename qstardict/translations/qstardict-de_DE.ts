@@ -168,8 +168,8 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
-        <source>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>Copyright (C) 2007-2008Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+        <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation>Copyright (C) 2007-2009Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>

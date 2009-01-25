@@ -253,8 +253,8 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
-        <source>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation type="unfinished">版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt; {2007-2008 ?}</translation>
+        <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation type="unfinished">版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt; {2007-2009 ?}</translation>
     </message>
 </context>
 <context>

@@ -168,7 +168,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="117"/>
-        <source>Copyright (C) 2007-2008 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * mainwindow.cpp - QStarDict, a StarDict clone written with using Qt        *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * Copyright (C) 2007-2009 Alexander                                         *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -113,7 +113,7 @@ void MainWindow::on_actionAbout_triggered()
     QMessageBox::about(this,
             tr("About QStarDict"),
             tr("<b>QStarDict %1 </b> - Qt version of StarDict<br>").arg(QSTARDICT_VERSION) +
-            tr("Copyright (C) 2007-2008 Alexander Rodin "
+            tr("Copyright (C) 2007-2009 Alexander Rodin "
                "<a href=\"http://qstardict.ylsoftware.com\">http://qstardict.ylsoftware.com</a>"));
 }
 
