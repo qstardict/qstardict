@@ -44,7 +44,7 @@ win32 {
 }
 
 unix:DEFINES += HAVE_MMAP
-unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, qdbus): NO_DBUS = 1
+unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, dbus): NO_DBUS = 1
 unix:isEmpty(NO_DBUS):CONFIG += qdbus
 unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
 isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
