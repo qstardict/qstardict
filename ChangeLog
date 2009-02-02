@@ -109,3 +109,5 @@
 	- improve the simplified chinese translation
 	- fix bug with settings saving
 	- add turkish translation
+	- improve D-Bus support
+	- fix bug with Qt 4.5

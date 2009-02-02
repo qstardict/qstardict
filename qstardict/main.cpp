@@ -37,6 +37,7 @@
 
 int main(int argc, char *argv[])
 {
+    QStarDict::Application app(argc, argv);
 #ifdef Q_OS_UNIX
     QSettings lockFile(QDir::homePath() + "/.qstardict/qstardict.pid", QSettings::IniFormat);
     QString lastPid = lockFile.value("LastStart/pid").toString();
@@ -60,7 +61,7 @@ int main(int argc, char *argv[])
     }
 #endif // Q_OS_WIN
 
-    QStarDict::Application app(argc, argv);
+
     return app.exec();
 }
 
