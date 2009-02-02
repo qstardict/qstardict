@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/icons" >
+    <file>dialog-close.png</file>
     <file>help-contents.png</file>
     <file>application-exit.png</file>
     <file>arrow-down.png</file>
@@ -13,6 +14,7 @@
     <file>document-print.png</file>
     <file>document-save-as.png</file>
     <file>download.png</file>
+    <file>edit-find.png</file>
     <file>go-next.png</file>
     <file>go-previous.png</file>
     <file>list-add.png</file>
