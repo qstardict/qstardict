@@ -106,11 +106,11 @@ void ResizablePopup::mouseMoveEvent(QMouseEvent *event)
              (event->x() >= 0 && event->x() < CornerSize &&
                 event->y() < height() && event->y() >= height() - CornerSize))
         cursorShape = Qt::SizeBDiagCursor;
-    else if (event->x() >= 0 && event->x() < frameWidth() ||
-             event->x() < width() && event->x() >= width() - frameWidth())
+    else if ((event->x() >= 0 && event->x() < frameWidth()) ||
+             (event->x() < width() && event->x() >= width() - frameWidth()))
         cursorShape = Qt::SizeHorCursor;
-    else if (event->y() >= 0 && event->y() < frameWidth() ||
-             event->y() < height() && event->y() >= height() - frameWidth())
+    else if ((event->y() >= 0 && event->y() < frameWidth()) ||
+             (event->y() < height() && event->y() >= height() - frameWidth()))
         cursorShape = Qt::SizeVerCursor;
     
     if (cursor().shape() != cursorShape)

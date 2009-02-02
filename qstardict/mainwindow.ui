@@ -13,26 +13,15 @@
    <string>QStarDict</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="pixmaps/pixmaps.qrc" >:/icons/qstardict.png</iconset>
+   <iconset resource="pixmaps/pixmaps.qrc" >
+    <normaloff>:/icons/qstardict.png</normaloff>:/icons/qstardict.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
-    <property name="leftMargin" >
+    <property name="margin" >
      <number>9</number>
     </property>
-    <property name="topMargin" >
-     <number>9</number>
-    </property>
-    <property name="rightMargin" >
-     <number>9</number>
-    </property>
-    <property name="bottomMargin" >
-     <number>9</number>
-    </property>
-    <property name="horizontalSpacing" >
-     <number>6</number>
-    </property>
-    <property name="verticalSpacing" >
+    <property name="spacing" >
      <number>6</number>
     </property>
     <item row="0" column="0" >
@@ -40,16 +29,7 @@
       <property name="spacing" >
        <number>6</number>
       </property>
-      <property name="leftMargin" >
-       <number>0</number>
-      </property>
-      <property name="topMargin" >
-       <number>0</number>
-      </property>
-      <property name="rightMargin" >
-       <number>0</number>
-      </property>
-      <property name="bottomMargin" >
+      <property name="margin" >
        <number>0</number>
       </property>
       <item>
@@ -61,7 +41,8 @@
          <string>Clear</string>
         </property>
         <property name="icon" >
-         <iconset resource="pixmaps/pixmaps.qrc" >:/icons/clear-right.png</iconset>
+         <iconset resource="pixmaps/pixmaps.qrc" >
+          <normaloff>:/icons/clear-right.png</normaloff>:/icons/clear-right.png</iconset>
         </property>
         <property name="toolButtonStyle" >
          <enum>Qt::ToolButtonIconOnly</enum>
@@ -80,7 +61,8 @@
          <string>Search</string>
         </property>
         <property name="icon" >
-         <iconset resource="pixmaps/pixmaps.qrc" >:/icons/search-filter.png</iconset>
+         <iconset resource="pixmaps/pixmaps.qrc" >
+          <normaloff>:/icons/search-filter.png</normaloff>:/icons/search-filter.png</iconset>
         </property>
         <property name="toolButtonStyle" >
          <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -109,22 +91,10 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents" >
     <layout class="QGridLayout" >
-     <property name="leftMargin" >
+     <property name="margin" >
       <number>9</number>
      </property>
-     <property name="topMargin" >
-      <number>9</number>
-     </property>
-     <property name="rightMargin" >
-      <number>9</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>9</number>
-     </property>
-     <property name="horizontalSpacing" >
-      <number>6</number>
-     </property>
-     <property name="verticalSpacing" >
+     <property name="spacing" >
       <number>6</number>
      </property>
      <item row="0" column="0" >
@@ -139,7 +109,7 @@
      <x>0</x>
      <y>0</y>
      <width>742</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File" >
@@ -152,6 +122,7 @@
     <property name="title" >
      <string>&amp;Help</string>
     </property>
+    <addaction name="actionHelp" />
     <addaction name="actionAbout" />
     <addaction name="actionAboutQt" />
    </widget>
@@ -168,7 +139,8 @@
   </widget>
   <action name="actionQuit" >
    <property name="icon" >
-    <iconset resource="pixmaps/pixmaps.qrc" >:/icons/application-exit.png</iconset>
+    <iconset resource="pixmaps/pixmaps.qrc" >
+     <normaloff>:/icons/application-exit.png</normaloff>:/icons/application-exit.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Quit</string>
@@ -189,7 +161,8 @@
   </action>
   <action name="actionSettings" >
    <property name="icon" >
-    <iconset resource="pixmaps/pixmaps.qrc" >:/icons/configure.png</iconset>
+    <iconset resource="pixmaps/pixmaps.qrc" >
+     <normaloff>:/icons/configure.png</normaloff>:/icons/configure.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Configure QStarDict</string>
@@ -201,6 +174,18 @@
    </property>
    <property name="text" >
     <string>&amp;Scan</string>
+   </property>
+  </action>
+  <action name="actionHelp" >
+   <property name="icon" >
+    <iconset resource="pixmaps/pixmaps.qrc" >
+     <normaloff>:/icons/help-contents.png</normaloff>:/icons/help-contents.png</iconset>
+   </property>
+   <property name="text" >
+    <string>QStarDict &amp;Help</string>
+   </property>
+   <property name="shortcut" >
+    <string>F1</string>
    </property>
   </action>
  </widget>

@@ -21,6 +21,7 @@
 
 #include <QApplication>
 #include <QCloseEvent>
+#include <QDesktopServices>
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
@@ -121,6 +122,11 @@ void MainWindow::on_actionSettings_triggered()
 {
     SettingsDialog dialog(this);
     dialog.exec();
+}
+
+void MainWindow::on_actionHelp_triggered()
+{
+    QDesktopServices::openUrl(QUrl("http://wiki.qstardict.ylsoftware.com"));
 }
 
 void MainWindow::on_queryButton_clicked()
