@@ -9,6 +9,16 @@ To disable translations add
     NO_TRANSLATIONS=1
 to qmake arguments.
 
+If you want to select plugins to compile add
+    ENABLED_PLUGINS="plugin1 plugin2 ..."
+to qmake arguments.
+Available plugins:
+    * stardict - supports StarDict dictionaries
+    * web - supports any web search engine
+    * swac - supports SWAC speaking system (http://shtooka.net)
+    * multitran - supports Multitran dictionaries (http://multitran.sourceforge.net)
+By default the only "stardict" and "web" plugins enabled.
+
 To build and install:
 1)	qmake [switches]
 2)	make

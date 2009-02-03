@@ -18,5 +18,5 @@
 #############################################################################
 
 TEMPLATE = subdirs
-SUBDIRS = stardict web swac multitran
+SUBDIRS = $$ENABLED_PLUGINS
 

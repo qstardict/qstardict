@@ -30,6 +30,7 @@ DISTFILES += $$DOCS \
     INSTALL \
     README
 
+message("Enabled plugins: "$$ENABLED_PLUGINS)
 unix {
     isEmpty(NO_DBUS) {
         message("D-Bus support: enabled")
