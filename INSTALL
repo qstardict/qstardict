@@ -24,3 +24,4 @@ To build and install:
 2)	make
 3)	make install
 
+If you want to compile KDE 4 plasmoid please read kdeplasma/COMPILING.
