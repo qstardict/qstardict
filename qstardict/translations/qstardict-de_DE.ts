@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -254,12 +255,12 @@
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>QStarDict &amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>QStarDict &amp;Hilfe</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
     </message>
 </context>
 <context>
