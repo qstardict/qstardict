@@ -1,96 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS><TS version="1.1" language="ru_RU">
+<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
         <location filename="../cssedit.ui" line="16"/>
         <source>Preview</source>
-        <translation>Anteprima</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="30"/>
         <source>Element</source>
-        <translation>Elemento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="37"/>
         <source>Foreground</source>
-        <translation>Primo piano</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="44"/>
         <source>Background</source>
-        <translation>Sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="51"/>
         <source>Select element</source>
-        <translation>Seleziona elementi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="68"/>
         <source>Click to select color</source>
-        <translation>Click per selezionare il colore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="71"/>
         <source>#000000</source>
-        <translation>#000000</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="78"/>
         <source>Font</source>
-        <translation>Carattere</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="85"/>
         <source>Size</source>
-        <translation>Dimensione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="92"/>
         <source>Select font</source>
-        <translation>Seleziona carattere</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="99"/>
         <source>Select font size</source>
-        <translation>Seleziona dimensione carattere</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="102"/>
         <source>pt</source>
-        <translation>pt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="127"/>
         <source>Bold</source>
-        <translation>Grassetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="130"/>
         <source>B</source>
-        <translation>B</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="147"/>
         <source>Italic</source>
-        <translation>Corsivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="150"/>
         <source>I</source>
-        <translation>I</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="167"/>
         <source>Underline</source>
-        <translation>Sottolineato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="170"/>
         <source>U</source>
-        <translation>U</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -98,60 +99,60 @@
     <message>
         <location filename="../dictbrowser.cpp" line="74"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
-        <translation>La parola &lt;b&gt;%1&lt;/b&gt; non è stata trovata.</translation>
+        <translation>La palabra &lt;b&gt;%1&lt;/b&gt; no ha sido encontrada.</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="114"/>
-        <source>Save translation</source>
-        <translation>Salva la traduzione</translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="135"/>
-        <source>HTML files (*.html, *.htm)</source>
-        <translation>File HTML (*.html, *.htm)</translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="124"/>
-        <source>Text files (*.txt)</source>
-        <translation>File di testo (*.txt)</translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="130"/>
-        <source>Error</source>
-        <translation>Errore</translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="131"/>
-        <source>Cannot save translation as %1</source>
-        <translation>Non posso salvare la traduzione come %1</translation>
-    </message>
-    <message>
         <location filename="../dictwidget.cpp" line="75"/>
         <source>Go to &amp;previous translation</source>
-        <translation>Vai alla traduzione &amp;precedente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="80"/>
         <source>Go to &amp;next translation</source>
-        <translation>Vai alla traduzione s&amp;uccessiva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="85"/>
         <source>&amp;Save to file</source>
-        <translation>&amp;Salva come</translation>
-    </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="91"/>
-        <source>Speak &amp;word</source>
-        <translation>Pronuncia f&amp;rase</translation>
+        <translation>&amp;Guardar al archivo</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="88"/>
         <source>Prin&amp;t translation</source>
-        <translation>S&amp;tampa traduzione</translation>
+        <translation type="unfinished">&amp;Imprimir</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="91"/>
+        <source>Speak &amp;word</source>
+        <translation>Pronunciar &amp;palabra</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="114"/>
+        <source>Save translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="135"/>
+        <source>HTML files (*.html, *.htm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="124"/>
+        <source>Text files (*.txt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="130"/>
+        <source>Error</source>
+        <translation>Error</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="131"/>
+        <source>Cannot save translation as %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -159,17 +160,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="115"/>
         <source>About QStarDict</source>
-        <translation>Informazioni su QStarDict</translation>
+        <translation>Acerca de QStarDict</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="116"/>
         <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
-        <translation>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Versione Qt di StarDict&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="118"/>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>Copyright  (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>
@@ -184,77 +185,77 @@
     <message>
         <location filename="../mainwindow.ui" line="38"/>
         <source>Clear the search box</source>
-        <translation>Cancella la ricerca</translation>
+        <translation>Limpiar el cuadro de búsqueda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="41"/>
         <source>Clear</source>
-        <translation>Cancella</translation>
+        <translation>Borrar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="58"/>
         <source>Fuzzy query</source>
-        <translation>Fuzzy query</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="61"/>
         <source>Search</source>
-        <translation>Cerca</translation>
+        <translation>Buscar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="87"/>
         <source>Words list</source>
-        <translation>Lista delle Frasi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="117"/>
         <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <translation>&amp;Archivo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="123"/>
         <source>&amp;Help</source>
-        <translation>&amp;Aiuto</translation>
+        <translation>&amp;Ayuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="131"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Impostazioni</translation>
+        <translation>&amp;Configuración</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="146"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Esci</translation>
+        <translation>&amp;Salir</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="149"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="154"/>
         <source>&amp;About</source>
-        <translation>I&amp;nformazioni su</translation>
+        <translation>&amp;Acerca de</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="159"/>
         <source>About &amp;Qt</source>
-        <translation>Informazioni su &amp;Qt</translation>
+        <translation>Acerca de &amp;Qt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="168"/>
         <source>&amp;Configure QStarDict</source>
-        <translation>C&amp;onfigura QStarDict</translation>
+        <translation>&amp;Configurar QStarDict</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="176"/>
         <source>&amp;Scan</source>
-        <translation>&amp;Cerca</translation>
+        <translation>&amp;Explorar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>QStarDict &amp;Help</source>
-        <translation>&amp;Aiuto QStarDict</translation>
+        <translation>QStarDict &amp;Ayuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="188"/>
@@ -267,197 +268,242 @@
     <message>
         <location filename="../settingsdialog.cpp" line="68"/>
         <source>Enabled</source>
-        <translation>Attivato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="68"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="68"/>
         <source>Plugin</source>
-        <translation>Estensione</translation>
+        <translation type="unfinished">Extension</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="113"/>
+        <source>All translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="114"/>
+        <source>Dictionary name</source>
+        <translation>Nombre del diccionario</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="115"/>
+        <source>Title</source>
+        <translation>Título</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="116"/>
+        <source>Explanation</source>
+        <translation>Explicación</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="117"/>
+        <source>Abbreviation</source>
+        <translation>Abreviación</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="118"/>
+        <source>Example</source>
+        <translation>Ejemplo</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="119"/>
+        <source>Transcription</source>
+        <translation>Transcripción</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="267"/>
         <source>Information about dictionary &quot;%1&quot;</source>
-        <translation>Informazione sul dizionario &quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="285"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Nome:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="269"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Estensione:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="270"/>
+        <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="271"/>
+        <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="271"/>
         <source>unknown</source>
-        <translation>ignoto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="289"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
-        <translation>&lt;b&gt;Descrizione:&lt;/b&gt; %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="284"/>
         <source>Information about %1 plugin</source>
-        <translation>Informazione sull&apos;estensione %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="286"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Versione:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="287"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Autori:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="287"/>
         <source>&lt;br&gt;</source>
-        <translation>&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="288"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Puoi cercare parole simili:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="288"/>
         <source>yes</source>
-        <translation>si</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="288"/>
         <source>no</source>
-        <translation>no</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="13"/>
         <source>QStarDict Settings</source>
-        <translation>Impostazioni QStarDict</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.ui" line="170"/>
-        <source>Show information about dictionary</source>
-        <translation>Mostra informazioni sul dizionario</translation>
+        <translation>Configuración de QStarDict</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="53"/>
         <source>Global settings</source>
-        <translation>Impostazioni globali</translation>
+        <translation>Configuraciones Generales</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="59"/>
         <source>Instant search</source>
-        <translation>Ricerca istantanea</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="74"/>
         <source>Pronounce words using this command:</source>
-        <translation>Pronuncia le parole usando questo comando:</translation>
+        <translation>Pronunciar palabras usando este comando:</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="81"/>
         <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
-        <translation>Inserisci il comando per il programma di pronuncia.&lt;br&gt;Se il comando contiene &quot;%s&quot; la parola verrà sostituita, altrimenti la parola sarà scritta nello stdin del processo di pronuncia.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="118"/>
         <source>Dictionaries</source>
-        <translation>Dizionari</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="142"/>
         <source>Move up</source>
-        <translation>Sposta in su</translation>
+        <translation>Subir</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="145"/>
         <source>Up</source>
-        <translation>Su</translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="156"/>
         <source>Move down</source>
-        <translation>Sposta in giù</translation>
+        <translation>Bajar</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="159"/>
         <source>Down</source>
-        <translation>Giù</translation>
+        <translation>Abajo</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.ui" line="170"/>
+        <source>Show information about dictionary</source>
+        <translation>Mostrar información sobre el diccionario</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="173"/>
         <source>Show info</source>
-        <translation>Mostra informazioni</translation>
+        <translation>Mostrar info</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="208"/>
         <source>Plugins</source>
-        <translation>Estensioni</translation>
+        <translation>Extensiones</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="235"/>
         <source>Show information about plugin</source>
-        <translation>Mostra informazioni sull&apos;estensione</translation>
+        <translation>Mostrar información sobre la extensión</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="238"/>
         <source>Info</source>
-        <translation>Informazioni</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="249"/>
         <source>Configure plugin</source>
-        <translation>Configura estensione</translation>
+        <translation>Configurar extensión</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="252"/>
         <source>Configure</source>
-        <translation>Configura</translation>
+        <translation>Configurar</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="290"/>
         <source>Popup window</source>
-        <translation>Finestra di popup</translation>
+        <translation>Ventana emergente</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="302"/>
         <source>Behavior</source>
-        <translation>Comportamento</translation>
+        <translation>Comportamiento</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="322"/>
         <source>Pronounce the word</source>
-        <translation>Pronuncia la parola</translation>
+        <translation>Pronunciar la palabra</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="339"/>
         <source>Timeout before hide after mouse over</source>
-        <translation>Tempo di scomparsa dopo aver mosso il mouse</translation>
+        <translation>Tiempo de espera antes de esconder el puntero del ratón</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="346"/>
         <source>Don&apos;t hide</source>
-        <translation>Non nascondere</translation>
+        <translation>No ocultar</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="349"/>
         <source> sec</source>
-        <translation>sec</translation>
+        <translation type="unfinished">seg</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="384"/>
         <source>Show only if modifier pressed</source>
-        <translation>Mostra solo se si preme</translation>
+        <translation>Mostrar solo si el modificador está presionado</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="395"/>
@@ -482,22 +528,22 @@
     <message>
         <location filename="../settingsdialog.ui" line="420"/>
         <source>Scan selection</source>
-        <translation>Cerca selezione</translation>
+        <translation>Escanear la selección</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="430"/>
         <source>Show if word not found</source>
-        <translation>Mostra se la parola non viene trovata</translation>
+        <translation>Mostrar si la palabra no es encontrada</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="573"/>
         <source>Apperance</source>
-        <translation>Aspetto</translation>
+        <translation>Apariencia</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="460"/>
         <source>Opacity</source>
-        <translation>Opacità</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="467"/>
@@ -507,57 +553,12 @@
     <message>
         <location filename="../settingsdialog.ui" line="496"/>
         <source>Default width</source>
-        <translation>Ampiezza di default</translation>
+        <translation>Ancho predeterminado</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="526"/>
         <source>Default height</source>
-        <translation>Altezza di default</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="270"/>
-        <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Autore:&lt;/b&gt; %1&lt;br&gt;</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="271"/>
-        <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Conto parole:&lt;/b&gt; %1&lt;br&gt;</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="113"/>
-        <source>All translation</source>
-        <translation>Tutta la traduzione</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="114"/>
-        <source>Dictionary name</source>
-        <translation>Nome del dizionario</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="115"/>
-        <source>Title</source>
-        <translation>Titolo</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="116"/>
-        <source>Explanation</source>
-        <translation>Spiegazione</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="117"/>
-        <source>Abbreviation</source>
-        <translation>Abbreviazione</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="118"/>
-        <source>Example</source>
-        <translation>Esempio</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="119"/>
-        <source>Transcription</source>
-        <translation>Trascrizione</translation>
+        <translation>Altura predeterminada</translation>
     </message>
 </context>
 <context>
@@ -570,32 +571,32 @@
     <message>
         <location filename="../trayicon.cpp" line="37"/>
         <source>&amp;Scan</source>
-        <translation>&amp;Cerca</translation>
+        <translation>&amp;Explorar</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="47"/>
         <source>&amp;Configure QStarDict</source>
-        <translation>&amp;Configura QStarDict</translation>
+        <translation>&amp;Configurar QStarDict</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="50"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Esci</translation>
+        <translation>&amp;Salir</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>QStarDict: scanning is %1</source>
-        <translation>QStarDict: la ricerca è %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>enabled</source>
-        <translation>abilitato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>disabled</source>
-        <translation>disabilitato</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
