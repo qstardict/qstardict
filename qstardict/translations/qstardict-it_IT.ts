@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it_IT">
+<defaultcodec></defaultcodec>
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -254,12 +255,12 @@
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>QStarDict &amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aiuto QStarDict</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
     </message>
 </context>
 <context>
@@ -585,17 +586,17 @@
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>QStarDict: scanning is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>QStarDict: la ricerca è %1</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>abilitato</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="84"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>disabilitato</translation>
     </message>
 </context>
 </TS>
