@@ -102,12 +102,15 @@
 	- update german translation
 	- fix typo in the COPYING filename
 * Version 0.13.0
-	- add french translation
+	- add french and turkish translation
 	- improve Windows port
-	- add SWAC plugin
+	- add SWAC and Multitran plugins
 	- add command line support
 	- improve the simplified chinese translation
 	- fix bug with settings saving
-	- add turkish translation
 	- improve D-Bus support
 	- fix bug with Qt 4.5
+* Version 0.13.1
+	- fix bugs with installation
+	- add spanish translation
+	- update italian and german translations
