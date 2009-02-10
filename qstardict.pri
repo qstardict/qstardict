@@ -91,3 +91,4 @@ unix {
     DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
 }
 
+system(echo "ENABLED_PLUGINS = $$ENABLED_PLUGINS" >plugins/plugins.pri)

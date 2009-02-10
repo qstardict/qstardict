@@ -54,7 +54,7 @@ void CSSEdit::setCSS(const QString &css)
             for (; i < css.length() && css[i] != '{'; ++i)
                 if (! css[i].isSpace())
                     element += css[i];
-            if (css[i] == '{')
+            if (i < css.length() && css[i] == '{')
             {
                 inBlock = true;
                 ++i;

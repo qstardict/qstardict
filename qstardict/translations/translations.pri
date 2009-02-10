@@ -47,7 +47,7 @@ COMPILED_TRANSLATIONS += \
 DISTFILES += $$COMPILED_TRANSLATIONS
 
 isEmpty(NO_TRANSLATIONS) {
-    translations.files = $$COMPILED_TRANSLATIONS
+    for(t, COMPILED_TRANSLATIONS):translations.files += "translations/$${t}"
     translations.path = $$TRANSLATIONS_DIR
     INSTALLS += translations
 }
