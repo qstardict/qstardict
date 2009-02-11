@@ -23,7 +23,7 @@ SUBDIRS = qstardict plugins
 
 DOCS += \
     AUTHORS \
-    COPYNG \
+    COPYING \
     ChangeLog \
     THANKS
 DISTFILES += $$DOCS \
