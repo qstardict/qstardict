@@ -37,6 +37,7 @@
 #include "application.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
+#include "trayicon.h"
 
 namespace QStarDict 
 {
@@ -91,6 +92,8 @@ void MainWindow::loadSettings()
     restoreGeometry(config.value("MainWindow/geometry", QByteArray()).toByteArray());
     restoreState(config.value("MainWindow/state", QByteArray()).toByteArray());
     setVisible(config.value("MainWindow/visible", true).toBool());
+    if (isHidden() && ! Application::instance()->trayIcon()->isVisible())
+        show();
     wordsListDock->setFloating(config.value("MainWindow/wordsListDock/floating", wordsListDock->isFloating()).toBool());
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
     setInstantSearch(config.value("MainWindow/instantSearch", true).toBool());
@@ -224,6 +227,14 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         }
     }
     QMainWindow::keyPressEvent(event);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (! Application::instance()->trayIcon()->isVisible())
+        Application::instance()->quit();
+
+    QMainWindow::closeEvent(event);
 }
 
 }

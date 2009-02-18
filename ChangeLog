@@ -114,3 +114,5 @@
 	- fix bugs with installation
 	- add spanish translation
 	- update italian and german translations
+* Version 0.13.2
+	- improve system tray support

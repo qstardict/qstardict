@@ -21,6 +21,7 @@
 
 #include <QClipboard>
 #include <QMenu>
+#include <QSettings>
 
 #include "application.h"
 #include "mainwindow.h"
@@ -53,6 +54,13 @@ TrayIcon::TrayIcon(QObject *parent)
     setContextMenu(trayMenu);
     connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
+
+    loadSettings();
+}
+
+TrayIcon::~TrayIcon()
+{
+    saveSettings();
 }
 
 void TrayIcon::on_activated(QSystemTrayIcon::ActivationReason reason)
@@ -82,6 +90,18 @@ void TrayIcon::setScanEnabled(bool enabled)
     QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
     setIcon(icon);
     setToolTip(tr("QStarDict: scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
+}
+
+void TrayIcon::saveSettings()
+{
+    QSettings config;
+    config.setValue("TrayIcon/visible", isVisible());
+}
+
+void TrayIcon::loadSettings()
+{
+    QSettings config;
+    setVisible(config.value("TrayIcon/visible", true).toBool());
 }
 
 }

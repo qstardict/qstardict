@@ -41,18 +41,17 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="tabGlobalSettings" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>441</width>
-        <height>414</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Global settings</string>
       </attribute>
       <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QCheckBox" name="systemTrayBox" >
+         <property name="text" >
+          <string>Use system tray</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QCheckBox" name="instantSearchBox" >
          <property name="text" >
@@ -91,8 +90,8 @@
          </property>
          <property name="sizeHint" stdset="0" >
           <size>
-           <width>369</width>
-           <height>171</height>
+           <width>426</width>
+           <height>318</height>
           </size>
          </property>
         </spacer>
@@ -100,14 +99,6 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabDictionaries" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>441</width>
-        <height>414</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Dictionaries</string>
       </attribute>
@@ -278,14 +269,6 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tabPopupWindow" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>640</width>
-        <height>409</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Popup window</string>
       </attribute>
@@ -561,14 +544,6 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>640</width>
-        <height>409</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Apperance</string>
       </attribute>
@@ -581,6 +556,8 @@
     </widget>
    </item>
   </layout>
+  <zorder>buttonBox</zorder>
+  <zorder>tabWidget</zorder>
  </widget>
  <customwidgets>
   <customwidget>

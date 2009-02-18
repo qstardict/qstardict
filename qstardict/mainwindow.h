@@ -95,6 +95,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
     protected:
         void timerEvent(QTimerEvent *event);
         void keyPressEvent(QKeyEvent *event);
+        void closeEvent(QCloseEvent *event);
 
     private slots:
         void on_actionAbout_triggered();

@@ -157,17 +157,17 @@
 <context>
     <name>QStarDict::MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="115"/>
+        <location filename="../mainwindow.cpp" line="118"/>
         <source>About QStarDict</source>
         <translation type="unfinished">За QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="116"/>
+        <location filename="../mainwindow.cpp" line="119"/>
         <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="118"/>
+        <location filename="../mainwindow.cpp" line="121"/>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation type="unfinished">Copyright (C) 2007-2009 Александър Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
@@ -177,7 +177,7 @@
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="189"/>
+        <location filename="../mainwindow.cpp" line="192"/>
         <source>%1 - QStarDict</source>
         <translation type="unfinished">%1 - QStarDict</translation>
     </message>
@@ -265,77 +265,77 @@
 <context>
     <name>QStarDict::SettingsDialog</name>
     <message>
-        <location filename="../settingsdialog.cpp" line="68"/>
+        <location filename="../settingsdialog.cpp" line="69"/>
         <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="68"/>
+        <location filename="../settingsdialog.cpp" line="69"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="68"/>
+        <location filename="../settingsdialog.cpp" line="69"/>
         <source>Plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="267"/>
+        <location filename="../settingsdialog.cpp" line="273"/>
         <source>Information about dictionary &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="285"/>
+        <location filename="../settingsdialog.cpp" line="291"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="269"/>
+        <location filename="../settingsdialog.cpp" line="275"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="271"/>
+        <location filename="../settingsdialog.cpp" line="277"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="289"/>
+        <location filename="../settingsdialog.cpp" line="295"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="284"/>
+        <location filename="../settingsdialog.cpp" line="290"/>
         <source>Information about %1 plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="286"/>
+        <location filename="../settingsdialog.cpp" line="292"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="287"/>
+        <location filename="../settingsdialog.cpp" line="293"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="287"/>
+        <location filename="../settingsdialog.cpp" line="293"/>
         <source>&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="288"/>
+        <location filename="../settingsdialog.cpp" line="294"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="288"/>
+        <location filename="../settingsdialog.cpp" line="294"/>
         <source>yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="288"/>
+        <location filename="../settingsdialog.cpp" line="294"/>
         <source>no</source>
         <translation type="unfinished"></translation>
     </message>
@@ -345,255 +345,260 @@
         <translation type="unfinished">Настройки на QStarDict</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="170"/>
+        <location filename="../settingsdialog.ui" line="161"/>
         <source>Show information about dictionary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="53"/>
+        <location filename="../settingsdialog.ui" line="45"/>
         <source>Global settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="59"/>
+        <location filename="../settingsdialog.ui" line="58"/>
         <source>Instant search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="74"/>
+        <location filename="../settingsdialog.ui" line="73"/>
         <source>Pronounce words using this command:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="81"/>
+        <location filename="../settingsdialog.ui" line="80"/>
         <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="118"/>
+        <location filename="../settingsdialog.ui" line="109"/>
         <source>Dictionaries</source>
         <translation type="unfinished">Речници</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="142"/>
+        <location filename="../settingsdialog.ui" line="133"/>
         <source>Move up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="145"/>
+        <location filename="../settingsdialog.ui" line="136"/>
         <source>Up</source>
         <translation type="unfinished">Нагоре</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="156"/>
+        <location filename="../settingsdialog.ui" line="147"/>
         <source>Move down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="159"/>
+        <location filename="../settingsdialog.ui" line="150"/>
         <source>Down</source>
         <translation type="unfinished">Надолу</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="173"/>
+        <location filename="../settingsdialog.ui" line="164"/>
         <source>Show info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="208"/>
+        <location filename="../settingsdialog.ui" line="199"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="235"/>
+        <location filename="../settingsdialog.ui" line="226"/>
         <source>Show information about plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="238"/>
+        <location filename="../settingsdialog.ui" line="229"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="249"/>
+        <location filename="../settingsdialog.ui" line="240"/>
         <source>Configure plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="252"/>
+        <location filename="../settingsdialog.ui" line="243"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="290"/>
+        <location filename="../settingsdialog.ui" line="273"/>
         <source>Popup window</source>
         <translation type="unfinished">Главен прозорец</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="302"/>
+        <location filename="../settingsdialog.ui" line="285"/>
         <source>Behavior</source>
         <translation type="unfinished">Поведение</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="322"/>
+        <location filename="../settingsdialog.ui" line="305"/>
         <source>Pronounce the word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="339"/>
+        <location filename="../settingsdialog.ui" line="322"/>
         <source>Timeout before hide after mouse over</source>
         <translation type="unfinished">Време, преди да се скрие, след посочване с мишката</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="346"/>
+        <location filename="../settingsdialog.ui" line="329"/>
         <source>Don&apos;t hide</source>
         <translation type="unfinished">Не крий</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="349"/>
+        <location filename="../settingsdialog.ui" line="332"/>
         <source> sec</source>
         <translation type="unfinished">секунди</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="384"/>
+        <location filename="../settingsdialog.ui" line="367"/>
         <source>Show only if modifier pressed</source>
         <translation type="unfinished">Покажи, само ако модификатора е натиснат</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="395"/>
+        <location filename="../settingsdialog.ui" line="378"/>
         <source>Alt</source>
         <translation type="unfinished">Alt</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="400"/>
+        <location filename="../settingsdialog.ui" line="383"/>
         <source>Control</source>
         <translation type="unfinished">Control</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="405"/>
+        <location filename="../settingsdialog.ui" line="388"/>
         <source>Shift</source>
         <translation type="unfinished">Shift</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="410"/>
+        <location filename="../settingsdialog.ui" line="393"/>
         <source>Win</source>
         <translation type="unfinished">Win</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="420"/>
+        <location filename="../settingsdialog.ui" line="403"/>
         <source>Scan selection</source>
         <translation type="unfinished">Селективно сканиране</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="430"/>
+        <location filename="../settingsdialog.ui" line="413"/>
         <source>Show if word not found</source>
         <translation type="unfinished">Покажи, ако дума не е намерена</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="573"/>
+        <location filename="../settingsdialog.ui" line="548"/>
         <source>Apperance</source>
         <translation type="unfinished">Изглед</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="460"/>
+        <location filename="../settingsdialog.ui" line="443"/>
         <source>Opacity</source>
         <translation type="unfinished">Непрозрачност</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="467"/>
+        <location filename="../settingsdialog.ui" line="450"/>
         <source>%</source>
         <translation type="unfinished">%</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="496"/>
+        <location filename="../settingsdialog.ui" line="479"/>
         <source>Default width</source>
         <translation type="unfinished">Подразбираща се ширина</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="526"/>
+        <location filename="../settingsdialog.ui" line="509"/>
         <source>Default height</source>
         <translation type="unfinished">Подразбираща се височина</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="270"/>
+        <location filename="../settingsdialog.cpp" line="276"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="271"/>
+        <location filename="../settingsdialog.cpp" line="277"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="113"/>
+        <location filename="../settingsdialog.cpp" line="115"/>
         <source>All translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="114"/>
+        <location filename="../settingsdialog.cpp" line="116"/>
         <source>Dictionary name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="115"/>
+        <location filename="../settingsdialog.cpp" line="117"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="116"/>
+        <location filename="../settingsdialog.cpp" line="118"/>
         <source>Explanation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="117"/>
+        <location filename="../settingsdialog.cpp" line="119"/>
         <source>Abbreviation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="118"/>
+        <location filename="../settingsdialog.cpp" line="120"/>
         <source>Example</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="119"/>
+        <location filename="../settingsdialog.cpp" line="121"/>
         <source>Transcription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.ui" line="51"/>
+        <source>Use system tray</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QStarDict::TrayIcon</name>
     <message>
-        <location filename="../trayicon.cpp" line="36"/>
+        <location filename="../trayicon.cpp" line="37"/>
         <source>QStarDict</source>
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="37"/>
+        <location filename="../trayicon.cpp" line="38"/>
         <source>&amp;Scan</source>
         <translation type="unfinished">&amp;Сканираща част</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="47"/>
+        <location filename="../trayicon.cpp" line="48"/>
         <source>&amp;Configure QStarDict</source>
         <translation type="unfinished">&amp;Настройка на QStarDict</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="50"/>
+        <location filename="../trayicon.cpp" line="51"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Изход</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="84"/>
+        <location filename="../trayicon.cpp" line="92"/>
         <source>QStarDict: scanning is %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="84"/>
+        <location filename="../trayicon.cpp" line="92"/>
         <source>enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="84"/>
+        <location filename="../trayicon.cpp" line="92"/>
         <source>disabled</source>
         <translation type="unfinished"></translation>
     </message>

@@ -31,6 +31,7 @@
 #include "popupwindow.h"
 #include "application.h"
 #include "speaker.h"
+#include "trayicon.h"
 
 namespace
 {
@@ -74,6 +75,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     dictsTableView->setColumnWidth(2, 120);
 
     // Load global settings
+    systemTrayBox->setChecked(Application::instance()->trayIcon()->isVisible());
     instantSearchBox->setChecked(Application::instance()->mainWindow()->isInstantSearch());
     speechCmdEdit->setText(Application::instance()->speaker()->speechCmd());
 
@@ -143,6 +145,7 @@ void SettingsDialog::accept()
     dict->setLoadedDicts(loadedDicts);
 
     // Save global settings
+    Application::instance()->trayIcon()->setVisible(systemTrayBox->isChecked());
     Application::instance()->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
     Application::instance()->speaker()->setSpeechCmd(speechCmdEdit->text());
 
@@ -172,11 +175,14 @@ void SettingsDialog::accept()
     Application::instance()->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
     Application::instance()->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
 
+    if (! Application::instance()->trayIcon()->isVisible())
+        Application::instance()->mainWindow()->show();
+
     Application::instance()->mainWindow()->reload();
 
     Application::instance()->dictCore()->saveSettings();
     Application::instance()->mainWindow()->saveSettings();
-    Application::instance()->mainWindow()->saveSettings();
+    Application::instance()->trayIcon()->saveSettings();
 
     QDialog::accept();
 }

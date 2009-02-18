@@ -31,11 +31,17 @@ class TrayIcon: public QSystemTrayIcon
 
     public:
         TrayIcon(QObject *parent = 0);
+        virtual ~TrayIcon();
+
+        void saveSettings();
 
     private slots:
         void on_activated(QSystemTrayIcon::ActivationReason reason);
         void on_actionSettings_triggered();
         void setScanEnabled(bool enabled);
+
+    private:
+        void loadSettings();
 };
 
 }

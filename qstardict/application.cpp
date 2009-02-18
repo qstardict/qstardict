@@ -57,9 +57,9 @@ Application::Application(int &argc, char **argv)
     m_popupWindow = new PopupWindow;
     m_popupWindow->setDict(m_dictCore);
     m_speaker = new Speaker;
+    m_trayIcon = new TrayIcon;
     m_mainWindow = new MainWindow;
     m_mainWindow->setDict(m_dictCore);
-    m_trayIcon = new TrayIcon;
 #ifdef QSTARDICT_WITH_DBUS
     m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
 #endif // QSTARDICT_WITH_DBUS
@@ -85,7 +85,6 @@ int Application::exec()
     QString text = commandLineText();
     if (text != QString::null)
         m_mainWindow->showTranslation(text);
-    m_trayIcon->show();
     return QApplication::exec();
 }
 
