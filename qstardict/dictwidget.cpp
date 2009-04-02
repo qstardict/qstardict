@@ -111,13 +111,20 @@ void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 
 void DictWidget::saveToFile()
 {
+	static QDir dir( QDir::homePath() ); //added by Frank
+	static QString filter(tr("Text files (*.txt)")); //added by Frank
+	
     QFileDialog dialog(this, tr("Save translation"),
-                       QDir::homePath() + "/" + translatedWord());
-    dialog.setFilters(QStringList() << tr("HTML files (*.html, *.htm)") << tr("Text files (*.txt)"));
-    if (dialog.exec() && dialog.selectedFiles().size())
+                       dir.path(), filter); //updated by Frank
+	dialog.selectFile(translatedWord());//added by Frank
+    dialog.setNameFilters(QStringList() << tr("HTML files (*.html *.htm)") << tr("Text files (*.txt)"));//updated by Frank
+    dialog.selectNameFilter(filter); //added by Frank
+
+	if (dialog.exec() && dialog.selectedFiles().size())
     {
         QString fileName = dialog.selectedFiles().first();
-        QString filter = dialog.selectedFilter();
+        /*QString*/ filter = dialog.selectedFilter();//updated by Frank
+		dir = dialog.directory(); //added by Frank
         if (filter == tr("HTML files (*.html, *.htm)") && 
             ! (fileName.endsWith(".html", Qt::CaseInsensitive) || fileName.endsWith(".htm", Qt::CaseInsensitive)))
             fileName += ".html";
