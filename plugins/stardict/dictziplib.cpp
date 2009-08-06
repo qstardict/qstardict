@@ -305,7 +305,7 @@ bool dictData::open(const std::string& fname, int computeCRC)
 
 #ifdef Q_OS_UNIX
     if (stat(fname.c_str(), &sb) || !S_ISREG(sb.st_mode))
-#elif def Q_OS_WIN32
+#elif defined(Q_OS_WIN32)
     if (_stat(fname.c_str(), &sb) || !(sb.stMode & _S_IFREG))
 #endif
     {
