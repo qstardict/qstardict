@@ -1,0 +1,38 @@
+QStarDict for Mac OS X is set to be built as a "bundle" application.
+
+Distributed packages should contain all required stuff to run out-of-the-box.
+
+All following notes are important for developers.
+
+
+BUILDING REQUIREMENTS:
+ * Qt4 libraries/frameworks (tested with macport's qt4-mac+universal)
+ * glib2 devel environment (I'm using macports for it too)
+ * all other libraries are propably part of mac's OS
+
+
+CONFIRURE PHASE:
+qmake
+  it will build qstardict and install it into /opt (sudo make install will be required)
+  or:
+qmake INSTALL_PREFIX=/absolute/path/to/selected/dir
+  it will build qstardict and install it into this location.
+  The path *must* be absolute. Relative path will cause install problems.
+
+example:
+qmake INSTALL_PREFIX=/Users/pvanek/oss/qstardict/release
+
+
+MAKE PHASE:
+just run: make
+
+INSTALL PHASE:
+make install
+
+DEPLOY PHASE:
+macdeployqt path/to/QStarDict.app/
+or:
+macdeployqt path/to/QStarDict.app/ -dmg
+for dmg build (but I'm using another tool for it)
+
+

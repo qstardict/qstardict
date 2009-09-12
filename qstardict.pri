@@ -33,6 +33,10 @@ unix {
     PKGCONFIG += glib-2.0
     LIBS += -lz
 }
+macx {
+    # universal binaries
+    CONFIG += x86 x86_64 # not available on Snow Leopard ppc ppc64
+}
 win32 {
     CONFIG += console
     LIBS += -lzdll -lglib-2.0 -luser32
