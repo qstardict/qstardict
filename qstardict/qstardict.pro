@@ -19,6 +19,9 @@
 
 TEMPLATE = app
 TARGET = qstardict
+macx {
+    TARGET = QStarDict
+}
 include(../qstardict.pri)
 
 FORMS += \
@@ -68,16 +71,20 @@ DISTFILES += \
     qstardict.png \
     qstardict.desktop
 
-isEmpty(NO_TRANSLATIONS):include("translations/translations.pri")
-
 target.path = $$BIN_DIR
 INSTALLS += target
+# translations *has* go after current target (mac required)
+isEmpty(NO_TRANSLATIONS):include("translations/translations.pri")
 
 unix {
     desktop_icon.files = qstardict.png
     desktop_icon.path = $$INSTALL_PREFIX/share/pixmaps
     desktop_file.files = qstardict.desktop
     desktop_file.path = $$INSTALL_PREFIX/share/applications
-    INSTALLS += desktop_icon desktop_file
+    INSTALLS:!macx += desktop_icon desktop_file
 }
+macx {
+    ICON = pixmaps/qstardict.icns
+}
+
 

@@ -82,7 +82,19 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 
 } // namespace
 
-#endif // Q_WS_WIN
+#elif defined(Q_WS_MAC) // Q_WS_WIN
+#include <QApplication>
+
+namespace QStarDict
+{
+
+Qt::KeyboardModifiers Keyboard::activeModifiers()
+{
+    return QApplication::keyboardModifiers();
+}
+
+} // namespace
+#endif // Q_WS_MAC
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
