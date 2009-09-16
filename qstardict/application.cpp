@@ -46,7 +46,13 @@ Application::Application(int &argc, char **argv)
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     m_translator = new QTranslator;
+#ifdef Q_WS_MAC
+    QString binPath = QCoreApplication::applicationDirPath();
+    // navigate through mac's bundle tree structore
+    m_translator->load("qstardict-" + QLocale::system().name(), binPath + "/../i18n/");
+#else
     m_translator->load("qstardict-" + QLocale::system().name(), QSTARDICT_TRANSLATIONS_DIR);
+#endif
     installTranslator(m_translator);
     m_qtTranslator = new QTranslator;
     m_qtTranslator->load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));

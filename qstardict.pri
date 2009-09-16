@@ -35,7 +35,8 @@ unix {
 }
 macx {
     # universal binaries
-    CONFIG += x86 x86_64 # not available on Snow Leopard ppc ppc64
+    CONFIG += x86 #x86_64 # not available on Snow Leopard ppc ppc64
+#    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk/
 }
 win32 {
     CONFIG += console
@@ -70,6 +71,8 @@ unix {
         TRANSLATIONS_DIR=$$MAC_BUNDLE_PATH/i18n
         PLUGINS_DIR=$$MAC_BUNDLE_PATH/lib
         DOCS_DIR=$$MAC_BUNDLE_PATH/share/doc
+
+        DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
     }
     else {
         isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/usr
@@ -78,14 +81,14 @@ unix {
         isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$DATA_DIR/translations
         isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$INSTALL_PREFIX/lib/qstardict/plugins
         isEmpty(DOCS_DIR):DOCS_DIR=$$INSTALL_PREFIX/share/doc/qstardict
-    }
 
-    DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
-    DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
-    DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
-    DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
-    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
-    DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
+        DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
+        DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
+        DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
+        DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
+        isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
+        DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
+    }
 } else:win32 {
      isEmpty(INSTALL_PREFIX) {
          INSTALL_PREFIX=
