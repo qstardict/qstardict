@@ -81,7 +81,7 @@ unix {
     desktop_icon.path = $$INSTALL_PREFIX/share/pixmaps
     desktop_file.files = qstardict.desktop
     desktop_file.path = $$INSTALL_PREFIX/share/applications
-    INSTALLS:!macx += desktop_icon desktop_file
+    INSTALLS += desktop_icon desktop_file
 }
 macx {
     ICON = pixmaps/qstardict.icns
