@@ -11,7 +11,7 @@
     <message>
         <location filename="../cssedit.ui" line="30"/>
         <source>Element</source>
-        <translation>元素</translation>
+        <translation type="unfinished">元素</translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="37"/>
@@ -112,16 +112,22 @@
         <translation>保存翻译</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="120"/>
-        <source>HTML files (*.html *.htm)</source>
-        <translation>HTML文件(*.html *.htm)</translation>
+        <location filename="../dictwidget.cpp" line="128"/>
+        <location filename="../dictwidget.cpp" line="142"/>
+        <source>HTML files (*.html, *.htm)</source>
+        <translation>HTML文件(*.html, *.htm)</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="115"/>
         <location filename="../dictwidget.cpp" line="120"/>
         <location filename="../dictwidget.cpp" line="131"/>
         <source>Text files (*.txt)</source>
-        <translation>文本文件(*.txt)</translation>
+        <translation>文本文件</translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="120"/>
+        <source>HTML files (*.html *.htm)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="137"/>
@@ -158,12 +164,6 @@
         <source>Prin&amp;t translation</source>
         <translation>打印翻译(&amp;t)</translation>
     </message>
-    <message>
-        <location filename="../dictwidget.cpp" line="128"/>
-        <location filename="../dictwidget.cpp" line="142"/>
-        <source>HTML files (*.html, *.htm)</source>
-        <translation>HTML文件(*.html, *.htm)</translation>
-    </message>
 </context>
 <context>
     <name>QStarDict::MainWindow</name>
@@ -171,6 +171,11 @@
         <location filename="../mainwindow.cpp" line="118"/>
         <source>About QStarDict</source>
         <translation>关于 QStarDict</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="119"/>
+        <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
+        <translation></translation>
     </message>
     <message>
         <source>Copyright (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
@@ -262,7 +267,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="120"/>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt; {2007-2009 ?}</translation>
+        <translation type="unfinished">版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt; {2007-2009 ?}</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
@@ -270,14 +275,9 @@
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="119"/>
-        <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
-        <translation>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt 版星际译王&lt;br&gt;</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>F1</source>
-        <translation>F1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -308,7 +308,7 @@
         <location filename="../settingsdialog.cpp" line="274"/>
         <location filename="../settingsdialog.cpp" line="291"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;名称:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="275"/>
@@ -340,6 +340,11 @@
         <location filename="../settingsdialog.cpp" line="293"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;作者：&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.cpp" line="293"/>
+        <source>&lt;br&gt;</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="294"/>
@@ -384,7 +389,12 @@
     <message>
         <location filename="../settingsdialog.ui" line="73"/>
         <source>Pronounce words using this command:</source>
-        <translation>使用如下命令发音:</translation>
+        <translation>使用如下命令发音</translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.ui" line="80"/>
+        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="103"/>
@@ -536,12 +546,12 @@
     <message>
         <location filename="../settingsdialog.cpp" line="276"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;作者:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="277"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;单词数量:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="115"/>
@@ -561,7 +571,7 @@
     <message>
         <location filename="../settingsdialog.cpp" line="118"/>
         <source>Explanation</source>
-        <translation>解释</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="119"/>
@@ -576,17 +586,7 @@
     <message>
         <location filename="../settingsdialog.cpp" line="121"/>
         <source>Transcription</source>
-        <translation>音标</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.cpp" line="293"/>
-        <source>&lt;br&gt;</source>
-        <translation>&lt;br&gt;</translation>
-    </message>
-    <message>
-        <location filename="../settingsdialog.ui" line="80"/>
-        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
-        <translation>输入启动发音程序的命令.&lt;br&gt;如果命令中包含有 &quot;%s&quot; 它将被替换成要发音的单词，否则单词将被写到发音程序进程的标准输入(即stdin).</translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -614,17 +614,17 @@
     <message>
         <location filename="../trayicon.cpp" line="92"/>
         <source>QStarDict: scanning is %1</source>
-        <translation>QStarDict: 取词已%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="92"/>
         <source>enabled</source>
-        <translation>启动</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="92"/>
         <source>disabled</source>
-        <translation>停止</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
