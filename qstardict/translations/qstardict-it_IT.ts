@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -28,11 +29,13 @@
         <translation>Seleziona elementi</translation>
     </message>
     <message>
+        <location filename="../cssedit.ui" line="58"/>
         <location filename="../cssedit.ui" line="68"/>
         <source>Click to select color</source>
         <translation>Click per selezionare il colore</translation>
     </message>
     <message>
+        <location filename="../cssedit.ui" line="61"/>
         <location filename="../cssedit.ui" line="71"/>
         <source>#000000</source>
         <translation>#000000</translation>
@@ -104,27 +107,35 @@
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="114"/>
+        <location filename="../dictwidget.cpp" line="117"/>
         <source>Save translation</source>
         <translation>Salva la traduzione</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="135"/>
+        <location filename="../dictwidget.cpp" line="128"/>
+        <location filename="../dictwidget.cpp" line="142"/>
         <source>HTML files (*.html, *.htm)</source>
         <translation>File HTML (*.html, *.htm)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="124"/>
+        <location filename="../dictwidget.cpp" line="115"/>
+        <location filename="../dictwidget.cpp" line="120"/>
+        <location filename="../dictwidget.cpp" line="131"/>
         <source>Text files (*.txt)</source>
         <translation>File di testo (*.txt)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="130"/>
+        <location filename="../dictwidget.cpp" line="120"/>
+        <source>HTML files (*.html *.htm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="137"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="131"/>
+        <location filename="../dictwidget.cpp" line="138"/>
         <source>Cannot save translation as %1</source>
         <translation>Non posso salvare la traduzione come %1</translation>
     </message>
@@ -167,16 +178,19 @@
         <translation>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Versione Qt di StarDict&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="121"/>
+        <location filename="../mainwindow.cpp" line="120"/>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation>Copyright  (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="178"/>
         <location filename="../mainwindow.ui" line="13"/>
         <source>QStarDict</source>
         <translation>QStarDict</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="180"/>
         <location filename="../mainwindow.cpp" line="192"/>
         <source>%1 - QStarDict</source>
         <translation>%1 - QStarDict</translation>
@@ -265,11 +279,13 @@
 <context>
     <name>QStarDict::SettingsDialog</name>
     <message>
+        <location filename="../settingsdialog.cpp" line="61"/>
         <location filename="../settingsdialog.cpp" line="69"/>
         <source>Enabled</source>
         <translation>Attivato</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.cpp" line="61"/>
         <location filename="../settingsdialog.cpp" line="69"/>
         <source>Name</source>
         <translation>Nome</translation>
@@ -285,6 +301,7 @@
         <translation>Informazione sul dizionario &quot;%1&quot;</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.cpp" line="274"/>
         <location filename="../settingsdialog.cpp" line="291"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Nome:&lt;/b&gt; %1&lt;br&gt;</translation>
@@ -300,6 +317,7 @@
         <translation>ignoto</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.cpp" line="278"/>
         <location filename="../settingsdialog.cpp" line="295"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation>&lt;b&gt;Descrizione:&lt;/b&gt; %1</translation>
@@ -370,6 +388,7 @@
         <translation>Inserisci il comando per il programma di pronuncia.&lt;br&gt;Se il comando contiene &quot;%s&quot; la parola verrà sostituita, altrimenti la parola sarà scritta nello stdin del processo di pronuncia.</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.ui" line="103"/>
         <location filename="../settingsdialog.ui" line="109"/>
         <source>Dictionaries</source>
         <translation>Dizionari</translation>
@@ -490,6 +509,7 @@
         <translation>Mostra se la parola non viene trovata</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.ui" line="423"/>
         <location filename="../settingsdialog.ui" line="548"/>
         <source>Apperance</source>
         <translation>Aspetto</translation>

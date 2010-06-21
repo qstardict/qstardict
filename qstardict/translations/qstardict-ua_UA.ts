@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="ru_UA">
+<!DOCTYPE TS>
+<TS version="2.0" language="ru_UA">
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -28,11 +29,13 @@
         <translation type="unfinished">Вибір елемента</translation>
     </message>
     <message>
+        <location filename="../cssedit.ui" line="58"/>
         <location filename="../cssedit.ui" line="68"/>
         <source>Click to select color</source>
         <translation type="unfinished">Клік для вибору кольору</translation>
     </message>
     <message>
+        <location filename="../cssedit.ui" line="61"/>
         <location filename="../cssedit.ui" line="71"/>
         <source>#000000</source>
         <translation type="unfinished"></translation>
@@ -104,27 +107,35 @@
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="114"/>
+        <location filename="../dictwidget.cpp" line="117"/>
         <source>Save translation</source>
         <translation type="unfinished">Зберегти переклад</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="135"/>
+        <location filename="../dictwidget.cpp" line="128"/>
+        <location filename="../dictwidget.cpp" line="142"/>
         <source>HTML files (*.html, *.htm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="124"/>
+        <location filename="../dictwidget.cpp" line="115"/>
+        <location filename="../dictwidget.cpp" line="120"/>
+        <location filename="../dictwidget.cpp" line="131"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="130"/>
+        <location filename="../dictwidget.cpp" line="120"/>
+        <source>HTML files (*.html *.htm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dictwidget.cpp" line="137"/>
         <source>Error</source>
         <translation type="unfinished">Помилка</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="131"/>
+        <location filename="../dictwidget.cpp" line="138"/>
         <source>Cannot save translation as %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -167,16 +178,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="121"/>
+        <location filename="../mainwindow.cpp" line="120"/>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation type="unfinished">Copyright (C) 2007-2009 Александр Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="178"/>
         <location filename="../mainwindow.ui" line="13"/>
         <source>QStarDict</source>
         <translation type="unfinished">QStarDict</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="180"/>
         <location filename="../mainwindow.cpp" line="192"/>
         <source>%1 - QStarDict</source>
         <translation type="unfinished"></translation>
@@ -265,11 +279,13 @@
 <context>
     <name>QStarDict::SettingsDialog</name>
     <message>
+        <location filename="../settingsdialog.cpp" line="61"/>
         <location filename="../settingsdialog.cpp" line="69"/>
         <source>Enabled</source>
         <translation type="unfinished">Включено</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.cpp" line="61"/>
         <location filename="../settingsdialog.cpp" line="69"/>
         <source>Name</source>
         <translation type="unfinished">Ім&apos;я</translation>
@@ -285,6 +301,7 @@
         <translation type="unfinished">Інформація про словник &quot;%1&quot;</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.cpp" line="274"/>
         <location filename="../settingsdialog.cpp" line="291"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation type="unfinished">&lt;b&gt;Ім&apos;я:&lt;/b&gt; %1&lt;br&gt;</translation>
@@ -300,6 +317,7 @@
         <translation type="unfinished">невідомо</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.cpp" line="278"/>
         <location filename="../settingsdialog.cpp" line="295"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation type="unfinished">&lt;b&gt;Опис:&lt;/b&gt; %1</translation>
@@ -370,6 +388,7 @@
         <translation type="unfinished">Введіть команду для розмовної програми. &lt;br&gt;Якщо команда містить &quot;%s&quot; це буде замінено словом, інaкше слово буде записано на stdin.</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.ui" line="103"/>
         <location filename="../settingsdialog.ui" line="109"/>
         <source>Dictionaries</source>
         <translation type="unfinished">Словники</translation>
@@ -490,6 +509,7 @@
         <translation type="unfinished">Показувати, якщо слово не знайдено</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.ui" line="423"/>
         <location filename="../settingsdialog.ui" line="548"/>
         <source>Apperance</source>
         <translation type="unfinished">Зовнiшнiй вигляд</translation>

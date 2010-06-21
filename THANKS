@@ -1,24 +1,26 @@
 Thanks to:
-    Petr Vanek whoes offer some improves and add the Windows support
-    Andrew Gaydenko whoes help to fix a  bug with building in x86_64
-    Vadim Kalinnikov whoes give a hosting
-    Hoopoe whoes add a traditional chinese translation
-    Yurij Goncharuck whoes fix bug when popup window violates from desktop and add ukrainian translation
-    Truth whoes add a simplified chinese translation
-    Nikola Valentinov Petrov whoes add a bulgarian translation
-    Jiri Hlinka whoes add a czech translation
-    Klaos Lacerda and Bruno Gonçalves whoes add a brazilian portuguese translation
-    Zhengpeng Hou whoes update the traditional chinese translation
-    Grzegorz Gibas whoes add the polosh translation
-    Simone Solinas whoes add the italian translation
-    Stefan Kombrink whoes improve the popup window and update german translation
-    Matthias Fehring whoes update german translations
-    Albert Tugushev whoes help to fix bug with empty speech cmd
-    Ilya Kotov whoes help to improve localization
-    Alex Koudr whoes help with with mouse scanning on Windows
-    Nicolas Vion whoes add the french translation
-    Andriy Rysin whoes add the command line support
-    Yao Ziyuan whoes improve the simplified chinese translation
-    Serdar Soytetir whoes add the turkish translation
-    Sergey Ilinyh whoes help and improve D-Bus support
-    Frank Ren whoes improve the save dialog
+    Petr Vanek who offered some improves and added the Windows support
+    Andrew Gaydenko who helped to fix a  bug with building in x86_64
+    Vadim Kalinnikov who gave a hosting
+    Hoopoe who added a traditional chinese translation
+    Yurij Goncharuck who fixed bug when popup window violates from desktop and add ukrainian translation
+    Truth who added a simplified chinese translation
+    Nikola Valentinov Petrov who added a bulgarian translation
+    Jiri Hlinka who added a czech translation
+    Klaos Lacerda and Bruno Gonçalves who added a brazilian portuguese translation
+    Zhengpeng Hou who updated the traditional chinese translation
+    Grzegorz Gibas who added the polosh translation
+    Simone Solinas who added the italian translation
+    Stefan Kombrink who improved the popup window and update german translation
+    Matthias Fehring who updated german translations
+    Albert Tugushev who helped to fix bug with empty speech cmd
+    Ilya Kotov who helped to improve localization
+    Alex Koudr who helped with with mouse scanning on Windows
+    Nicolas Vion who added the french translation
+    Andriy Rysin who added the command line support
+    Yao Ziyuan who improved the simplified chinese translation
+    Serdar Soytetir who added the turkish translation
+    Sergey Ilinyh who improved the D-Bus support
+    Frank Ren who improved the save dialog
+    Embarembar who added the lithuanian translation
+

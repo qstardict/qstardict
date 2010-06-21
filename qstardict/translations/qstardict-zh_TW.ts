@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>QStarDict::CSSEdit</name>
     <message>
@@ -122,6 +124,10 @@
     <message>
         <source>Prin&amp;t translation</source>
         <translation>列印翻譯(&amp;t)</translation>
+    </message>
+    <message>
+        <source>HTML files (*.html *.htm)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -448,6 +454,10 @@
     <message>
         <source>Transcription</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Use system tray</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
