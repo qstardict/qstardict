@@ -79,7 +79,8 @@ unix {
         isEmpty(BIN_DIR):BIN_DIR=$$INSTALL_PREFIX/bin
         isEmpty(DATA_DIR):DATA_DIR=$$INSTALL_PREFIX/share/qstardict
         isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$DATA_DIR/translations
-        isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$INSTALL_PREFIX/lib/qstardict/plugins
+        isEmpty(LIB_DIR):LIB_DIR=$$INSTALL_PREFIX/lib/qstardict
+        isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$LIB_DIR/plugins
         isEmpty(DOCS_DIR):DOCS_DIR=$$INSTALL_PREFIX/share/doc/qstardict
 
         DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
