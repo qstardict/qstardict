@@ -78,6 +78,20 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     systemTrayBox->setChecked(Application::instance()->trayIcon()->isVisible());
     instantSearchBox->setChecked(Application::instance()->mainWindow()->isInstantSearch());
     speechCmdEdit->setText(Application::instance()->speaker()->speechCmd());
+#ifdef Q_OS_LINUX
+	QFile desktop(QDir::homePath() + "/.config/autostart/qstardict.desktop");
+	if (desktop.open(QIODevice::ReadOnly) && QString(desktop.readAll())
+		.contains(QRegExp("\\bhidden\\s*=\\s*false", Qt::CaseInsensitive))) {
+		autostartBox->setChecked(true);
+	}
+#elif defined(Q_OS_WIN)
+	QSettings reg("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\"
+				  "CurrentVersion\\Run", QSettings::NativeFormat);
+	autostartBox->setChecked(
+			reg.contains(QCoreApplication::applicationName()));
+#else
+	autostartBox->setVisible(false);
+#endif
 
     // Load popup window settings
     PopupWindow *popup = Application::instance()->popupWindow();
@@ -148,6 +162,33 @@ void SettingsDialog::accept()
     Application::instance()->trayIcon()->setVisible(systemTrayBox->isChecked());
     Application::instance()->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
     Application::instance()->speaker()->setSpeechCmd(speechCmdEdit->text());
+#ifdef Q_OS_LINUX
+	QDir home = QDir::home();
+	if (!home.exists(".config/autostart")) {
+		home.mkpath(".config/autostart");
+	}
+	QFile desktopFile(QSTARDICT_INSTALL_PREFIX "/share/applications/qstardict.desktop");
+	if (desktopFile.open(QIODevice::ReadOnly)) {
+		QByteArray contents = desktopFile.readAll();
+		QFile f(home.absolutePath() +
+				"/.config/autostart/qstardict.desktop");
+
+		if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+			f.write(contents.trimmed());
+			f.write(QString("\nHidden=%1").arg(autostartBox->isChecked()?
+											   "false\n":"true\n").toUtf8());
+		}
+	}
+#elif defined(Q_OS_WIN)
+	QSettings reg("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\"
+				  "CurrentVersion\\Run", QSettings::NativeFormat);
+	if(autostartBox->isChecked())
+		reg.setValue(QCoreApplication::applicationName(), '"' +
+					 QDir::toNativeSeparators(QCoreApplication::
+											  applicationFilePath()) + '"');
+	else
+		reg.remove(QCoreApplication::applicationName());
+#endif
 
     // Save popup window settings
     PopupWindow *popup = Application::instance()->popupWindow();
