@@ -31,6 +31,8 @@ class QAction;
 namespace QStarDict
 {
 
+class DictBrowserSearch;
+
 /**
  * The DictBrowser widget provides view of translations from given dictionary.
  */
@@ -103,10 +105,12 @@ class DictWidget: public QFrame
         void saveToFile();
         void speak();
         void print();
+        void handleSearch();
 
     private:
         DictBrowser *m_translationView;
         QToolBar *m_toolBar;
+        DictBrowserSearch *m_search;
 };
 
 }

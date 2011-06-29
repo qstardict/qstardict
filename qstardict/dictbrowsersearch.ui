@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DictBrowserSearch</class>
+ <widget class="QWidget" name="DictBrowserSearch">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>413</width>
+    <height>50</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Search:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="searchEdit"/>
+   </item>
+   <item row="0" column="3">
+    <widget class="QCheckBox" name="caseSensitiveCheckBox">
+     <property name="text">
+      <string>Case sensitive</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QToolButton" name="closeButton">
+     <property name="icon">
+      <iconset resource="pixmaps/pixmaps.qrc">
+       <normaloff>:/icons/dialog-close.png</normaloff>:/icons/dialog-close.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QCheckBox" name="wholeWordsCheckBox">
+     <property name="text">
+      <string>Whole words</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="pixmaps/pixmaps.qrc"/>
+ </resources>
+ <connections/>
+</ui>

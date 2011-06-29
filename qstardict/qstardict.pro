@@ -27,7 +27,8 @@ include(../qstardict.pri)
 FORMS += \
     cssedit.ui \
     mainwindow.ui \
-    settingsdialog.ui
+    settingsdialog.ui \
+    dictbrowsersearch.ui
 HEADERS += \
     application.h \
     cssedit.h \
@@ -42,7 +43,8 @@ HEADERS += \
     selection.h \
     settingsdialog.h \
     speaker.h \
-    trayicon.h
+    trayicon.h \
+    dictbrowsersearch.h
 unix:isEmpty(NO_DBUS):HEADERS += \
     dbusadaptor.h
 SOURCES += \
@@ -59,7 +61,8 @@ SOURCES += \
     selection.cpp \
     settingsdialog.cpp \
     speaker.cpp \
-    trayicon.cpp
+    trayicon.cpp \
+    dictbrowsersearch.cpp
 unix:isEmpty(NO_DBUS):SOURCES += \
     dbusadaptor.cpp
 
@@ -86,5 +89,3 @@ unix {
 macx {
     ICON = pixmaps/qstardict.icns
 }
-
-

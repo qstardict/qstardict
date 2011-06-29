@@ -56,6 +56,12 @@ class DictBrowser: public QTextBrowser
 
         QVariant loadResource(int type, const QUrl &name);
 
+    signals:
+        void searchResult(bool success);
+
+    public slots:
+        void search(const QString & exp, QTextDocument::FindFlags options);
+
     protected:
         void mouseMoveEvent(QMouseEvent *event);
         void mousePressEvent(QMouseEvent *event);
@@ -69,6 +75,7 @@ class DictBrowser: public QTextBrowser
         QTextCursor m_oldCursor;
         QTextCharFormat m_oldFormat;
         bool m_highlighted;
+        bool m_searchUndo;
 };
 
 }

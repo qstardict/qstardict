@@ -16,7 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,   *
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
-
+#include <QtDebug>
 #include "dictbrowser.h"
 
 #include <QDesktopServices>
@@ -55,7 +55,8 @@ namespace QStarDict
 DictBrowser::DictBrowser(QWidget *parent)
     : QTextBrowser(parent),
       m_dict(0),
-      m_highlighted(false)
+      m_highlighted(false),
+      m_searchUndo(false)
 {
     document()->setDefaultStyleSheet(translationCSS);
     setOpenLinks(false);
@@ -84,6 +85,31 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
         return plugin->resource(type, name);
     }
     return QTextBrowser::loadResource(type, name);
+}
+
+void DictBrowser::search(const QString & exp, QTextDocument::FindFlags options)
+{
+    bool found = false;
+
+    QList<QTextEdit::ExtraSelection> extraSelections;
+
+    moveCursor(QTextCursor::Start);
+    QColor color = QColor(Qt::gray).lighter(130);
+
+    while (find(exp, options))
+    {
+        found = true;
+
+        QTextEdit::ExtraSelection extra;
+        extra.format.setBackground(color);
+
+        extra.cursor = textCursor();
+        extraSelections.append(extra);
+    }
+
+    setExtraSelections(extraSelections);
+
+    emit searchResult(found);
 }
 
 void DictBrowser::mouseMoveEvent(QMouseEvent *event)

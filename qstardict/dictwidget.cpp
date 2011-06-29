@@ -35,6 +35,7 @@
 #include <QPrintDialog>
 #include "application.h"
 #include "dictbrowser.h"
+#include "dictbrowsersearch.h"
 #include "speaker.h"
 
 namespace
@@ -69,6 +70,12 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     m_translationView->setOpenExternalLinks(true);
     connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)), SLOT(on_translationView_sourceChanged(const QUrl&)));
 
+    m_search = new DictBrowserSearch(this);
+    connect(m_search, SIGNAL(search(const QString &,QTextDocument::FindFlags)),
+            m_translationView, SLOT(search(const QString &,QTextDocument::FindFlags)));
+    connect(m_translationView, SIGNAL(searchResult(bool)), m_search, SLOT(searchResult(bool)));
+    m_search->hide();
+
     m_toolBar = new DictWidgetToolbar(this);
     m_toolBar->setMouseTracking(true);
 
@@ -91,11 +98,16 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak &word"),
             this, SLOT(speak()));
 
+    QAction *actionSearch = m_toolBar->addAction(QIcon(":/icons/system-search.png"), tr("Search"), this, SLOT(handleSearch()));
+    actionSearch->setCheckable(true);
+    actionSearch->setShortcut(QKeySequence::Find);
+
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
     layout->addWidget(m_toolBar);
     layout->addWidget(m_translationView);
+    layout->addWidget(m_search);
     setLayout(layout);
 }
 
@@ -157,6 +169,11 @@ void DictWidget::print()
     QPrintDialog dialog(&printer, this);
     if (dialog.exec() == QDialog::Accepted)
         m_translationView->print(&printer);
+}
+
+void DictWidget::handleSearch()
+{
+    m_search->setVisible(!m_search->isVisible());
 }
 
 void DictWidget::setDefaultStyleSheet(const QString &css)
