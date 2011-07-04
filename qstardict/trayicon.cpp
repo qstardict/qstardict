@@ -35,7 +35,8 @@ TrayIcon::TrayIcon(QObject *parent)
     : QSystemTrayIcon(parent)
 {
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
-    QAction *actionScan = new QAction(tr("&Scan"), this);
+
+    QAction *actionScan = new QAction(QIcon(":/icons/edit-select.png"), tr("&Scan"), this);
     actionScan->setCheckable(true);
     actionScan->setChecked(Application::instance()->popupWindow()->isScan());
     setScanEnabled(Application::instance()->popupWindow()->isScan());
@@ -45,12 +46,15 @@ TrayIcon::TrayIcon(QObject *parent)
             actionScan, SLOT(setChecked(bool)));
     connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)), SLOT(setScanEnabled(bool)));
     trayMenu->addAction(actionScan);
+
     QAction *actionSettings = new QAction(QIcon(":/icons/configure.png"), tr("&Configure QStarDict"), this);
     connect(actionSettings, SIGNAL(triggered()), SLOT(on_actionSettings_triggered()));
     trayMenu->addAction(actionSettings);
+
     QAction *actionQuit = new QAction(QIcon(":/icons/application-exit.png"), tr("&Quit"), this);
     connect(actionQuit, SIGNAL(triggered()), Application::instance(), SLOT(quit()));
     trayMenu->addAction(actionQuit);
+
     setContextMenu(trayMenu);
     connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
@@ -68,8 +72,14 @@ void TrayIcon::on_activated(QSystemTrayIcon::ActivationReason reason)
     switch (reason)
     {
         case QSystemTrayIcon::Trigger:
+        // It's quite uncomfortable on OS X to handle show/hide main window
+        // in all cases... at least for me (petr)
+#ifndef Q_WS_MAC
             Application::instance()->mainWindow()->setVisible(!
                     Application::instance()->mainWindow()->isVisible());
+#else
+            Application::instance()->mainWindow()->show();
+#endif
             break;
         case QSystemTrayIcon::MiddleClick:
             Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));

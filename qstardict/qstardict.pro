@@ -79,7 +79,7 @@ INSTALLS += target
 # translations *has* go after current target (mac required)
 isEmpty(NO_TRANSLATIONS):include("translations/translations.pri")
 
-unix {
+unix:!macx {
     desktop_icon.files = qstardict.png
     desktop_icon.path = $$INSTALL_PREFIX/share/pixmaps
     desktop_file.files = qstardict.desktop

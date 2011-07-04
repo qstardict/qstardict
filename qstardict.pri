@@ -35,7 +35,7 @@ unix {
 }
 macx {
     # universal binaries
-    CONFIG += x86 #x86_64 # not available on Snow Leopard ppc ppc64
+    CONFIG += x86 x86_64 # not available on Snow Leopard ppc ppc64
 #    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk/
 }
 win32 {
@@ -58,7 +58,9 @@ isEmpty(ENABLED_PLUGINS):ENABLED_PLUGINS="stardict web"
 
 unix {
     macx {
-        isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/opt
+        isEmpty(INSTALL_PREFIX) {
+             INSTALL_PREFIX=/opt
+        }
         # helper var to save text duplicity.
         # NOTE: it cannot use $$TARGET because the target is
         # different in every directory. Obviously.

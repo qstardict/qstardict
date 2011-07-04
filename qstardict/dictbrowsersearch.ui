@@ -31,14 +31,6 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="4">
-    <widget class="QToolButton" name="closeButton">
-     <property name="icon">
-      <iconset resource="pixmaps/pixmaps.qrc">
-       <normaloff>:/icons/dialog-close.png</normaloff>:/icons/dialog-close.png</iconset>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="2">
     <widget class="QCheckBox" name="wholeWordsCheckBox">
      <property name="text">
@@ -48,8 +40,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="pixmaps/pixmaps.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

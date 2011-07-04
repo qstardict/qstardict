@@ -24,5 +24,6 @@
         <file>view-refresh.png</file>
         <file>dialog-close.png</file>
         <file>system-search.png</file>
+        <file>edit-select.png</file>
     </qresource>
 </RCC>
