@@ -84,9 +84,6 @@ void PopupWindow::saveSettings()
 void PopupWindow::setScan(bool scan)
 {
     m_selection->setScan(scan);
-    // this is neccessary for saving changes between sessions when there is
-    // no preferences save (from prefs dialog).
-    saveSettings();
     emit scanChanged(scan);
 }
 

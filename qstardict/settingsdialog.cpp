@@ -224,6 +224,7 @@ void SettingsDialog::accept()
     Application::instance()->dictCore()->saveSettings();
     Application::instance()->mainWindow()->saveSettings();
     Application::instance()->trayIcon()->saveSettings();
+    Application::instance()->popupWindow()->saveSettings();
 
     QDialog::accept();
 }
