@@ -122,4 +122,7 @@
 * Version 1.0
 	- search in dict widget
 	- stabilized release after some months of usage
+* Version 1.0.1
+	- compilation fix for newer UNIX/Linux systems
+	- fix for 'unsaved prefs' thanks to Robin 'cheese' Lee from Fedora Project
 
