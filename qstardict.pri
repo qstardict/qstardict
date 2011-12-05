@@ -31,7 +31,7 @@ CONFIG += \
 unix {
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0
-    LIBS += -lz
+    LIBS += -lz -lX11
 }
 macx {
     # universal binaries
