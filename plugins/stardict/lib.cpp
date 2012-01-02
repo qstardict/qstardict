@@ -1727,13 +1727,11 @@ bool Libs::LookupWithFuzzy(const gchar *sWord, gchar *reslist[], gint reslist_si
                     oFuzzystruct[iMaxDistanceAt].iMatchWordDistance = iDistance;
                     // calc new iMaxDistance
                     iMaxDistance = iDistance;
-                    int tmpVal = iMaxDistance; //stupid workaround for gcc bug 44545
                     for (int j = 0; j < reslist_size; j++)
                     {
                         if (oFuzzystruct[j].iMatchWordDistance > iMaxDistance)
-                            tmpVal = oFuzzystruct[j].iMatchWordDistance;
+                            iMaxDistance = oFuzzystruct[j].iMatchWordDistance;
                     } // calc new iMaxDistance
-                    iMaxDistance = tmpVal; // end of stupid workaround
                 }   // add to list
             }   // find one
         }   // each word
