@@ -28,8 +28,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QStack>
-#include <glib/gmem.h>
-#include <glib/gstrfuncs.h>
+#include <glib.h>
 #include "lib.h"
 #include "file.hpp"
 #include "settingsdialog.h"
