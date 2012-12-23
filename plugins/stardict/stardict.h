@@ -30,50 +30,53 @@
 
 class StarDict: public QObject, public QStarDict::DictPlugin
 {
-    Q_OBJECT
-    Q_INTERFACES(QStarDict::DictPlugin)
-    
-    public:
-        StarDict(QObject *parent = 0);
-        ~StarDict();
+	Q_OBJECT
+#if QT_VERSION >= 0x050000
+	Q_PLUGIN_METADATA(IID "com.ylsoftware.qstardict.StardictInterface" FILE "stardict.json")
+#endif
+	Q_INTERFACES(QStarDict::DictPlugin)
 
-        QString name() const
-        { return "stardict"; }
-        QString version() const
-        { return "0.1"; }
-        QString description() const
-        { return "The StarDict plugin"; }
-        QStringList authors() const
-        { return QStringList()
-            << "Hu Zheng <huzheng_001@163.com>"
-            << "Opera Wang <wangvisual@sohu.com>"
-            << "Alexander Rodin <rodin.alexander@gmail.com>"; }
-        Features features() const
-        { return Features(SearchSimilar | SettingsDialog); }
+	public:
+		StarDict(QObject *parent = 0);
+		~StarDict();
 
-        QStringList availableDicts() const;
-        QStringList loadedDicts() const
-        { return m_loadedDicts.keys(); }
-        void setLoadedDicts(const QStringList &loadedDicts);
-        DictInfo dictInfo(const QString &dict);
+		QString name() const
+		{ return "stardict"; }
+		QString version() const
+		{ return "0.1"; }
+		QString description() const
+		{ return "The StarDict plugin"; }
+		QStringList authors() const
+		{ return QStringList()
+			<< "Hu Zheng <huzheng_001@163.com>"
+			<< "Opera Wang <wangvisual@sohu.com>"
+			<< "Alexander Rodin <rodin.alexander@gmail.com>"; }
+		Features features() const
+		{ return Features(SearchSimilar | SettingsDialog); }
 
-        bool isTranslatable(const QString &dict, const QString &word);
-        Translation translate(const QString &dict, const QString &word);
-        virtual QStringList findSimilarWords(const QString &dict, const QString &word);
+		QStringList availableDicts() const;
+		QStringList loadedDicts() const
+		{ return m_loadedDicts.keys(); }
+		void setLoadedDicts(const QStringList &loadedDicts);
+		DictInfo dictInfo(const QString &dict);
 
-        int execSettingsDialog(QWidget *parent);
+		bool isTranslatable(const QString &dict, const QString &word);
+		Translation translate(const QString &dict, const QString &word);
+		virtual QStringList findSimilarWords(const QString &dict, const QString &word);
 
-        friend class SettingsDialog;
+		int execSettingsDialog(QWidget *parent);
 
-    private:
-        QString parseData(const char *data, int dictIndex = -1,
-                bool htmlSpaces = false, bool reformatLists = false, bool expandAbbreviations = false);
+		friend class SettingsDialog;
 
-        Libs *m_sdLibs;
-        QStringList m_dictDirs;
-        QHash<QString, int> m_loadedDicts;
-        bool m_reformatLists;
-        bool m_expandAbbreviations;
+	private:
+		QString parseData(const char *data, int dictIndex = -1,
+				bool htmlSpaces = false, bool reformatLists = false, bool expandAbbreviations = false);
+
+		Libs *m_sdLibs;
+		QStringList m_dictDirs;
+		QHash<QString, int> m_loadedDicts;
+		bool m_reformatLists;
+		bool m_expandAbbreviations;
 };
 
 #endif // STARDICT_H

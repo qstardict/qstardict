@@ -26,42 +26,45 @@
 
 class Web: public QObject, public QStarDict::DictPlugin
 {
-    Q_OBJECT
-    Q_INTERFACES(QStarDict::DictPlugin)
+	Q_OBJECT
+	Q_INTERFACES(QStarDict::DictPlugin)
+#if QT_VERSION >= 0x050000
+	Q_PLUGIN_METADATA(IID "com.ylsoftware.qstardict.WebInterface" FILE "web.json")
+#endif
 
-    public:
-        Web(QObject *parent = 0);
+	public:
+		Web(QObject *parent = 0);
 
-        QString name() const
-        { return "web"; }
-        QString version() const
-        { return "0.01"; }
-        QString description() const
-        { return tr("An experimental plugin for WEB dictionaries.<br><b><font color=red>Warning:</font></b> now this plugin is unstable"); }
-        QStringList authors() const
-        { return QStringList("Alexander Rodin <rodin.alexander@gmail.com>"); }
-        Features features() const
-        { return Features(SettingsDialog); }
+		QString name() const
+		{ return "web"; }
+		QString version() const
+		{ return "0.01"; }
+		QString description() const
+		{ return tr("An experimental plugin for WEB dictionaries.<br><b><font color=red>Warning:</font></b> now this plugin is unstable"); }
+		QStringList authors() const
+		{ return QStringList("Alexander Rodin <rodin.alexander@gmail.com>"); }
+		Features features() const
+		{ return Features(SettingsDialog); }
 
-        QStringList availableDicts() const;
-        QStringList loadedDicts() const
-        { return m_loadedDicts.keys(); }
-        void setLoadedDicts(const QStringList &dicts);
-        DictInfo dictInfo(const QString &dict);
+		QStringList availableDicts() const;
+		QStringList loadedDicts() const
+		{ return m_loadedDicts.keys(); }
+		void setLoadedDicts(const QStringList &dicts);
+		DictInfo dictInfo(const QString &dict);
 
-        bool isTranslatable(const QString &dict, const QString &word);
-        Translation translate(const QString &dict, const QString &word);
+		bool isTranslatable(const QString &dict, const QString &word);
+		Translation translate(const QString &dict, const QString &word);
 
-        int execSettingsDialog(QWidget *parent);
+		int execSettingsDialog(QWidget *parent);
 
-        friend class SettingsDialog;
-    private:
-        struct QueryStruct
-        {
-            QString query;
-            QByteArray codec;
-        };
-        QHash<QString, QueryStruct> m_loadedDicts;
+		friend class SettingsDialog;
+	private:
+		struct QueryStruct
+		{
+			QString query;
+			QByteArray codec;
+		};
+		QHash<QString, QueryStruct> m_loadedDicts;
 };
 
 #endif // WEB_H

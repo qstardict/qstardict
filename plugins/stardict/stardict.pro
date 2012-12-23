@@ -40,3 +40,6 @@ FORMS += \
 RESOURCES += \
     pixmaps/pixmaps.qrc
 
+OTHER_FILES += \
+    stardict.json
+

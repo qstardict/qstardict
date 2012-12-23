@@ -33,3 +33,6 @@ SOURCES += \
 RESOURCES += \
     pixmaps/pixmaps.qrc
 
+OTHER_FILES += \
+    swac.json
+

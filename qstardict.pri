@@ -24,6 +24,11 @@ QT = \
     gui \
     network \
     xml
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+  QT += widgets printsupport
+}
+
 CONFIG += \
     qt \
     warn_on \
@@ -50,7 +55,7 @@ win32 {
 
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, dbus): NO_DBUS = 1
-unix:isEmpty(NO_DBUS):CONFIG += qdbus
+unix:isEmpty(NO_DBUS):QT += dbus
 unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
 isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
 
@@ -117,5 +122,3 @@ unix {
     isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
     DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
 }
-
-system(echo "ENABLED_PLUGINS = $$ENABLED_PLUGINS" >plugins/plugins.pri)

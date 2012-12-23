@@ -86,7 +86,7 @@ void CSSEdit::setCSS(const QString &css)
                 else if (! css[i].isSpace())
                 {
                     if (css[i] == '\'' || css[i] == '\"')
-                        quote = css[i].toAscii();
+                        quote = css[i].toLatin1();
                     else
                         currentValue += css[i];
                 }

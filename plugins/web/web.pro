@@ -32,3 +32,6 @@ FORMS += \
 RESOURCES += \
     pixmaps/pixmaps.qrc
 
+OTHER_FILES += \
+    web.json
+

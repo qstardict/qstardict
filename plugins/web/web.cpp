@@ -23,88 +23,91 @@
 #include <QDir>
 #include <QEventLoop>
 #include <QFile>
-#include <QHttp>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QSettings>
 #include <QUrl>
 #include <QTextCodec>
 #include "settingsdialog.h"
 
 Web::Web(QObject *parent)
-    : QObject(parent)
+	: QObject(parent)
 {
 }
 
 QStringList Web::availableDicts() const
 {
-    QStringList result = QDir(workPath()).entryList(QStringList("*.webdict"), QDir::Files, QDir::Name);
-    result.replaceInStrings(".webdict", "");
-    return result;
+	QStringList result = QDir(workPath()).entryList(QStringList("*.webdict"), QDir::Files, QDir::Name);
+	result.replaceInStrings(".webdict", "");
+	return result;
 }
 
 void Web::setLoadedDicts(const QStringList &dicts)
 {
-    for (QStringList::const_iterator i = dicts.begin(); i != dicts.end(); ++i)
-    {
-        QString filename = workPath() + "/" + *i + ".webdict";
-        if (! QFile::exists(filename))
-            continue;
-        QSettings dict(filename, QSettings::IniFormat);
-        QString query = dict.value("query").toString();
-        if (! query.isEmpty())
-        {
-            m_loadedDicts[*i].query = query;
-            m_loadedDicts[*i].codec = dict.value("charset").toByteArray();
-        }
-    }
+	for (QStringList::const_iterator i = dicts.begin(); i != dicts.end(); ++i)
+	{
+		QString filename = workPath() + "/" + *i + ".webdict";
+		if (! QFile::exists(filename))
+			continue;
+		QSettings dict(filename, QSettings::IniFormat);
+		QString query = dict.value("query").toString();
+		if (! query.isEmpty())
+		{
+			m_loadedDicts[*i].query = query;
+			m_loadedDicts[*i].codec = dict.value("charset").toByteArray();
+		}
+	}
 }
 
 Web::DictInfo Web::dictInfo(const QString &dict)
 {
-    QString filename = workPath() + "/" + dict + ".webdict";
-    if (! QFile::exists(filename))
-        return DictInfo();
-    QSettings dictFile(filename, QSettings::IniFormat);
-    DictInfo info(name(), dict,
-            dictFile.value("author").toString(),
-            dictFile.value("description").toString());
-    return info;
+	QString filename = workPath() + "/" + dict + ".webdict";
+	if (! QFile::exists(filename))
+		return DictInfo();
+	QSettings dictFile(filename, QSettings::IniFormat);
+	DictInfo info(name(), dict,
+			dictFile.value("author").toString(),
+			dictFile.value("description").toString());
+	return info;
 }
 
 bool Web::isTranslatable(const QString &dict, const QString &word)
 {
-    if (! m_loadedDicts.contains(dict))
-        return false;
-    // TODO
-    Q_UNUSED(word);
-    return true;
+	if (! m_loadedDicts.contains(dict))
+		return false;
+	// TODO
+	Q_UNUSED(word);
+	return true;
 }
 
 Web::Translation Web::translate(const QString &dict, const QString &word)
 {
-    if (! m_loadedDicts.contains(dict))
-        return Translation();
-    QUrl url(m_loadedDicts[dict].query.replace("%s", word));
-    QEventLoop loop;
-    QHttp http(url.host(), url.port(80), &loop);
-    connect(&http, SIGNAL(done(bool)), &loop, SLOT(quit()));
-    http.get(url.path() + "?" + url.encodedQuery());
-    loop.exec();
-    QTextCodec *codec = QTextCodec::codecForName(m_loadedDicts[dict].codec);
-    QString translation;
-    if (codec)
-        translation = codec->toUnicode(http.readAll());
-    else
-        translation = QString::fromUtf8(http.readAll());
-    return Translation(dict, word, translation);
+	if (! m_loadedDicts.contains(dict))
+		return Translation();
+	QUrl url(m_loadedDicts[dict].query.replace("%s", word));
+	QEventLoop loop;
+	QNetworkAccessManager qnam;
+	QNetworkReply *reply = qnam.get(QNetworkRequest(url));
+	connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
+	QTextCodec *codec = QTextCodec::codecForName(m_loadedDicts[dict].codec);
+	QString translation;
+	if (codec)
+		translation = codec->toUnicode(reply->readAll());
+	else
+		translation = QString::fromUtf8(reply->readAll());
+	return Translation(dict, word, translation);
 }
 
 int Web::execSettingsDialog(QWidget *parent)
 {
-    ::SettingsDialog dialog(this, parent);
-    return dialog.exec();
+	::SettingsDialog dialog(this, parent);
+	return dialog.exec();
 }
 
+#if QT_VERSION < 0x050000
 Q_EXPORT_PLUGIN2(web, Web)
+#endif
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 
