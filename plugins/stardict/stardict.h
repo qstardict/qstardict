@@ -32,7 +32,7 @@ class StarDict: public QObject, public QStarDict::DictPlugin
 {
 	Q_OBJECT
 #if QT_VERSION >= 0x050000
-	Q_PLUGIN_METADATA(IID "com.ylsoftware.qstardict.StardictInterface" FILE "stardict.json")
+	Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "stardict.json")
 #endif
 	Q_INTERFACES(QStarDict::DictPlugin)
 

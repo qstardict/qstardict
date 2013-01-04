@@ -53,14 +53,14 @@ message("Documentation directory: "$$DOCS_DIR)
 win32 {
     isEmpty(GLIB2PATH) {
         error("No Glib2 library path (GLIB2PATH) is set.")
-	} else {
+    } else {
         message("Glib2 location is set to $$GLIB2PATH")
-	}
+    }
     isEmpty(ZLIBPATH) {
         error("No zlib library path (ZLIBPATH) is set.")
-	} else {
+    } else {
         message("Zlib location is set to $$ZLIBPATH")
-	}
+    }
 }
 
 docs.files = $$DOCS
