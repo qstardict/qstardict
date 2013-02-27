@@ -2,6 +2,25 @@
 <!DOCTYPE TS>
 <TS version="2.0">
 <context>
+    <name>DictBrowserSearch</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Case sensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Whole words</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QStarDict::CSSEdit</name>
     <message>
         <source>Preview</source>
@@ -128,6 +147,10 @@
     <message>
         <source>HTML files (*.html *.htm)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">搜尋</translation>
     </message>
 </context>
 <context>
@@ -457,6 +480,10 @@
     </message>
     <message>
         <source>Use system tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start with system</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
