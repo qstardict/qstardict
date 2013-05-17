@@ -1,8 +1,6 @@
 QStarDict is a StarDict clone written using Qt. The user interface
 is similar to StarDict.
 
-The homepage of the project is <http://qstardict.ylsoftware.com>.
-
 ### Main features ###
 * Full support of StarDict dictionaries
 * Working in system tray
