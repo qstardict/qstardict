@@ -25,6 +25,10 @@
 #include <QTranslator>
 #include <QStringList>
 #endif // QSTARDICT_WITH_TRANSLATIONS
+
+#include <QKeySequence>
+#include "../qxt/qxtglobalshortcut.h"
+
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
@@ -69,6 +73,12 @@ Application::Application(int &argc, char **argv)
 #ifdef QSTARDICT_WITH_DBUS
     m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
 #endif // QSTARDICT_WITH_DBUS
+
+    popupShortcut =
+        new QxtGlobalShortcut(QKeySequence(Qt::CTRL + Qt::Key_T), m_mainWindow);
+    QObject::connect(popupShortcut, SIGNAL(activated(QxtGlobalShortcut *)),
+        Application::instance()->popupWindow(),
+        SLOT(showClipboardTranslation()));
 }
 
 Application::~Application()

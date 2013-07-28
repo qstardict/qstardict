@@ -66,6 +66,26 @@ SOURCES += \
 unix:isEmpty(NO_DBUS):SOURCES += \
     dbusadaptor.cpp
 
+# From https://github.com/hluk/CopyQ/tree/92ec805b41bd097cbe523c08e320e3d32fc1c511
+unix | win32 {
+    DEFINES += BUILD_QXT_GUI
+
+    HEADERS += ../qxt/qxtglobal.h
+    SOURCES += ../qxt/qxtglobal.cpp
+
+    HEADERS += ../qxt/qxtglobalshortcut.h
+    HEADERS += ../qxt/qxtglobalshortcut_p.h
+    SOURCES += ../qxt/qxtglobalshortcut.cpp
+
+    unix:!macx: SOURCES += ../qxt/qxtglobalshortcut_x11.cpp
+    macx: SOURCES += ../qxt/qxtglobalshortcut_mac.cpp
+    win32: SOURCES += ../qxt/qxtglobalshortcut_win.cpp
+
+    greaterThan(QT_MAJOR_VERSION, 4): unix {
+        QT += gui-private
+    }
+}
+
 RESOURCES += \
     pixmaps/pixmaps.qrc
 win32:RC_FILE += \

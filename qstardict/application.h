@@ -25,6 +25,7 @@
 #ifdef QSTARDICT_WITH_TRANSLATIONS
 class QTranslator;
 #endif // QSTARDICT_WITH_TRANSLATIONS
+class QxtGlobalShortcut;
 
 namespace QStarDict
 {
@@ -114,6 +115,7 @@ class Application: public QApplication
 #ifdef QSTARDICT_WITH_DBUS
         DBusAdaptor *m_dbusAdaptor;
 #endif // QSTARDICT_WITH_DBUS
+        QxtGlobalShortcut *popupShortcut;
 
         QString commandLineText();
 };
