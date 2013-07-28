@@ -1,0 +1,8 @@
+qstardict/qstardict
+*.o
+*.so
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile
+.*.sw[a-z]
