@@ -59,6 +59,9 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void activated(QxtGlobalShortcut *self);
+
+private:
+    void toogleRegistration();
 };
 
 #endif // QXTGLOBALSHORTCUT_H

@@ -56,7 +56,7 @@ public:
     Qt::KeyboardModifiers mods;
 
     bool setShortcut(const QKeySequence& shortcut);
-    bool unsetShortcut();
+    bool unsetShortcut(bool destroy = true);
 
 #ifndef Q_WS_MAC
     static int ref;

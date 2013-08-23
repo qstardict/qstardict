@@ -196,30 +196,35 @@
 <context>
     <name>QStarDict::MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="118"/>
+        <location filename="../mainwindow.cpp" line="114"/>
+        <source>Ctrl+T</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="140"/>
         <source>About QStarDict</source>
         <translation>Informazioni su QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="119"/>
+        <location filename="../mainwindow.cpp" line="141"/>
         <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Versione Qt di StarDict&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="120"/>
+        <location filename="../mainwindow.cpp" line="142"/>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
         <translation>Copyright  (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>
-        <location filename="../mainwindow.cpp" line="139"/>
-        <location filename="../mainwindow.cpp" line="178"/>
+        <location filename="../mainwindow.cpp" line="161"/>
+        <location filename="../mainwindow.cpp" line="200"/>
         <source>QStarDict</source>
         <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="180"/>
-        <location filename="../mainwindow.cpp" line="192"/>
+        <location filename="../mainwindow.cpp" line="202"/>
+        <location filename="../mainwindow.cpp" line="214"/>
         <source>%1 - QStarDict</source>
         <translation>%1 - QStarDict</translation>
     </message>
@@ -307,81 +312,81 @@
 <context>
     <name>QStarDict::SettingsDialog</name>
     <message>
-        <location filename="../settingsdialog.cpp" line="61"/>
-        <location filename="../settingsdialog.cpp" line="69"/>
+        <location filename="../settingsdialog.cpp" line="63"/>
+        <location filename="../settingsdialog.cpp" line="71"/>
         <source>Enabled</source>
         <translation>Attivato</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="61"/>
-        <location filename="../settingsdialog.cpp" line="69"/>
+        <location filename="../settingsdialog.cpp" line="63"/>
+        <location filename="../settingsdialog.cpp" line="71"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="69"/>
+        <location filename="../settingsdialog.cpp" line="71"/>
         <source>Plugin</source>
         <translation>Estensione</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="315"/>
+        <location filename="../settingsdialog.cpp" line="327"/>
         <source>Information about dictionary &quot;%1&quot;</source>
         <translation>Informazione sul dizionario &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="316"/>
-        <location filename="../settingsdialog.cpp" line="333"/>
+        <location filename="../settingsdialog.cpp" line="328"/>
+        <location filename="../settingsdialog.cpp" line="345"/>
         <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Nome:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="317"/>
+        <location filename="../settingsdialog.cpp" line="329"/>
         <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Estensione:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="319"/>
+        <location filename="../settingsdialog.cpp" line="331"/>
         <source>unknown</source>
         <translation>ignoto</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="320"/>
-        <location filename="../settingsdialog.cpp" line="337"/>
+        <location filename="../settingsdialog.cpp" line="332"/>
+        <location filename="../settingsdialog.cpp" line="349"/>
         <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
         <translation>&lt;b&gt;Descrizione:&lt;/b&gt; %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="332"/>
+        <location filename="../settingsdialog.cpp" line="344"/>
         <source>Information about %1 plugin</source>
         <translation>Informazione sull&apos;estensione %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="334"/>
+        <location filename="../settingsdialog.cpp" line="346"/>
         <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Versione:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="335"/>
+        <location filename="../settingsdialog.cpp" line="347"/>
         <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Autori:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="335"/>
+        <location filename="../settingsdialog.cpp" line="347"/>
         <source>&lt;br&gt;</source>
         <translation>&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="336"/>
+        <location filename="../settingsdialog.cpp" line="348"/>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Puoi cercare parole simili:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="336"/>
+        <location filename="../settingsdialog.cpp" line="348"/>
         <source>yes</source>
         <translation>si</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="336"/>
+        <location filename="../settingsdialog.cpp" line="348"/>
         <source>no</source>
         <translation>no</translation>
     </message>
@@ -487,128 +492,133 @@
         <translation>Comportamento</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="313"/>
+        <location filename="../settingsdialog.ui" line="310"/>
+        <source>Show translation popup by shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingsdialog.ui" line="334"/>
         <source>Pronounce the word</source>
         <translation>Pronuncia la parola</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="330"/>
+        <location filename="../settingsdialog.ui" line="351"/>
         <source>Timeout before hide after mouse over</source>
         <translation>Tempo di scomparsa dopo aver mosso il mouse</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="337"/>
+        <location filename="../settingsdialog.ui" line="358"/>
         <source>Don&apos;t hide</source>
         <translation>Non nascondere</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="340"/>
+        <location filename="../settingsdialog.ui" line="361"/>
         <source> sec</source>
         <translation>sec</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="375"/>
+        <location filename="../settingsdialog.ui" line="396"/>
         <source>Show only if modifier pressed</source>
         <translation>Mostra solo se si preme</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="386"/>
+        <location filename="../settingsdialog.ui" line="407"/>
         <source>Alt</source>
         <translation>Alt</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="391"/>
+        <location filename="../settingsdialog.ui" line="412"/>
         <source>Control</source>
         <translation>Control</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="396"/>
+        <location filename="../settingsdialog.ui" line="417"/>
         <source>Shift</source>
         <translation>Shift</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="401"/>
+        <location filename="../settingsdialog.ui" line="422"/>
         <source>Win</source>
         <translation>Win</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="411"/>
+        <location filename="../settingsdialog.ui" line="432"/>
         <source>Scan selection</source>
         <translation>Cerca selezione</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="421"/>
+        <location filename="../settingsdialog.ui" line="442"/>
         <source>Show if word not found</source>
         <translation>Mostra se la parola non viene trovata</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="431"/>
-        <location filename="../settingsdialog.ui" line="556"/>
+        <location filename="../settingsdialog.ui" line="452"/>
+        <location filename="../settingsdialog.ui" line="577"/>
         <source>Apperance</source>
         <translation>Aspetto</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="451"/>
+        <location filename="../settingsdialog.ui" line="472"/>
         <source>Opacity</source>
         <translation>Opacità</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="458"/>
+        <location filename="../settingsdialog.ui" line="479"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="487"/>
+        <location filename="../settingsdialog.ui" line="508"/>
         <source>Default width</source>
         <translation>Ampiezza di default</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="517"/>
+        <location filename="../settingsdialog.ui" line="538"/>
         <source>Default height</source>
         <translation>Altezza di default</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="318"/>
+        <location filename="../settingsdialog.cpp" line="330"/>
         <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Autore:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="319"/>
+        <location filename="../settingsdialog.cpp" line="331"/>
         <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
         <translation>&lt;b&gt;Conto parole:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="129"/>
+        <location filename="../settingsdialog.cpp" line="135"/>
         <source>All translation</source>
         <translation>Tutta la traduzione</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="130"/>
+        <location filename="../settingsdialog.cpp" line="136"/>
         <source>Dictionary name</source>
         <translation>Nome del dizionario</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="131"/>
+        <location filename="../settingsdialog.cpp" line="137"/>
         <source>Title</source>
         <translation>Titolo</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="132"/>
+        <location filename="../settingsdialog.cpp" line="138"/>
         <source>Explanation</source>
         <translation>Spiegazione</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="133"/>
+        <location filename="../settingsdialog.cpp" line="139"/>
         <source>Abbreviation</source>
         <translation>Abbreviazione</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="134"/>
+        <location filename="../settingsdialog.cpp" line="140"/>
         <source>Example</source>
         <translation>Esempio</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="135"/>
+        <location filename="../settingsdialog.cpp" line="141"/>
         <source>Transcription</source>
         <translation>Trascrizione</translation>
     </message>

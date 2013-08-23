@@ -25,6 +25,7 @@
 #include <QHeaderView>
 #include <QInputDialog>
 #include <QSettings>
+#include <QKeySequence>
 #include <math.h>
 #include "dictcore.h"
 #include "mainwindow.h"
@@ -32,6 +33,7 @@
 #include "application.h"
 #include "speaker.h"
 #include "trayicon.h"
+#include "../qxt/qxtglobalshortcut.h"
 
 namespace
 {
@@ -50,9 +52,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         : QDialog(parent)
 {
     setupUi(this);
+    Application * const app = Application::instance();
 
-
-    DictCore *dict = Application::instance()->dictCore();
+    DictCore *dict = app->dictCore();
     m_oldPlugins = dict->loadedPlugins();
     m_oldDicts = dict->loadedDicts();
 
@@ -75,9 +77,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     dictsTableView->setColumnWidth(2, 120);
 
     // Load global settings
-    systemTrayBox->setChecked(Application::instance()->trayIcon()->isVisible());
-    instantSearchBox->setChecked(Application::instance()->mainWindow()->isInstantSearch());
-    speechCmdEdit->setText(Application::instance()->speaker()->speechCmd());
+    systemTrayBox->setChecked(app->trayIcon()->isVisible());
+    instantSearchBox->setChecked(app->mainWindow()->isInstantSearch());
+    speechCmdEdit->setText(app->speaker()->speechCmd());
 #ifdef Q_OS_LINUX
 	QFile desktop(QDir::homePath() + "/.config/autostart/qstardict.desktop");
 	if (desktop.open(QIODevice::ReadOnly) && QString(desktop.readAll())
@@ -93,8 +95,12 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	autostartBox->setVisible(false);
 #endif
 
+    // Load popup shortcut settings
+    shortcutPopupEdit->setText(app->popupShortcut()->shortcut().toString());
+    shortcutPopupBox->setChecked(app->popupShortcut()->isEnabled());
+
     // Load popup window settings
-    PopupWindow *popup = Application::instance()->popupWindow();
+    PopupWindow *popup = app->popupWindow();
     useScanBox->setChecked(popup->isScan());
     if (popup->modifierKey())
     {
@@ -134,7 +140,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     cssAliases["font.example"] = tr("Example");
     cssAliases["font.transcription"] = tr("Transcription");
     apperanceCSSEdit->setElementsAliases(cssAliases);
-    apperanceCSSEdit->setCSS(Application::instance()->mainWindow()->defaultStyleSheet());
+    apperanceCSSEdit->setCSS(app->mainWindow()->defaultStyleSheet());
 
     connect(m_pluginsModel, SIGNAL(itemChanged(QStandardItem*)),
             SLOT(pluginsItemChanged(QStandardItem*)));
@@ -142,8 +148,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
 void SettingsDialog::accept()
 {
+    Application * const app = Application::instance();
+
     // Save dicts and plugins settings
-    DictCore *dict = Application::instance()->dictCore();
+    DictCore *dict = app->dictCore();
     QStringList loadedPlugins;
     int rowCount = m_pluginsModel->rowCount();
     for (int i = 0; i < rowCount; ++i)
@@ -159,9 +167,9 @@ void SettingsDialog::accept()
     dict->setLoadedDicts(loadedDicts);
 
     // Save global settings
-    Application::instance()->trayIcon()->setVisible(systemTrayBox->isChecked());
-    Application::instance()->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
-    Application::instance()->speaker()->setSpeechCmd(speechCmdEdit->text());
+    app->trayIcon()->setVisible(systemTrayBox->isChecked());
+    app->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
+    app->speaker()->setSpeechCmd(speechCmdEdit->text());
 #ifdef Q_OS_LINUX
 	QDir home = QDir::home();
 	if (!home.exists(".config/autostart")) {
@@ -190,8 +198,12 @@ void SettingsDialog::accept()
 		reg.remove(QCoreApplication::applicationName());
 #endif
 
+    // Save popup shortcut settings
+    app->popupShortcut()->setShortcut(QKeySequence(shortcutPopupEdit->text()));
+    app->popupShortcut()->setEnabled(shortcutPopupBox->isChecked());
+
     // Save popup window settings
-    PopupWindow *popup = Application::instance()->popupWindow();
+    PopupWindow *popup = app->popupWindow();
     popup->setScan(useScanBox->isChecked());
     int modifierKey = 0;
     if (useScanModifierBox->isChecked())
@@ -213,18 +225,18 @@ void SettingsDialog::accept()
     popup->setPronounceWord(pronounceWordBox->isChecked());
 
     // Save translations CSS
-    Application::instance()->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
-    Application::instance()->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
+    app->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
+    app->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
 
-    if (! Application::instance()->trayIcon()->isVisible())
-        Application::instance()->mainWindow()->show();
+    if (! app->trayIcon()->isVisible())
+        app->mainWindow()->show();
 
-    Application::instance()->mainWindow()->reload();
+    app->mainWindow()->reload();
 
-    Application::instance()->dictCore()->saveSettings();
-    Application::instance()->mainWindow()->saveSettings();
-    Application::instance()->trayIcon()->saveSettings();
-    Application::instance()->popupWindow()->saveSettings();
+    app->dictCore()->saveSettings();
+    app->mainWindow()->saveSettings();
+    app->trayIcon()->saveSettings();
+    app->popupWindow()->saveSettings();
 
     QDialog::accept();
 }

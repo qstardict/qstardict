@@ -95,6 +95,11 @@ class Application: public QApplication
          */
         TrayIcon *trayIcon()
         { return m_trayIcon; }
+        /**
+         * Returns a pointer to the popupShortcut instance.
+         */
+        QxtGlobalShortcut *popupShortcut()
+        { return m_popupShortcut; }
 #ifdef QSTARDICT_WITH_DBUS
         /**
          * Returns a pointer to the DBusAdaptor instance.
@@ -112,10 +117,10 @@ class Application: public QApplication
         PopupWindow *m_popupWindow;
         Speaker *m_speaker;
         TrayIcon *m_trayIcon;
+        QxtGlobalShortcut *m_popupShortcut;
 #ifdef QSTARDICT_WITH_DBUS
         DBusAdaptor *m_dbusAdaptor;
 #endif // QSTARDICT_WITH_DBUS
-        QxtGlobalShortcut *popupShortcut;
 
         QString commandLineText();
 };
