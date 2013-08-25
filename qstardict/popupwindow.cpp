@@ -23,6 +23,7 @@
 #include <QMouseEvent>
 #include <QSettings>
 #include <QRegExp>
+#include <QClipboard>
 #include "dictwidget.h"
 #include "keyboard.h"
 #include "selection.h"
@@ -122,6 +123,11 @@ void PopupWindow::showTranslation(const QString &text)
         if (isFound && m_pronounceWord)
             Application::instance()->speaker()->speak(simpl);
     }
+}
+
+void PopupWindow::showClipboardTranslation()
+{
+    showTranslation(Application::clipboard()->text(QClipboard::Selection));
 }
 
 }

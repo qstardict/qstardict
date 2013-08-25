@@ -25,6 +25,10 @@
 #include <QTranslator>
 #include <QStringList>
 #endif // QSTARDICT_WITH_TRANSLATIONS
+
+#include <QKeySequence>
+#include "../qxt/qxtglobalshortcut.h"
+
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
@@ -64,6 +68,7 @@ Application::Application(int &argc, char **argv)
     m_popupWindow->setDict(m_dictCore);
     m_speaker = new Speaker;
     m_trayIcon = new TrayIcon;
+    m_popupShortcut = new QxtGlobalShortcut;
     m_mainWindow = new MainWindow;
     m_mainWindow->setDict(m_dictCore);
 #ifdef QSTARDICT_WITH_DBUS
@@ -78,6 +83,7 @@ Application::~Application()
     delete m_popupWindow;
     delete m_speaker;
     delete m_dictCore;
+    delete m_popupShortcut;
 #ifdef QSTARDICT_WITH_TRANSLATIONS
     removeTranslator(m_translator);
     delete m_translator;

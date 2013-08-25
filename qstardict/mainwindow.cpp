@@ -33,11 +33,13 @@
 #include <QTextStream>
 #include <QTimerEvent>
 #include <QToolBar>
+#include <QKeySequence>
 #include "dictcore.h"
 #include "application.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
 #include "trayicon.h"
+#include "../qxt/qxtglobalshortcut.h"
 
 namespace QStarDict 
 {
@@ -70,12 +72,14 @@ void MainWindow::showTranslation(const QString &text)
 
 void MainWindow::createConnections()
 {
+    Application * const app = Application::instance();
+
     connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
-    actionScan->setChecked(Application::instance()->popupWindow()->isScan());
+    actionScan->setChecked(app->popupWindow()->isScan());
     connect(actionScan, SIGNAL(toggled(bool)), 
-            Application::instance()->popupWindow(), SLOT(setScan(bool)));
-    connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)),
+            app->popupWindow(), SLOT(setScan(bool)));
+    connect(app->popupWindow(), SIGNAL(scanChanged(bool)),
             actionScan, SLOT(setChecked(bool)));
     connect(wordsList, SIGNAL(itemActivated(QListWidgetItem*)),
             SLOT(wordsListItemActivated(QListWidgetItem*)));
@@ -84,20 +88,32 @@ void MainWindow::createConnections()
 
     connect(translationView, SIGNAL(wordTranslated(const QString&)),
             SLOT(wordTranslated(const QString&)));
+
+    connect(app->popupShortcut(),
+        SIGNAL(activated(QxtGlobalShortcut *)),
+        app->popupWindow(),
+        SLOT(showClipboardTranslation()));
 }
 
 void MainWindow::loadSettings()
 {
+    Application * const app = Application::instance();
+
     QSettings config;
     restoreGeometry(config.value("MainWindow/geometry", QByteArray()).toByteArray());
     restoreState(config.value("MainWindow/state", QByteArray()).toByteArray());
     setVisible(config.value("MainWindow/visible", true).toBool());
-    if (isHidden() && ! Application::instance()->trayIcon()->isVisible())
+    if (isHidden() && ! app->trayIcon()->isVisible())
         show();
     wordsListDock->setFloating(config.value("MainWindow/wordsListDock/floating", wordsListDock->isFloating()).toBool());
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
     setInstantSearch(config.value("MainWindow/instantSearch", true).toBool());
     setDefaultStyleSheet(config.value("MainWindow/defaultStyleSheet", defaultStyleSheet()).toString());
+
+    app->popupShortcut()->setShortcut(QKeySequence(
+        config.value("MainWindow/popupShortcutString", tr("Ctrl+T")).toString()));
+    app->popupShortcut()->setEnabled(
+        config.value("MainWindow/popupShortcutEnabled", false).toBool());
 }
 
 void MainWindow::saveSettings()
@@ -110,6 +126,12 @@ void MainWindow::saveSettings()
     config.setValue("MainWindow/wordsListDock/geometry", wordsListDock->geometry());
     config.setValue("MainWindow/instantSearch", m_instantSearch);
     config.setValue("MainWindow/defaultStyleSheet", defaultStyleSheet());
+
+    Application * const app = Application::instance();
+    config.setValue("MainWindow/popupShortcutString",
+        app->popupShortcut()->shortcut().toString());
+    config.setValue("MainWindow/popupShortcutEnabled",
+        app->popupShortcut()->isEnabled());
 }
 
 void MainWindow::on_actionAbout_triggered()

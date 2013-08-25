@@ -112,6 +112,10 @@ class PopupWindow: public ResizablePopup
          */
         void showTranslation(const QString &text);
         /**
+         * Popup with translation of current clipboard contents.
+         */
+        void showClipboardTranslation();
+        /**
          * If prounounceWord is true shown words will be prounounced.
          */
         void setPronounceWord(bool pronounceWord)

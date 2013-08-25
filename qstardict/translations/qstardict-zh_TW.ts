@@ -239,6 +239,10 @@
         <source>F1</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Ctrl+T</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QStarDict::SettingsDialog</name>
@@ -484,6 +488,10 @@
     </message>
     <message>
         <source>Start with system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show translation popup by shortcut</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
