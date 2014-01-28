@@ -29,7 +29,6 @@ TRANSLATIONS += \
     qstardict-pt_BR.ts \
     qstardict-ru_RU.ts \
     qstardict-ua_UA.ts \
-    qstardict-tr_TR.ts \
     qstardict-zh_CN.ts \
     qstardict-zh_TW.ts
 
@@ -45,7 +44,6 @@ COMPILED_TRANSLATIONS += \
     qstardict-pt_BR.qm \
     qstardict-ru_RU.qm \
     qstardict-ua_UA.qm \
-    qstardict-tr_TR.qm \
     qstardict-zh_CN.qm \
     qstardict-zh_TW.qm
 DISTFILES += $$COMPILED_TRANSLATIONS
