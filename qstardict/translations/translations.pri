@@ -18,38 +18,47 @@
 #############################################################################
 
 TRANSLATIONS += \
-    qstardict-bg_BG.ts \
-    qstardict-cs_CZ.ts \
-    qstardict-de_DE.ts \
-    qstardict-es_ES.ts \
-    qstardict-fr_FR.ts \
-    qstardict-it_IT.ts \
-    qstardict-lt_LT.ts \
-    qstardict-pl_PL.ts \
-    qstardict-pt_BR.ts \
-    qstardict-ru_RU.ts \
-    qstardict-ua_UA.ts \
-    qstardict-zh_CN.ts \
-    qstardict-zh_TW.ts
+    translations/qstardict-bg_BG.ts \
+    translations/qstardict-cs_CZ.ts \
+    translations/qstardict-de_DE.ts \
+    translations/qstardict-es_ES.ts \
+    translations/qstardict-fr_FR.ts \
+    translations/qstardict-it_IT.ts \
+    translations/qstardict-lt_LT.ts \
+    translations/qstardict-pl_PL.ts \
+    translations/qstardict-pt_BR.ts \
+    translations/qstardict-ru_RU.ts \
+    translations/qstardict-ua_UA.ts \
+    translations/qstardict-zh_CN.ts \
+    translations/qstardict-zh_TW.ts
 
-COMPILED_TRANSLATIONS += \
-    qstardict-bg_BG.qm \
-    qstardict-cs_CZ.qm \
-    qstardict-de_DE.qm \
-    qstardict-es_ES.qm \
-    qstardict-fr_FR.qm \
-    qstardict-it_IT.qm \
-    qstardict-lt_LT.qm \
-    qstardict-pl_PL.qm \
-    qstardict-pt_BR.qm \
-    qstardict-ru_RU.qm \
-    qstardict-ua_UA.qm \
-    qstardict-zh_CN.qm \
-    qstardict-zh_TW.qm
-DISTFILES += $$COMPILED_TRANSLATIONS
+# from https://github.com/Arora/arora/blob/e310d632e9f6c135c376576d2d466af03fd219ee/src/locale/locale.pri
+isEmpty(QMAKE_LRELEASE) {
+    win32|os2:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
+    else:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+    unix {
+        !exists($$QMAKE_LRELEASE) { QMAKE_LRELEASE = lrelease-qt4 }
+    } else {
+        !exists($$QMAKE_LRELEASE) { QMAKE_LRELEASE = lrelease }
+    }
+}
+
+# from https://github.com/Arora/arora/blob/e310d632e9f6c135c376576d2d466af03fd219ee/src/locale/locale.pri
+updateqm.input = TRANSLATIONS
+updateqm.output = translations/${QMAKE_FILE_BASE}.qm
+updateqm.commands = $$QMAKE_LRELEASE -silent ${QMAKE_FILE_IN} -qm translations/${QMAKE_FILE_BASE}.qm
+updateqm.CONFIG += no_link target_predeps
+QMAKE_EXTRA_COMPILERS += updateqm
 
 isEmpty(NO_TRANSLATIONS) {
-    for(t, COMPILED_TRANSLATIONS):translations.files += "translations/$${t}"
+    translations.CONFIG += no_check_exist
+
+    for(t, TRANSLATIONS) {
+        t ~= "s/^(.+).ts$/\\1.qm"
+        translations.files += $$t
+        DISTFILES          += $$t # For what?
+    }
+
     translations.path = $$TRANSLATIONS_DIR
     INSTALLS += translations
 }
