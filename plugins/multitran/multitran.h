@@ -29,45 +29,45 @@
 
 class Multitran: public QObject, public QStarDict::DictPlugin
 {
-	Q_OBJECT
-	Q_INTERFACES(QStarDict::DictPlugin)
+    Q_OBJECT
+    Q_INTERFACES(QStarDict::DictPlugin)
 #if QT_VERSION >= 0x050000
-	Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "multitran.json")
+    Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "multitran.json")
 #endif
 
-	public:
-		Multitran(QObject *parent = 0);
-		~Multitran();
+    public:
+        Multitran(QObject *parent = 0);
+        ~Multitran();
 
-		QString name() const
-		{ return "multitran"; }
-		QString version() const
-		{ return "0.1"; }
-		QString description() const
-		{ return "The Multitran plugin"; }
-		QStringList authors() const
-		{ return QStringList()
-			<< tr("Stanislav Ievlev <inger@altlinux.org>")
-			<< tr("Nick Shaforostoff <shaforostoff@kde.ru>"); }
-		Features features() const
-		{ return Features(/*SearchSimilar | SettingsDialog*/); }
+        QString name() const
+        { return "multitran"; }
+        QString version() const
+        { return "0.1"; }
+        QString description() const
+        { return "The Multitran plugin"; }
+        QStringList authors() const
+        { return QStringList()
+            << tr("Stanislav Ievlev <inger@altlinux.org>")
+            << tr("Nick Shaforostoff <shaforostoff@kde.ru>"); }
+        Features features() const
+        { return Features(/*SearchSimilar | SettingsDialog*/); }
 
-		QStringList availableDicts() const;
-		QStringList loadedDicts() const {return QStringList("Multitran");}//{ return m_loadedDicts.keys(); }
-		void setLoadedDicts(const QStringList &loadedDicts);
-		DictInfo dictInfo(const QString &dict);
+        QStringList availableDicts() const;
+        QStringList loadedDicts() const {return QStringList("Multitran");}//{ return m_loadedDicts.keys(); }
+        void setLoadedDicts(const QStringList &loadedDicts);
+        DictInfo dictInfo(const QString &dict);
 
-		bool isTranslatable(const QString &dict, const QString &word);
-		Translation translate(const QString &dict, const QString &word);
-		virtual QStringList findSimilarWords(const QString &dict, const QString &word);
+        bool isTranslatable(const QString &dict, const QString &word);
+        Translation translate(const QString &dict, const QString &word);
+        virtual QStringList findSimilarWords(const QString &dict, const QString &word);
 
-		int execSettingsDialog(QWidget *parent);
+        int execSettingsDialog(QWidget *parent);
 
-		//friend class SettingsDialog;
+        //friend class SettingsDialog;
 
-	private:
-		QStringList m_dictDirs;
-		QHash<QString, int> m_loadedDicts;
+    private:
+        QStringList m_dictDirs;
+        QHash<QString, int> m_loadedDicts;
 };
 
 #endif // MULTITRAN_H

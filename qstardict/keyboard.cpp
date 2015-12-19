@@ -30,18 +30,18 @@ namespace QStarDict
 
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
-	Qt::KeyboardModifiers result;
+    Qt::KeyboardModifiers result;
 
-	if (GetAsyncKeyState(VK_MENU) & 0x8000)
-		result |= Qt::AltModifier;
-	if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
-		result |= Qt::ControlModifier;
-	if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
-		result |= Qt::ShiftModifier;
-	if ((GetAsyncKeyState(VK_LWIN) & 0x8000) || (GetAsyncKeyState(VK_RWIN) & 0x8000))
-		result |= Qt::MetaModifier;
+    if (GetAsyncKeyState(VK_MENU) & 0x8000)
+        result |= Qt::AltModifier;
+    if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+        result |= Qt::ControlModifier;
+    if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
+        result |= Qt::ShiftModifier;
+    if ((GetAsyncKeyState(VK_LWIN) & 0x8000) || (GetAsyncKeyState(VK_RWIN) & 0x8000))
+        result |= Qt::MetaModifier;
 
-	return result;
+    return result;
 }
 
 } // namespace
@@ -54,7 +54,7 @@ namespace QStarDict
 
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
-	return QApplication::keyboardModifiers();
+    return QApplication::keyboardModifiers();
 }
 
 } // namespace
@@ -81,22 +81,22 @@ namespace QStarDict
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
 #if QT_VERSION < 0x040800
-	Qt::KeyboardModifiers result;
-	XkbStateRec state;
+    Qt::KeyboardModifiers result;
+    XkbStateRec state;
 
-	XkbGetState(QX11Info::display(), XkbUseCoreKbd, &state);
-	if (state.base_mods & mAlt)
-		result |= Qt::AltModifier;
-	if (state.base_mods & mCtrl)
-		result |= Qt::ControlModifier;
-	if (state.base_mods & mShift)
-		result |= Qt::ShiftModifier;
-	if (state.base_mods & mWin)
-		result |= Qt::MetaModifier;
+    XkbGetState(QX11Info::display(), XkbUseCoreKbd, &state);
+    if (state.base_mods & mAlt)
+        result |= Qt::AltModifier;
+    if (state.base_mods & mCtrl)
+        result |= Qt::ControlModifier;
+    if (state.base_mods & mShift)
+        result |= Qt::ShiftModifier;
+    if (state.base_mods & mWin)
+        result |= Qt::MetaModifier;
 
-	return result;
+    return result;
 #else
-	return QApplication::queryKeyboardModifiers();
+    return QApplication::queryKeyboardModifiers();
 #endif
 }
 

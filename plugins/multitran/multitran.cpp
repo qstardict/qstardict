@@ -61,90 +61,90 @@ typedef mt::singleton_array<mt::file_map> txtdb_type;
 
 struct compare_names
 {
-	compare_names(const std::string& from,const std::string& to):
-		from_(from),
-		to_(to)
-	{}
-	bool operator()(const mt::lang_pair& lng1,const mt::lang_pair& lng2)
-	{
-		return distance(lng1) < distance(lng2);
-	}
-	int distance(const mt::lang_pair& lng)
-	{
-		std::string from_name=mt::lang_name(lng.first);
-		std::string to_name=mt::lang_name(lng.second);
+    compare_names(const std::string& from,const std::string& to):
+        from_(from),
+        to_(to)
+    {}
+    bool operator()(const mt::lang_pair& lng1,const mt::lang_pair& lng2)
+    {
+        return distance(lng1) < distance(lng2);
+    }
+    int distance(const mt::lang_pair& lng)
+    {
+        std::string from_name=mt::lang_name(lng.first);
+        std::string to_name=mt::lang_name(lng.second);
 
-		return (!from_.empty() && !from_name.compare(0,from_.size(),from_)) +
-				(!to_.empty() && !to_name.compare(0,to_.size(),to_));
-	}
-	std::string from_,to_;
+        return (!from_.empty() && !from_name.compare(0,from_.size(),from_)) +
+                (!to_.empty() && !to_name.compare(0,to_.size(),to_));
+    }
+    std::string from_,to_;
 };
 
 int compare_articles(const mt::article& a1,const mt::article& a2)
 {
-	if (a1.lgk() != a2.lgk())
-		return a2.lgk() > a1.lgk();
-	else
-		return a2.subject() > a1.subject();
+    if (a1.lgk() != a2.lgk())
+        return a2.lgk() > a1.lgk();
+    else
+        return a2.subject() > a1.subject();
 }
 
 
 
 struct show
 {
-	show(std::string& r_, bool& found_): r(r_),found(found_) {}
-	void operator()(mt::article_set as)
-	{
-		mt::file_map& subj = txtdb_type::instance(mt::datapath+mt::path_separator()+"subjects.txt");
-		mt::file_map& spart = txtdb_type::instance(mt::datapath+mt::path_separator()+"speechparts.txt");
+    show(std::string& r_, bool& found_): r(r_),found(found_) {}
+    void operator()(mt::article_set as)
+    {
+        mt::file_map& subj = txtdb_type::instance(mt::datapath+mt::path_separator()+"subjects.txt");
+        mt::file_map& spart = txtdb_type::instance(mt::datapath+mt::path_separator()+"speechparts.txt");
 
-		if (!as.articles_.empty())
-		{
-			found=true;
-			std::sort(as.articles_.begin(),as.articles_.end(),compare_articles);
+        if (!as.articles_.empty())
+        {
+            found=true;
+            std::sort(as.articles_.begin(),as.articles_.end(),compare_articles);
 
-			int prev_lgk = -1;
-			std::string prev_subject = "x";
-			for(size_t i=0;i<as.articles_.size();++i)
-			{
-				const mt::article& a = as.articles_[i];
-				if (prev_lgk != a.lgk())
-				{
-					r+="<tr><td><b>"+a.orig()+","+
-					spart.any_name(mt::to_string<int>(mt::speech_part(a.lgk())))+"</b></td></tr>";
-					prev_lgk = a.lgk();
-					prev_subject = "x";//reset subject
-				}
-				if (prev_subject != a.subject())
-				{
-					r+="<tr><td></td><td><font class=\"explanation\">";
-					r+=subj.any_name(a.subject());
-					r+="</font></td><td>";
-					r+=a.translated();
-					prev_subject = a.subject();
-				}
-				else
-					r+=", "+a.translated();
-			}
-			r+="</td></tr>";
-		}
-	}
-	std::string &r;
-	bool& found;
+            int prev_lgk = -1;
+            std::string prev_subject = "x";
+            for(size_t i=0;i<as.articles_.size();++i)
+            {
+                const mt::article& a = as.articles_[i];
+                if (prev_lgk != a.lgk())
+                {
+                    r+="<tr><td><b>"+a.orig()+","+
+                    spart.any_name(mt::to_string<int>(mt::speech_part(a.lgk())))+"</b></td></tr>";
+                    prev_lgk = a.lgk();
+                    prev_subject = "x";//reset subject
+                }
+                if (prev_subject != a.subject())
+                {
+                    r+="<tr><td></td><td><font class=\"explanation\">";
+                    r+=subj.any_name(a.subject());
+                    r+="</font></td><td>";
+                    r+=a.translated();
+                    prev_subject = a.subject();
+                }
+                else
+                    r+=", "+a.translated();
+            }
+            r+="</td></tr>";
+        }
+    }
+    std::string &r;
+    bool& found;
 };
 
 std::string do_translate(const std::string& text,mt::lang_code from,mt::lang_code to)
 {
-	bool found=false;
-	std::string r="<table>";
-	mt::phrase ph;
-	mt::fill_phrase(ph,text,from);
-	mt::translation tr(ph,from,to);
-	std::for_each(tr.asets().begin(), tr.asets().end(), show(r,found));
-	r+="</table>";
-	if (found)
-		return r;
-	return "";
+    bool found=false;
+    std::string r="<table>";
+    mt::phrase ph;
+    mt::fill_phrase(ph,text,from);
+    mt::translation tr(ph,from,to);
+    std::for_each(tr.asets().begin(), tr.asets().end(), show(r,found));
+    r+="</table>";
+    if (found)
+        return r;
+    return "";
 }
 
 
@@ -157,7 +157,7 @@ std::string do_translate(const std::string& text,mt::lang_code from,mt::lang_cod
 
 
 Multitran::Multitran(QObject *parent)
-	: QObject(parent)
+    : QObject(parent)
 {
 //     QSettings settings("qstardict","qstardict");
 //     m_dictDirs = settings.value("Multitran/dictDirs", m_dictDirs).toStringList();
@@ -173,7 +173,7 @@ Multitran::~Multitran()
 
 QStringList Multitran::availableDicts() const
 {
-	return QStringList("Multitran");
+    return QStringList("Multitran");
 }
 
 void Multitran::setLoadedDicts(const QStringList &loadedDicts)
@@ -185,65 +185,65 @@ Multitran::DictInfo Multitran::dictInfo(const QString &dict)
 //     ::DictInfo nativeInfo;
 //     nativeInfo.wordcount = 0;
 
-	DictInfo result(name(), dict);
-	result.setAuthor("Multitran.ru");
-	result.setDescription(tr("1 mln words excerpt of multitran.ru"));
-	result.setWordsCount(-1);
-	return result;
+    DictInfo result(name(), dict);
+    result.setAuthor("Multitran.ru");
+    result.setDescription(tr("1 mln words excerpt of multitran.ru"));
+    result.setWordsCount(-1);
+    return result;
 }
 
 bool Multitran::isTranslatable(const QString &dict, const QString &word)
 {
-	return true;
+    return true;
 }
 
 Multitran::Translation Multitran::translate(const QString &dict, const QString &word)
 {
-	QTextCodec* c=QTextCodec::codecForMib(2251);
-	std::string text=c->fromUnicode(word).data();
-	std::string from_lang,to_lang;
+    QTextCodec* c=QTextCodec::codecForMib(2251);
+    std::string text=c->fromUnicode(word).data();
+    std::string from_lang,to_lang;
 
-	int i=word.size();
-	while(--i>=0)
-		if (word.at(i).unicode()>127)
-			break;
+    int i=word.size();
+    while(--i>=0)
+        if (word.at(i).unicode()>127)
+            break;
 
-	if (i!=-1)
-		from_lang="russian";
-	else
-		from_lang="english";
+    if (i!=-1)
+        from_lang="russian";
+    else
+        from_lang="english";
 
-	mt::linguas avail_langs;
-	mt::linguas::iterator lang = std::max_element(avail_langs.begin(),
-												avail_langs.end(),
-												compare_names(from_lang,to_lang));
-	if (lang == avail_langs.end() ||
-	(!from_lang.empty() && !to_lang.empty() && (compare_names(from_lang,to_lang).distance(*lang)!=2)))
-	{
-		//std::cerr<<"illegal language names"<<std::endl;
-		return Translation();
-	}
+    mt::linguas avail_langs;
+    mt::linguas::iterator lang = std::max_element(avail_langs.begin(),
+                                                avail_langs.end(),
+                                                compare_names(from_lang,to_lang));
+    if (lang == avail_langs.end() ||
+    (!from_lang.empty() && !to_lang.empty() && (compare_names(from_lang,to_lang).distance(*lang)!=2)))
+    {
+        //std::cerr<<"illegal language names"<<std::endl;
+        return Translation();
+    }
 
-	//"<hr width=50%><center><b>multitran</b><center><hr width=50%>";
-	QString queryResult=c->toUnicode(do_translate(lower_str(lang->first,text),
-						lang->first,lang->second).c_str());
+    //"<hr width=50%><center><b>multitran</b><center><hr width=50%>";
+    QString queryResult=c->toUnicode(do_translate(lower_str(lang->first,text),
+                        lang->first,lang->second).c_str());
 
-	if (queryResult.isEmpty())
-		return Translation();
+    if (queryResult.isEmpty())
+        return Translation();
 
-	return Translation(word,"Multitran",queryResult);
+    return Translation(word,"Multitran",queryResult);
 }
 
 QStringList Multitran::findSimilarWords(const QString &dict, const QString &word)
 {
-	return QStringList();
+    return QStringList();
 }
 
 int Multitran::execSettingsDialog(QWidget *parent)
 {
-	//::SettingsDialog dialog(this, parent);
-	//return dialog.exec();
-	return 0;
+    //::SettingsDialog dialog(this, parent);
+    //return dialog.exec();
+    return 0;
 }
 
 #if QT_VERSION < 0x050000

@@ -81,18 +81,18 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     instantSearchBox->setChecked(app->mainWindow()->isInstantSearch());
     speechCmdEdit->setText(app->speaker()->speechCmd());
 #ifdef Q_OS_LINUX
-	QFile desktop(QDir::homePath() + "/.config/autostart/qstardict.desktop");
-	if (desktop.open(QIODevice::ReadOnly) && QString(desktop.readAll())
-		.contains(QRegExp("\\bhidden\\s*=\\s*false", Qt::CaseInsensitive))) {
-		autostartBox->setChecked(true);
-	}
+    QFile desktop(QDir::homePath() + "/.config/autostart/qstardict.desktop");
+    if (desktop.open(QIODevice::ReadOnly) && QString(desktop.readAll())
+        .contains(QRegExp("\\bhidden\\s*=\\s*false", Qt::CaseInsensitive))) {
+        autostartBox->setChecked(true);
+    }
 #elif defined(Q_OS_WIN)
-	QSettings reg("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\"
-				  "CurrentVersion\\Run", QSettings::NativeFormat);
-	autostartBox->setChecked(
-			reg.contains(QCoreApplication::applicationName()));
+    QSettings reg("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\"
+                  "CurrentVersion\\Run", QSettings::NativeFormat);
+    autostartBox->setChecked(
+            reg.contains(QCoreApplication::applicationName()));
 #else
-	autostartBox->setVisible(false);
+    autostartBox->setVisible(false);
 #endif
 
     // Load popup shortcut settings
@@ -171,31 +171,31 @@ void SettingsDialog::accept()
     app->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
     app->speaker()->setSpeechCmd(speechCmdEdit->text());
 #ifdef Q_OS_LINUX
-	QDir home = QDir::home();
-	if (!home.exists(".config/autostart")) {
-		home.mkpath(".config/autostart");
-	}
-	QFile desktopFile(QSTARDICT_INSTALL_PREFIX "/share/applications/qstardict.desktop");
-	if (desktopFile.open(QIODevice::ReadOnly)) {
-		QByteArray contents = desktopFile.readAll();
-		QFile f(home.absolutePath() +
-				"/.config/autostart/qstardict.desktop");
+    QDir home = QDir::home();
+    if (!home.exists(".config/autostart")) {
+        home.mkpath(".config/autostart");
+    }
+    QFile desktopFile(QSTARDICT_INSTALL_PREFIX "/share/applications/qstardict.desktop");
+    if (desktopFile.open(QIODevice::ReadOnly)) {
+        QByteArray contents = desktopFile.readAll();
+        QFile f(home.absolutePath() +
+                "/.config/autostart/qstardict.desktop");
 
-		if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			f.write(contents.trimmed());
-			f.write(QString("\nHidden=%1").arg(autostartBox->isChecked()?
-											   "false\n":"true\n").toUtf8());
-		}
-	}
+        if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            f.write(contents.trimmed());
+            f.write(QString("\nHidden=%1").arg(autostartBox->isChecked()?
+                                               "false\n":"true\n").toUtf8());
+        }
+    }
 #elif defined(Q_OS_WIN)
-	QSettings reg("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\"
-				  "CurrentVersion\\Run", QSettings::NativeFormat);
-	if(autostartBox->isChecked())
-		reg.setValue(QCoreApplication::applicationName(), '"' +
-					 QDir::toNativeSeparators(QCoreApplication::
-											  applicationFilePath()) + '"');
-	else
-		reg.remove(QCoreApplication::applicationName());
+    QSettings reg("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\"
+                  "CurrentVersion\\Run", QSettings::NativeFormat);
+    if(autostartBox->isChecked())
+        reg.setValue(QCoreApplication::applicationName(), '"' +
+                     QDir::toNativeSeparators(QCoreApplication::
+                                              applicationFilePath()) + '"');
+    else
+        reg.remove(QCoreApplication::applicationName());
 #endif
 
     // Save popup shortcut settings

@@ -137,7 +137,7 @@ class PopupWindow: public ResizablePopup
         int m_modifierKey;
         bool m_showIfNotFound;
         Selection *m_selection;
-    	bool m_pronounceWord;
+        bool m_pronounceWord;
 };
 
 }

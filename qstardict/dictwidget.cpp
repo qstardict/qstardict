@@ -42,17 +42,17 @@ namespace
 {
 class DictWidgetToolbar: public QToolBar
 {
-	public:
-		DictWidgetToolbar(QWidget *parent = 0)
-			: QToolBar(parent)
-		{ }
+    public:
+        DictWidgetToolbar(QWidget *parent = 0)
+            : QToolBar(parent)
+        { }
 
-	protected:
-		virtual void mouseDoubleClickEvent(QMouseEvent *event)
-		{
-			if (! actionAt(event->pos()))
-				QToolBar::mouseDoubleClickEvent(event);
-		}
+    protected:
+        virtual void mouseDoubleClickEvent(QMouseEvent *event)
+        {
+            if (! actionAt(event->pos()))
+                QToolBar::mouseDoubleClickEvent(event);
+        }
 };
 }
 
@@ -60,126 +60,126 @@ namespace QStarDict
 {
 
 DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
-	: QFrame(parent, f)
+    : QFrame(parent, f)
 {
-	m_translationView = new DictBrowser(this);
-	setFrameStyle(m_translationView->frameStyle());
-	m_translationView->setFrameStyle(QFrame::NoFrame);
-	m_translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
-	m_translationView->horizontalScrollBar()->setCursor(Qt::ArrowCursor);
-	m_translationView->setOpenExternalLinks(true);
-	connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)), SLOT(on_translationView_sourceChanged(const QUrl&)));
+    m_translationView = new DictBrowser(this);
+    setFrameStyle(m_translationView->frameStyle());
+    m_translationView->setFrameStyle(QFrame::NoFrame);
+    m_translationView->verticalScrollBar()->setCursor(Qt::ArrowCursor);
+    m_translationView->horizontalScrollBar()->setCursor(Qt::ArrowCursor);
+    m_translationView->setOpenExternalLinks(true);
+    connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)), SLOT(on_translationView_sourceChanged(const QUrl&)));
 
-	m_search = new DictBrowserSearch(this);
-	connect(m_search, SIGNAL(search(const QString &,QTextDocument::FindFlags)),
-			m_translationView, SLOT(search(const QString &,QTextDocument::FindFlags)));
-	connect(m_translationView, SIGNAL(searchResult(bool)), m_search, SLOT(searchResult(bool)));
-	m_search->hide();
+    m_search = new DictBrowserSearch(this);
+    connect(m_search, SIGNAL(search(const QString &,QTextDocument::FindFlags)),
+            m_translationView, SLOT(search(const QString &,QTextDocument::FindFlags)));
+    connect(m_translationView, SIGNAL(searchResult(bool)), m_search, SLOT(searchResult(bool)));
+    m_search->hide();
 
-	m_toolBar = new DictWidgetToolbar(this);
-	m_toolBar->setMouseTracking(true);
+    m_toolBar = new DictWidgetToolbar(this);
+    m_toolBar->setMouseTracking(true);
 
-	QAction *actionBackward = m_toolBar->addAction(QIcon(":/icons/go-previous.png"), tr("Go to &previous translation"),
-			m_translationView, SLOT(backward()));
-	actionBackward->setDisabled(true);
-	connect(m_translationView, SIGNAL(backwardAvailable(bool)), actionBackward, SLOT(setEnabled(bool)));
+    QAction *actionBackward = m_toolBar->addAction(QIcon(":/icons/go-previous.png"), tr("Go to &previous translation"),
+            m_translationView, SLOT(backward()));
+    actionBackward->setDisabled(true);
+    connect(m_translationView, SIGNAL(backwardAvailable(bool)), actionBackward, SLOT(setEnabled(bool)));
 
-	QAction *actionForward = m_toolBar->addAction(QIcon(":/icons/go-next.png"), tr("Go to &next translation"),
-			m_translationView, SLOT(forward()));
-	actionForward->setDisabled(true);
-	connect(m_translationView, SIGNAL(forwardAvailable(bool)), actionForward, SLOT(setEnabled(bool)));
+    QAction *actionForward = m_toolBar->addAction(QIcon(":/icons/go-next.png"), tr("Go to &next translation"),
+            m_translationView, SLOT(forward()));
+    actionForward->setDisabled(true);
+    connect(m_translationView, SIGNAL(forwardAvailable(bool)), actionForward, SLOT(setEnabled(bool)));
 
-	m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("&Save to file"),
-			this, SLOT(saveToFile()));
+    m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("&Save to file"),
+            this, SLOT(saveToFile()));
 
-	m_toolBar->addAction(QIcon(":/icons/document-print.png"), tr("Prin&t translation"),
-			this, SLOT(print()));
+    m_toolBar->addAction(QIcon(":/icons/document-print.png"), tr("Prin&t translation"),
+            this, SLOT(print()));
 
-	m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak &word"),
-			this, SLOT(speak()));
+    m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak &word"),
+            this, SLOT(speak()));
 
-	QAction *actionSearch = m_toolBar->addAction(QIcon(":/icons/system-search.png"), tr("Search"), this, SLOT(handleSearch()));
-	actionSearch->setCheckable(true);
-	actionSearch->setShortcut(QKeySequence::Find);
+    QAction *actionSearch = m_toolBar->addAction(QIcon(":/icons/system-search.png"), tr("Search"), this, SLOT(handleSearch()));
+    actionSearch->setCheckable(true);
+    actionSearch->setShortcut(QKeySequence::Find);
 
-	QVBoxLayout *layout = new QVBoxLayout(this);
-	layout->setMargin(0);
-	layout->setSpacing(0);
-	layout->addWidget(m_toolBar);
-	layout->addWidget(m_translationView);
-	layout->addWidget(m_search);
-	setLayout(layout);
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setMargin(0);
+    layout->setSpacing(0);
+    layout->addWidget(m_toolBar);
+    layout->addWidget(m_translationView);
+    layout->addWidget(m_search);
+    setLayout(layout);
 }
 
 void DictWidget::translate(const QString &str)
 {
-	m_translationView->setSource(QUrl("qstardict:" + str));
+    m_translationView->setSource(QUrl("qstardict:" + str));
 }
 
 void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 {
-	emit wordTranslated(name.toString(QUrl::RemoveScheme));
+    emit wordTranslated(name.toString(QUrl::RemoveScheme));
 }
 
 void DictWidget::saveToFile()
 {
-	static QDir dir( QDir::homePath() ); //added by Frank
-	static QString filter(tr("Text files (*.txt)")); //added by Frank
+    static QDir dir( QDir::homePath() ); //added by Frank
+    static QString filter(tr("Text files (*.txt)")); //added by Frank
 
-	QFileDialog dialog(this, tr("Save translation"),
-					   dir.path(), filter); //updated by Frank
-	dialog.selectFile(translatedWord());//added by Frank
-	dialog.setNameFilters(QStringList() << tr("HTML files (*.html *.htm)") << tr("Text files (*.txt)"));//updated by Frank
-	dialog.selectNameFilter(filter); //added by Frank
+    QFileDialog dialog(this, tr("Save translation"),
+                       dir.path(), filter); //updated by Frank
+    dialog.selectFile(translatedWord());//added by Frank
+    dialog.setNameFilters(QStringList() << tr("HTML files (*.html *.htm)") << tr("Text files (*.txt)"));//updated by Frank
+    dialog.selectNameFilter(filter); //added by Frank
 
-	if (dialog.exec() && dialog.selectedFiles().size())
-	{
-		QString fileName = dialog.selectedFiles().first();
-		/*QString*/ filter = dialog.selectedNameFilter();//updated by Frank
-		dir = dialog.directory(); //added by Frank
-		if (filter == tr("HTML files (*.html, *.htm)") &&
-			! (fileName.endsWith(".html", Qt::CaseInsensitive) || fileName.endsWith(".htm", Qt::CaseInsensitive)))
-			fileName += ".html";
-		else if (filter == tr("Text files (*.txt)") && ! fileName.endsWith(".txt", Qt::CaseInsensitive))
-			fileName += ".txt";
+    if (dialog.exec() && dialog.selectedFiles().size())
+    {
+        QString fileName = dialog.selectedFiles().first();
+        /*QString*/ filter = dialog.selectedNameFilter();//updated by Frank
+        dir = dialog.directory(); //added by Frank
+        if (filter == tr("HTML files (*.html, *.htm)") &&
+            ! (fileName.endsWith(".html", Qt::CaseInsensitive) || fileName.endsWith(".htm", Qt::CaseInsensitive)))
+            fileName += ".html";
+        else if (filter == tr("Text files (*.txt)") && ! fileName.endsWith(".txt", Qt::CaseInsensitive))
+            fileName += ".txt";
 
-		QFile outputFile(fileName);
-		if (! outputFile.open(QIODevice::WriteOnly | QIODevice::Text))
-		{
-			QMessageBox::warning(this, tr("Error"),
-								 tr("Cannot save translation as %1").arg(fileName));
-			return;
-		}
-		QTextStream outputStream(&outputFile);
-		if (filter == tr("HTML files (*.html, *.htm)"))
-			outputStream << m_translationView->document()->toHtml("UTF-8");
-		else
-			outputStream << m_translationView->toPlainText();
-	}
+        QFile outputFile(fileName);
+        if (! outputFile.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            QMessageBox::warning(this, tr("Error"),
+                                 tr("Cannot save translation as %1").arg(fileName));
+            return;
+        }
+        QTextStream outputStream(&outputFile);
+        if (filter == tr("HTML files (*.html, *.htm)"))
+            outputStream << m_translationView->document()->toHtml("UTF-8");
+        else
+            outputStream << m_translationView->toPlainText();
+    }
 }
 
 void DictWidget::speak()
 {
-	Application::instance()->speaker()->speak(translatedWord());
+    Application::instance()->speaker()->speak(translatedWord());
 }
 
 void DictWidget::print()
 {
-	QPrinter printer(QPrinter::HighResolution);
-	QPrintDialog dialog(&printer, this);
-	if (dialog.exec() == QDialog::Accepted)
-		m_translationView->print(&printer);
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintDialog dialog(&printer, this);
+    if (dialog.exec() == QDialog::Accepted)
+        m_translationView->print(&printer);
 }
 
 void DictWidget::handleSearch()
 {
-	m_search->setVisible(!m_search->isVisible());
+    m_search->setVisible(!m_search->isVisible());
 }
 
 void DictWidget::setDefaultStyleSheet(const QString &css)
 {
-	m_translationView->document()->setDefaultStyleSheet(css);
-	m_translationView->reload();
+    m_translationView->document()->setDefaultStyleSheet(css);
+    m_translationView->reload();
 }
 
 }

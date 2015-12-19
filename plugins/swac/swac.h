@@ -28,46 +28,46 @@
 
 class Swac: public QObject, public QStarDict::DictPlugin
 {
-	Q_OBJECT
-	Q_INTERFACES(QStarDict::DictPlugin)
+    Q_OBJECT
+    Q_INTERFACES(QStarDict::DictPlugin)
 #if QT_VERSION >= 0x050000
-	Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "swac.json")
+    Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "swac.json")
 #endif
 
 public:
-	Swac(QObject *parent = 0);
-	~Swac();
+    Swac(QObject *parent = 0);
+    ~Swac();
 
-	QString name() const
-	{ return "swac"; }
-	QString version() const
-	{ return "0.1"; }
-	QString description() const
-	{ return tr("An experimental plugin for words audio collections (SWAC).<br>For more information about SWAC, please, visit the <a href='http://shtooka.net/'>Shtooka Project Homepage</a>."); }
-	QStringList authors() const
-	{ return QStringList("Nicolas Vion <nico@picapo.net>"); }
-	Features features() const
-	{ return Features(SearchSimilar | SettingsDialog); }
+    QString name() const
+    { return "swac"; }
+    QString version() const
+    { return "0.1"; }
+    QString description() const
+    { return tr("An experimental plugin for words audio collections (SWAC).<br>For more information about SWAC, please, visit the <a href='http://shtooka.net/'>Shtooka Project Homepage</a>."); }
+    QStringList authors() const
+    { return QStringList("Nicolas Vion <nico@picapo.net>"); }
+    Features features() const
+    { return Features(SearchSimilar | SettingsDialog); }
 
-	QStringList availableDicts() const;
-	QStringList loadedDicts() const
-	{ return m_loadedDicts; }
-	void setLoadedDicts(const QStringList &dicts);
-	DictInfo dictInfo(const QString &dict);
+    QStringList availableDicts() const;
+    QStringList loadedDicts() const
+    { return m_loadedDicts; }
+    void setLoadedDicts(const QStringList &dicts);
+    DictInfo dictInfo(const QString &dict);
 
-	bool isTranslatable(const QString &dict, const QString &word);
-	Translation translate(const QString &dict, const QString &word);
-	QStringList findSimilarWords(const QString &dict, const QString &word);
+    bool isTranslatable(const QString &dict, const QString &word);
+    Translation translate(const QString &dict, const QString &word);
+    QStringList findSimilarWords(const QString &dict, const QString &word);
 
-	int execSettingsDialog(QWidget *parent);
+    int execSettingsDialog(QWidget *parent);
 
 //    friend class SettingsDialog;
 
 private:
-	QSqlQuery search(const QString &dict, const QString &word, const QString &fields, const int limit);
+    QSqlQuery search(const QString &dict, const QString &word, const QString &fields, const int limit);
 
-	QSqlDatabase *db;
-	QStringList m_loadedDicts;
+    QSqlDatabase *db;
+    QStringList m_loadedDicts;
 };
 
 #endif
