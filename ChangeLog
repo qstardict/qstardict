@@ -125,4 +125,6 @@
 * Version 1.0.1
 	- compilation fix for newer UNIX/Linux systems
 	- fix for 'unsaved prefs' thanks to Robin 'cheese' Lee from Fedora Project
+* Version 1.1
+	- add support for showing translation by shortcut
 
