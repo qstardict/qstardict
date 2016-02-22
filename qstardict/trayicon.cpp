@@ -36,6 +36,10 @@ TrayIcon::TrayIcon(QObject *parent)
 {
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
 
+    QAction *actionMainWindow = new QAction(tr("Show &main window"), this);
+    connect(actionMainWindow, SIGNAL(triggered()), Application::instance()->mainWindow(), SLOT(show()));
+    trayMenu->addAction(actionMainWindow);
+
     QAction *actionScan = new QAction(QIcon(":/icons/edit-select.png"), tr("&Scan"), this);
     actionScan->setCheckable(true);
     actionScan->setChecked(Application::instance()->popupWindow()->isScan());
