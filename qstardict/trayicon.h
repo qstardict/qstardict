@@ -22,6 +22,8 @@
 
 #include <QSystemTrayIcon>
 
+class QAction;
+
 namespace QStarDict
 {
 
@@ -34,6 +36,7 @@ class TrayIcon: public QSystemTrayIcon
         virtual ~TrayIcon();
 
         void saveSettings();
+		inline QAction *actionMainWindow() const { return _actionMainWindow; }
 
     private slots:
         void on_activated(QSystemTrayIcon::ActivationReason reason);
@@ -42,6 +45,8 @@ class TrayIcon: public QSystemTrayIcon
 
     private:
         void loadSettings();
+
+		QAction *_actionMainWindow;
 };
 
 }
