@@ -24,12 +24,12 @@
 
 #include <QHash>
 
-class Web: public QObject, public QStarDict::DictPlugin
+class Web: public QObject, public QStarDict::BasePlugin, public QStarDict::DictPlugin, public QStarDict::ConfigurablePlugin
 {
     Q_OBJECT
-    Q_INTERFACES(QStarDict::DictPlugin)
+    Q_INTERFACES(QStarDict::BasePlugin QStarDict::DictPlugin QStarDict::ConfigurablePlugin)
 #if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "web.json")
+    Q_PLUGIN_METADATA(IID "org.qstardict.WebPlugin/1.0" FILE "web.json")
 #endif
 
     public:

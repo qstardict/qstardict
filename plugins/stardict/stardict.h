@@ -28,13 +28,13 @@
 #include <QHash>
 
 
-class StarDict: public QObject, public QStarDict::DictPlugin
+class StarDict: public QObject, public QStarDict::BasePlugin, public QStarDict::DictPlugin, public QStarDict::ConfigurablePlugin
 {
 	Q_OBJECT
 #if QT_VERSION >= 0x050000
-	Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "stardict.json")
+	Q_PLUGIN_METADATA(IID "org.qstardict.StarDictPlugin/1.0" FILE "stardict.json")
 #endif
-	Q_INTERFACES(QStarDict::DictPlugin)
+	Q_INTERFACES(QStarDict::BasePlugin QStarDict::DictPlugin QStarDict::ConfigurablePlugin)
 
 	public:
 		StarDict(QObject *parent = 0);

@@ -31,6 +31,71 @@
 namespace QStarDict
 {
 
+
+TrayIconDefaultImpl::TrayIconDefaultImpl(QObject *parent) :
+    QObject(parent),
+    sti(0),
+    mw(0)
+{
+
+}
+
+TrayIconPlugin::TrayCompat TrayIconDefaultImpl::isDECompatible()
+{
+	return TrayIconPlugin::CompatFallback;
+}
+
+void TrayIconDefaultImpl::initTray()
+{
+	sti = new QSystemTrayIcon(this);
+	connect(sti, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+	        SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
+}
+
+void TrayIconDefaultImpl::setContextMenu(QMenu *menu)
+{
+	sti->setContextMenu(menu);
+}
+
+void TrayIconDefaultImpl::setMainWindow(QWidget *w)
+{
+	mw = w;
+}
+
+void TrayIconDefaultImpl::setScanEnabled(bool enabled)
+{
+	QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
+    sti->setIcon(icon);
+	sti->setToolTip(tr("QStarDict: scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
+}
+
+void TrayIconDefaultImpl::setVisible(bool visible)
+{
+	sti->setVisible(visible);
+}
+
+void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
+{
+    switch (reason)
+    {
+        case QSystemTrayIcon::Trigger:
+        // It's quite uncomfortable on OS X to handle show/hide main window
+        // in all cases... at least for me (petr)
+#ifndef Q_WS_MAC
+            mw->setVisible(!mw->isVisible());
+#else
+            mw->show();
+#endif
+            break;
+        case QSystemTrayIcon::MiddleClick:
+            Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));
+            break;
+        default:
+            ; // nothing
+    }
+}
+
+
 TrayIcon::TrayIcon(QObject *parent)
     : QSystemTrayIcon(parent)
 {
@@ -42,7 +107,6 @@ TrayIcon::TrayIcon(QObject *parent)
     QAction *actionScan = new QAction(QIcon(":/icons/edit-select.png"), tr("&Scan"), this);
     actionScan->setCheckable(true);
     actionScan->setChecked(Application::instance()->popupWindow()->isScan());
-    setScanEnabled(Application::instance()->popupWindow()->isScan());
     connect(actionScan, SIGNAL(toggled(bool)),
             Application::instance()->popupWindow(), SLOT(setScan(bool)));
     connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)),
@@ -58,9 +122,40 @@ TrayIcon::TrayIcon(QObject *parent)
     connect(actionQuit, SIGNAL(triggered()), Application::instance(), SLOT(quit()));
     trayMenu->addAction(actionQuit);
 
-    setContextMenu(trayMenu);
-    connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
+
+	QObject *fbTray = 0;
+	QObject *tray = 0;
+	foreach (const QString &plugin, Application::instance()->dictCore()->loadedPlugins()) {
+		QObject *o = Application::instance()->dictCore()->plugin(plugin);
+		if (o) {
+			TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(o);
+			if (tip) {
+				switch (tip->isDECompatible()) {
+				case TrayIconPlugin::CompatFallback:
+					fbTray = o;
+					break;
+				case TrayIconPlugin::CompatFull:
+					tray = o;
+					break;
+				case TrayIconPlugin::CompatNone:
+				default:
+					break;
+				}
+			}
+		}
+	}
+	if (tray) {
+		_trayImpl = tray;
+	} else if(fbTray) {
+		_trayImpl = fbTray;
+	} else {
+		_trayImpl = new TrayIconDefaultImpl(this);
+	}
+
+	qobject_cast<TrayIconPlugin*>(_trayImpl)->initTray();
+	qobject_cast<TrayIconPlugin*>(_trayImpl)->setContextMenu(trayMenu);
+
+	setScanEnabled(Application::instance()->popupWindow()->isScan());
 
     loadSettings();
 }
@@ -68,28 +163,6 @@ TrayIcon::TrayIcon(QObject *parent)
 TrayIcon::~TrayIcon()
 {
     saveSettings();
-}
-
-void TrayIcon::on_activated(QSystemTrayIcon::ActivationReason reason)
-{
-    switch (reason)
-    {
-        case QSystemTrayIcon::Trigger:
-        // It's quite uncomfortable on OS X to handle show/hide main window
-        // in all cases... at least for me (petr)
-#ifndef Q_WS_MAC
-            Application::instance()->mainWindow()->setVisible(!
-                    Application::instance()->mainWindow()->isVisible());
-#else
-            Application::instance()->mainWindow()->show();
-#endif
-            break;
-        case QSystemTrayIcon::MiddleClick:
-            Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));
-            break;
-        default:
-            ; // nothing
-    }
 }
 
 void TrayIcon::on_actionSettings_triggered()
@@ -100,22 +173,27 @@ void TrayIcon::on_actionSettings_triggered()
 
 void TrayIcon::setScanEnabled(bool enabled)
 {
-    QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
-    setIcon(icon);
-    setToolTip(tr("QStarDict: scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
+	qobject_cast<TrayIconPlugin*>(_trayImpl)->setScanEnabled(enabled);
 }
 
 void TrayIcon::saveSettings()
 {
     QSettings config;
-    config.setValue("TrayIcon/visible", isVisible());
+	config.setValue("TrayIcon/visible", isVisible());
+}
+
+void TrayIcon::setMainWindow(QWidget *w)
+{
+	qobject_cast<TrayIconPlugin*>(_trayImpl)->setMainWindow(w);
+	connect(_actionMainWindow, SIGNAL(triggered()), w, SLOT(show()));
 }
 
 void TrayIcon::loadSettings()
 {
     QSettings config;
-    setVisible(config.value("TrayIcon/visible", true).toBool());
+	qobject_cast<TrayIconPlugin*>(_trayImpl)->setVisible(config.value("TrayIcon/visible", true).toBool());
 }
+
 
 }
 

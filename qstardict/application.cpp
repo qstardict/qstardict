@@ -70,8 +70,8 @@ Application::Application(int &argc, char **argv)
     m_trayIcon = new TrayIcon;
     m_popupShortcut = new QxtGlobalShortcut;
     m_mainWindow = new MainWindow;
-	connect(m_trayIcon->actionMainWindow(), SIGNAL(triggered()), m_mainWindow, SLOT(show()));
-    m_mainWindow->setDict(m_dictCore);
+	m_trayIcon->setMainWindow(m_mainWindow);
+	m_mainWindow->setDict(m_dictCore);
 #ifdef QSTARDICT_WITH_DBUS
     m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
 #endif // QSTARDICT_WITH_DBUS

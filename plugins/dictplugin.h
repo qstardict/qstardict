@@ -26,6 +26,8 @@
 #include <QCoreApplication>
 #include <QVariant>
 
+#include "baseplugin.h"
+
 namespace QStarDict
 {
 
@@ -192,26 +194,6 @@ class DictPlugin
         virtual ~DictPlugin() { }
 
         /**
-         * Return the plugin name.
-         */
-        virtual QString name() const = 0;
-
-        /**
-         * Return the plugin version.
-         */
-        virtual QString version() const = 0;
-
-        /**
-         * Return the plugin description.
-         */
-        virtual QString description() const = 0;
-
-        /**
-         * Return the plugin authors.
-         */
-        virtual QStringList authors() const = 0;
-
-        /**
          * Return a features supported by dictionary plugin.
          */
         virtual Features features() const
@@ -261,25 +243,6 @@ class DictPlugin
          * but available.
          */
         virtual DictInfo dictInfo(const QString &dict) = 0;
-
-        /**
-         * Run a settings dialog and return QDialog::DialogCode.
-         */
-        virtual int execSettingsDialog(QWidget *parent = 0)
-        { Q_UNUSED(parent); return 0; }
-
-    protected:
-        /**
-         * Return a directory that contains plugin's data.
-         */
-        QString workPath() const
-        {
-            QString path = QDir::homePath() + "/.config/qstardict/pluginsdata/" + name();
-
-            if (! QDir::root().exists(path))
-                QDir::root().mkpath(path);
-            return path;
-        }
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(DictPlugin::Features)

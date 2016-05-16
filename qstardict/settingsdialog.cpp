@@ -322,7 +322,7 @@ void SettingsDialog::on_dictsShowInfoButton_clicked()
         return;
     QString dict = m_dictsModel->item(currentRow, 1)->text();
     QString plugin = m_dictsModel->item(currentRow, 2)->text();
-    DictPlugin::DictInfo info = Application::instance()->dictCore()->plugin(plugin)->dictInfo(dict);
+    DictPlugin::DictInfo info = qobject_cast<QStarDict::DictPlugin*>(Application::instance()->dictCore()->plugin(plugin))->dictInfo(dict);
     QMessageBox::information(this,
             tr("Information about dictionary \"%1\"").arg(dict),
             tr("<b>Name:</b> %1<br>").arg(dict) +
@@ -337,16 +337,20 @@ void SettingsDialog::on_pluginsShowInfoButton_clicked()
     int currentRow = pluginsTableView->currentIndex().row();
     if (currentRow == -1)
         return;
-    DictPlugin *plugin = Application::instance()->dictCore()->plugin(m_pluginsModel->item(currentRow, 1)->text());
-    if (! plugin)
+    QObject *plugin = Application::instance()->dictCore()->plugin(m_pluginsModel->item(currentRow, 1)->text());
+	if (! plugin)
+        return;
+	BasePlugin *bplugin = qobject_cast<BasePlugin*>(plugin);
+	DictPlugin *dplugin = qobject_cast<DictPlugin*>(plugin);
+	if (! (bplugin && dplugin))
         return;
     QMessageBox::information(this,
-            tr("Information about %1 plugin").arg(plugin->name()),
-            tr("<b>Name:</b> %1<br>").arg(plugin->name()) +
-            tr("<b>Version:</b> %1<br>").arg(plugin->version()) +
-            tr("<b>Authors:</b> %1<br>").arg(plugin->authors().replaceInStrings("<", "&lt;").replaceInStrings(">", "&gt;").join(tr("<br>"))) +
-            tr("<b>Can search similar words:</b> %1<br>").arg(plugin->features().testFlag(DictPlugin::SearchSimilar) ? tr("yes") : tr("no")) +
-            tr("<b>Description:</b> %1").arg(plugin->description()));
+            tr("Information about %1 plugin").arg(bplugin->name()),
+            tr("<b>Name:</b> %1<br>").arg(bplugin->name()) +
+            tr("<b>Version:</b> %1<br>").arg(bplugin->version()) +
+            tr("<b>Authors:</b> %1<br>").arg(bplugin->authors().replaceInStrings("<", "&lt;").replaceInStrings(">", "&gt;").join(tr("<br>"))) +
+            tr("<b>Can search similar words:</b> %1<br>").arg(dplugin->features().testFlag(DictPlugin::SearchSimilar) ? tr("yes") : tr("no")) +
+            tr("<b>Description:</b> %1").arg(bplugin->description()));
 }
 
 void SettingsDialog::on_pluginsConfigureButton_clicked()
@@ -355,7 +359,7 @@ void SettingsDialog::on_pluginsConfigureButton_clicked()
     if (currentRow == -1)
         return;
     DictCore *dict = Application::instance()->dictCore();
-    DictPlugin *plugin = dict->plugin(m_pluginsModel->item(currentRow, 1)->text());
+    ConfigurablePlugin *plugin = dict->configurablePlugin(m_pluginsModel->item(currentRow, 1)->text());
     if (plugin && plugin->execSettingsDialog(this) == QDialog::Accepted)
     {
         dict->reloadDicts();

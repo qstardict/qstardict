@@ -31,8 +31,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 CONFIG += \
     qt \
-    warn_on \
-    release
+    warn_on
 unix {
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0

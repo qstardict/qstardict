@@ -1,6 +1,6 @@
 /*****************************************************************************
- * trayicon.h - QStarDict, a StarDict clone written with using Qt            *
- * Copyright (C) 2008 Alexander Rodin                                        *
+ * dictplugin.h - QStarDict, a StarDict clone written using Qt               *
+ * Copyright (C) 2016 Ilinykh Sergey                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -17,65 +17,48 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef TRAYICON_H
-#define TRAYICON_H
+#ifndef TRAYPLUGIN_H
+#define TRAYPLUGIN_H
 
-#include <QSystemTrayIcon>
+#include <QtPlugin>
+#include <QStringList>
+#include <QDir>
+#include <QCoreApplication>
+#include <QVariant>
 
-#include "../plugins/trayplugin.h"
+#include "baseplugin.h"
 
-class QAction;
+#include <QMenu>
 
 namespace QStarDict
 {
 
-
-class TrayIconDefaultImpl : public QObject, public TrayIconPlugin
+/**
+ * This is a base class for all tray plugins classes.
+ */
+class TrayIconPlugin
 {
-	Q_OBJECT
-	Q_INTERFACES(QStarDict::TrayIconPlugin)
-
-	QSystemTrayIcon *sti;
-	QWidget *mw;
-
 public:
-	TrayIconDefaultImpl(QObject *parent);
+	enum TrayCompat
+	{
+		CompatNone,
+		CompatFallback,
+		CompatFull
+	};
 
-	TrayCompat isDECompatible();
-	void initTray();
-	void setContextMenu(QMenu *menu);
-	void setMainWindow(QWidget *w);
-	void setScanEnabled(bool enabled);
-	void setVisible(bool visible);
-private slots:
-	void on_activated(QSystemTrayIcon::ActivationReason reason);
+	virtual TrayCompat isDECompatible() = 0;
+	virtual void initTray() = 0;
+	virtual void setContextMenu(QMenu *menu) = 0;
+	virtual void setMainWindow(QWidget *w) = 0;
+	virtual void setScanEnabled(bool enabled) = 0;
+	virtual void setVisible(bool visible) = 0;
 };
 
-class TrayIcon: public QSystemTrayIcon
-{
-    Q_OBJECT
 
-    public:
-        TrayIcon(QObject *parent = 0);
-        virtual ~TrayIcon();
+} // namespace QStarDict
 
-        void saveSettings();
-		void setMainWindow(QWidget *w);
+Q_DECLARE_INTERFACE(QStarDict::TrayIconPlugin, "org.qstardict.TrayIconPlugin/1.0")
 
-    private slots:
-        void on_actionSettings_triggered();
-        void setScanEnabled(bool enabled);
-
-    private:
-        void loadSettings();
-
-		QAction *_actionMainWindow;
-		QObject *_trayImpl;
-};
-
-}
-
-#endif // TRAYICON_H
+#endif // TRAYPLUGIN_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent
-

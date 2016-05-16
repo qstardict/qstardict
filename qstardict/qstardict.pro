@@ -35,6 +35,8 @@ HEADERS += \
     dictbrowser.h \
     dictcore.h \
     ../plugins/dictplugin.h \
+    ../plugins/baseplugin.h \
+    ../plugins/trayplugin.h \
     dictwidget.h \
     keyboard.h \
     mainwindow.h \

@@ -79,7 +79,7 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
     }
     else if (name.scheme() == "plugin")
     {
-        DictPlugin *plugin = m_dict->plugin(name.host());
+        DictPlugin *plugin = qobject_cast<DictPlugin*>(m_dict->plugin(name.host()));
         if (! plugin)
             return QVariant();
         return plugin->resource(type, name);

@@ -144,8 +144,11 @@ class DictCore: public QObject
         /**
          * Returns pointer to plugin instance or 0 if not loaded.
          */
-        DictPlugin *plugin(const QString &plugin)
-        { return m_plugins.contains(plugin) ? qobject_cast<DictPlugin*>(m_plugins[plugin]->instance()) : 0; }
+        QObject *plugin(const QString &plugin)
+		{ QPluginLoader *loader = m_plugins.value(plugin); return loader? loader->instance() : 0; }
+
+		ConfigurablePlugin *configurablePlugin(const QString &pluginName)
+		{ QObject *p = plugin(pluginName); return p? qobject_cast<ConfigurablePlugin*>(p) : 0; }
 
         /**
          * Save settings.
