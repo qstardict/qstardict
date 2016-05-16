@@ -42,56 +42,56 @@ TrayIconDefaultImpl::TrayIconDefaultImpl(QObject *parent) :
 
 TrayIconPlugin::TrayCompat TrayIconDefaultImpl::isDECompatible()
 {
-	return TrayIconPlugin::CompatFallback;
+    return TrayIconPlugin::CompatFallback;
 }
 
 void TrayIconDefaultImpl::initTray()
 {
-	sti = new QSystemTrayIcon(this);
-	connect(sti, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-	        SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
+    sti = new QSystemTrayIcon(this);
+    connect(sti, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
 }
 
 void TrayIconDefaultImpl::setContextMenu(QMenu *menu)
 {
-	sti->setContextMenu(menu);
+    sti->setContextMenu(menu);
 }
 
 void TrayIconDefaultImpl::setMainWindow(QWidget *w)
 {
-	mw = w;
+    mw = w;
 }
 
 void TrayIconDefaultImpl::setScanEnabled(bool enabled)
 {
-	QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
+    QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
     sti->setIcon(icon);
-	sti->setToolTip(tr("QStarDict: scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
+    sti->setToolTip(tr("QStarDict: scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
 }
 
 void TrayIconDefaultImpl::setVisible(bool visible)
 {
-	sti->setVisible(visible);
+    sti->setVisible(visible);
 }
 
 void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
 {
     switch (reason)
     {
-        case QSystemTrayIcon::Trigger:
+    case QSystemTrayIcon::Trigger:
         // It's quite uncomfortable on OS X to handle show/hide main window
         // in all cases... at least for me (petr)
 #ifndef Q_WS_MAC
-            mw->setVisible(!mw->isVisible());
+        mw->setVisible(!mw->isVisible());
 #else
-            mw->show();
+        mw->show();
 #endif
-            break;
-        case QSystemTrayIcon::MiddleClick:
-            Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));
-            break;
-        default:
-            ; // nothing
+        break;
+    case QSystemTrayIcon::MiddleClick:
+        Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));
+        break;
+    default:
+        ; // nothing
     }
 }
 
@@ -123,39 +123,39 @@ TrayIcon::TrayIcon(QObject *parent)
     trayMenu->addAction(actionQuit);
 
 
-	QObject *fbTray = 0;
-	QObject *tray = 0;
-	foreach (const QString &plugin, Application::instance()->dictCore()->loadedPlugins()) {
-		QObject *o = Application::instance()->dictCore()->plugin(plugin);
-		if (o) {
-			TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(o);
-			if (tip) {
-				switch (tip->isDECompatible()) {
-				case TrayIconPlugin::CompatFallback:
-					fbTray = o;
-					break;
-				case TrayIconPlugin::CompatFull:
-					tray = o;
-					break;
-				case TrayIconPlugin::CompatNone:
-				default:
-					break;
-				}
-			}
-		}
-	}
-	if (tray) {
-		_trayImpl = tray;
-	} else if(fbTray) {
-		_trayImpl = fbTray;
-	} else {
-		_trayImpl = new TrayIconDefaultImpl(this);
-	}
+    QObject *fbTray = 0;
+    QObject *tray = 0;
+    foreach (const QString &plugin, Application::instance()->dictCore()->loadedPlugins()) {
+        QObject *o = Application::instance()->dictCore()->plugin(plugin);
+        if (o) {
+            TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(o);
+            if (tip) {
+                switch (tip->isDECompatible()) {
+                case TrayIconPlugin::CompatFallback:
+                    fbTray = o;
+                    break;
+                case TrayIconPlugin::CompatFull:
+                    tray = o;
+                    break;
+                case TrayIconPlugin::CompatNone:
+                default:
+                    break;
+                }
+            }
+        }
+    }
+    if (tray) {
+        _trayImpl = tray;
+    } else if(fbTray) {
+        _trayImpl = fbTray;
+    } else {
+        _trayImpl = new TrayIconDefaultImpl(this);
+    }
 
-	qobject_cast<TrayIconPlugin*>(_trayImpl)->initTray();
-	qobject_cast<TrayIconPlugin*>(_trayImpl)->setContextMenu(trayMenu);
+    qobject_cast<TrayIconPlugin*>(_trayImpl)->initTray();
+    qobject_cast<TrayIconPlugin*>(_trayImpl)->setContextMenu(trayMenu);
 
-	setScanEnabled(Application::instance()->popupWindow()->isScan());
+    setScanEnabled(Application::instance()->popupWindow()->isScan());
 
     loadSettings();
 }
@@ -173,25 +173,25 @@ void TrayIcon::on_actionSettings_triggered()
 
 void TrayIcon::setScanEnabled(bool enabled)
 {
-	qobject_cast<TrayIconPlugin*>(_trayImpl)->setScanEnabled(enabled);
+    qobject_cast<TrayIconPlugin*>(_trayImpl)->setScanEnabled(enabled);
 }
 
 void TrayIcon::saveSettings()
 {
     QSettings config;
-	config.setValue("TrayIcon/visible", isVisible());
+    config.setValue("TrayIcon/visible", isVisible());
 }
 
 void TrayIcon::setMainWindow(QWidget *w)
 {
-	qobject_cast<TrayIconPlugin*>(_trayImpl)->setMainWindow(w);
-	connect(_actionMainWindow, SIGNAL(triggered()), w, SLOT(show()));
+    qobject_cast<TrayIconPlugin*>(_trayImpl)->setMainWindow(w);
+    connect(_actionMainWindow, SIGNAL(triggered()), w, SLOT(show()));
 }
 
 void TrayIcon::loadSettings()
 {
     QSettings config;
-	qobject_cast<TrayIconPlugin*>(_trayImpl)->setVisible(config.value("TrayIcon/visible", true).toBool());
+    qobject_cast<TrayIconPlugin*>(_trayImpl)->setVisible(config.value("TrayIcon/visible", true).toBool());
 }
 
 

@@ -50,7 +50,7 @@ DictCore::~DictCore()
 
 bool DictCore::isTranslatable(const QString &word)
 {
-    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i) 
+    for (QList<Dictionary>::const_iterator i = m_loadedDicts.begin(); i != m_loadedDicts.end(); ++i)
     {
         if (! m_plugins.contains(i->plugin()))
             continue;
@@ -73,9 +73,9 @@ QString DictCore::translate(const QString &word)
             continue;
         DictPlugin::Translation translation = plugin->translate(i->name(), simplifiedWord);
         result += "<p>\n"
-            "<font class=\"dict_name\">" + translation.dictName() + "</font><br>\n"
-            "<font class=\"title\">" + translation.title() + "</font><br>\n"
-            + translation.translation() + "</p>\n";
+                  "<font class=\"dict_name\">" + translation.dictName() + "</font><br>\n"
+                                                                          "<font class=\"title\">" + translation.title() + "</font><br>\n"
+                + translation.translation() + "</p>\n";
     }
     return result;
 }
@@ -104,7 +104,7 @@ QStringList DictCore::availablePlugins() const
     QStringList result;
 #ifdef Q_OS_WIN
     QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("*0.dll"),
-                  QDir::Files | QDir::NoDotAndDotDot);
+                                                                    QDir::Files | QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
         result << i->fileName().left(i->fileName().length() - 5);
 #elif defined Q_OS_MAC
@@ -121,7 +121,7 @@ QStringList DictCore::availablePlugins() const
     }
 #elif defined Q_OS_UNIX
     QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("lib*.so"),
-                  QDir::Files | QDir::NoDotAndDotDot);
+                                                                    QDir::Files | QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
         result << i->fileName().mid(3, i->fileName().length() - 6);
 #else
@@ -168,8 +168,8 @@ QList<DictCore::Dictionary> DictCore::availableDicts() const
     for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
     {
         DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
-		if (!plugin)
-			continue;
+        if (!plugin)
+            continue;
         QStringList dicts = plugin->availableDicts();
         for (QStringList::const_iterator j = dicts.begin(); j != dicts.end(); ++j)
             result << Dictionary(i.key(), *j);
@@ -228,9 +228,9 @@ void DictCore::reloadDicts()
     for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
     {
         DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
-		if (!plugin) {
-			continue;
-		}
+        if (!plugin) {
+            continue;
+        }
         plugin->setLoadedDicts(plugin->loadedDicts());
         QStringList loadedNames = plugin->loadedDicts();
         for (QStringList::const_iterator j = loadedNames.begin(); j != loadedNames.end(); ++j)

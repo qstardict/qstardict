@@ -39,19 +39,19 @@ namespace QStarDict
 class TrayIconPlugin
 {
 public:
-	enum TrayCompat
-	{
-		CompatNone,
-		CompatFallback,
-		CompatFull
-	};
+    enum TrayCompat
+    {
+        CompatNone,
+        CompatFallback,
+        CompatFull
+    };
 
-	virtual TrayCompat isDECompatible() = 0;
-	virtual void initTray() = 0;
-	virtual void setContextMenu(QMenu *menu) = 0;
-	virtual void setMainWindow(QWidget *w) = 0;
-	virtual void setScanEnabled(bool enabled) = 0;
-	virtual void setVisible(bool visible) = 0;
+    virtual TrayCompat isDECompatible() = 0;
+    virtual void initTray() = 0;
+    virtual void setContextMenu(QMenu *menu) = 0;
+    virtual void setMainWindow(QWidget *w) = 0;
+    virtual void setScanEnabled(bool enabled) = 0;
+    virtual void setVisible(bool visible) = 0;
 };
 
 

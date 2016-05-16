@@ -39,9 +39,9 @@ class KDEIntegration : public QObject, public QStarDict::BasePlugin, public QSta
     Q_INTERFACES(QStarDict::BasePlugin QStarDict::TrayIconPlugin)
 public:
     explicit KDEIntegration(QObject *parent = 0);
-	~KDEIntegration();
+    ~KDEIntegration();
 
-	QString name() const
+    QString name() const
     { return "kdeintegration"; }
     QString version() const
     { return "0.01"; }
@@ -50,21 +50,21 @@ public:
     QStringList authors() const
     { return QStringList("Sergey Il'inykh <rion4ik@gmail.com>"); }
 
-	TrayCompat isDECompatible();
-	void initTray();
-	void setContextMenu(QMenu *menu);
-	void setMainWindow(QWidget *w);
-	void setScanEnabled(bool enabled);
-	void setVisible(bool visible);
+    TrayCompat isDECompatible();
+    void initTray();
+    void setContextMenu(QMenu *menu);
+    void setMainWindow(QWidget *w);
+    void setScanEnabled(bool enabled);
+    void setVisible(bool visible);
 
 signals:
 
 public slots:
 
 private:
-	class Private;
-	friend class Private;
-	Private *d;
+    class Private;
+    friend class Private;
+    Private *d;
 };
 
 } // namespace QtNote

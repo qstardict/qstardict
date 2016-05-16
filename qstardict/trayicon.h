@@ -32,45 +32,45 @@ namespace QStarDict
 
 class TrayIconDefaultImpl : public QObject, public TrayIconPlugin
 {
-	Q_OBJECT
-	Q_INTERFACES(QStarDict::TrayIconPlugin)
+    Q_OBJECT
+    Q_INTERFACES(QStarDict::TrayIconPlugin)
 
-	QSystemTrayIcon *sti;
-	QWidget *mw;
+    QSystemTrayIcon *sti;
+    QWidget *mw;
 
 public:
-	TrayIconDefaultImpl(QObject *parent);
+    TrayIconDefaultImpl(QObject *parent);
 
-	TrayCompat isDECompatible();
-	void initTray();
-	void setContextMenu(QMenu *menu);
-	void setMainWindow(QWidget *w);
-	void setScanEnabled(bool enabled);
-	void setVisible(bool visible);
+    TrayCompat isDECompatible();
+    void initTray();
+    void setContextMenu(QMenu *menu);
+    void setMainWindow(QWidget *w);
+    void setScanEnabled(bool enabled);
+    void setVisible(bool visible);
 private slots:
-	void on_activated(QSystemTrayIcon::ActivationReason reason);
+    void on_activated(QSystemTrayIcon::ActivationReason reason);
 };
 
 class TrayIcon: public QSystemTrayIcon
 {
     Q_OBJECT
 
-    public:
-        TrayIcon(QObject *parent = 0);
-        virtual ~TrayIcon();
+public:
+    TrayIcon(QObject *parent = 0);
+    virtual ~TrayIcon();
 
-        void saveSettings();
-		void setMainWindow(QWidget *w);
+    void saveSettings();
+    void setMainWindow(QWidget *w);
 
-    private slots:
-        void on_actionSettings_triggered();
-        void setScanEnabled(bool enabled);
+private slots:
+    void on_actionSettings_triggered();
+    void setScanEnabled(bool enabled);
 
-    private:
-        void loadSettings();
+private:
+    void loadSettings();
 
-		QAction *_actionMainWindow;
-		QObject *_trayImpl;
+    QAction *_actionMainWindow;
+    QObject *_trayImpl;
 };
 
 }

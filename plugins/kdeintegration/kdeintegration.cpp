@@ -45,7 +45,7 @@ static const QLatin1String pluginId("kde_de");
 class KDEIntegration::Private
 {
 public:
-	KStatusNotifierItem *sni;
+    KStatusNotifierItem *sni;
 };
 
 //------------------------------------------------------------
@@ -59,58 +59,58 @@ KDEIntegration::KDEIntegration(QObject *parent) :
 
 KDEIntegration::~KDEIntegration()
 {
-	delete d;
+    delete d;
 }
 
 QStarDict::TrayIconPlugin::TrayCompat KDEIntegration::isDECompatible()
 {
-	QStringList des = QStringList() << "KDE-4" << "kde-plasma" << "/usr/share/xsessions/plasma";
-	QString session = qgetenv("DESKTOP_SESSION");
-	return des.contains(session)? QStarDict::TrayIconPlugin::CompatFull :
-	                              QStarDict::TrayIconPlugin::CompatNone;
+    QStringList des = QStringList() << "KDE-4" << "kde-plasma" << "/usr/share/xsessions/plasma";
+    QString session = qgetenv("DESKTOP_SESSION");
+    return des.contains(session)? QStarDict::TrayIconPlugin::CompatFull :
+                                  QStarDict::TrayIconPlugin::CompatNone;
 }
 
 void KDEIntegration::initTray()
 {
-	d->sni = new KStatusNotifierItem("qstardict", this);
-	d->sni->setIconByName("qstardict"); // TODO review dev mode when no icon in /usr/share
-	d->sni->setStatus(KStatusNotifierItem::Active);
-	d->sni->setTitle("QStarDict");
+    d->sni = new KStatusNotifierItem("qstardict", this);
+    d->sni->setIconByName("qstardict"); // TODO review dev mode when no icon in /usr/share
+    d->sni->setStatus(KStatusNotifierItem::Active);
+    d->sni->setTitle("QStarDict");
 }
 
 void KDEIntegration::setContextMenu(QMenu *menu)
 {
 #ifdef USE_KDE5
-	d->sni->setContextMenu(menu);
+    d->sni->setContextMenu(menu);
 #else
-	KMenu *kmenu = new KMenu(menu);
-	foreach (QAction *a, menu->actions()) {
-		KAction *ka = new KAction(KIcon(a->icon()), a->text(), a);
-		if (!ka->isSeparator()) {
-			connect(ka, SIGNAL(triggered(bool)), a, SIGNAL(triggered(bool)));
-		}
-		kmenu->addAction(ka);
-	}
-	d->sni->setContextMenu(kmenu);
+    KMenu *kmenu = new KMenu(menu);
+    foreach (QAction *a, menu->actions()) {
+        KAction *ka = new KAction(KIcon(a->icon()), a->text(), a);
+        if (!ka->isSeparator()) {
+            connect(ka, SIGNAL(triggered(bool)), a, SIGNAL(triggered(bool)));
+        }
+        kmenu->addAction(ka);
+    }
+    d->sni->setContextMenu(kmenu);
 #endif
 }
 
 void KDEIntegration::setMainWindow(QWidget *w)
 {
-	d->sni->setAssociatedWidget(w);
+    d->sni->setAssociatedWidget(w);
 }
 
 void KDEIntegration::setScanEnabled(bool enabled)
 {
-	// TODO rewrite to system icons
-	QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
+    // TODO rewrite to system icons
+    QIcon icon(enabled ? ":/icons/qstardict.png" : ":/icons/qstardict-disabled.png");
     d->sni->setIconByPixmap(icon);
-	d->sni->setToolTip(icon, "QStarDict", tr("scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
+    d->sni->setToolTip(icon, "QStarDict", tr("scanning is %1").arg(enabled ? tr("enabled") : tr("disabled")));
 }
 
 void KDEIntegration::setVisible(bool visible)
 {
-	//d->sni->setVi
+    //d->sni->setVi
 }
 
 

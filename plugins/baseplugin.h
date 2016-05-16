@@ -34,51 +34,51 @@ namespace QStarDict
  */
 class BasePlugin
 {
-    public:
+public:
 
-        /**
-         * Destructor.
-         */
-        virtual ~BasePlugin() { }
+    /**
+     * Destructor.
+     */
+    virtual ~BasePlugin() { }
 
-        /**
-         * Return the plugin name.
-         */
-        virtual QString name() const = 0;
+    /**
+     * Return the plugin name.
+     */
+    virtual QString name() const = 0;
 
-        /**
-         * Return the plugin version.
-         */
-        virtual QString version() const = 0;
+    /**
+     * Return the plugin version.
+     */
+    virtual QString version() const = 0;
 
-        /**
-         * Return the plugin description.
-         */
-        virtual QString description() const = 0;
+    /**
+     * Return the plugin description.
+     */
+    virtual QString description() const = 0;
 
-        /**
-         * Return the plugin authors.
-         */
-        virtual QStringList authors() const = 0;
+    /**
+     * Return the plugin authors.
+     */
+    virtual QStringList authors() const = 0;
 
-    protected:
-        /**
-         * Return a directory that contains plugin's data.
-         */
-        QString workPath() const
-        {
-            QString path = QDir::homePath() + "/.config/qstardict/pluginsdata/" + name();
+protected:
+    /**
+     * Return a directory that contains plugin's data.
+     */
+    QString workPath() const
+    {
+        QString path = QDir::homePath() + "/.config/qstardict/pluginsdata/" + name();
 
-            if (! QDir::root().exists(path))
-                QDir::root().mkpath(path);
-            return path;
-        }
+        if (! QDir::root().exists(path))
+            QDir::root().mkpath(path);
+        return path;
+    }
 };
 
 class ConfigurablePlugin
 {
 public:
-	/**
+    /**
      * Run a settings dialog and return QDialog::DialogCode.
      */
     virtual int execSettingsDialog(QWidget *parent = 0) = 0;
