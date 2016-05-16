@@ -56,6 +56,7 @@ public:
     void setMainWindow(QWidget *w);
     void setScanEnabled(bool enabled);
     void setVisible(bool visible);
+    bool isVisible() const;
 
 signals:
 

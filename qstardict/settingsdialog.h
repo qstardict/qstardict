@@ -31,6 +31,7 @@ class QStandardItem;
 namespace QStarDict
 {
 class MainWindow;
+class PluginsModel;
 
 /**
  * The settings dialog.
@@ -55,17 +56,18 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
 
         void on_pluginsShowInfoButton_clicked();
         void on_pluginsConfigureButton_clicked();
-        void pluginsItemChanged(QStandardItem *item);
+
 
     private slots:
         void loadDictsList();
-        void loadPluginsList();
+        void dictLoadedPluginsChanged();
 
-    private:
+private:
         QStringList m_oldPlugins;
         QList<DictCore::Dictionary> m_oldDicts;
         QStandardItemModel *m_dictsModel;
-        QStandardItemModel *m_pluginsModel;
+        PluginsModel *m_dictPluginsModel;
+        PluginsModel *m_miscPluginsModel;
 };
 
 }

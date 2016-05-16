@@ -46,7 +46,9 @@ HEADERS += \
     settingsdialog.h \
     speaker.h \
     trayicon.h \
-    dictbrowsersearch.h
+    dictbrowsersearch.h \
+    pluginsview.h \
+    pluginsmodel.h
 unix:isEmpty(NO_DBUS):HEADERS += \
     dbusadaptor.h
 SOURCES += \
@@ -64,7 +66,9 @@ SOURCES += \
     settingsdialog.cpp \
     speaker.cpp \
     trayicon.cpp \
-    dictbrowsersearch.cpp
+    dictbrowsersearch.cpp \
+    pluginsview.cpp \
+    pluginsmodel.cpp
 unix:isEmpty(NO_DBUS):SOURCES += \
     dbusadaptor.cpp
 

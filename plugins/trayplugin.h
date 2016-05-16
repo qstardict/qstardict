@@ -52,12 +52,13 @@ public:
     virtual void setMainWindow(QWidget *w) = 0;
     virtual void setScanEnabled(bool enabled) = 0;
     virtual void setVisible(bool visible) = 0;
+    virtual bool isVisible() const = 0;
 };
 
 
 } // namespace QStarDict
 
-Q_DECLARE_INTERFACE(QStarDict::TrayIconPlugin, "org.qstardict.TrayIconPlugin/1.0")
+Q_DECLARE_INTERFACE(QStarDict::TrayIconPlugin, "org.qstardict.TrayIconPlugin/1.1")
 
 #endif // TRAYPLUGIN_H
 

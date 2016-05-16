@@ -110,7 +110,12 @@ void KDEIntegration::setScanEnabled(bool enabled)
 
 void KDEIntegration::setVisible(bool visible)
 {
-    //d->sni->setVi
+    // FIXME
+}
+
+bool KDEIntegration::isVisible() const
+{
+    return true; // FIXME
 }
 
 

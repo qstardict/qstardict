@@ -33,6 +33,7 @@
 #include "application.h"
 #include "speaker.h"
 #include "trayicon.h"
+#include "pluginsmodel.h"
 #include "../qxt/qxtglobalshortcut.h"
 
 namespace
@@ -58,14 +59,14 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_oldPlugins = dict->loadedPlugins();
     m_oldDicts = dict->loadedDicts();
 
-    m_pluginsModel = new QStandardItemModel(this);
-    m_pluginsModel->setHorizontalHeaderLabels(
-            QStringList() << tr("Enabled") << tr("Name"));
-    loadPluginsList();
-    pluginsTableView->setModel(m_pluginsModel);
-    pluginsTableView->verticalHeader()->hide();
-    pluginsTableView->setColumnWidth(0, 60);
-    pluginsTableView->setColumnWidth(1, 320);
+    m_dictPluginsModel = new PluginsModel(this);
+    m_miscPluginsModel = new PluginsModel(this);
+
+    m_dictPluginsModel->loadPluginsList(PluginsModel::JustDict);
+    m_miscPluginsModel->loadPluginsList(PluginsModel::ExceptDict);
+
+    pluginsTableView->setModel(m_dictPluginsModel);
+    miscPluginsView->setModel(m_miscPluginsModel);
 
     m_dictsModel = new QStandardItemModel(this);
     m_dictsModel->setHorizontalHeaderLabels(QStringList() << tr("Enabled") << tr("Name") << tr("Plugin"));
@@ -142,8 +143,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     apperanceCSSEdit->setElementsAliases(cssAliases);
     apperanceCSSEdit->setCSS(app->mainWindow()->defaultStyleSheet());
 
-    connect(m_pluginsModel, SIGNAL(itemChanged(QStandardItem*)),
-            SLOT(pluginsItemChanged(QStandardItem*)));
+    connect(m_dictPluginsModel, SIGNAL(loadedListChanged()),
+            SLOT(dictLoadedPluginsChanged()));
 }
 
 void SettingsDialog::accept()
@@ -152,15 +153,10 @@ void SettingsDialog::accept()
 
     // Save dicts and plugins settings
     DictCore *dict = app->dictCore();
-    QStringList loadedPlugins;
-    int rowCount = m_pluginsModel->rowCount();
-    for (int i = 0; i < rowCount; ++i)
-        if (m_pluginsModel->item(i, 0)->checkState() == Qt::Checked)
-            loadedPlugins << m_pluginsModel->item(i, 1)->text();
-    dict->setLoadedPlugins(loadedPlugins);
+    dict->setLoadedPlugins(m_dictPluginsModel->loadedPlugins() + m_miscPluginsModel->loadedPlugins());
 
     QList<DictCore::Dictionary> loadedDicts;
-    rowCount = m_dictsModel->rowCount();
+    int rowCount = m_dictsModel->rowCount();
     for (int i = 0; i < rowCount; ++i)
         if (m_dictsModel->item(i, 0)->checkState() == Qt::Checked)
             loadedDicts << DictCore::Dictionary(m_dictsModel->item(i, 2)->text(), m_dictsModel->item(i, 1)->text());
@@ -279,22 +275,6 @@ void SettingsDialog::loadDictsList()
     }
 }
 
-void SettingsDialog::loadPluginsList()
-{
-    m_pluginsModel->setRowCount(0);
-    DictCore *dict = Application::instance()->dictCore();
-    QStringList plugins = dict->availablePlugins();
-    QStringList loaded = dict->loadedPlugins();
-    for (int i = 0; i < plugins.size(); ++i)
-    {
-        QStandardItem *item = new QStandardItem();
-        item->setCheckable(true);
-        item->setCheckState(loaded.contains(plugins[i]) ? Qt::Checked : Qt::Unchecked);
-        m_pluginsModel->setItem(i, 0, item);
-        m_pluginsModel->setItem(i, 1, new QStandardItem(plugins[i]));
-    }
-}
-
 void SettingsDialog::on_dictsMoveUpButton_clicked()
 {
     int currentRow = dictsTableView->currentIndex().row();
@@ -337,7 +317,7 @@ void SettingsDialog::on_pluginsShowInfoButton_clicked()
     int currentRow = pluginsTableView->currentIndex().row();
     if (currentRow == -1)
         return;
-    QObject *plugin = Application::instance()->dictCore()->plugin(m_pluginsModel->item(currentRow, 1)->text());
+    QObject *plugin = Application::instance()->dictCore()->plugin(m_dictPluginsModel->item(currentRow, 1)->text());
 	if (! plugin)
         return;
 	BasePlugin *bplugin = qobject_cast<BasePlugin*>(plugin);
@@ -359,7 +339,7 @@ void SettingsDialog::on_pluginsConfigureButton_clicked()
     if (currentRow == -1)
         return;
     DictCore *dict = Application::instance()->dictCore();
-    ConfigurablePlugin *plugin = dict->configurablePlugin(m_pluginsModel->item(currentRow, 1)->text());
+    ConfigurablePlugin *plugin = dict->configurablePlugin(m_dictPluginsModel->item(currentRow, 1)->text());
     if (plugin && plugin->execSettingsDialog(this) == QDialog::Accepted)
     {
         dict->reloadDicts();
@@ -367,20 +347,12 @@ void SettingsDialog::on_pluginsConfigureButton_clicked()
     }
 }
 
-void SettingsDialog::pluginsItemChanged(QStandardItem *item)
+void SettingsDialog::dictLoadedPluginsChanged()
 {
-    if (item->isCheckable())
-    {
-        DictCore *dict = Application::instance()->dictCore();
-        QStringList loadedPlugins;
-        int rowCount = m_pluginsModel->rowCount();
-        for (int i = 0; i < rowCount; ++i)
-            if (m_pluginsModel->item(i, 0)->checkState() == Qt::Checked)
-                loadedPlugins << m_pluginsModel->item(i, 1)->text();
-        dict->setLoadedPlugins(loadedPlugins);
-        dict->reloadDicts();
-        loadDictsList();
-    }
+    DictCore *dict = Application::instance()->dictCore();
+    dict->setLoadedPlugins(m_dictPluginsModel->loadedPlugins() + m_miscPluginsModel->loadedPlugins());
+    dict->reloadDicts();
+    loadDictsList();
 }
 
 }

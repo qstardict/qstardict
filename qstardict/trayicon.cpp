@@ -74,6 +74,11 @@ void TrayIconDefaultImpl::setVisible(bool visible)
     sti->setVisible(visible);
 }
 
+bool TrayIconDefaultImpl::isVisible() const
+{
+    return sti->isVisible();
+}
+
 void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
 {
     switch (reason)
@@ -97,7 +102,7 @@ void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
 
 
 TrayIcon::TrayIcon(QObject *parent)
-    : QSystemTrayIcon(parent)
+    : QObject(parent)
 {
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
 
@@ -186,6 +191,16 @@ void TrayIcon::setMainWindow(QWidget *w)
 {
     qobject_cast<TrayIconPlugin*>(_trayImpl)->setMainWindow(w);
     connect(_actionMainWindow, SIGNAL(triggered()), w, SLOT(show()));
+}
+
+void TrayIcon::setVisible(bool visible)
+{
+    qobject_cast<TrayIconPlugin*>(_trayImpl)->setVisible(visible);
+}
+
+bool TrayIcon::isVisible() const
+{
+    return qobject_cast<TrayIconPlugin*>(_trayImpl)->isVisible();
 }
 
 void TrayIcon::loadSettings()

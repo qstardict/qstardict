@@ -47,11 +47,13 @@ public:
     void setMainWindow(QWidget *w);
     void setScanEnabled(bool enabled);
     void setVisible(bool visible);
+    bool isVisible() const;
+
 private slots:
     void on_activated(QSystemTrayIcon::ActivationReason reason);
 };
 
-class TrayIcon: public QSystemTrayIcon
+class TrayIcon: public QObject
 {
     Q_OBJECT
 
@@ -61,6 +63,8 @@ public:
 
     void saveSettings();
     void setMainWindow(QWidget *w);
+    void setVisible(bool visible);
+    bool isVisible() const;
 
 private slots:
     void on_actionSettings_triggered();
