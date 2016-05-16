@@ -168,6 +168,8 @@ QList<DictCore::Dictionary> DictCore::availableDicts() const
     for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
     {
         DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
+		if (!plugin)
+			continue;
         QStringList dicts = plugin->availableDicts();
         for (QStringList::const_iterator j = dicts.begin(); j != dicts.end(); ++j)
             result << Dictionary(i.key(), *j);
@@ -226,6 +228,9 @@ void DictCore::reloadDicts()
     for (QHash<QString, QPluginLoader*>::const_iterator i = m_plugins.begin(); i != m_plugins.end(); ++i)
     {
         DictPlugin *plugin = qobject_cast<DictPlugin*>((*i)->instance());
+		if (!plugin) {
+			continue;
+		}
         plugin->setLoadedDicts(plugin->loadedDicts());
         QStringList loadedNames = plugin->loadedDicts();
         for (QStringList::const_iterator j = loadedNames.begin(); j != loadedNames.end(); ++j)
