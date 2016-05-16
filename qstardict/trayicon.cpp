@@ -35,9 +35,9 @@ namespace QStarDict
 TrayIconDefaultImpl::TrayIconDefaultImpl(QObject *parent) :
     QObject(parent),
     sti(0),
-    mw(0)
+    associatedWidget(0)
 {
-
+    actionMainWindow = new QAction(tr("Show &main window"), this);
 }
 
 TrayIconPlugin::TrayCompat TrayIconDefaultImpl::isDECompatible()
@@ -54,12 +54,19 @@ void TrayIconDefaultImpl::initTray()
 
 void TrayIconDefaultImpl::setContextMenu(QMenu *menu)
 {
+    menu->insertAction(menu->actions()[0], actionMainWindow);
+
+    QAction *actionQuit = new QAction(QIcon(":/icons/application-exit.png"), tr("&Quit"), this);
+    connect(actionQuit, SIGNAL(triggered()), Application::instance(), SLOT(quit()));
+    menu->addAction(actionQuit);
+
     sti->setContextMenu(menu);
 }
 
 void TrayIconDefaultImpl::setMainWindow(QWidget *w)
 {
-    mw = w;
+    associatedWidget = w;
+    connect(actionMainWindow, SIGNAL(triggered(bool)), w, SLOT(show()));
 }
 
 void TrayIconDefaultImpl::setScanEnabled(bool enabled)
@@ -87,7 +94,7 @@ void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
         // It's quite uncomfortable on OS X to handle show/hide main window
         // in all cases... at least for me (petr)
 #ifndef Q_WS_MAC
-        mw->setVisible(!mw->isVisible());
+        associatedWidget->setVisible(!associatedWidget->isVisible());
 #else
         mw->show();
 #endif
@@ -106,9 +113,6 @@ TrayIcon::TrayIcon(QObject *parent)
 {
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
 
-    _actionMainWindow = new QAction(tr("Show &main window"), this);
-    trayMenu->addAction(_actionMainWindow);
-
     QAction *actionScan = new QAction(QIcon(":/icons/edit-select.png"), tr("&Scan"), this);
     actionScan->setCheckable(true);
     actionScan->setChecked(Application::instance()->popupWindow()->isScan());
@@ -122,11 +126,6 @@ TrayIcon::TrayIcon(QObject *parent)
     QAction *actionSettings = new QAction(QIcon(":/icons/configure.png"), tr("&Configure QStarDict"), this);
     connect(actionSettings, SIGNAL(triggered()), SLOT(on_actionSettings_triggered()));
     trayMenu->addAction(actionSettings);
-
-    QAction *actionQuit = new QAction(QIcon(":/icons/application-exit.png"), tr("&Quit"), this);
-    connect(actionQuit, SIGNAL(triggered()), Application::instance(), SLOT(quit()));
-    trayMenu->addAction(actionQuit);
-
 
     QObject *fbTray = 0;
     QObject *tray = 0;
@@ -190,7 +189,6 @@ void TrayIcon::saveSettings()
 void TrayIcon::setMainWindow(QWidget *w)
 {
     qobject_cast<TrayIconPlugin*>(_trayImpl)->setMainWindow(w);
-    connect(_actionMainWindow, SIGNAL(triggered()), w, SLOT(show()));
 }
 
 void TrayIcon::setVisible(bool visible)

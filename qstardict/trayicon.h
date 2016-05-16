@@ -36,7 +36,8 @@ class TrayIconDefaultImpl : public QObject, public TrayIconPlugin
     Q_INTERFACES(QStarDict::TrayIconPlugin)
 
     QSystemTrayIcon *sti;
-    QWidget *mw;
+    QWidget *associatedWidget;
+    QAction *actionMainWindow;
 
 public:
     TrayIconDefaultImpl(QObject *parent);
@@ -73,7 +74,7 @@ private slots:
 private:
     void loadSettings();
 
-    QAction *_actionMainWindow;
+
     QObject *_trayImpl;
 };
 
