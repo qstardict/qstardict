@@ -22,6 +22,7 @@
 #include <QClipboard>
 #include <QMenu>
 #include <QSettings>
+#include <QTimer>
 
 #include "application.h"
 #include "mainwindow.h"
@@ -40,6 +41,11 @@ TrayIconDefaultImpl::TrayIconDefaultImpl(QObject *parent) :
     actionMainWindow = new QAction(tr("Show &main window"), this);
 }
 
+TrayIconDefaultImpl::~TrayIconDefaultImpl()
+{
+    delete sti->contextMenu();
+}
+
 TrayIconPlugin::TrayCompat TrayIconDefaultImpl::isDECompatible()
 {
     return TrayIconPlugin::CompatFallback;
@@ -56,7 +62,7 @@ void TrayIconDefaultImpl::setContextMenu(QMenu *menu)
 {
     menu->insertAction(menu->actions()[0], actionMainWindow);
 
-    QAction *actionQuit = new QAction(QIcon(":/icons/application-exit.png"), tr("&Quit"), this);
+    QAction *actionQuit = new QAction(QIcon(":/icons/application-exit.png"), tr("&Quit"), menu);
     connect(actionQuit, SIGNAL(triggered()), Application::instance(), SLOT(quit()));
     menu->addAction(actionQuit);
 
@@ -108,12 +114,56 @@ void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
 }
 
 
-TrayIcon::TrayIcon(QObject *parent)
-    : QObject(parent)
+TrayIcon::TrayIcon(QObject *parent) :
+    QObject(parent),
+    _mainWindow(0),
+    _trayImpl(0)
 {
+    _initTrayTimer = new QTimer(this);
+    _initTrayTimer->setSingleShot(true);
+    _initTrayTimer->setInterval(100);
+    connect(_initTrayTimer, SIGNAL(timeout()), SLOT(reinit()));
+    reinit();
+}
+
+TrayIcon::~TrayIcon()
+{
+    saveSettings();
+}
+
+void TrayIcon::reinit()
+{
+    if (_trayImpl) {
+        delete _trayImpl;
+        _trayImpl = 0;
+    }
+
+    _trayCandidat.clear();
+    _trayFallbackCandidat.clear();
+    foreach (const QString &plugin, Application::instance()->dictCore()->loadedPlugins()) {
+        QObject *o = Application::instance()->dictCore()->plugin(plugin);
+        if (o) {
+            TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(o);
+            if (tip) {
+                connect(o, SIGNAL(destroyed(QObject*)), SLOT(on_trayImplDestroyed(QObject*)), Qt::UniqueConnection);
+                switch (tip->isDECompatible()) {
+                case TrayIconPlugin::CompatFallback:
+                    _trayFallbackCandidat.append(o);
+                    break;
+                case TrayIconPlugin::CompatFull:
+                    _trayCandidat.append(o);
+                    break;
+                case TrayIconPlugin::CompatNone:
+                default:
+                    break;
+                }
+            }
+        }
+    }
+
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
 
-    QAction *actionScan = new QAction(QIcon(":/icons/edit-select.png"), tr("&Scan"), this);
+    QAction *actionScan = new QAction(QIcon(":/icons/edit-select.png"), tr("&Scan"), trayMenu);
     actionScan->setCheckable(true);
     actionScan->setChecked(Application::instance()->popupWindow()->isScan());
     connect(actionScan, SIGNAL(toggled(bool)),
@@ -123,50 +173,39 @@ TrayIcon::TrayIcon(QObject *parent)
     connect(Application::instance()->popupWindow(), SIGNAL(scanChanged(bool)), SLOT(setScanEnabled(bool)));
     trayMenu->addAction(actionScan);
 
-    QAction *actionSettings = new QAction(QIcon(":/icons/configure.png"), tr("&Configure QStarDict"), this);
+    QAction *actionSettings = new QAction(QIcon(":/icons/configure.png"), tr("&Configure QStarDict"), trayMenu);
     connect(actionSettings, SIGNAL(triggered()), SLOT(on_actionSettings_triggered()));
     trayMenu->addAction(actionSettings);
 
-    QObject *fbTray = 0;
-    QObject *tray = 0;
-    foreach (const QString &plugin, Application::instance()->dictCore()->loadedPlugins()) {
-        QObject *o = Application::instance()->dictCore()->plugin(plugin);
-        if (o) {
-            TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(o);
-            if (tip) {
-                switch (tip->isDECompatible()) {
-                case TrayIconPlugin::CompatFallback:
-                    fbTray = o;
-                    break;
-                case TrayIconPlugin::CompatFull:
-                    tray = o;
-                    break;
-                case TrayIconPlugin::CompatNone:
-                default:
-                    break;
-                }
-            }
-        }
-    }
-    if (tray) {
-        _trayImpl = tray;
-    } else if(fbTray) {
-        _trayImpl = fbTray;
+    if (_trayCandidat.count()) {
+        _trayImpl = _trayCandidat[0];
+    } else if(_trayFallbackCandidat.count()) {
+        _trayImpl = _trayFallbackCandidat[0];
     } else {
         _trayImpl = new TrayIconDefaultImpl(this);
     }
 
-    qobject_cast<TrayIconPlugin*>(_trayImpl)->initTray();
-    qobject_cast<TrayIconPlugin*>(_trayImpl)->setContextMenu(trayMenu);
+    TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(_trayImpl);
+    tip->initTray();
+    tip->setContextMenu(trayMenu);
+
+    if (_mainWindow) {
+        tip->setMainWindow(_mainWindow);
+    }
 
     setScanEnabled(Application::instance()->popupWindow()->isScan());
 
     loadSettings();
 }
 
-TrayIcon::~TrayIcon()
+void TrayIcon::on_trayImplDestroyed(QObject *o)
 {
-    saveSettings();
+    _trayCandidat.removeOne(o);
+    _trayFallbackCandidat.removeOne(o);
+    if (o == _trayImpl) {
+        _trayImpl = 0;
+        _initTrayTimer->start();
+    }
 }
 
 void TrayIcon::on_actionSettings_triggered()
@@ -188,6 +227,7 @@ void TrayIcon::saveSettings()
 
 void TrayIcon::setMainWindow(QWidget *w)
 {
+    _mainWindow = w;
     qobject_cast<TrayIconPlugin*>(_trayImpl)->setMainWindow(w);
 }
 

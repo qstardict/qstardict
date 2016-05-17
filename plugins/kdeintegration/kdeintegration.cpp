@@ -59,6 +59,7 @@ KDEIntegration::KDEIntegration(QObject *parent) :
 
 KDEIntegration::~KDEIntegration()
 {
+    delete d->sni->contextMenu();
     delete d;
 }
 

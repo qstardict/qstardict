@@ -25,6 +25,7 @@
 #include "../plugins/trayplugin.h"
 
 class QAction;
+class QTimer;
 
 namespace QStarDict
 {
@@ -41,6 +42,7 @@ class TrayIconDefaultImpl : public QObject, public TrayIconPlugin
 
 public:
     TrayIconDefaultImpl(QObject *parent);
+    ~TrayIconDefaultImpl();
 
     TrayCompat isDECompatible();
     void initTray();
@@ -67,15 +69,21 @@ public:
     void setVisible(bool visible);
     bool isVisible() const;
 
+public slots:
+    void reinit();
+
 private slots:
     void on_actionSettings_triggered();
-    void setScanEnabled(bool enabled);
-
+    void setScanEnabled(bool enabled);    
+    void on_trayImplDestroyed(QObject *o);
 private:
     void loadSettings();
 
-
+    QWidget *_mainWindow;
     QObject *_trayImpl;
+    QTimer *_initTrayTimer;
+    QObjectList _trayCandidat;
+    QObjectList _trayFallbackCandidat;
 };
 
 }

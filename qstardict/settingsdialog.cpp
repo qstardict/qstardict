@@ -154,6 +154,7 @@ void SettingsDialog::accept()
     // Save dicts and plugins settings
     DictCore *dict = app->dictCore();
     dict->setLoadedPlugins(m_dictPluginsModel->loadedPlugins() + m_miscPluginsModel->loadedPlugins());
+    app->trayIcon()->reinit();
 
     QList<DictCore::Dictionary> loadedDicts;
     int rowCount = m_dictsModel->rowCount();
