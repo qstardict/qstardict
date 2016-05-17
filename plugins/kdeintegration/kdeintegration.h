@@ -52,6 +52,7 @@ public:
 
     TrayCompat isDECompatible();
     void initTray();
+    void uninitTray();
     Features features() const;
     void setContextMenu(QMenu *menu);
     void setMainWindow(QWidget *w);

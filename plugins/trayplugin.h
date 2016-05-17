@@ -55,6 +55,7 @@ public:
 
     virtual TrayCompat isDECompatible() = 0;
     virtual void initTray() = 0;
+    virtual void uninitTray() = 0;
     virtual Features features() const = 0;
     virtual void setContextMenu(QMenu *menu) = 0;
     virtual void setMainWindow(QWidget *w) = 0;

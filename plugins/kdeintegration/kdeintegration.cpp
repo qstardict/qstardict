@@ -81,6 +81,16 @@ void KDEIntegration::initTray()
     connect(d->sni, SIGNAL(secondaryActivateRequested(QPoint)), SIGNAL(translateClipboard()));
 }
 
+void KDEIntegration::uninitTray()
+{
+    if (d->sni) {
+        delete d->sni->contextMenu();
+        d->sni->setParent(0);
+        delete d->sni;
+        d->sni = 0;
+    }
+}
+
 TrayIconPlugin::Features KDEIntegration::features() const
 {
     return ClipoardTranslate;

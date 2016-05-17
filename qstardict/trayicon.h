@@ -46,6 +46,7 @@ public:
 
     TrayCompat isDECompatible();
     void initTray();
+    void uninitTray();
     Features features() const;
     void setContextMenu(QMenu *menu);
     void setMainWindow(QWidget *w);
@@ -86,6 +87,7 @@ private:
 
     QWidget *_mainWindow;
     QObject *_trayImpl;
+    QObject *_defaultTrayImpl;
     QTimer *_initTrayTimer;
     QObjectList _trayCandidat;
     QObjectList _trayFallbackCandidat;

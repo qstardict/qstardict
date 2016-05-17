@@ -36,9 +36,9 @@ namespace QStarDict
 TrayIconDefaultImpl::TrayIconDefaultImpl(QObject *parent) :
     QObject(parent),
     sti(0),
-    associatedWidget(0)
+    associatedWidget(0),
+    actionMainWindow(0)
 {
-    actionMainWindow = new QAction(tr("Show &main window"), this);
 }
 
 TrayIconDefaultImpl::~TrayIconDefaultImpl()
@@ -54,8 +54,20 @@ TrayIconPlugin::TrayCompat TrayIconDefaultImpl::isDECompatible()
 void TrayIconDefaultImpl::initTray()
 {
     sti = new QSystemTrayIcon(this);
+    actionMainWindow = new QAction(tr("Show &main window"), sti);
+
     connect(sti, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
+}
+
+void TrayIconDefaultImpl::uninitTray()
+{
+    if (sti) {
+        delete sti->contextMenu();
+        sti->setParent(0);
+        delete sti;
+        sti = 0;
+    }
 }
 
 TrayIconPlugin::Features TrayIconDefaultImpl::features() const
@@ -128,6 +140,9 @@ TrayIcon::TrayIcon(QObject *parent) :
     _initTrayTimer->setSingleShot(true);
     _initTrayTimer->setInterval(100);
     connect(_initTrayTimer, SIGNAL(timeout()), SLOT(reinit()));
+
+    _defaultTrayImpl = new TrayIconDefaultImpl(this);
+
     reinit();
 }
 
@@ -139,8 +154,7 @@ TrayIcon::~TrayIcon()
 void TrayIcon::reinit()
 {
     if (_trayImpl) {
-        delete _trayImpl;
-        _trayImpl = 0;
+        qobject_cast<TrayIconPlugin*>(_trayImpl)->uninitTray();
     }
 
     _trayCandidat.clear();
@@ -152,11 +166,11 @@ void TrayIcon::reinit()
             if (tip) {
                 connect(o, SIGNAL(destroyed(QObject*)), SLOT(on_trayImplDestroyed(QObject*)), Qt::UniqueConnection);
                 switch (tip->isDECompatible()) {
-                case TrayIconPlugin::CompatFallback:
-                    _trayFallbackCandidat.append(o);
-                    break;
                 case TrayIconPlugin::CompatFull:
                     _trayCandidat.append(o);
+                    break;
+                case TrayIconPlugin::CompatFallback:
+                    _trayFallbackCandidat.append(o);
                     break;
                 case TrayIconPlugin::CompatNone:
                 default:
@@ -165,6 +179,7 @@ void TrayIcon::reinit()
             }
         }
     }
+    _trayFallbackCandidat.append(_defaultTrayImpl);
 
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
 
@@ -184,10 +199,8 @@ void TrayIcon::reinit()
 
     if (_trayCandidat.count()) {
         _trayImpl = _trayCandidat[0];
-    } else if(_trayFallbackCandidat.count()) {
-        _trayImpl = _trayFallbackCandidat[0];
     } else {
-        _trayImpl = new TrayIconDefaultImpl(this);
+        _trayImpl = _trayFallbackCandidat[0];
     }
 
     TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(_trayImpl);
