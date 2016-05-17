@@ -74,6 +74,8 @@ QStarDict::TrayIconPlugin::TrayCompat KDEIntegration::isDECompatible()
 
 void KDEIntegration::initTray()
 {
+    if (d->sni)
+        return;
     d->sni = new KStatusNotifierItem("qstardict", this);
     d->sni->setIconByName("qstardict"); // TODO review dev mode when no icon in /usr/share
     d->sni->setStatus(KStatusNotifierItem::Active);
@@ -85,7 +87,6 @@ void KDEIntegration::initTray()
 void KDEIntegration::uninitTray()
 {
     if (d->sni) {
-        delete d->sni->contextMenu();
         d->sni->setParent(0);
         delete d->sni;
         d->sni = 0;

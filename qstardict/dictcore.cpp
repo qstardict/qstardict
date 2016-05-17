@@ -102,8 +102,16 @@ QStringList DictCore::findSimilarWords(const QString &word)
 QStringList DictCore::availablePlugins() const
 {
     QStringList result;
+#ifdef DEVEL
+    QString pluginsDir = qgetenv("QSTARDICT_PLUGINS_DIR");
+    if (pluginsDir.isEmpty()) {
+        pluginsDir = static_cast<QString>(QSTARDICT_PLUGINS_DIR);
+    }
+#else
+    QString pluginsDir = static_cast<QString>(QSTARDICT_PLUGINS_DIR);
+#endif
 #ifdef Q_OS_WIN
-    QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("*0.dll"),
+    QFileInfoList files = QDir(pluginsDir).entryInfoList(QStringList("*0.dll"),
                                                                     QDir::Files | QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
         result << i->fileName().left(i->fileName().length() - 5);
@@ -120,7 +128,7 @@ QStringList DictCore::availablePlugins() const
         result << i->fileName();
     }
 #elif defined Q_OS_UNIX
-    QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("lib*.so"),
+    QFileInfoList files = QDir(pluginsDir).entryInfoList(QStringList("lib*.so"),
                                                                     QDir::Files | QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
         result << i->fileName().mid(3, i->fileName().length() - 6);
@@ -141,13 +149,21 @@ void DictCore::setLoadedPlugins(const QStringList &loadedPlugins)
 
     for (QStringList::const_iterator i = loadedPlugins.begin(); i != loadedPlugins.end(); ++i)
     {
+#ifdef DEVEL
+        QString pluginsDir = qgetenv("QSTARDICT_PLUGINS_DIR");
+        if (pluginsDir.isEmpty()) {
+            pluginsDir = static_cast<QString>(QSTARDICT_PLUGINS_DIR);
+        }
+#else
+        QString pluginsDir = static_cast<QString>(QSTARDICT_PLUGINS_DIR);
+#endif
 #ifdef Q_OS_WIN
-        QString pluginFilename = static_cast<QString>(QSTARDICT_PLUGINS_DIR) + "/" + *i + "0.dll";
+        QString pluginFilename = pluginsDir + "/" + *i + "0.dll";
 #elif defined Q_OS_MAC
         // here we need to follow mac's bundle tree...
         QString pluginFilename = QDir(QCoreApplication::applicationDirPath()+"/../lib/"+*i).absolutePath();
 #elif defined Q_OS_UNIX
-        QString pluginFilename = static_cast<QString>(QSTARDICT_PLUGINS_DIR) + "/" "lib" + *i + ".so";
+        QString pluginFilename = pluginsDir + "/" "lib" + *i + ".so";
 #else
 #error "Function DictCore::setLoadedPlugins(const QStringList &loadedPlugins) is not available on this platform"
 #endif

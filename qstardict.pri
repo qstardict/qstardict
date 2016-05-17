@@ -52,6 +52,7 @@ win32 {
                     $$ZLIBPATH/lib
 }
 
+!isEmpty(DEVEL):DEFINES += DEVEL
 unix:DEFINES += HAVE_MMAP
 unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, dbus): NO_DBUS = 1
 unix:isEmpty(NO_DBUS):QT += dbus

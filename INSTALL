@@ -19,6 +19,11 @@ Available plugins:
     * multitran - supports Multitran dictionaries (http://multitran.sourceforge.net)
 By default the only "stardict" and "web" plugins enabled.
 
+To enable developer mode add
+    DEVEL=1
+to qmake arguments. In this mode you will be able to set QSTARDICT_PLUGINS_DIR
+environment variable to override default.
+
 To build and install:
 1)	qmake [switches]
 2)	make
