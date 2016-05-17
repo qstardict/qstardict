@@ -46,8 +46,16 @@ public:
         CompatFull
     };
 
+    enum Feature
+    {
+        None = 0x0,
+        ClipoardTranslate = 0x1
+    };
+    Q_DECLARE_FLAGS(Features, Feature)
+
     virtual TrayCompat isDECompatible() = 0;
     virtual void initTray() = 0;
+    virtual Features features() const = 0;
     virtual void setContextMenu(QMenu *menu) = 0;
     virtual void setMainWindow(QWidget *w) = 0;
     virtual void setScanEnabled(bool enabled) = 0;
@@ -58,6 +66,7 @@ public:
 
 } // namespace QStarDict
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(QStarDict::TrayIconPlugin::Features)
 Q_DECLARE_INTERFACE(QStarDict::TrayIconPlugin, "org.qstardict.TrayIconPlugin/1.1")
 
 #endif // TRAYPLUGIN_H

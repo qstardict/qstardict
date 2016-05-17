@@ -77,6 +77,13 @@ void KDEIntegration::initTray()
     d->sni->setIconByName("qstardict"); // TODO review dev mode when no icon in /usr/share
     d->sni->setStatus(KStatusNotifierItem::Active);
     d->sni->setTitle("QStarDict");
+
+    connect(d->sni, SIGNAL(secondaryActivateRequested(QPoint)), SIGNAL(translateClipboard()));
+}
+
+TrayIconPlugin::Features KDEIntegration::features() const
+{
+    return ClipoardTranslate;
 }
 
 void KDEIntegration::setContextMenu(QMenu *menu)
@@ -111,12 +118,12 @@ void KDEIntegration::setScanEnabled(bool enabled)
 
 void KDEIntegration::setVisible(bool visible)
 {
-    // FIXME
+    d->sni->setStatus(visible? KStatusNotifierItem::Active : KStatusNotifierItem::Passive);
 }
 
 bool KDEIntegration::isVisible() const
 {
-    return true; // FIXME
+    return d->sni->status() != KStatusNotifierItem::Passive;
 }
 
 

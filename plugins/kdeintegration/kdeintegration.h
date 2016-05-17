@@ -52,6 +52,7 @@ public:
 
     TrayCompat isDECompatible();
     void initTray();
+    Features features() const;
     void setContextMenu(QMenu *menu);
     void setMainWindow(QWidget *w);
     void setScanEnabled(bool enabled);
@@ -59,6 +60,7 @@ public:
     bool isVisible() const;
 
 signals:
+    void translateClipboard();
 
 public slots:
 

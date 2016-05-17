@@ -46,11 +46,15 @@ public:
 
     TrayCompat isDECompatible();
     void initTray();
+    Features features() const;
     void setContextMenu(QMenu *menu);
     void setMainWindow(QWidget *w);
     void setScanEnabled(bool enabled);
     void setVisible(bool visible);
     bool isVisible() const;
+
+signals:
+    void translateClipboard();
 
 private slots:
     void on_activated(QSystemTrayIcon::ActivationReason reason);
@@ -76,6 +80,7 @@ private slots:
     void on_actionSettings_triggered();
     void setScanEnabled(bool enabled);    
     void on_trayImplDestroyed(QObject *o);
+    void translateClipboard();
 private:
     void loadSettings();
 

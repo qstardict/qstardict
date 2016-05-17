@@ -58,6 +58,11 @@ void TrayIconDefaultImpl::initTray()
             SLOT(on_activated(QSystemTrayIcon::ActivationReason)));
 }
 
+TrayIconPlugin::Features TrayIconDefaultImpl::features() const
+{
+    return ClipoardTranslate;
+}
+
 void TrayIconDefaultImpl::setContextMenu(QMenu *menu)
 {
     menu->insertAction(menu->actions()[0], actionMainWindow);
@@ -106,7 +111,7 @@ void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
 #endif
         break;
     case QSystemTrayIcon::MiddleClick:
-        Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));
+        emit translateClipboard();
         break;
     default:
         ; // nothing
@@ -194,6 +199,9 @@ void TrayIcon::reinit()
     }
 
     setScanEnabled(Application::instance()->popupWindow()->isScan());
+    if (tip->features() & TrayIconPlugin::ClipoardTranslate) {
+        connect(_trayImpl, SIGNAL(translateClipboard()), SLOT(translateClipboard()));
+    }
 
     loadSettings();
 }
@@ -206,6 +214,11 @@ void TrayIcon::on_trayImplDestroyed(QObject *o)
         _trayImpl = 0;
         _initTrayTimer->start();
     }
+}
+
+void TrayIcon::translateClipboard()
+{
+    Application::instance()->popupWindow()->showTranslation(Application::clipboard()->text(QClipboard::Selection));
 }
 
 void TrayIcon::on_actionSettings_triggered()
