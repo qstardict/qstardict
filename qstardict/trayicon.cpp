@@ -43,7 +43,7 @@ TrayIconDefaultImpl::TrayIconDefaultImpl(QObject *parent) :
 
 TrayIconDefaultImpl::~TrayIconDefaultImpl()
 {
-    delete sti->contextMenu();
+    uninitTray();
 }
 
 TrayIconPlugin::TrayCompat TrayIconDefaultImpl::isDECompatible()

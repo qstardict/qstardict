@@ -55,11 +55,12 @@ KDEIntegration::KDEIntegration(QObject *parent) :
     QObject(parent),
     d(new Private)
 {
+    d->sni = 0;
 }
 
 KDEIntegration::~KDEIntegration()
 {
-    delete d->sni->contextMenu();
+    uninitTray();
     delete d;
 }
 
