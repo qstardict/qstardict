@@ -66,10 +66,12 @@ KDEIntegration::~KDEIntegration()
 
 QStarDict::TrayIconPlugin::TrayCompat KDEIntegration::isDECompatible()
 {
-    QStringList des = QStringList() << "KDE-4" << "kde-plasma" << "/usr/share/xsessions/plasma";
-    QString session = qgetenv("DESKTOP_SESSION");
-    return des.contains(session)? QStarDict::TrayIconPlugin::CompatFull :
-                                  QStarDict::TrayIconPlugin::CompatNone;
+    QString session = qgetenv("XDG_CURRENT_DESKTOP");
+    QString dataDirs = qgetenv("XDG_DATAD_DIRS");
+    if (session == "KDE" || session.contains("kde") || session.contains("plasma"))
+        return QStarDict::TrayIconPlugin::CompatFull;
+    else
+        return QStarDict::TrayIconPlugin::CompatNone;
 }
 
 void KDEIntegration::initTray()
