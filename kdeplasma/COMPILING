@@ -1,3 +1,4 @@
-mkdir build
-cd build
-cmakekde ..
+One can build and install Plasma widgets using following commands:
+cmake -D CMAKE_INSTALL_PREFIX=/usr .
+make
+sudo make install
