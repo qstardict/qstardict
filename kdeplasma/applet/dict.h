@@ -79,6 +79,4 @@ class QStarDictApplet: public Plasma::Applet
         QHash<QString,bool> m_activeDicts;
 };
 
-K_EXPORT_PLASMA_APPLET(qstardict, QStarDictApplet)
-
 #endif

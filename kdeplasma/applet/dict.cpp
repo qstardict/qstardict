@@ -379,4 +379,4 @@ void QStarDictApplet::configAccepted()
     emit configNeedsSaving();
 }
 
-#include "dict.moc"
+K_EXPORT_PLASMA_APPLET(qstardict, QStarDictApplet)

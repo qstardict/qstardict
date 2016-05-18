@@ -54,6 +54,4 @@ class QStarDictEngine : public Plasma::DataEngine
         Private * const d;
 };
 
-K_EXPORT_PLASMA_DATAENGINE(qstardict, QStarDictEngine)
-
 #endif

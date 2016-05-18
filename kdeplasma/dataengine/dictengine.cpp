@@ -244,8 +244,4 @@ bool QStarDictEngine::sourceRequestEvent(const QString &word)
     return true;
 }
 
-
-
-
-
-#include "dictengine.moc"
+K_EXPORT_PLASMA_DATAENGINE(qstardict, QStarDictEngine)
