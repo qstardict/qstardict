@@ -6,7 +6,7 @@
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public License as
- *   published by the Free Software Foundation; either version 2 of 
+ *   published by the Free Software Foundation; either version 2 of
  *   the License, or (at your option) any later version.
  *
  *   This program is distributed in the hope that it will be useful,
@@ -49,29 +49,29 @@ using namespace Plasma;
 
 
 const char* translationCSS =
-    "body {\n"
+        "body {\n"
         "font-size: 10pt; }\n"
-    "font.dict_name {\n"
+        "font.dict_name {\n"
         "color: blue;\n"
         "font-style: italic; }\n"
-    "font.title {\n"
+        "font.title {\n"
         "font-size: 16pt;\n"
         "font-weight: bold; }\n"
-    "font.explanation {\n"
+        "font.explanation {\n"
         "color: #7f7f7f;\n"
         "font-style: italic; }\n"
-    "font.abbreviature {\n"
+        "font.abbreviature {\n"
         "font-style: italic; }\n"
-    "font.example {\n"
+        "font.example {\n"
         "font-style: italic; }\n"
-    "font.transcription {\n"
+        "font.transcription {\n"
         "font-weight: bold; }\n";
 
 
 QStarDictApplet::QStarDictApplet(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args)
     , m_dictsModel(0)
-      //m_flash(0)
+    //m_flash(0)
 {
     setHasConfigurationInterface(true);
     setAspectRatioMode(Plasma::IgnoreAspectRatio);
@@ -85,33 +85,33 @@ QStarDictApplet::~QStarDictApplet()
 
 void QStarDictApplet::init()
 {
-//     KConfigGroup cg = config();
+    //     KConfigGroup cg = config();
 
     m_wordEdit = new LineEdit(this);
     m_wordEdit->nativeWidget()->setClearButtonShown( true );
     m_wordEdit->nativeWidget()->setClickMessage(i18n("Enter word to define here"));
     m_wordEdit->show();
-    Plasma::Animator::self()->animateItem(m_wordEdit, Plasma::Animator::AppearAnimation);
+    //Plasma::Animator::self()->animateItem(m_wordEdit, Plasma::Animator::AppearAnimation);
 
-//     m_defBrowser = new QWebView();
+    //     m_defBrowser = new QWebView();
     m_defBrowser = new QTextBrowser();
     m_defBrowser->document()->setDefaultStyleSheet(QLatin1String(translationCSS));
     m_defBrowserProxy = new QGraphicsProxyWidget(this);
     m_defBrowserProxy->setWidget(m_defBrowser);
     m_defBrowserProxy->hide();
-//  Icon in upper-left corner
-	QString iconpath = KStandardDirs::locate("icon", "oxygen/scalable/apps/accessories-dictionary.svgz");
+    //  Icon in upper-left corner
+    QString iconpath = KStandardDirs::locate("icon", "oxygen/scalable/apps/accessories-dictionary.svgz");
     m_icon = new Plasma::IconWidget(this);
     m_icon->setSvg(iconpath);
 
-//  Position lineedits
+    //  Position lineedits
     //const int wordEditOffset = 40;
     m_icon->setPos(12,3);
     //m_wordProxyWidget->setPos(15 + wordEditOffset,7);
     //m_wordProxyWidget->show();
     // TODO m_wordEdit->setDefaultTextColor(Plasma::Theme::self()->color(Plasma::Theme::TextColor));
 
-//  Timer for auto-define
+    //  Timer for auto-define
     m_timer = new QTimer(this);
     m_timer->setInterval(AUTO_DEFINE_TIMEOUT);
     m_timer->setSingleShot(true);
@@ -134,10 +134,10 @@ void QStarDictApplet::init()
 
     //connect(m_defEdit, SIGNAL(linkActivated(const QString&)), this, SLOT(linkDefine(const QString&)));
 
-//  This is the fix for links/selecting text
+    //  This is the fix for links/selecting text
     //QGraphicsItem::GraphicsItemFlags flags = m_defEdit->flags();
     //flags ^= QGraphicsItem::ItemIsMovable;
-   // m_defEdit->setFlags(flags);
+    // m_defEdit->setFlags(flags);
 
     /*m_flash = new Plasma::Flash(this);
     m_flash->setColor(Qt::gray);
@@ -192,10 +192,10 @@ void QStarDictApplet::dataUpdated(const QString& source, const Plasma::DataEngin
         }
         if (changed)
             configAccepted();
-//             cg.writeEntry("KnownDictionaries", m_dicts);
+        //             cg.writeEntry("KnownDictionaries", m_dicts);
 
     }
-//     Q_UNUSED(source);
+    //     Q_UNUSED(source);
     /*if (m_flash) {
         m_flash->kill();
     }*/
@@ -203,7 +203,7 @@ void QStarDictApplet::dataUpdated(const QString& source, const Plasma::DataEngin
         m_defBrowserProxy->show();
         // TODO Phase::self()->animateItem(m_defBrowserProxy, Phase::Appear);
     }
-/*    if (data.contains("gcide")) {
+    /*    if (data.contains("gcide")) {
         QString defHeader;
         m_defList = data[QString("gcide")].toString().split("<!--PAGE START-->"); //<!--DEFINITION START-->
         for (int n = 0; n < m_defList.size(); ++n)
@@ -228,7 +228,7 @@ void QStarDictApplet::dataUpdated(const QString& source, const Plasma::DataEngin
     } */
     if (data.contains("text")) {
         m_defBrowser->setHtml(data[QString("text")].toString());
-//         m_defBrowser->setHtml(wnToHtml(data[QString("wn")].toString()));
+        //         m_defBrowser->setHtml(wnToHtml(data[QString("wn")].toString()));
     }
     updateGeometry();
 }
@@ -285,16 +285,18 @@ public:
         , activeDicts(activeDicts_)
     {
         setStringList(dicts);
-/*        setHeaderData (0, Qt::Horizontal, "020", Qt::DisplayRole);
+        /*        setHeaderData (0, Qt::Horizontal, "020", Qt::DisplayRole);
         setHeaderData (0, Qt::Vertical, "020", Qt::DisplayRole);*/
     }
     QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const
     {
+        Q_UNUSED(section)
+        Q_UNUSED(orientation)
         if (role!=Qt::DisplayRole)
             return QVariant();
         return i18n("Dictionary");
     }
-    Qt::DropActions supportedDropActions(){return Qt::MoveAction;}
+    Qt::DropActions supportedDropActions() const{return Qt::MoveAction;}
     Qt::ItemFlags flags(const QModelIndex& index) const
     {
         if (!index.isValid())
@@ -328,20 +330,20 @@ public:
 
 void QStarDictApplet::createConfigurationInterface(KConfigDialog *parent)
 {
-//     KConfigGroup cg = config();
+    //     KConfigGroup cg = config();
 
     //QWidget *widget = new QWidget(parent);
-//     QListView* widget=new KEditListBox(i18n("Dictionaries activation and order"),
-//                            KEditListBox::CustomEditor::CustomEditor(),
-//                            parent,
-//                            "dict-order",
-//                            false,
-//                            KEditListBox::UpDown);
-//     QListView* widget=new QListView(parent);
+    //     QListView* widget=new KEditListBox(i18n("Dictionaries activation and order"),
+    //                            KEditListBox::CustomEditor::CustomEditor(),
+    //                            parent,
+    //                            "dict-order",
+    //                            false,
+    //                            KEditListBox::UpDown);
+    //     QListView* widget=new QListView(parent);
     QTreeView* widget=new QTreeView(parent);
     widget->setDragEnabled(true);
     widget->setAcceptDrops(true);
-//     widget->viewposrt()->setAcceptDrops(true);
+    //     widget->viewposrt()->setAcceptDrops(true);
     widget->setDragDropMode(QAbstractItemView::InternalMove);
     widget->setDropIndicatorShown(true);
     widget->setItemsExpandable(false);
@@ -352,7 +354,7 @@ void QStarDictApplet::createConfigurationInterface(KConfigDialog *parent)
     m_dictsModel=new CheckableStringListModel(parent,m_dicts,m_activeDicts);
     widget->setModel(m_dictsModel);
 
-//     parent->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
+    //     parent->setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
     parent->addPage(widget, parent->windowTitle(), Applet::icon());
     connect(parent, SIGNAL(applyClicked()), this, SLOT(configAccepted()));
     connect(parent, SIGNAL(okClicked()), this, SLOT(configAccepted()));

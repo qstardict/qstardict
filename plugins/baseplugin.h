@@ -78,6 +78,7 @@ protected:
 class ConfigurablePlugin
 {
 public:
+    virtual ~ConfigurablePlugin() {}
     /**
      * Run a settings dialog and return QDialog::DialogCode.
      */

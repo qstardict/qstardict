@@ -53,6 +53,8 @@ public:
     };
     Q_DECLARE_FLAGS(Features, Feature)
 
+    virtual ~TrayIconPlugin() {}
+
     virtual TrayCompat isDECompatible() = 0;
     virtual void initTray() = 0;
     virtual void uninitTray() = 0;
