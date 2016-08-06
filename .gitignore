@@ -7,3 +7,6 @@ qrc_*.cpp
 ui_*.h
 Makefile
 .*.sw[a-z]
+CMakeLists.txt.user
+*.pro.user
+build-kdeplasma-*
