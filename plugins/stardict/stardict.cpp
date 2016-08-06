@@ -32,7 +32,12 @@
 #include "lib.h"
 #include "file.hpp"
 #include "settingsdialog.h"
+#include "../pluginserver.h"
 #include <QDebug>
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#include "stardict-meta.h"
+#endif
+
 namespace
 {
 void xdxf2html(QString &str);
@@ -132,8 +137,26 @@ StarDict::~StarDict()
 	settings.setValue("StarDict/dictDirs", m_dictDirs);
 	settings.setValue("StarDict/reformatLists", m_reformatLists);
 	settings.setValue("StarDict/expandAbbreviations", m_expandAbbreviations);
-	delete m_sdLibs;
+    delete m_sdLibs;
 }
+
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+QStarDict::PluginMetadata StarDict::metadata() const
+{
+    QStarDict::PluginMetadata md;
+    md.id = PLUGIN_ID;
+    md.name = QString::fromUtf8(PLUGIN_NAME);
+    md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
+    md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
+    md.icon = QIcon(":/icons/logo.png");
+    return md;
+}
+#else
+QIcon StarDict::pluginIcon() const
+{
+    return QIcon(":/icons/logo.png");
+}
+#endif
 
 QStringList StarDict::availableDicts() const
 {
@@ -167,7 +190,8 @@ StarDict::DictInfo StarDict::dictInfo(const QString &dict)
 	if (! nativeInfo.load_from_ifo_file(whereDict(dict, m_dictDirs).toUtf8().data(), false)) {
 		return DictInfo();
 	}
-	DictInfo result(name(), dict);
+    QString pluginId = qsd->idForPlugin(this);
+	DictInfo result(pluginId, dict);
 	result.setAuthor(QString::fromUtf8(nativeInfo.author.c_str()));
 	result.setDescription(QString::fromUtf8(nativeInfo.description.c_str()));
 	result.setWordsCount(nativeInfo.wordcount ? static_cast<long>(nativeInfo.wordcount) : -1);

@@ -18,6 +18,12 @@
 #############################################################################
 
 TARGET = web
+VERSION = 0.1
+META_NAME = Web
+META_DESC = An experimental plugin for WEB dictionaries.<br><b><font color=red>Warning:</font></b> now this plugin is unstable
+META_AUTHORS = Alexander Rodin <rodin.alexander@gmail.com>
+META_FEATURES = dict
+
 include(../plugin.pri)
 
 HEADERS += \
@@ -31,7 +37,3 @@ FORMS += \
     settingsdialog.ui
 RESOURCES += \
     pixmaps/pixmaps.qrc
-
-OTHER_FILES += \
-    web.json
-

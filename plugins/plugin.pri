@@ -18,8 +18,12 @@
 #############################################################################
 
 isEmpty(TARGET):error(You must set TARGET before including $$_FILE_)
+isEmpty(META_DESC):error(You must set META_DESC before including $$_FILE_)
 
 TEMPLATE = lib
+QMAKE_TARGET_PRODUCT = QStarDict
+QMAKE_TARGET_DESCRIPTION = $$META_DESC
+
 include(../qstardict.pri)
 
 CONFIG += plugin
@@ -28,3 +32,15 @@ INCLUDEPATH += $$dirname(PWD)
 target.path = $$PLUGINS_DIR
 INSTALLS += target
 
+OTHER_FILES += \
+    $${TARGET}.json.in \
+    $${TARGET}-meta.h.in
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QMAKE_SUBSTITUTES += $${TARGET}.json.in
+    # the same as in json
+    DEFINES += PLUGIN_ID=\\\"$$TARGET\\\"
+} else {
+    QMAKE_SUBSTITUTES += $${TARGET}-meta.h.in
+    PRECOMPILED_HEADER += $${TARGET}-meta.h
+}

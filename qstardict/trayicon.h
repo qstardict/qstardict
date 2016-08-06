@@ -82,6 +82,7 @@ private slots:
     void setScanEnabled(bool enabled);    
     void on_trayImplDestroyed(QObject *o);
     void translateClipboard();
+    void on_pluginLoaded(const QString &pluginId);
 private:
     void loadSettings();
 

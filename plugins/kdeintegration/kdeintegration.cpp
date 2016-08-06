@@ -35,6 +35,9 @@ E-Mail: rion4ik@gmail.com XMPP: rion@jabber.ru
 #include <QMenu>
 
 #include "kdeintegration.h"
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#include "kdeintegration-meta.h"
+#endif
 
 
 namespace QStarDict {
@@ -63,6 +66,24 @@ KDEIntegration::~KDEIntegration()
     uninitTray();
     delete d;
 }
+
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+QStarDict::PluginMetadata KDEIntegration::metadata() const
+{
+    QStarDict::PluginMetadata md;
+    md.id = PLUGIN_ID;
+    md.name = QString::fromUtf8(PLUGIN_NAME);
+    md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
+    md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
+    md.icon = QIcon(":/icons/kde-logo");
+    return md;
+}
+#else
+QIcon KDEIntegration::pluginIcon() const
+{
+    return QIcon(":/icons/kde-logo");
+}
+#endif
 
 QStarDict::TrayIconPlugin::TrayCompat KDEIntegration::isDECompatible()
 {

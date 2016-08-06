@@ -41,7 +41,7 @@ class DictBase
     protected:
         std::string sametypesequence;
         FILE *dictfile;
-        std::auto_ptr<dictData> dictdzfile;
+        std::unique_ptr<dictData> dictdzfile;
     private:
         cacheItem cache[WORDDATA_CACHE_NUM];
         gint cache_cur;
@@ -85,7 +85,7 @@ class Dict : public DictBase
         gulong wordcount;
         std::string bookname;
 
-        std::auto_ptr<index_file> idx_file;
+        std::unique_ptr<index_file> idx_file;
 
         bool load_ifofile(const std::string& ifofilename, gulong &idxfilesize);
     public:

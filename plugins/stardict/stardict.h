@@ -22,6 +22,7 @@
 
 #include "lib.h"
 #include "../dictplugin.h"
+#include "../metadata.h"
 
 #include <string>
 #include <QVector>
@@ -40,19 +41,13 @@ class StarDict: public QObject, public QStarDict::BasePlugin, public QStarDict::
 		StarDict(QObject *parent = 0);
 		~StarDict();
 
-		QString name() const
-		{ return "stardict"; }
-		QString version() const
-		{ return "0.1"; }
-		QString description() const
-		{ return "The StarDict plugin"; }
-		QStringList authors() const
-		{ return QStringList()
-			<< "Hu Zheng <huzheng_001@163.com>"
-			<< "Opera Wang <wangvisual@sohu.com>"
-			<< "Alexander Rodin <rodin.alexander@gmail.com>"; }
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+        QStarDict::PluginMetadata metadata() const;
+#else
+        QIcon pluginIcon() const;
+#endif
 		Features features() const
-		{ return Features(SearchSimilar | SettingsDialog); }
+		{ return Features(SearchSimilar); }
 
 		QStringList availableDicts() const;
 		QStringList loadedDicts() const

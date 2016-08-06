@@ -1,0 +1,8 @@
+{
+	\"id\": \"$$TARGET\",
+	\"name\": \"$$META_NAME\",
+	\"version\" : \"$$VERSION\",
+	\"description\": \"$$META_DESC\",
+	\"authors\": \"$$META_AUTHORS\",
+	\"features\": \"$$META_FEATURES\"
+}

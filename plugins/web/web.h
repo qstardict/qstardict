@@ -35,16 +35,13 @@ class Web: public QObject, public QStarDict::BasePlugin, public QStarDict::DictP
     public:
         Web(QObject *parent = 0);
 
-        QString name() const
-        { return "web"; }
-        QString version() const
-        { return "0.01"; }
-        QString description() const
-        { return tr("An experimental plugin for WEB dictionaries.<br><b><font color=red>Warning:</font></b> now this plugin is unstable"); }
-        QStringList authors() const
-        { return QStringList("Alexander Rodin <rodin.alexander@gmail.com>"); }
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+        QStarDict::PluginMetadata metadata() const;
+#else
+        QIcon pluginIcon() const;
+#endif
         Features features() const
-        { return Features(SettingsDialog); }
+        { return 0; }
 
         QStringList availableDicts() const;
         QStringList loadedDicts() const

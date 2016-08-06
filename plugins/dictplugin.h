@@ -51,10 +51,6 @@ public:
          * fuzzy algoritms.
          */
         SearchSimilar = 0x01,
-        /**
-         * Dictionary plugin has a settings dialog.
-         */
-        SettingsDialog = 0x02,
     };
     Q_DECLARE_FLAGS(Features, Feature)
 

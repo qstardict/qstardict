@@ -1,6 +1,6 @@
 /*****************************************************************************
  * dictplugin.h - QStarDict, a StarDict clone written using Qt               *
- * Copyright (C) 2016 Sergey Ilinykh                                         *
+ * Copyright (C) 2016 Sergey Il'inykh                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -17,65 +17,44 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               *
  *****************************************************************************/
 
-#ifndef TRAYPLUGIN_H
-#define TRAYPLUGIN_H
-
-#include <QtPlugin>
-#include <QStringList>
-#include <QDir>
-#include <QCoreApplication>
-#include <QVariant>
-
-#include "baseplugin.h"
-
-#include <QMenu>
-
-namespace QStarDict
-{
-
-/**
- * This is a base class for all tray plugins classes.
+/*
+ * This interface is intended to be used from plugin
+ * to access QStarDict internals
  */
-class TrayIconPlugin
+
+
+#ifndef PLUGINSERVER_H
+#define PLUGINSERVER_H
+
+#include "metadata.h"
+
+namespace QStarDict {
+
+class PluginServer
 {
 public:
-    enum TrayCompat
-    {
-        CompatNone,
-        CompatFallback,
-        CompatFull
-    };
+    virtual ~PluginServer() {}
 
-    enum Feature
-    {
-        None = 0x0,
-        ClipoardTranslate = 0x1
-    };
-    Q_DECLARE_FLAGS(Features, Feature)
-
-    virtual ~TrayIconPlugin() {}
-
-    virtual TrayCompat isDECompatible() = 0;
-    virtual void initTray() = 0;
-    virtual void uninitTray() = 0;
-    virtual Features features() const = 0;
-    virtual void setContextMenu(QMenu *menu) = 0;
-    virtual void setMainWindow(QWidget *w) = 0;
-    virtual void setScanEnabled(bool enabled) = 0;
-    virtual void setVisible(bool visible) = 0;
-    virtual bool isVisible() const = 0;
-
-    /* Possible signals:
-     * void translateClipboard();
+    /**
+     * Returns plugin's metadata. name/descriptions/authors/etc.
      */
+    virtual const PluginMetadata &metadata(const QString &pluginId) const = 0;
+
+    /**
+     * Return a directory that contains plugin's cofiguration data.
+     */
+    virtual QString configDir(const QString &pluginId) const = 0;
+
+    /**
+     * Returns plugin's id. where instance is instance of plugin
+     */
+    virtual QString idForPlugin(QObject *instance) const = 0;
 };
 
+} // namepace QStarDict
 
-} // namespace QStarDict
+Q_DECLARE_INTERFACE(QStarDict::PluginServer, "org.qstardict.PluginServer/1.0")
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(QStarDict::TrayIconPlugin::Features)
-Q_DECLARE_INTERFACE(QStarDict::TrayIconPlugin, "org.qstardict.TrayIconPlugin/1.1")
-
-#endif // TRAYPLUGIN_H
+#endif // PLUGINSERVER_H
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent

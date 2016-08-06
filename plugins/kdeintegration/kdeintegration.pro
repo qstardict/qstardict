@@ -1,4 +1,10 @@
 TARGET = kdeintegration
+VERSION = 0.1
+META_NAME = KDE Integration
+META_DESC = Makes QStarDict fill more native on KDE
+META_AUTHORS = Sergey Il\'inykh <rion4ik@gmail.com>
+META_FEATURES = de;defenable
+
 include(../plugin.pri)
 
 QT *= gui

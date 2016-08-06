@@ -30,6 +30,7 @@ class QxtGlobalShortcut;
 namespace QStarDict
 {
 class DictCore;
+class PluginManager;
 class MainWindow;
 class PopupWindow;
 class Speaker;
@@ -72,6 +73,13 @@ class Application: public QApplication
          */
         DictCore *dictCore()
         { return m_dictCore; }
+
+        /**
+         * Returns pointer to PluginManager instance
+         */
+        PluginManager *pluginManager()
+        { return m_pluginManager; }
+
         /**
          * Returns a pointer to the application's main window.
          */
@@ -113,6 +121,7 @@ class Application: public QApplication
         QTranslator *m_qtTranslator;
 #endif // QSTARDICT_WITH_TRANSLATIONS
         DictCore *m_dictCore;
+        PluginManager *m_pluginManager;
         MainWindow *m_mainWindow;
         PopupWindow *m_popupWindow;
         Speaker *m_speaker;

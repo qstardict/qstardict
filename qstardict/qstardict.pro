@@ -37,6 +37,8 @@ HEADERS += \
     ../plugins/dictplugin.h \
     ../plugins/baseplugin.h \
     ../plugins/trayplugin.h \
+    ../plugins/pluginserver.h \
+    ../plugins/metadata.h \
     dictwidget.h \
     keyboard.h \
     mainwindow.h \
@@ -48,7 +50,10 @@ HEADERS += \
     trayicon.h \
     dictbrowsersearch.h \
     pluginsview.h \
-    pluginsmodel.h
+    pluginsmodel.h \
+    pluginmanager.h \
+    appinfo.h
+
 unix:isEmpty(NO_DBUS):HEADERS += \
     dbusadaptor.h
 SOURCES += \
@@ -68,7 +73,10 @@ SOURCES += \
     trayicon.cpp \
     dictbrowsersearch.cpp \
     pluginsview.cpp \
-    pluginsmodel.cpp
+    pluginsmodel.cpp \
+    pluginmanager.cpp \
+    appinfo.cpp
+
 unix:isEmpty(NO_DBUS):SOURCES += \
     dbusadaptor.cpp
 

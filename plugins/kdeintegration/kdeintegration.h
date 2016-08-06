@@ -41,15 +41,11 @@ public:
     explicit KDEIntegration(QObject *parent = 0);
     ~KDEIntegration();
 
-    QString name() const
-    { return "kdeintegration"; }
-    QString version() const
-    { return "0.01"; }
-    QString description() const
-    { return tr("Makes QStarDict fill more native on KDE"); }
-    QStringList authors() const
-    { return QStringList("Sergey Il'inykh <rion4ik@gmail.com>"); }
-
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    QStarDict::PluginMetadata metadata() const;
+#else
+    QIcon pluginIcon() const;
+#endif
     TrayCompat isDECompatible();
     void initTray();
     void uninitTray();

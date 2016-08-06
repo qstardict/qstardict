@@ -32,6 +32,13 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 CONFIG += \
     qt \
     warn_on
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+        CONFIG += c++11
+} else {
+        QMAKE_CXXFLAGS += -std=c++11
+}
+
 unix {
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0

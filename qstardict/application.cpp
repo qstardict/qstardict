@@ -34,6 +34,7 @@
 #include "popupwindow.h"
 #include "speaker.h"
 #include "trayicon.h"
+#include "pluginmanager.h"
 #ifdef QSTARDICT_WITH_DBUS
 #include "dbusadaptor.h"
 #endif // QSTARDICT_WITH_DBUS
@@ -63,6 +64,8 @@ Application::Application(int &argc, char **argv)
     installTranslator(m_qtTranslator);
 #endif // QSTARDICT_WITH_TRANSLATIONS
 
+    m_pluginManager = new PluginManager;
+    m_pluginManager->loadPlugins();
     m_dictCore = new DictCore;
     m_popupWindow = new PopupWindow;
     m_popupWindow->setDict(m_dictCore);
@@ -90,6 +93,7 @@ Application::~Application()
     delete m_translator;
     removeTranslator(m_qtTranslator);
     delete m_qtTranslator;
+    delete m_pluginManager;
 #endif // QSTARDICT_WITH_TRANSLATIONS
 }
 

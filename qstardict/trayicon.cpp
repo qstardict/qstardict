@@ -28,6 +28,7 @@
 #include "mainwindow.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
+#include "pluginmanager.h"
 
 namespace QStarDict
 {
@@ -63,6 +64,7 @@ void TrayIconDefaultImpl::initTray()
 void TrayIconDefaultImpl::uninitTray()
 {
     if (sti) {
+        sti->hide();
         delete sti->contextMenu();
         sti->setParent(0);
         delete sti;
@@ -140,6 +142,7 @@ TrayIcon::TrayIcon(QObject *parent) :
     _initTrayTimer->setSingleShot(true);
     _initTrayTimer->setInterval(100);
     connect(_initTrayTimer, SIGNAL(timeout()), SLOT(reinit()));
+    connect(Application::instance()->pluginManager(), SIGNAL(pluginLoaded(QString)), SLOT(on_pluginLoaded(QString)));
 
     _defaultTrayImpl = new TrayIconDefaultImpl(this);
 
@@ -159,23 +162,21 @@ void TrayIcon::reinit()
 
     _trayCandidat.clear();
     _trayFallbackCandidat.clear();
-    foreach (const QString &plugin, Application::instance()->dictCore()->loadedPlugins()) {
-        QObject *o = Application::instance()->dictCore()->plugin(plugin);
-        if (o) {
-            TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(o);
-            if (tip) {
-                connect(o, SIGNAL(destroyed(QObject*)), SLOT(on_trayImplDestroyed(QObject*)), Qt::UniqueConnection);
-                switch (tip->isDECompatible()) {
-                case TrayIconPlugin::CompatFull:
-                    _trayCandidat.append(o);
-                    break;
-                case TrayIconPlugin::CompatFallback:
-                    _trayFallbackCandidat.append(o);
-                    break;
-                case TrayIconPlugin::CompatNone:
-                default:
-                    break;
-                }
+    foreach (const QString &plugin, Application::instance()->pluginManager()->loadedPlugins()) {
+        auto tip = Application::instance()->pluginManager()->plugin<TrayIconPlugin>(plugin);
+        if (tip) {
+            QObject *o = Application::instance()->pluginManager()->plugin(plugin);
+            connect(o, SIGNAL(destroyed(QObject*)), SLOT(on_trayImplDestroyed(QObject*)), Qt::UniqueConnection);
+            switch (tip->isDECompatible()) {
+            case TrayIconPlugin::CompatFull:
+                _trayCandidat.append(o);
+                break;
+            case TrayIconPlugin::CompatFallback:
+                _trayFallbackCandidat.append(o);
+                break;
+            case TrayIconPlugin::CompatNone:
+            default:
+                break;
             }
         }
     }
@@ -217,6 +218,15 @@ void TrayIcon::reinit()
     }
 
     loadSettings();
+}
+
+void TrayIcon::on_pluginLoaded(const QString &pluginId)
+{
+    auto p = Application::instance()->pluginManager()->plugin<TrayIconPlugin>(pluginId);
+    if (p && p->isDECompatible()) {
+        // it could be better alternative. start reinit
+        _initTrayTimer->start();
+    }
 }
 
 void TrayIcon::on_trayImplDestroyed(QObject *o)

@@ -25,6 +25,10 @@
 #include <QDir>
 #include <QCoreApplication>
 #include <QVariant>
+#include <QIcon>
+
+#include "metadata.h"
+#include "pluginserver.h"
 
 namespace QStarDict
 {
@@ -35,44 +39,24 @@ namespace QStarDict
 class BasePlugin
 {
 public:
+    /**
+     * Accessor to QStarDict internals
+     */
+    PluginServer *qsd; // QStarDict API accessor
 
     /**
      * Destructor.
      */
     virtual ~BasePlugin() { }
 
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
     /**
-     * Return the plugin name.
+     * Return the plugin's metadata.
      */
-    virtual QString name() const = 0;
-
-    /**
-     * Return the plugin version.
-     */
-    virtual QString version() const = 0;
-
-    /**
-     * Return the plugin description.
-     */
-    virtual QString description() const = 0;
-
-    /**
-     * Return the plugin authors.
-     */
-    virtual QStringList authors() const = 0;
-
-protected:
-    /**
-     * Return a directory that contains plugin's data.
-     */
-    QString workPath() const
-    {
-        QString path = QDir::homePath() + "/.config/qstardict/pluginsdata/" + name();
-
-        if (! QDir::root().exists(path))
-            QDir::root().mkpath(path);
-        return path;
-    }
+    virtual PluginMetadata metadata() const = 0;
+#else
+    virtual QIcon pluginIcon() const = 0;
+#endif
 };
 
 class ConfigurablePlugin

@@ -26,6 +26,8 @@
 #include <QTextDocument>
 #include <QTextDocumentFragment>
 #include "../plugins/dictplugin.h"
+#include "application.h"
+#include "pluginmanager.h"
 
 namespace
 {
@@ -79,7 +81,7 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
     }
     else if (name.scheme() == "plugin")
     {
-        DictPlugin *plugin = qobject_cast<DictPlugin*>(m_dict->plugin(name.host()));
+        DictPlugin *plugin = Application::instance()->pluginManager()->plugin<DictPlugin>(name.host());
         if (! plugin)
             return QVariant();
         return plugin->resource(type, name);

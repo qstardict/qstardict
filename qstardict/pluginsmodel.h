@@ -19,6 +19,7 @@ public:
     PluginsModel(QObject *parent = 0);
     void loadPluginsList(LoadType lt);
     QStringList loadedPlugins();
+    QString pluginId(int row);
 
 signals:
     void loadedListChanged();

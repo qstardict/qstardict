@@ -29,15 +29,37 @@
 #include <QUrl>
 #include <QTextCodec>
 #include "settingsdialog.h"
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#include "web-meta.h"
+#endif
+
 
 Web::Web(QObject *parent)
     : QObject(parent)
 {
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+QStarDict::PluginMetadata Web::metadata() const
+{
+    QStarDict::PluginMetadata md;
+    md.id = PLUGIN_ID;
+    md.name = QString::fromUtf8(PLUGIN_NAME);
+    md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
+    md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
+    md.icon = QIcon(":/icons/web.png");
+    return md;
+}
+#else
+QIcon Web::pluginIcon() const
+{
+    return QIcon(":/icons/web.png");
+}
+#endif
+
 QStringList Web::availableDicts() const
 {
-    QStringList result = QDir(workPath()).entryList(QStringList("*.webdict"), QDir::Files, QDir::Name);
+    QStringList result = QDir(qsd->configDir(PLUGIN_ID)).entryList(QStringList("*.webdict"), QDir::Files, QDir::Name);
     result.replaceInStrings(".webdict", "");
     return result;
 }
@@ -46,7 +68,7 @@ void Web::setLoadedDicts(const QStringList &dicts)
 {
     for (QStringList::const_iterator i = dicts.begin(); i != dicts.end(); ++i)
     {
-        QString filename = workPath() + "/" + *i + ".webdict";
+        QString filename = qsd->configDir(PLUGIN_ID) + "/" + *i + ".webdict";
         if (! QFile::exists(filename))
             continue;
         QSettings dict(filename, QSettings::IniFormat);
@@ -61,11 +83,11 @@ void Web::setLoadedDicts(const QStringList &dicts)
 
 Web::DictInfo Web::dictInfo(const QString &dict)
 {
-    QString filename = workPath() + "/" + dict + ".webdict";
+    QString filename = qsd->configDir(PLUGIN_ID) + "/" + dict + ".webdict";
     if (! QFile::exists(filename))
         return DictInfo();
     QSettings dictFile(filename, QSettings::IniFormat);
-    DictInfo info(name(), dict,
+    DictInfo info(PLUGIN_ID, dict,
             dictFile.value("author").toString(),
             dictFile.value("description").toString());
     return info;

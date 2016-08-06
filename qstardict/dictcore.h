@@ -25,7 +25,6 @@
 #include <QStringList>
 #include <QPair>
 #include <QHash>
-#include <QPluginLoader>
 
 #include "../plugins/dictplugin.h"
 
@@ -95,24 +94,6 @@ class DictCore: public QObject
         QStringList findSimilarWords(const QString &word);
 
         /**
-         * Returns a list of available dictionary plugins.
-         */
-        QStringList availablePlugins() const;
-
-        /**
-         * Returns a list of loaded dictionary plugins.
-         */
-        QStringList loadedPlugins() const
-        { return QStringList(m_plugins.keys()); }
-
-        /**
-         * Sets a loaded plugins.
-         * If plugin cannot be loaded it will not be added to
-         * loadedPlugins list.
-         */
-        void setLoadedPlugins(const QStringList &loadedPlugins);
-
-        /**
          * Returns a list of available dictionaries.
          * The first item in pair is a plugin name, the second item
          * in pair is a dictionary name.
@@ -142,15 +123,6 @@ class DictCore: public QObject
         void reloadDicts();
 
         /**
-         * Returns pointer to plugin instance or 0 if not loaded.
-         */
-        QObject *plugin(const QString &plugin)
-		{ QPluginLoader *loader = m_plugins.value(plugin); return loader? loader->instance() : 0; }
-
-		ConfigurablePlugin *configurablePlugin(const QString &pluginName)
-		{ QObject *p = plugin(pluginName); return p? qobject_cast<ConfigurablePlugin*>(p) : 0; }
-
-        /**
          * Save settings.
          */
         void saveSettings();
@@ -162,7 +134,6 @@ class DictCore: public QObject
          */
         void loadSettings();
 
-        QHash<QString, QPluginLoader*> m_plugins;
         QList<Dictionary> m_loadedDicts;
 };
 
