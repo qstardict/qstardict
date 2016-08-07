@@ -18,7 +18,7 @@
 #############################################################################
 
 TARGET = stardict
-VERSION = 1.0
+META_VERSION = 1.0
 META_NAME = StarDict
 META_DESC = The StarDict plugin
 META_AUTHORS = Hu Zheng <huzheng_001@163.com>;Opera Wang <wangvisual@sohu.com>;Alexander Rodin <rodin.alexander@gmail.com>

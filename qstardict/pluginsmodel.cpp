@@ -115,10 +115,6 @@ QVariant PluginsModel::data(const QModelIndex &index, int role) const
                                 tr("Loaded") : tr("Not Loaded") :
                             tr("Invalid")
                         );
-            if (!pd->metadata.description.isEmpty()) {
-                ret += QLatin1String("<br/><br/>");
-                ret += Util::htmlEscape(pd->metadata.description).replace('\n', "<br/>");
-            }
             return ret;
         }
 

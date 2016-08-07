@@ -17,6 +17,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
+# It's common for all subprjects file. Keep it in mind changing it
+
 VERSION = 1.1
 
 QT = \

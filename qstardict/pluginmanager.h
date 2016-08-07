@@ -47,11 +47,11 @@ public:
             Enabled = 4
         };
 
-        Plugin() : loader(0), pluginServer(0) {}
+        Plugin() : loader(0), pluginServer(0), state(0) {}
         QPluginLoader  *loader;
         PluginServerImpl *pluginServer;
         uint            state;
-        QDateTime      modifyTime; // modificatio time of plugin library (outdated metadata check)
+        QDateTime      modifyTime; // modification time of plugin library (outdated metadata check)
         PluginMetadata metadata;
 
         inline bool isEnabled() const { return state & Enabled; }

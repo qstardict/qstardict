@@ -278,10 +278,7 @@ void PluginManager::setEnabled(const QString &pluginId, bool enabled)
             }
         }
     } else if (pd->isLoaded()) {
-        if (pd->unload()) {
-            delete pd->loader;
-            pd->loader = 0;
-        } else {
+        if (!pd->unload()) {
             qWarning("Failed to unload %s: %s", qPrintable(pd->loader->fileName()), qPrintable(pd->loader->errorString()));
         }
     }
@@ -356,15 +353,19 @@ void PluginManager::updateMetadata()
         pd->metadata.features = metaCache.value("features").toStringList();
         pd->metadata.version = metaCache.value("version").toUInt();
         pd->metadata.extra = metaCache.value("extra").toMap();
-        pd->metadata.icon = QIcon(iconsCacheDir() + pd->metadata.id + QLatin1String(".png"));
+        pd->metadata.icon = QIcon(iconsCacheDir() + '/' + pd->metadata.id + QLatin1String(".png"));
         //pd->metadata.extra = s.value("extra").();
     }
     metaCache.endArray();
 
     lastError = LE_NoError;
+    metaCache.beginWriteArray("list");
+    int cacheIndex = 0;
     PluginsIterator it;
     while (!it.isFinished()) {
+        metaCache.setArrayIndex(cacheIndex);
         QString fileName = it.fileName();
+        it.next();
         Plugin::Ptr pd = file2data.value(fileName);
         bool isnew = pd.isNull();
         if (isnew) {
@@ -430,25 +431,22 @@ void PluginManager::updateMetadata()
 
             pd->state |= Plugin::Valid;
 
-            QSettings s;
-            s.beginGroup("plugins");
-            s.beginGroup(pd->metadata.id);
-            s.setValue("id", pd->metadata.id);
-            s.setValue("state", (int)pd->state);
-            s.setValue("filename", pd->loader->fileName());
-            s.setValue("lastModify", pd->modifyTime.toTime_t());
-            s.setValue("name", pd->metadata.name);
-            s.setValue("description", pd->metadata.description);
-            s.setValue("authors", pd->metadata.authors);
-            s.setValue("features", pd->metadata.features);
-            s.setValue("version", pd->metadata.version);
-            s.setValue("extra", pd->metadata.extra);
+            metaCache.setValue("id", pd->metadata.id);
+            metaCache.setValue("state", (int)pd->state);
+            metaCache.setValue("filename", pd->loader->fileName());
+            metaCache.setValue("lastModify", pd->modifyTime.toTime_t());
+            metaCache.setValue("name", pd->metadata.name);
+            metaCache.setValue("description", pd->metadata.description);
+            metaCache.setValue("authors", pd->metadata.authors);
+            metaCache.setValue("features", pd->metadata.features);
+            metaCache.setValue("version", pd->metadata.version);
+            metaCache.setValue("extra", pd->metadata.extra);
+            cacheIndex++;
         }
 
         plugins.insert(pd->metadata.id, pd);
-
-        it.next();
     }
+    metaCache.endArray();
 }
 
 void PluginManager::Plugin::cacheIcon()

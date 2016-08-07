@@ -26,6 +26,8 @@ QMAKE_TARGET_DESCRIPTION = $$META_DESC
 
 include(../qstardict.pri)
 
+VERSION = $$META_VERSION
+
 CONFIG += plugin
 INCLUDEPATH += $$dirname(PWD)
 

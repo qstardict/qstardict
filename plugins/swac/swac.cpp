@@ -26,6 +26,9 @@
 #include <QSqlQuery>
 #include <QString>
 #include <QVariant>
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#include "swac-meta.h"
+#endif
 
 Swac::Swac(QObject *parent) : QObject(parent)
 {
@@ -41,6 +44,25 @@ Swac::~Swac()
     delete db;
     QSqlDatabase::removeDatabase("swac");
 }
+
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+QStarDict::PluginMetadata Swac::metadata() const
+{
+    QStarDict::PluginMetadata md;
+    md.id = PLUGIN_ID;
+    md.name = QString::fromUtf8(PLUGIN_NAME);
+    md.version = PLUGIN_VERSION;
+    md.description = PLUGIN_DESCRIPTION;
+    md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
+    md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
+    return md;
+}
+#else
+QIcon Swac::pluginIcon() const
+{
+    return QIcon();
+}
+#endif
 
 QStringList Swac::availableDicts() const
 {
@@ -117,6 +139,8 @@ Swac::Translation Swac::translate(const QString &dict, const QString &word)
 
 QStringList Swac::findSimilarWords(const QString &dict, const QString &word)
 {
+    Q_UNUSED(dict)
+    Q_UNUSED(word)
     return QStringList();
 }
 

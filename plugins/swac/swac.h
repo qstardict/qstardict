@@ -22,32 +22,30 @@
 #define SWAC_H
 
 #include "../dictplugin.h"
+#include "../metadata.h"
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-class Swac: public QObject, public QStarDict::DictPlugin
+class Swac: public QObject, public QStarDict::BasePlugin, public QStarDict::DictPlugin, public QStarDict::ConfigurablePlugin
 {
     Q_OBJECT
-    Q_INTERFACES(QStarDict::DictPlugin)
 #if QT_VERSION >= 0x050000
     Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "swac.json")
 #endif
+    Q_INTERFACES(QStarDict::BasePlugin QStarDict::DictPlugin QStarDict::ConfigurablePlugin)
 
 public:
     Swac(QObject *parent = 0);
     ~Swac();
 
-    QString name() const
-    { return "swac"; }
-    QString version() const
-    { return "0.1"; }
-    QString description() const
-    { return tr("An experimental plugin for words audio collections (SWAC).<br>For more information about SWAC, please, visit the <a href='http://shtooka.net/'>Shtooka Project Homepage</a>."); }
-    QStringList authors() const
-    { return QStringList("Nicolas Vion <nico@picapo.net>"); }
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    QStarDict::PluginMetadata metadata() const;
+#else
+    QIcon pluginIcon() const;
+#endif
     Features features() const
-    { return Features(SearchSimilar | SettingsDialog); }
+    { return Features(SearchSimilar); }
 
     QStringList availableDicts() const;
     QStringList loadedDicts() const

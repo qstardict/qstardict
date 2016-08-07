@@ -20,6 +20,13 @@
 #############################################################################
 
 TARGET = swac
+META_VERSION = 0.2
+META_NAME = swac
+META_DESC = "An experimental plugin for words audio collections (SWAC).<br>For more information about SWAC, please, visit the <a href='http://shtooka.net/'>Shtooka Project Homepage</a>."
+META_AUTHORS = Nicolas Vion <nico@picapo.net>
+META_FEATURES = dict;defenable
+
+
 include(../plugin.pri)
 
 QT += sql

@@ -1,0 +1,11 @@
+#ifndef SWAC_META_H
+#define SWAC_META_H
+
+#define PLUGIN_ID \"$$TARGET\"
+#define PLUGIN_NAME \"$$META_NAME\"
+#define PLUGIN_VERSION \"$$VERSION\"
+#define PLUGIN_DESCRIPTION \"$$META_DESC\"
+#define PLUGIN_AUTHORS \"$$META_AUTHORS\"
+#define PLUGIN_FEATURES \"$$META_FEATURES\"
+
+#endif

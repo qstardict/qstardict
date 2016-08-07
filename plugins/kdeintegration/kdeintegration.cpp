@@ -73,6 +73,8 @@ QStarDict::PluginMetadata KDEIntegration::metadata() const
     QStarDict::PluginMetadata md;
     md.id = PLUGIN_ID;
     md.name = QString::fromUtf8(PLUGIN_NAME);
+    md.version = PLUGIN_VERSION;
+    md.description = PLUGIN_DESCRIPTION;
     md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
     md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
     md.icon = QIcon(":/icons/kde-logo");
