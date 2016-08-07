@@ -25,5 +25,7 @@
         <file>dialog-close.png</file>
         <file>system-search.png</file>
         <file>edit-select.png</file>
+        <file>computer.png</file>
+        <file>plugin.png</file>
     </qresource>
 </RCC>

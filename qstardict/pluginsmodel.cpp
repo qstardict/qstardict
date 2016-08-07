@@ -96,7 +96,7 @@ QVariant PluginsModel::data(const QModelIndex &index, int role) const
                 if (md.features.contains("dict")) {
                     icon = QIcon(":/icons/qstardict.png");
                 } else if (md.features.contains("de")) {
-                    icon = QIcon(":/icons/desktop.png");
+                    icon = QIcon(":/icons/computer.png");
                 } else {
                     icon = QIcon(":/icons/plugin.png");
                 }
