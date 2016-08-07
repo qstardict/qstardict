@@ -162,7 +162,7 @@
                <string>Up</string>
               </property>
               <property name="icon">
-               <iconset resource="../plugins/stardict/pixmaps/pixmaps.qrc">
+               <iconset resource="pixmaps/pixmaps.qrc">
                 <normaloff>:/icons/arrow-up.png</normaloff>:/icons/arrow-up.png</iconset>
               </property>
              </widget>
@@ -176,7 +176,7 @@
                <string>Down</string>
               </property>
               <property name="icon">
-               <iconset resource="../plugins/stardict/pixmaps/pixmaps.qrc">
+               <iconset resource="pixmaps/pixmaps.qrc">
                 <normaloff>:/icons/arrow-down.png</normaloff>:/icons/arrow-down.png</iconset>
               </property>
              </widget>
@@ -233,61 +233,10 @@
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
             </property>
-            <property name="selectionMode">
-             <enum>QAbstractItemView::SingleSelection</enum>
-            </property>
-            <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
-            </property>
             <property name="showGrid">
              <bool>false</bool>
             </property>
            </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout">
-            <item>
-             <widget class="QToolButton" name="pluginsShowInfoButton">
-              <property name="toolTip">
-               <string>Show information about plugin</string>
-              </property>
-              <property name="text">
-               <string>Info</string>
-              </property>
-              <property name="icon">
-               <iconset resource="pixmaps/pixmaps.qrc">
-                <normaloff>:/icons/dialog-information.png</normaloff>:/icons/dialog-information.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="pluginsConfigureButton">
-              <property name="toolTip">
-               <string>Configure plugin</string>
-              </property>
-              <property name="text">
-               <string>Configure</string>
-              </property>
-              <property name="icon">
-               <iconset resource="pixmaps/pixmaps.qrc">
-                <normaloff>:/icons/configure.png</normaloff>:/icons/configure.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
           </item>
          </layout>
         </widget>
@@ -693,7 +642,14 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QStarDict::PluginsView" name="miscPluginsView"/>
+           <widget class="QStarDict::PluginsView" name="miscPluginsView">
+            <property name="gridStyle">
+             <enum>Qt::NoPen</enum>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -727,8 +683,6 @@
   <tabstop>dictsMoveDownButton</tabstop>
   <tabstop>dictsShowInfoButton</tabstop>
   <tabstop>pluginsTableView</tabstop>
-  <tabstop>pluginsShowInfoButton</tabstop>
-  <tabstop>pluginsConfigureButton</tabstop>
   <tabstop>useScanBox</tabstop>
   <tabstop>showIfNotFoundBox</tabstop>
   <tabstop>useScanModifierBox</tabstop>
@@ -740,7 +694,6 @@
   <tabstop>popupOpacitySpin</tabstop>
  </tabstops>
  <resources>
-  <include location="../plugins/stardict/pixmaps/pixmaps.qrc"/>
   <include location="pixmaps/pixmaps.qrc"/>
  </resources>
  <connections>

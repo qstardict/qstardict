@@ -1,6 +1,7 @@
 /*****************************************************************************
  * settingsdialog.cpp - QStarDict, a StarDict clone written with using Qt    *
  * Copyright (C) 2007 Alexander Rodin                                        *
+ * Copyright (C) 2016 Sergey Il'inykh                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -27,6 +28,9 @@
 #include <QSettings>
 #include <QKeySequence>
 #include <math.h>
+#include <QStyledItemDelegate>
+#include <QPainter>
+
 #include "dictcore.h"
 #include "mainwindow.h"
 #include "popupwindow.h"
@@ -61,14 +65,13 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_oldPlugins = app->pluginManager()->loadedPlugins();
     m_oldDicts = dict->loadedDicts();
 
-    m_dictPluginsModel = new PluginsModel(this);
-    m_miscPluginsModel = new PluginsModel(this);
-
-    m_dictPluginsModel->loadPluginsList(PluginsModel::JustDict);
-    m_miscPluginsModel->loadPluginsList(PluginsModel::ExceptDict);
+    m_dictPluginsModel = new PluginsModel(PluginsModel::JustDict, app->pluginManager());
+    m_miscPluginsModel = new PluginsModel(PluginsModel::ExceptDict, app->pluginManager());
 
     pluginsTableView->setModel(m_dictPluginsModel);
     miscPluginsView->setModel(m_miscPluginsModel);
+    pluginsTableView->configureColumns();
+    miscPluginsView->configureColumns();
 
     m_dictsModel = new QStandardItemModel(this);
     m_dictsModel->setHorizontalHeaderLabels(QStringList() << tr("Enabled") << tr("Name") << tr("Plugin"));
@@ -147,6 +150,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     connect(m_dictPluginsModel, SIGNAL(loadedListChanged()),
             SLOT(dictLoadedPluginsChanged()));
+    connect(pluginsTableView, SIGNAL(clicked(QModelIndex)), SLOT(pluginClicked(QModelIndex)));
+    connect(miscPluginsView, SIGNAL(clicked(QModelIndex)), SLOT(pluginClicked(QModelIndex)));
 }
 
 void SettingsDialog::accept()
@@ -316,41 +321,30 @@ void SettingsDialog::on_dictsShowInfoButton_clicked()
             tr("<b>Description:</b> %1").arg(info.description()));
 }
 
-void SettingsDialog::on_pluginsShowInfoButton_clicked()
+void SettingsDialog::pluginClicked(const QModelIndex &index)
 {
-    int currentRow = pluginsTableView->currentIndex().row();
-    if (currentRow == -1)
-        return;
+    QString id = index.data(PluginsModel::IdRole).toString();
+    if (index.column() == 2) {// settings
+        auto plugin = Application::instance()->pluginManager()->plugin<ConfigurablePlugin>(id);
+        if (plugin && plugin->execSettingsDialog(this) == QDialog::Accepted)
+        {
+            Application::instance()->dictCore()->reloadDicts();
+            loadDictsList();
+        }
+    }
+    if (index.column() == 3) {
+        auto pm = Application::instance()->pluginManager();
 
-    QString pluginId = m_dictPluginsModel->pluginId(currentRow);
-    auto pm = Application::instance()->pluginManager();
-
-	BasePlugin *bplugin = pm->plugin<BasePlugin>(pluginId);
-	DictPlugin *dplugin = pm->plugin<DictPlugin>(pluginId);
-	if (! (bplugin && dplugin))
-        return;
-    const PluginMetadata &md = pm->pluginDesc(pluginId)->metadata;
-    QStringList authors = md.authors;
-    QMessageBox::information(this,
-            tr("Information about %1 plugin").arg(md.name),
-            tr("<b>Name:</b> %1<br>").arg(md.name) +
-            tr("<b>Version:</b> %1<br>").arg(md.version) +
-            tr("<b>Authors:</b> %1<br>").arg(authors.replaceInStrings("<", "&lt;").replaceInStrings(">", "&gt;").join(tr("<br>"))) +
-            tr("<b>Can search similar words:</b> %1<br>").arg(dplugin->features().testFlag(DictPlugin::SearchSimilar) ? tr("yes") : tr("no")) +
-            tr("<b>Description:</b> %1").arg(md.description));
-}
-
-void SettingsDialog::on_pluginsConfigureButton_clicked()
-{
-    int currentRow = pluginsTableView->currentIndex().row();
-    if (currentRow == -1)
-        return;
-    DictCore *dict = Application::instance()->dictCore();
-    auto plugin = Application::instance()->pluginManager()->plugin<ConfigurablePlugin>(m_dictPluginsModel->pluginId(currentRow));
-    if (plugin && plugin->execSettingsDialog(this) == QDialog::Accepted)
-    {
-        dict->reloadDicts();
-        loadDictsList();
+        DictPlugin *dplugin = pm->plugin<DictPlugin>(id);
+        const PluginMetadata &md = pm->pluginDesc(id)->metadata;
+        QStringList authors = md.authors;
+        QMessageBox::information(this,
+                tr("Information about %1 plugin").arg(md.name),
+                tr("<b>Name:</b> %1<br>").arg(md.name) +
+                tr("<b>Version:</b> %1<br>").arg(md.version) +
+                tr("<b>Authors:</b> %1<br>").arg(authors.replaceInStrings("<", "&lt;").replaceInStrings(">", "&gt;").join(tr("<br>"))) +
+                (dplugin? tr("<b>Can search similar words:</b> %1<br>").arg(dplugin->features().testFlag(DictPlugin::SearchSimilar) ? tr("yes") : tr("no")) : "") +
+                tr("<b>Description:</b> %1").arg(md.description));
     }
 }
 

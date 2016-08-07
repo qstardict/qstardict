@@ -54,14 +54,10 @@ class SettingsDialog: public QDialog, private Ui::SettingsDialog
         void on_dictsMoveDownButton_clicked();
         void on_dictsShowInfoButton_clicked();
 
-        void on_pluginsShowInfoButton_clicked();
-        void on_pluginsConfigureButton_clicked();
-
-
     private slots:
         void loadDictsList();
-        void dictLoadedPluginsChanged();
-
+        void dictLoadedPluginsChanged();        
+        void pluginClicked(const QModelIndex &index);
 private:
         QStringList m_oldPlugins;
         QList<DictCore::Dictionary> m_oldDicts;

@@ -52,7 +52,8 @@ HEADERS += \
     pluginsview.h \
     pluginsmodel.h \
     pluginmanager.h \
-    appinfo.h
+    appinfo.h \
+    util.h
 
 unix:isEmpty(NO_DBUS):HEADERS += \
     dbusadaptor.h
@@ -75,7 +76,8 @@ SOURCES += \
     pluginsview.cpp \
     pluginsmodel.cpp \
     pluginmanager.cpp \
-    appinfo.cpp
+    appinfo.cpp \
+    util.cpp
 
 unix:isEmpty(NO_DBUS):SOURCES += \
     dbusadaptor.cpp
