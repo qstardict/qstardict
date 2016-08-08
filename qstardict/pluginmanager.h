@@ -76,12 +76,13 @@ public:
 
     inline QObject *plugin(const QString &pluginId) const {
         auto pd = plugins.value(pluginId);
-        return pd->isLoaded()? pd->loader->instance() : 0;
+        return (pd && pd->isLoaded())? pd->loader->instance() : 0;
     }
 
     template<class T>
-    inline T *plugin(const QString &pluginId) const {
-        return plugins.value(pluginId)->castInstance<T>();
+    inline T *plugin(const QString &pluginId) const { // invalid pluginId could come from DictCore. so check it first
+        auto pd = plugins.value(pluginId);
+        return (pd && pd->isLoaded())? pd->castInstance<T>() : 0;
     }
 
     void loadPlugins();
