@@ -213,6 +213,7 @@ PluginManager::PluginManager()
 
 PluginManager::~PluginManager()
 {
+    /*
     QHashIterator<QString, Plugin::Ptr> it(plugins);
     while (it.hasNext()) {
         auto item = it.next();
@@ -220,6 +221,7 @@ PluginManager::~PluginManager()
             item.value()->unload();
         }
     }
+    */
 }
 
 void PluginManager::loadPlugins()

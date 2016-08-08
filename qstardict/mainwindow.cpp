@@ -44,8 +44,10 @@
 namespace QStarDict 
 {
 
-MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    m_instantSearch(false),
+    m_queryTimer(0)
 {
     setupUi(this);
     m_dict = 0;

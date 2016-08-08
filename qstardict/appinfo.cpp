@@ -143,7 +143,7 @@ QStringList AppInfo::appPluginsDirs()
 
 QString AppInfo::configDir()
 {
-    QString confDir;
+    static QString confDir;
     if (confDir.isEmpty()) {
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 
@@ -179,7 +179,7 @@ QString AppInfo::configDir()
 
 QString AppInfo::cacheDir()
 {
-    QString cd;
+    static QString cd;
     if (cd.isEmpty()) {
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
         cd = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
