@@ -137,7 +137,7 @@ QStringList AppInfo::appPluginsDirs()
     if (local == system) {
         return QStringList() << localPluginsDir;
     }
-    return QStringList() << localPluginsDir << systemAppDataDir();
+    return QStringList() << localPluginsDir << systemAppPluginsDir();
 #endif
 }
 
