@@ -11,5 +11,7 @@ The author of the SWAC plugin:
 The author of the Multitran plugin and KDE 4 plasmoid:
     Nick Shaforostoff <shaforostoff@kde.ru>
 
-QStarDict uses the Oxygen icons (http://oxygen-icons.org)
+QStarDict uses the Oxygen icons (http://oxygen-icons.org).
 
+The QStarDict icon is taken from an old revision of Oxygen Icons, originally
+it was commited to KDE SVN repository by Jeff Cooper <jeff.cooper@kdemail.net>.
