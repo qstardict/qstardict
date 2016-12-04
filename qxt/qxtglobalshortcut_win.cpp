@@ -49,8 +49,14 @@ bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray & eventType,
         const quint32 modifiers = LOWORD(msg->lParam);
         activateShortcut(keycode, modifiers);
     }
-    return false;
+
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    return prevEventFilter ? prevEventFilter(message) : false;
+#else
+	return false;
+#endif
 }
+
 
 quint32 QxtGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 {

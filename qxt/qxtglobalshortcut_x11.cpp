@@ -29,6 +29,8 @@
 ** <http://libqxt.org>  <foundation@libqxt.org>
 *****************************************************************************/
 
+#include <QVector>
+#include <X11/Xlib.h>
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #   include <QX11Info>
 #else
@@ -36,21 +38,19 @@
 #   include <qpa/qplatformnativeinterface.h>
 #   include <xcb/xcb.h>
 #endif
-#include <QVector>
-#include <X11/Xlib.h>
 
 namespace {
 
 const QVector<quint32> maskModifiers = QVector<quint32>()
     << 0 << Mod2Mask << LockMask << (Mod2Mask | LockMask);
 
-typedef int (*X11ErrorHandler)(Display* display, XErrorEvent* event);
+typedef int (*X11ErrorHandler)(Display *display, XErrorEvent *event);
 
 class QxtX11ErrorHandler {
 public:
     static bool error;
 
-    static int qxtX11ErrorHandler(Display* display, XErrorEvent *event)
+    static int qxtX11ErrorHandler(Display *display, XErrorEvent *event)
     {
         Q_UNUSED(display);
         switch (event->error_code)
@@ -71,7 +71,6 @@ public:
     }
 
     QxtX11ErrorHandler()
-        : m_previousErrorHandler(0)
     {
         error = false;
         m_previousErrorHandler = XSetErrorHandler(qxtX11ErrorHandler);
@@ -91,7 +90,6 @@ bool QxtX11ErrorHandler::error = false;
 class QxtX11Data {
 public:
     QxtX11Data()
-        : m_display(0)
     {
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
         m_display = QX11Info::display();
@@ -154,23 +152,23 @@ private:
 } // namespace
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-bool QxtGlobalShortcutPrivate::eventFilter(void* message)
+bool QxtGlobalShortcutPrivate::eventFilter(void *message)
 {
     XEvent *event = static_cast<XEvent *>(message);
     if (event->type == KeyPress)
     {
-        XKeyEvent* key = reinterpret_cast<XKeyEvent *>(event);
+        XKeyEvent *key = reinterpret_cast<XKeyEvent *>(event);
         unsigned int keycode = key->keycode;
         unsigned int keystate = key->state;
 #else
 bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray & eventType,
-    void * message, long * result)
+    void *message, long *result)
 {
     Q_UNUSED(result);
 
     xcb_key_press_event_t *kev = 0;
     if (eventType == "xcb_generic_event_t") {
-        xcb_generic_event_t* ev = static_cast<xcb_generic_event_t *>(message);
+        xcb_generic_event_t *ev = static_cast<xcb_generic_event_t *>(message);
         if ((ev->response_type & 127) == XCB_KEY_PRESS)
             kev = static_cast<xcb_key_press_event_t *>(message);
     }
@@ -191,7 +189,11 @@ bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray & eventType,
             // Mod1Mask == Alt, Mod4Mask == Meta
             keystate & (ShiftMask | ControlMask | Mod1Mask | Mod4Mask));
     }
-    return false;
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+    return prevEventFilter ? prevEventFilter(message) : false;
+#else
+	return false;
+#endif
 }
 
 quint32 QxtGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)

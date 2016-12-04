@@ -58,10 +58,7 @@ public Q_SLOTS:
     void setDisabled(bool disabled = true);
 
 Q_SIGNALS:
-    void activated(QxtGlobalShortcut *self);
-
-private:
-    void toogleRegistration();
+    void activated();
 };
 
 #endif // QXTGLOBALSHORTCUT_H

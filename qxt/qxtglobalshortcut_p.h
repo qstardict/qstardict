@@ -40,10 +40,10 @@
 #include <QAbstractNativeEventFilter>
 #endif
 
-class QxtGlobalShortcutPrivate
-    : public QxtPrivate<QxtGlobalShortcut>
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-    , public QAbstractNativeEventFilter
+
+class QxtGlobalShortcutPrivate : public QxtPrivate<QxtGlobalShortcut>
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0) && !defined(Q_OS_MAC)
+        ,public QAbstractNativeEventFilter
 #endif
 {
 public:
@@ -56,17 +56,18 @@ public:
     Qt::KeyboardModifiers mods;
 
     bool setShortcut(const QKeySequence& shortcut);
-    bool unsetShortcut(bool destroy = true);
+    bool unsetShortcut();
 
-#ifndef Q_WS_MAC
+    static bool error;
+#ifndef Q_OS_MAC
     static int ref;
-#   if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
     static QAbstractEventDispatcher::EventFilter prevEventFilter;
     static bool eventFilter(void* message);
-#   else
-    virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
-#   endif // QT_VERSION < QT_VERSION_CHECK(5,0,0)
-#endif // Q_WS_MAC
+#else
+    virtual bool nativeEventFilter(const QByteArray & eventType, void * message, long * result);
+#endif // QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#endif // Q_OS_MAC
 
     static void activateShortcut(quint32 nativeKey, quint32 nativeMods);
 

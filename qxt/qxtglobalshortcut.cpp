@@ -33,17 +33,17 @@
 #include <QAbstractEventDispatcher>
 #include <QtDebug>
 
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
 int QxtGlobalShortcutPrivate::ref = 0;
 #   if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 QAbstractEventDispatcher::EventFilter QxtGlobalShortcutPrivate::prevEventFilter = 0;
 #   endif
-#endif // Q_WS_MAC
+#endif // Q_OS_MAC
 QHash<QPair<quint32, quint32>, QxtGlobalShortcut*> QxtGlobalShortcutPrivate::shortcuts;
 
 QxtGlobalShortcutPrivate::QxtGlobalShortcutPrivate() : enabled(true), key(Qt::Key(0)), mods(Qt::NoModifier)
 {
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
     if (ref == 0) {
 #   if QT_VERSION < QT_VERSION_CHECK(5,0,0)
         prevEventFilter = QAbstractEventDispatcher::instance()->setEventFilter(eventFilter);
@@ -52,12 +52,12 @@ QxtGlobalShortcutPrivate::QxtGlobalShortcutPrivate() : enabled(true), key(Qt::Ke
 #endif
     }
     ++ref;
-#endif // Q_WS_MAC
+#endif // Q_OS_MAC
 }
 
 QxtGlobalShortcutPrivate::~QxtGlobalShortcutPrivate()
 {
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
     --ref;
     if (ref == 0) {
         QAbstractEventDispatcher *ed = QAbstractEventDispatcher::instance();
@@ -69,7 +69,7 @@ QxtGlobalShortcutPrivate::~QxtGlobalShortcutPrivate()
 #   endif
         }
     }
-#endif // Q_WS_MAC
+#endif // Q_OS_MAC
 }
 
 bool QxtGlobalShortcutPrivate::setShortcut(const QKeySequence& shortcut)
@@ -87,7 +87,7 @@ bool QxtGlobalShortcutPrivate::setShortcut(const QKeySequence& shortcut)
     return res;
 }
 
-bool QxtGlobalShortcutPrivate::unsetShortcut(bool destroy)
+bool QxtGlobalShortcutPrivate::unsetShortcut()
 {
     bool res = false;
     const quint32 nativeKey = nativeKeycode(key);
@@ -98,12 +98,8 @@ bool QxtGlobalShortcutPrivate::unsetShortcut(bool destroy)
         shortcuts.remove(qMakePair(nativeKey, nativeMods));
     else
         qWarning() << "QxtGlobalShortcut failed to unregister:" << QKeySequence(key + mods).toString();
-
-    if (destroy) {
-        key = Qt::Key(0);
-        mods = Qt::KeyboardModifiers(0);
-    }
-
+    key = Qt::Key(0);
+    mods = Qt::KeyboardModifiers(0);
     return res;
 }
 
@@ -111,7 +107,7 @@ void QxtGlobalShortcutPrivate::activateShortcut(quint32 nativeKey, quint32 nativ
 {
     QxtGlobalShortcut* shortcut = shortcuts.value(qMakePair(nativeKey, nativeMods));
     if (shortcut && shortcut->isEnabled())
-        emit shortcut->activated(shortcut);
+        emit shortcut->activated();
 }
 
 /*!
@@ -166,7 +162,7 @@ QxtGlobalShortcut::QxtGlobalShortcut(const QKeySequence& shortcut, QObject* pare
  */
 QxtGlobalShortcut::~QxtGlobalShortcut()
 {
-    if (qxt_d().key != 0 && qxt_d().enabled)
+    if (qxt_d().key != 0)
         qxt_d().unsetShortcut();
 }
 
@@ -191,7 +187,7 @@ QKeySequence QxtGlobalShortcut::shortcut() const
 
 bool QxtGlobalShortcut::setShortcut(const QKeySequence& shortcut)
 {
-    if (qxt_d().key != 0 && qxt_d().enabled)
+    if (qxt_d().key != 0)
         qxt_d().unsetShortcut();
     return qxt_d().setShortcut(shortcut);
 }
@@ -214,7 +210,6 @@ bool QxtGlobalShortcut::isEnabled() const
 void QxtGlobalShortcut::setEnabled(bool enabled)
 {
     qxt_d().enabled = enabled;
-    toogleRegistration();
 }
 
 /*!
@@ -225,14 +220,4 @@ void QxtGlobalShortcut::setEnabled(bool enabled)
 void QxtGlobalShortcut::setDisabled(bool disabled)
 {
     qxt_d().enabled = !disabled;
-    toogleRegistration();
-}
-
-void QxtGlobalShortcut::toogleRegistration()
-{
-    if (qxt_d().enabled) {
-        qxt_d().setShortcut(shortcut());
-    } else if (qxt_d().key != 0) {
-        qxt_d().unsetShortcut(false);
-    }
 }
