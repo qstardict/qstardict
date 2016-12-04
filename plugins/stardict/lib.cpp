@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstring>
 #include <cctype>
+#include <stdlib.h>
 
 #include <sys/stat.h>
 #include <zlib.h>
