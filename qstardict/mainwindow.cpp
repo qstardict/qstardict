@@ -39,7 +39,7 @@
 #include "popupwindow.h"
 #include "settingsdialog.h"
 #include "trayicon.h"
-#include "qxtglobalshortcut.h"
+#include "qxt/qxtglobalshortcut.h"
 
 namespace QStarDict 
 {
