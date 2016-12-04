@@ -39,7 +39,7 @@
 #include "trayicon.h"
 #include "pluginsmodel.h"
 #include "pluginmanager.h"
-#include "qxt/qxtglobalshortcut.h"
+#include "qxtglobalshortcut.h"
 #include "../plugins/pluginserver.h"
 
 namespace

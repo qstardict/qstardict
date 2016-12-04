@@ -1,0 +1,3 @@
+[submodule "libqxt"]
+	path = libqxt
+	url = https://bitbucket.org/libqxt/libqxt.git

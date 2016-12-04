@@ -24,6 +24,9 @@ To enable developer mode add
 to qmake arguments. In this mode you will be able to set QSTARDICT_PLUGINS_DIR
 environment variable to override default.
 
+Before building fetch libqxt submodule:
+    git submodule init && git submodule update
+
 To build and install:
 1)	qmake [switches]
 2)	make
