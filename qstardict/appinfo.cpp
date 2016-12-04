@@ -147,7 +147,7 @@ QString AppInfo::configDir()
     if (confDir.isEmpty()) {
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 
-# if Q_OS_MAC
+# if defined(Q_OS_MAC)
         QString ch = QDir::homePath() + QLatin1String("/Library/Caches");
         confDir = ch + QLatin1Char('/') + qApp->applicationName();
 # elif defined(Q_OS_LINUX)

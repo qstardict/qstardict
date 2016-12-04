@@ -116,13 +116,7 @@ void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
     switch (reason)
     {
     case QSystemTrayIcon::Trigger:
-        // It's quite uncomfortable on OS X to handle show/hide main window
-        // in all cases... at least for me (petr)
-#ifndef Q_WS_MAC
         associatedWidget->setVisible(!associatedWidget->isVisible());
-#else
-        mw->show();
-#endif
         break;
     case QSystemTrayIcon::MiddleClick:
         emit translateClipboard();

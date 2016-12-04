@@ -27,7 +27,7 @@
 #endif // QSTARDICT_WITH_TRANSLATIONS
 
 #include <QKeySequence>
-#include "../qxt/qxtglobalshortcut.h"
+#include "qxt/qxtglobalshortcut.h"
 
 #include "dictcore.h"
 #include "mainwindow.h"

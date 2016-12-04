@@ -86,16 +86,19 @@ unix:isEmpty(NO_DBUS):SOURCES += \
 unix | win32 {
     DEFINES += BUILD_QXT_GUI
 
-    HEADERS += ../qxt/qxtglobal.h
-    SOURCES += ../qxt/qxtglobal.cpp
+    QXT_DIR = ..
+    INCLUDEPATH += $$QXT_DIR
 
-    HEADERS += ../qxt/qxtglobalshortcut.h
-    HEADERS += ../qxt/qxtglobalshortcut_p.h
-    SOURCES += ../qxt/qxtglobalshortcut.cpp
+    HEADERS += $$QXT_DIR/qxt/qxtglobal.h
+    SOURCES += $$QXT_DIR/qxt/qxtglobal.cpp
 
-    unix:!macx: SOURCES += ../qxt/qxtglobalshortcut_x11.cpp
-    macx: SOURCES += ../qxt/qxtglobalshortcut_mac.cpp
-    win32: SOURCES += ../qxt/qxtglobalshortcut_win.cpp
+    HEADERS += $$QXT_DIR/qxt/qxtglobalshortcut.h
+    HEADERS += $$QXT_DIR/qxt/qxtglobalshortcut_p.h
+    SOURCES += $$QXT_DIR/qxt/qxtglobalshortcut.cpp
+
+    unix:!macx: SOURCES += $$QXT_DIR/qxt/qxtglobalshortcut_x11.cpp
+    macx: SOURCES += $$QXT_DIR/qxt/qxtglobalshortcut_mac.cpp
+    win32: SOURCES += $$QXT_DIR/qxt/qxtglobalshortcut_win.cpp
 
     greaterThan(QT_MAJOR_VERSION, 4): unix {
         QT += gui-private

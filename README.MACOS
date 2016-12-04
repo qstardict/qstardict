@@ -1,4 +1,4 @@
-QStarDict for Mac OS X is set to be built as a "bundle" application.
+QStarDict for macOS is set to be built as a "bundle" application.
 
 Distributed packages should contain all required stuff to run out-of-the-box.
 

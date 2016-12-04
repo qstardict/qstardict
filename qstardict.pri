@@ -44,13 +44,14 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 unix {
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0
-    LIBS += -lz -lX11
+    macx {
+        LIBS += /System/Library/Frameworks/Carbon.framework/Carbon
+    } else {
+        LIBS += -lX11
+    }
+    LIBS += -lz
 }
-macx {
-    # universal binaries
-    CONFIG += x86 x86_64 # not available on Snow Leopard ppc ppc64
-#    QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk/
-}
+
 win32 {
     CONFIG += console
     LIBS += -lzdll -lglib-2.0 -luser32
@@ -86,8 +87,6 @@ unix {
         TRANSLATIONS_DIR=$$MAC_BUNDLE_PATH/i18n
         PLUGINS_DIR=$$MAC_BUNDLE_PATH/lib
         DOCS_DIR=$$MAC_BUNDLE_PATH/share/doc
-
-        DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
     }
     else {
         isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/usr
@@ -97,14 +96,14 @@ unix {
         isEmpty(LIB_DIR):LIB_DIR=$$INSTALL_PREFIX/lib/qstardict
         isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$LIB_DIR/plugins
         isEmpty(DOCS_DIR):DOCS_DIR=$$INSTALL_PREFIX/share/doc/qstardict
-
-        DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
-        DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
-        DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
-        DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
-        isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
-        DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
     }
+    DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
+    DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
+    DEFINES += QSTARDICT_BIN_DIR=\\\"$$BIN_DIR\\\"
+    DEFINES += QSTARDICT_DATA_DIR=\\\"$$DATA_DIR\\\"
+    isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_TRANSLATIONS_DIR=\\\"$$TRANSLATIONS_DIR\\\"
+    DEFINES += QSTARDICT_PLUGINS_DIR=\\\"$$PLUGINS_DIR\\\"
+
 } else:win32 {
      isEmpty(INSTALL_PREFIX) {
          INSTALL_PREFIX=
