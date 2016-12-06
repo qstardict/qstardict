@@ -92,7 +92,7 @@ void MainWindow::createConnections()
             SLOT(wordTranslated(const QString&)));
 
     connect(app->popupShortcut(),
-        SIGNAL(activated(QxtGlobalShortcut *)),
+        SIGNAL(activated()),
         app->popupWindow(),
         SLOT(showClipboardTranslation()));
 }
