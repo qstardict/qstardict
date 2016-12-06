@@ -7,3 +7,4 @@ for i in AUTHORS COPYING src/core/qxtglobal.* src/widgets/{win,mac,x11,}/qxtglob
         cp $j .
     done
 done
+cat *.patch | patch
