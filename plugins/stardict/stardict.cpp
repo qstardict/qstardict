@@ -365,7 +365,7 @@ QString StarDict::parseData(const char *data, int dictIndex, bool htmlSpaces, bo
 			openedLists.pop();
 		}
 	}
-	if (htmlSpaces)
+	if (htmlSpaces && result.length())
 	{
 		int n = 0;
 		while (result[n].isSpace())
