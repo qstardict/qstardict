@@ -47,7 +47,11 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option, const QModelIndex &index) const
     {
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
         QStyleOptionViewItemV4 opt = option;
+#else
+        QStyleOptionViewItem opt = option;
+#endif
         initStyleOption(&opt, index);
         if (opt.icon.isNull()) {
             return;

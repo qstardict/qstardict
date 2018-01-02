@@ -10,3 +10,4 @@ Makefile
 CMakeLists.txt.user
 *.pro.user
 build-kdeplasma-*
+*-meta.h
