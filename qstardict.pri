@@ -19,7 +19,7 @@
 
 # It's common for all subprjects file. Keep it in mind changing it
 
-VERSION = 1.1
+VERSION = 1.3
 
 QT = \
     core \

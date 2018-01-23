@@ -127,4 +127,7 @@
 	- fix for 'unsaved prefs' thanks to Robin 'cheese' Lee from Fedora Project
 * Version 1.1
 	- add support for showing translation by shortcut
-
+* Version 1.2
+	- Update libqxt
+* Version 1.3
+	- Fix KDE integration plugin
