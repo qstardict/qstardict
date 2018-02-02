@@ -90,7 +90,7 @@ QString AppInfo::systemAppPluginsDir()
 
 QStringList AppInfo::appPluginsDirs()
 {
-#if DEVEL
+#ifdef DEVEL
     QDir pluginsDir = QDir(qApp->applicationDirPath());
 
 # if defined(Q_OS_WIN)
