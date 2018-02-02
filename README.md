@@ -21,6 +21,6 @@ If you want to compile it yourself install Qt4 and GLib2 development files and r
     [sudo] make install
     
 More information about installation:
-* [GNU/Linux](https://github.com/therussianphysicist/qstardict/blob/master/INSTALL)
-* [macOS](https://github.com/therussianphysicist/qstardict/blob/master/README.MACOS)
-* [Windows](https://github.com/therussianphysicist/qstardict/blob/master/README.WINDOWS)
+* [GNU/Linux](https://github.com/a-rodin/qstardict/blob/master/INSTALL)
+* [macOS](https://github.com/a-rodin/qstardict/blob/master/README.MACOS)
+* [Windows](https://github.com/a-rodin/qstardict/blob/master/README.WINDOWS)
