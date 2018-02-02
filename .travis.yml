@@ -6,4 +6,4 @@ before_script:
   - sudo apt-get install cppcheck
 
 script:
-  - cppcheck -j1 --quiet -f .
+  - cppcheck -j1 --quiet -f --error-exitcode=2 .
