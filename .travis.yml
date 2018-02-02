@@ -3,7 +3,10 @@ sudo: enabled
 dist: trusty
 
 before_script:
-  - sudo apt-get install cppcheck
+  - sudo apt-get install -y cppcheck
+  - sudo apt-get install -y cmake extra-cmake-modules libglib2.0-dev libkf5globalaccel-dev libkf5notifications-dev libkf5windowsystem-dev libx11-dev qt5-qmake qtbase5-dev qtbase5-private-dev qttools5-dev-tools zlib1g-dev
 
 script:
   - cppcheck -j1 --quiet -f --error-exitcode=2 .
+  - qmake
+  - make -j$(nproc)
