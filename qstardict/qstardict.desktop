@@ -1,12 +1,16 @@
 [Desktop Entry]
 Version=1.0
 Comment=QStarDict is Qt version of StarDict
+Comment[zh_CN]=Stardict 的 Qt 版本
 Exec=qstardict
 GenericName=Dictionary
+GenericName[zh_CN]=词典
 Icon=qstardict
 Name=QStarDict
 Type=Application
 Categories=Qt;Dictionary;Utility;
+Keywords=dictionary;stardict;
+Keywords[zh_CN]=dictionary;stardict;星际译王;
 Name[ru]=QStarDict
 GenericName[ru]=Словарь
 Name[tr]=QStarDict
