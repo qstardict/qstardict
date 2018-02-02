@@ -422,7 +422,7 @@
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="88"/>
-        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
+        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be written to stdin of speech process.</source>
         <translation>Veuillez entrer la commande à executer pour la prononciation des mots. &lt;br&gt;Si la commande contient la chaine de caractère &quot;%s&quot;, celle-ci sera remplacée par le mot à prononcer sinon le mot sera envoyé à la sortie standard du processus lancé (stdin).</translation>
     </message>
     <message>
@@ -554,7 +554,7 @@
     <message>
         <location filename="../settingsdialog.ui" line="452"/>
         <location filename="../settingsdialog.ui" line="577"/>
-        <source>Apperance</source>
+        <source>Appearance</source>
         <translation>Apparence</translation>
     </message>
     <message>
