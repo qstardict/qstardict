@@ -28,7 +28,7 @@ Plugins priority:
    AppInfo::appPluginsDirs() return directories in priority order
    (most prioretized first)
    If there are two plugins with the same id in some directory,
-   the one with more recent modification time will be choosen.
+   the one with more recent modification time will be chosen.
 2) Plugins have load priority
    To decide which plugin to load first.
 
@@ -494,7 +494,7 @@ bool PluginManager::Plugin::unload()
     QString fileName = loader->fileName();
     if (loader->unload()) {
         delete loader;
-        // probably Qt bug but "instance" method does't work after unload. So recreate loader.
+        // probably Qt bug but "instance" method doesn't work after unload. So recreate loader.
         loader = new QPluginLoader(fileName);
         return true;
     }

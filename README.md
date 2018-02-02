@@ -14,7 +14,7 @@ is similar to StarDict.
 ### Installation ###
 QStarDict is available in Ubuntu, Debian and other distros repositories. 
 
-If you want to compile it youself install Qt4 and GLib2 development files and run in the project's directory
+If you want to compile it yourself install Qt4 and GLib2 development files and run in the project's directory
 
     qmake INSTALL_PREFIX=<your install prefix, /usr by default>
     make

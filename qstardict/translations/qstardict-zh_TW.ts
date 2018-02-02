@@ -327,7 +327,7 @@
         <translation>使用如下指令發音</translation>
     </message>
     <message>
-        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be writen to stdin of speech process.</source>
+        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be written to stdin of speech process.</source>
         <translation></translation>
     </message>
     <message>
@@ -427,7 +427,7 @@
         <translation>當未找到字時顯示</translation>
     </message>
     <message>
-        <source>Apperance</source>
+        <source>Appearance</source>
         <translation>外觀</translation>
     </message>
     <message>

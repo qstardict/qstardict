@@ -22,7 +22,7 @@
       <item row="0" column="0" >
        <widget class="QCheckBox" name="reformatListsBox" >
         <property name="toolTip" >
-         <string>If enabled all lists in translation wil be formated using HTML &lt;li> tag (may be slow)</string>
+         <string>If enabled, all lists in translation will be formatted using HTML &lt;li> tag (may be slow)</string>
         </property>
         <property name="text" >
          <string>Reformat lists</string>

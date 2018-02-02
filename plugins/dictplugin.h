@@ -48,7 +48,7 @@ public:
         None          = 0x00,
         /**
          * Dictionary plugin can search for similar words using
-         * fuzzy algoritms.
+         * fuzzy algorithms.
          */
         SearchSimilar = 0x01,
     };
