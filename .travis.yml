@@ -1,0 +1,9 @@
+language: c++
+sudo: enabled
+dist: trusty
+
+before_script:
+  - sudo apt-get install cppcheck
+
+script:
+  - cppcheck -j1 --quiet -f --error-exitcode=2 .
