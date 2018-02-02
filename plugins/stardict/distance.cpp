@@ -115,9 +115,12 @@ int EditDistance::CalEditDistance(const gunichar *s, const gunichar *t, const in
     if ( m*n > currentelements )
     {
         currentelements = m * n * 2;    // double the request
+        int *previousD = d;
         d = (int*)realloc(d, sizeof(int) * currentelements);
-        if ( (int*)0 == d )
+        if ( (int*)0 == d ) {
+            free(previousD);
             return (m + n);
+        }
     }
     // step 2, init matrix
     for (k = 0;k < n;k++)

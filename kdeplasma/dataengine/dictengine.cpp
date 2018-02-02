@@ -87,7 +87,7 @@ QStarDictEngine::QStarDictEngine(QObject* parent, const QVariantList& args)
 #ifdef Q_OS_WIN
     QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("*0.dll"),QDir::Files|QDir::NoDotAndDotDot);
     for (QFileInfoList::const_iterator i = files.begin(); i != files.end(); ++i)
-        d->plugins[i->fileName().left(i->fileName().length()-5))]=0;
+        d->plugins[i->fileName().left(i->fileName().length()-5)]=0;
 #else
     qWarning()<<QSTARDICT_PLUGINS_DIR;
     QFileInfoList files = QDir(QSTARDICT_PLUGINS_DIR).entryInfoList(QStringList("lib*.so"),QDir::Files|QDir::NoDotAndDotDot);
