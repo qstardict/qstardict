@@ -87,6 +87,7 @@ unix {
         TRANSLATIONS_DIR=$$MAC_BUNDLE_PATH/i18n
         PLUGINS_DIR=$$MAC_BUNDLE_PATH/lib
         DOCS_DIR=$$MAC_BUNDLE_PATH/share/doc
+        MAN_DIR=$$MAC_BUNDLE_PATH/share/man/man1
     }
     else {
         isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/usr
@@ -96,6 +97,7 @@ unix {
         isEmpty(LIB_DIR):LIB_DIR=$$INSTALL_PREFIX/lib/qstardict
         isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$LIB_DIR/plugins
         isEmpty(DOCS_DIR):DOCS_DIR=$$INSTALL_PREFIX/share/doc/qstardict
+        isEmpty(MAN_DIR):MAN_DIR=$$INSTALL_PREFIX/share/man/man1
     }
     DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
     DEFINES += QSTARDICT_INSTALL_PREFIX=\\\"$$INSTALL_PREFIX\\\"
@@ -116,6 +118,7 @@ unix {
     isEmpty(NO_TRANSLATIONS):isEmpty(TRANSLATIONS_DIR):TRANSLATIONS_DIR=$$INSTALL_PREFIX/translations
     isEmpty(PLUGINS_DIR):PLUGINS_DIR=$$INSTALL_PREFIX/plugins
     isEmpty(DOCS_DIR):DOCS_DIR=$$INSTALL_PREFIX/docs
+    isEmpty(MAN_DIR):MAN_DIR=$$INSTALL_PREFIX/man
 
     DEFINES += QSTARDICT_VERSION=\\\"$$VERSION\\\"
 #    DEFINES += QSTARDICT_INSTALL_PREFIX=\(QApplication::applicationDirPath\(\)+\\\"$$INSTALL_PREFIX\\\"\)

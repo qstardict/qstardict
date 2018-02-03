@@ -26,6 +26,7 @@ DOCS += \
     COPYING \
     ChangeLog \
     THANKS
+MAN += qstardict.1
 DISTFILES += $$DOCS \
     INSTALL \
     README
@@ -65,5 +66,6 @@ win32 {
 
 docs.files = $$DOCS
 docs.path = $$DOCS_DIR
-INSTALLS += docs
-
+man.files = $$MAN
+man.path = $$MAN_DIR
+INSTALLS += docs man

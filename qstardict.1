@@ -1,0 +1,91 @@
+.\" -*- nroff -*-
+.TH QSTARDICT 1 "January 24, 2018"
+.SH NAME
+\fBqstardict\fP \- a Qt dictionary
+.SH DESCRIPTION
+\fBQStarDict\fP is a StarDict clone written with Qt. The user interface is similar to StarDict. You can start QStarDict from the menu or by running the \fBqstardict\fP command.
+.SH TRANSLATION REFORMATTING AND ABBREVIATION EXPANSION
+QStarDict can reformat translations and expand dictionary abbreviations. For example this translation:
+.PP
+.nf
+1> First _val. of _w. 2> Second _val. of _w. ...
+.PP
+can be shown as
+.PP
+.nf
+1. Fist value of word
+2. Second value of word
+3. ...
+.PP
+But reformatting and expanding takes additional CPU time. If the translation reformatting and instant search are both turned on this can decrease QStarDict performance.
+.SH DICTIONARIES
+
+Dictionaries for StarDict plugin are in \fBStarDict\fP format and by default must be placed into /usr/share/stardict/dic or ~/.stardict/dic directories. A dictionary must consist of three files:
+
+ - .dict[.dz] file - main dictionary file
+ - .idx - index file
+ - .ifo - description file
+
+These files must be placed together in one directory.
+.SH PRONOUNCING PROGRAMS
+QStarDict can pronounce words using external program when popup window is shown. You must set a voice program to pronounce text from stdin. By default this is \fBfestival\fP with \fB--tts\fP option.
+.SH D-BUS
+QStarDict supports D-Bus message bus. List of available methods:
+.PP
+.BI "void org.qstardict.dbus.showPopup(\^QString\ "text "\^)"
+.br
+.BI "void org.qstardict.dbus.showTranslation(\^QString\ "text "\^)"
+.br
+.BI "QString org.qstardict.dbus.translate(\^QString\ "text "\^)"
+.br
+.BI "QString org.qstardict.dbus.translateHtml(\^QString\ "text "\^)"
+.br
+.BI "QDBusVariant org.freedesktop.DBus.Properties.Get(\^QString\ "interface_name ", \^QString\ "property_name ")"
+.br
+.BI "void org.freedesktop.DBus.Properties.Set(\^QString\ "interface_name ", \^QString\ "property_name ", \^QDBusVariant\ "value "\^)"
+.br
+.BI "QString org.freedesktop.DBus.Introspectable.Introspect()"
+.br
+
+.PP
+List of available properties:
+.PP
+.BI "readwrite int org.qstardict.dbus.mainWindowVisible"
+
+.PP
+You can call these methods from your applications or by using the \fBqdbus\fP program.
+This command
+.PP
+.nf
+qdbus\ org.qstardict.dbus\ /qstardict\ org.qstardict.dbus.showPopup\ "text"
+.PP
+will show a QStarDict popup window with a translation of the "text".
+.PP
+If you want to show/hide QStarDict window using keyboard shortcuts you must bind the following command to a shortcut:
+.PP
+.nf
+qdbus\ org.qstardict.dbus\ /qstardict\ org.freedesktop.DBus.Properties.Set\ \\
+.br
+org.qstardict.dbus mainWindowVisible\ \\
+.br
+$(( ! $(qdbus org.qstardict.dbus\ /qstardict\ \\
+.br
+org.freedesktop.DBus.Properties.Get\ org.qstardict.dbus mainWindowVisible)))
+
+.de URL
+\\$2 \(laURL: \\$1 \(ra\\$3
+..
+.if \n[.g] .mso www.tmac
+.SH HOMEPAGE
+.URL "http://qstardict.ylsoftware.com" "QStarDict website"
+.SH AUTHOR
+\fBQStarDict\fP was written by Alexander Rodin <rodin.alexander@gmail.com>.
+.PP
+This manual page was written by Alexander Rodin <rodin.alexander@gmail.com>,
+for the Debian project (but may be used by others).
+
+.SH SEE ALSO
+.BR stardict(1)
+.BR sdcv(1)
+.BR qdbus(1)
+
