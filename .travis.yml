@@ -11,3 +11,4 @@ script:
   - cppcheck -j1 --quiet -f --error-exitcode=2 .
   - qmake
   - make -j$(nproc)
+  - sudo make install
