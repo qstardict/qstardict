@@ -45,7 +45,7 @@ namespace QStarDict
 Application::Application(int &argc, char **argv)
     : QApplication(argc, argv)
 {
-    //setOrganizationName("qstardict"); // breaks xdg dirs
+    setOrganizationName("qstardict");
     setApplicationName("qstardict");
     setQuitOnLastWindowClosed(false);
 
