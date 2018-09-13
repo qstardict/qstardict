@@ -259,6 +259,7 @@ QString StarDict::parseData(const char *data, int dictIndex, bool htmlSpaces, bo
 			case 'm':
 			case 'l':
 			case 'g':
+			case 'h':
 			{
 				QString str = QString::fromUtf8(ptr);
 				ptr += str.toUtf8().length() + 1;
