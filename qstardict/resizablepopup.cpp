@@ -37,7 +37,7 @@ ResizablePopup::ResizablePopup(QWidget *parent)
     : QFrame(parent, Qt::Popup)
 {
     m_isMoving = false;
-    m_resizeDirection = None;
+    m_resizeDirection = ResizeDirection::None;
     m_timeoutBeforeHide = 0;
     m_timerCloseId = 0;
     m_timerResizeId = 0;
@@ -80,7 +80,7 @@ void ResizablePopup::leaveEvent(QEvent*)
 {
     if (geometry().contains(QCursor::pos()))
         return;
-    if (m_resizeDirection)
+    if (m_resizeDirection != ResizeDirection::None)
         return;
     if (m_timeoutBeforeHide < 0)
         return;
@@ -143,24 +143,24 @@ void ResizablePopup::mousePressEvent(QMouseEvent *event)
     if (event->buttons().testFlag(Qt::LeftButton))
     {
         if (event->x() < CornerSize && event->y() < CornerSize)
-            m_resizeDirection = TopLeft;
+            m_resizeDirection = ResizeDirection::TopLeft;
         else if (event->x() >= width() - CornerSize && event->y() < CornerSize)
-            m_resizeDirection = TopRight;
+            m_resizeDirection = ResizeDirection::TopRight;
         else if (event->x() < CornerSize && event->y() >= height() - CornerSize)
-            m_resizeDirection = BottomLeft;
+            m_resizeDirection = ResizeDirection::BottomLeft;
         else if (event->x() >= width() - CornerSize && event->y() >= height() - CornerSize)
-            m_resizeDirection = BottomRight;
+            m_resizeDirection = ResizeDirection::BottomRight;
         else if (event->x() < frameWidth())
-            m_resizeDirection = Left;
+            m_resizeDirection = ResizeDirection::Left;
         else if (event->x() >= width() - frameWidth())
-            m_resizeDirection = Right;
+            m_resizeDirection = ResizeDirection::Right;
         else if (event->y() < frameWidth())
-            m_resizeDirection = Top;
+            m_resizeDirection = ResizeDirection::Top;
         else if (event->y() >= height() - frameWidth())
-            m_resizeDirection = Bottom;
+            m_resizeDirection = ResizeDirection::Bottom;
         else
-            m_resizeDirection = None;
-        if (m_resizeDirection)
+            m_resizeDirection = ResizeDirection::None;
+        if (m_resizeDirection != ResizeDirection::None)
             m_timerResizeId = startTimer(8);
     }
 
@@ -205,33 +205,33 @@ void ResizablePopup::doResize()
     if (! QApplication::mouseButtons().testFlag(Qt::LeftButton))
         stopResize();
     
-    if (m_resizeDirection)
+    if (m_resizeDirection != ResizeDirection::None)
     {
         QRect newGeometry = geometry();
         switch (m_resizeDirection)
         {
-            case TopLeft:
+            case ResizeDirection::TopLeft:
                 newGeometry.setTopLeft(QCursor::pos());
                 break;
-            case TopRight:
+            case ResizeDirection::TopRight:
                 newGeometry.setTopRight(QCursor::pos());
                 break;
-            case BottomLeft:
+            case ResizeDirection::BottomLeft:
                 newGeometry.setBottomLeft(QCursor::pos());
                 break;
-            case BottomRight:
+            case ResizeDirection::BottomRight:
                 newGeometry.setBottomRight(QCursor::pos());
                 break;
-            case Left:
+            case ResizeDirection::Left:
                 newGeometry.setLeft(QCursor::pos().x());
                 break;
-            case Right:
+            case ResizeDirection::Right:
                 newGeometry.setRight(QCursor::pos().x());
                 break;
-            case Top:
+            case ResizeDirection::Top:
                 newGeometry.setTop(QCursor::pos().y());
                 break;
-            case Bottom:
+            case ResizeDirection::Bottom:
                 newGeometry.setBottom(QCursor::pos().y());
                 break;
             default:
@@ -254,9 +254,9 @@ void ResizablePopup::doResize()
 
 void ResizablePopup::stopResize()
 {
-    if (m_resizeDirection)
+    if (m_resizeDirection != ResizeDirection::None)
     {
-        m_resizeDirection = None;
+        m_resizeDirection = ResizeDirection::None;
         killTimer(m_timerResizeId);
         m_timerResizeId = 0;
     }

@@ -40,7 +40,7 @@ public:
     /**
      * This enum describes a features of dictionary plugin.
      */
-    enum Feature
+    enum class Feature
     {
         /**
          * No features.
@@ -193,7 +193,7 @@ public:
      * Return a features supported by dictionary plugin.
      */
     virtual Features features() const
-    { return Features(None); }
+    { return Features(Feature::None); }
 
     /**
      * Return a list of available dictionaries.

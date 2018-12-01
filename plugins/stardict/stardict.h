@@ -41,7 +41,7 @@ class StarDict: public QObject, public QStarDict::BasePlugin, public QStarDict::
 
         QIcon pluginIcon() const;
 		Features features() const
-		{ return Features(SearchSimilar); }
+		{ return Features(Feature::SearchSimilar); }
 
 		QStringList availableDicts() const;
 		QStringList loadedDicts() const

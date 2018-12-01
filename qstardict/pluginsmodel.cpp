@@ -40,10 +40,10 @@ PluginsModel::PluginsModel(LoadType lt, PluginManager *pmanager) :
     QMutableStringListIterator it(pluginIds);
     while (it.hasNext()) {
         auto &md = pmanager->pluginDesc(it.next())->metadata;
-        if (lt == JustDict && !md.features.contains("dict")) {
+        if (lt == LoadType::JustDict && !md.features.contains("dict")) {
             it.remove();
         }
-        if (lt == ExceptDict && md.features.contains("dict")) {
+        if (lt == LoadType::ExceptDict && md.features.contains("dict")) {
             it.remove();
         }
     }

@@ -84,7 +84,7 @@ class ResizablePopup: public QFrame
         void stopResize();
         void doResize();
             
-        enum ResizeDirection
+        enum class ResizeDirection
         {
             None,
             Top,

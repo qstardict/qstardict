@@ -39,14 +39,14 @@ namespace QStarDict
 class TrayIconPlugin
 {
 public:
-    enum TrayCompat
+    enum class TrayCompat
     {
-        CompatNone,
-        CompatFallback,
-        CompatFull
+        None,
+        Fallback,
+        Full
     };
 
-    enum Feature
+    enum class Feature
     {
         None = 0x0,
         ClipoardTranslate = 0x1

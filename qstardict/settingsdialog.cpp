@@ -67,8 +67,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_oldPlugins = app->pluginManager()->loadedPlugins();
     m_oldDicts = dict->loadedDicts();
 
-    m_dictPluginsModel = new PluginsModel(PluginsModel::JustDict, app->pluginManager());
-    m_miscPluginsModel = new PluginsModel(PluginsModel::ExceptDict, app->pluginManager());
+    m_dictPluginsModel = new PluginsModel(PluginsModel::LoadType::JustDict, app->pluginManager());
+    m_miscPluginsModel = new PluginsModel(PluginsModel::LoadType::ExceptDict, app->pluginManager());
 
     pluginsTableView->setModel(m_dictPluginsModel);
     miscPluginsView->setModel(m_miscPluginsModel);
@@ -356,7 +356,7 @@ void SettingsDialog::pluginClicked(const QModelIndex &index)
                 tr("<b>Name:</b> %1<br>").arg(md.name) +
                 tr("<b>Version:</b> %1<br>").arg(md.version) +
                 tr("<b>Authors:</b> %1<br>").arg(authors.replaceInStrings("<", "&lt;").replaceInStrings(">", "&gt;").join(tr("<br>"))) +
-                (dplugin? tr("<b>Can search similar words:</b> %1<br>").arg(dplugin->features().testFlag(DictPlugin::SearchSimilar) ? tr("yes") : tr("no")) : "") +
+                (dplugin? tr("<b>Can search similar words:</b>%1<br>").arg(dplugin->features().testFlag(DictPlugin::Feature::SearchSimilar) ? tr("yes") : tr("no")) : "") +
                 tr("<b>Description:</b> %1").arg(md.description));
         messageBox->show();
     }

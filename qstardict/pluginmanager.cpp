@@ -273,7 +273,7 @@ void PluginManager::setEnabled(const QString &pluginId, bool enabled)
 
     if (enabled) {
         if (!pd->isLoaded()) {
-            if (pd->load() != LE_NoError) {
+            if (pd->load() != LoadError::NoError) {
                 emit pluginLoaded(pd->metadata.id);
             }
         }
@@ -358,7 +358,7 @@ void PluginManager::updateMetadata()
     }
     metaCache.endArray();
 
-    lastError = LE_NoError;
+    lastError = LoadError::NoError;
     metaCache.beginWriteArray("list");
     int cacheIndex = 0;
     PluginsIterator it;
@@ -385,7 +385,7 @@ void PluginManager::updateMetadata()
             if (id.isEmpty() || name.isEmpty()) {
                 pd->unload();
                 qDebug("QStarDict plugin %s did not set metadata id or name. ignore it", qPrintable(fileName));
-                lastError = LE_Metadata;
+                lastError = LoadError::Metadata;
                 pd->state &= ~(Plugin::Valid | Plugin::Enabled); // mark invalid and disable
                 continue;
             }
@@ -438,7 +438,7 @@ void PluginManager::Plugin::cacheIcon()
 PluginManager::LoadError PluginManager::Plugin::load()
 {
     if (isLoaded()) {
-        return LE_NoError;
+        return LoadError::NoError;
     }
 #ifdef DEVEL
     qDebug("Loading plugin: %s", qPrintable(loader->fileName()));
@@ -446,19 +446,19 @@ PluginManager::LoadError PluginManager::Plugin::load()
     QObject *plugin = loader->instance();
     if (!plugin) {
         qDebug("failed to load %s : %s", qPrintable(loader->fileName()), qPrintable(loader->errorString()));
-        return LE_NotPlugin;
+        return LoadError::NotPlugin;
     }
     BasePlugin *qnp = qobject_cast<BasePlugin *>(plugin);
     if (!qnp) {
         loader->unload();
         qDebug("not QStarDict plugin %s. ignore it", qPrintable(loader->fileName()));
-        return LE_Abi;
+        return LoadError::ABI;
     }
     qnp->qsd = pluginServer;
     metadata.icon = qnp->pluginIcon();
     cacheIcon();
 
-    return LE_NoError;
+    return LoadError::NoError;
 }
 
 bool PluginManager::Plugin::unload()

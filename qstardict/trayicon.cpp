@@ -49,7 +49,7 @@ TrayIconDefaultImpl::~TrayIconDefaultImpl()
 
 TrayIconPlugin::TrayCompat TrayIconDefaultImpl::isDECompatible()
 {
-    return TrayIconPlugin::CompatFallback;
+    return TrayIconPlugin::TrayCompat::Fallback;
 }
 
 void TrayIconDefaultImpl::initTray()
@@ -74,7 +74,7 @@ void TrayIconDefaultImpl::uninitTray()
 
 TrayIconPlugin::Features TrayIconDefaultImpl::features() const
 {
-    return ClipoardTranslate;
+    return Feature::ClipoardTranslate;
 }
 
 void TrayIconDefaultImpl::setContextMenu(QMenu *menu)
@@ -162,13 +162,13 @@ void TrayIcon::reinit()
             QObject *o = Application::instance()->pluginManager()->plugin(plugin);
             connect(o, SIGNAL(destroyed(QObject*)), SLOT(on_trayImplDestroyed(QObject*)), Qt::UniqueConnection);
             switch (tip->isDECompatible()) {
-            case TrayIconPlugin::CompatFull:
+            case TrayIconPlugin::TrayCompat::Full:
                 _trayCandidat.append(o);
                 break;
-            case TrayIconPlugin::CompatFallback:
+            case TrayIconPlugin::TrayCompat::Fallback:
                 _trayFallbackCandidat.append(o);
                 break;
-            case TrayIconPlugin::CompatNone:
+            case TrayIconPlugin::TrayCompat::None:
             default:
                 break;
             }
@@ -221,7 +221,7 @@ void TrayIcon::reinit()
     }
 
     setScanEnabled(Application::instance()->popupWindow()->isScan());
-    if (tip->features() & TrayIconPlugin::ClipoardTranslate) {
+    if (tip->features() & TrayIconPlugin::Feature::ClipoardTranslate) {
         connect(_trayImpl, SIGNAL(translateClipboard()), SLOT(translateClipboard()));
     }
 
@@ -231,7 +231,7 @@ void TrayIcon::reinit()
 void TrayIcon::on_pluginLoaded(const QString &pluginId)
 {
     auto p = Application::instance()->pluginManager()->plugin<TrayIconPlugin>(pluginId);
-    if (p && p->isDECompatible()) {
+    if (p && p->isDECompatible() != TrayIconPlugin::TrayCompat::None) {
         // it could be better alternative. start reinit
         _initTrayTimer->start();
     }

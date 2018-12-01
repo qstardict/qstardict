@@ -86,7 +86,7 @@ QStringList DictCore::findSimilarWords(const QString &word)
         auto plugin = Application::instance()->pluginManager()->plugin<DictPlugin>(i->plugin());
         if (!plugin)
             continue;
-        if (! plugin->features().testFlag(DictPlugin::SearchSimilar))
+        if (! plugin->features().testFlag(DictPlugin::Feature::SearchSimilar))
             continue;
         QStringList similar = plugin->findSimilarWords(i->name(), simplifiedWord);
         for (QStringList::const_iterator j = similar.begin(); j != similar.end(); ++j)

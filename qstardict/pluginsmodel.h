@@ -18,7 +18,7 @@ class PluginsModel : public QAbstractTableModel
     QIcon settingIcon;
 
 public:
-    enum LoadType
+    enum class LoadType
     {
         All,
         JustDict,

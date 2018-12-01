@@ -18,14 +18,14 @@ class PluginManager : public QObject
     Q_OBJECT
 public:
 
-    enum LoadError {
-        LE_NoError = 0,
-        LE_NotPlugin,
-        LE_Abi,
-        LE_Metadata,
+    enum class LoadError {
+        NoError,
+        NotPlugin,
+        ABI,
+        Metadata,
     };
 
-    enum PluginFeature {
+    enum class PluginFeature {
         FirstFeature     = 0x1,
         RegularPlugin   = FirstFeature,
         DEIntegration   = 0x2,
