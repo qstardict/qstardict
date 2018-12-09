@@ -37,6 +37,8 @@
 #include "dictbrowser.h"
 #include "dictbrowsersearch.h"
 #include "speaker.h"
+#include "pluginmanager.h"
+#include "../plugins/toolbarplugin.h"
 
 namespace
 {
@@ -109,6 +111,34 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     layout->addWidget(m_translationView);
     layout->addWidget(m_search);
     setLayout(layout);
+
+    connect(m_toolBar, SIGNAL(actionTriggered(QAction*)), this, SLOT(pluginAction(QAction*)));
+
+    reloadToolbar();
+}
+
+void DictWidget::reloadToolbar() {
+    for (auto i = m_toolbarPlugins.constBegin(); i != m_toolbarPlugins.constEnd(); i++) {
+        m_toolBar->removeAction(i.key());
+        delete i.key();
+    }
+    m_toolbarPlugins.clear();
+
+    auto pm = Application::instance()->pluginManager();
+    foreach (const QString &pluginId, pm->availablePlugins()) {
+        auto plugin = pm->plugin<ToolbarPlugin>(pluginId);
+        if (plugin) {
+            QAction *action = m_toolBar->addAction(plugin->toolbarIcon(), plugin->toolbarText());
+            m_toolbarPlugins[action] = plugin;
+        }
+    }
+}
+
+void DictWidget::pluginAction(QAction *action) {
+    if (m_toolbarPlugins.find(action) != m_toolbarPlugins.end()) {
+        m_toolbarPlugins[action]->execute(translatedWord(),
+                m_translationView->document()->toHtml("UTF-8"));
+    }
 }
 
 void DictWidget::translate(const QString &str)

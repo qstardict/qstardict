@@ -84,6 +84,9 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
 
         void reload();
 
+        void reloadToolbar()
+        { translationView->reloadToolbar(); }
+
         void saveSettings();
 
     public slots:

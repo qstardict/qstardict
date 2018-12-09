@@ -237,6 +237,8 @@ void SettingsDialog::accept()
         app->mainWindow()->show();
 
     app->mainWindow()->reload();
+    app->mainWindow()->reloadToolbar();
+    app->popupWindow()->reloadToolbar();
 
     app->dictCore()->saveSettings();
     app->mainWindow()->saveSettings();

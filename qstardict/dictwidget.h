@@ -32,6 +32,7 @@ namespace QStarDict
 {
 
 class DictBrowserSearch;
+class ToolbarPlugin;
 
 /**
  * The DictBrowser widget provides view of translations from given dictionary.
@@ -94,6 +95,8 @@ class DictWidget: public QFrame
         void reload()
         { m_translationView->reload(); }
 
+        void reloadToolbar();
+
     signals:
         /**
          * Emits when translated word is shown.
@@ -106,10 +109,12 @@ class DictWidget: public QFrame
         void speak();
         void print();
         void handleSearch();
+        void pluginAction(QAction *action);
 
     private:
         DictBrowser *m_translationView;
         QToolBar *m_toolBar;
+        QHash<QAction*, ToolbarPlugin*> m_toolbarPlugins;
         DictBrowserSearch *m_search;
 };
 

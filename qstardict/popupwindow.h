@@ -121,6 +121,9 @@ class PopupWindow: public ResizablePopup
         void setPronounceWord(bool pronounceWord)
         { m_pronounceWord = pronounceWord; }
 
+        void reloadToolbar()
+        { translationView->reloadToolbar(); }
+
         void saveSettings();
 
     private slots:
