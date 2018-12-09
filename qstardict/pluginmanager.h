@@ -31,8 +31,8 @@ public:
         DEIntegration   = 0x2,
         TrayIcon        = 0x4,
         GlobalShortcuts = 0x8,
-        Notifications   = 010,
-        LastFeature  = 020
+        Notifications   = 0x10,
+        LastFeature  = 0x20
     };
     Q_DECLARE_FLAGS(PluginFeatures, PluginFeature)
 
