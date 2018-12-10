@@ -85,7 +85,7 @@ QString Anki::toolbarText() const {
 
 void Anki::execute(const QString &word, const QString &translation) {
     QJsonObject requestObject;
-    requestObject.insert("action", "addNote");
+    requestObject.insert("action", QString("addNote"));
     requestObject.insert("version", 6);
     QJsonObject paramsObject;
     QJsonObject noteObject;
