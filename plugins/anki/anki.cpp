@@ -24,6 +24,8 @@
 #include <QSettings>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QJsonValue>
+#include <QJsonObject>
 #include <QMessageBox>
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
