@@ -247,6 +247,8 @@ void PluginManager::loadPlugins()
     QStringListIterator it2(prioritizedList);
     while (it2.hasNext()) {
         Plugin::Ptr pd = plugins[it2.next()];
+        auto state = s.value("plugins/" + pd->metadata.id + "/state", pd->state).toUInt();
+        pd->state = state;
 
         if (!pd->isEnabled() || pd->isLoaded()) {
             continue;
