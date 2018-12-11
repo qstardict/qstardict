@@ -22,7 +22,7 @@ META_VERSION = 1.0
 META_NAME = Anki
 META_DESC = A plugin for Anki
 META_AUTHORS = Alexander Rodin <rodin.alexander@gmail.com>
-META_FEATURES = toolbar
+META_FEATURES = toolbar;defenable
 
 include(../plugin.pri)
 

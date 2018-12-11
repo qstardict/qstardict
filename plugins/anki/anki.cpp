@@ -114,10 +114,12 @@ void Anki::execute(const QString &word, const QString &translation) {
 void Anki::onNetworkRequestFinished(QNetworkReply *reply) {
     if (reply->error() != QNetworkReply::NoError) {
         QMessageBox::critical(nullptr, tr("Anki error"),
-                tr("Unable to add the word to Anki: network error. " \
+                tr("Unable to add the word to Anki: network error. <br>" \
                    "Check if Anki is running and " \
                    "<a href=\"https://ankiweb.net/shared/info/2055492159\">AnkiConnect</a> " \
-                   "add-on is installed to Anki."));
+                   "add-on is installed to Anki. You probably would like to also install " \
+                   "<a href=\"https://ankiweb.net/shared/info/85158043\">Minimize to tray</a> "\
+                   "add-on to Anki."));
     }
 }
 

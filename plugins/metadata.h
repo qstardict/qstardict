@@ -42,6 +42,7 @@ struct PluginMetadata
                           // "dict" - dictionay plugin,
                           // "defenable" - enable this plugin by default if not cached
                           // "de" - desktop environment plugin
+                          // "toolbar" - toolbar plugin
     QIcon icon; // plugin's icon. it's cached as soon as we enable plugin once
     QVariantMap extra; // for any not described here use
 };
