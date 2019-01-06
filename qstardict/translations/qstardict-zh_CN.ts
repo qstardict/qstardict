@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>DictBrowserSearch</name>
     <message>
         <location filename="../dictbrowsersearch.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>表格</translation>
     </message>
     <message>
         <location filename="../dictbrowsersearch.ui" line="20"/>
         <source>Search:</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索：</translation>
     </message>
     <message>
         <location filename="../dictbrowsersearch.ui" line="30"/>
         <source>Case sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>大小写敏感</translation>
     </message>
     <message>
         <location filename="../dictbrowsersearch.ui" line="37"/>
         <source>Whole words</source>
-        <translation type="unfinished"></translation>
+        <translation>完整单词</translation>
     </message>
 </context>
 <context>
@@ -34,7 +34,7 @@
     <message>
         <location filename="../cssedit.ui" line="30"/>
         <source>Element</source>
-        <translation type="unfinished">元素</translation>
+        <translation>元素</translation>
     </message>
     <message>
         <location filename="../cssedit.ui" line="37"/>
@@ -124,7 +124,7 @@
     <message>
         <location filename="../dictbrowser.cpp" line="75"/>
         <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
-        <translation>找不到单词 &lt;b&gt;%1&lt;/b&gt; </translation>
+        <translation>找不到单词 &lt;b&gt;%1&lt;/b&gt;。</translation>
     </message>
 </context>
 <context>
@@ -150,12 +150,12 @@
     <message>
         <location filename="../dictwidget.cpp" line="101"/>
         <source>Search</source>
-        <translation type="unfinished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="132"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML 文件 (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="149"/>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="114"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="140"/>
@@ -300,7 +300,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="142"/>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation type="unfinished">版权  (C) 2007 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt; {2007-2009 ?}</translation>
+        <translation>版权所有 (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
@@ -310,7 +310,7 @@
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
     </message>
 </context>
 <context>
@@ -412,12 +412,12 @@
     <message>
         <location filename="../settingsdialog.ui" line="52"/>
         <source>Use system tray</source>
-        <translation type="unfinished"></translation>
+        <translation>使用系统托盘</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="59"/>
         <source>Start with system</source>
-        <translation type="unfinished"></translation>
+        <translation>随系统启动</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="66"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="../settingsdialog.ui" line="81"/>
         <source>Pronounce words using this command:</source>
-        <translation>使用如下命令发音</translation>
+        <translation>使用如下命令发音：</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="88"/>
@@ -503,7 +503,7 @@
     <message>
         <location filename="../settingsdialog.ui" line="310"/>
         <source>Show translation popup by shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>使用快捷键显示翻译弹出窗口</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="334"/>
@@ -657,17 +657,17 @@
     <message>
         <location filename="../trayicon.cpp" line="102"/>
         <source>QStarDict: scanning is %1</source>
-        <translation type="unfinished"></translation>
+        <translation>QStarDict：检索已%1</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="102"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>启用</translation>
     </message>
     <message>
         <location filename="../trayicon.cpp" line="102"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>禁用</translation>
     </message>
 </context>
 </TS>
