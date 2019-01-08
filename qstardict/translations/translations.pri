@@ -21,6 +21,7 @@ TRANSLATIONS += \
     translations/qstardict-bg_BG.ts \
     translations/qstardict-cs_CZ.ts \
     translations/qstardict-de_DE.ts \
+    translations/qstardict-el_EL.ts \
     translations/qstardict-es_ES.ts \
     translations/qstardict-fr_FR.ts \
     translations/qstardict-it_IT.ts \
