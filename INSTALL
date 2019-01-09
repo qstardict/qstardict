@@ -30,3 +30,9 @@ To build and install:
 3)	make install
 
 If you want to compile KDE 4 plasmoid please read kdeplasma/COMPILING.
+
+If compilation fails with
+    qpa/qplatformnativeinterface.h: No such file or directory
+
+try to install qtbase5-private-dev package (the package name may differ on
+systems other than Ubuntu)
