@@ -78,6 +78,9 @@ Application::Application(int &argc, char **argv)
 #ifdef QSTARDICT_WITH_DBUS
     m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
 #endif // QSTARDICT_WITH_DBUS
+
+    setAttribute(Qt::AA_EnableHighDpiScaling);
+    setAttribute(Qt::AA_UseHighDpiPixmaps);
 }
 
 Application::~Application()
