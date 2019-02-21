@@ -73,7 +73,7 @@ include(plugins/plugins.pri)
 unix {
     macx {
         isEmpty(INSTALL_PREFIX) {
-             INSTALL_PREFIX=/opt
+             INSTALL_PREFIX=/Applications
         }
         # helper var to save text duplicity.
         # NOTE: it cannot use $$TARGET because the target is
