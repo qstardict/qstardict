@@ -64,7 +64,7 @@ class DictBrowser: public QTextBrowser
 
     protected:
         void mouseMoveEvent(QMouseEvent *event);
-        void mousePressEvent(QMouseEvent *event);
+        void mouseReleaseEvent(QMouseEvent *event);
 
     private slots:
         void on_anchorClicked(const QUrl &link);

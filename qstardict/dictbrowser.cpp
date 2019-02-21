@@ -120,41 +120,39 @@ void DictBrowser::mouseMoveEvent(QMouseEvent *event)
     {
         m_oldCursor.setCharFormat(m_oldFormat);
         m_highlighted = false;
+        QApplication::restoreOverrideCursor();
     }
-    if (event->modifiers().testFlag(Qt::ControlModifier))
+    QTextCursor cursor = cursorForPosition(event->pos());
+    cursor.select(QTextCursor::WordUnderCursor);
+    QString selection = cursor.selection().toPlainText().simplified();
+    if (m_dict->isTranslatable(selection))
     {
-        QTextCursor cursor = cursorForPosition(event->pos());
-        cursor.select(QTextCursor::WordUnderCursor);
-        QString selection = cursor.selection().toPlainText().simplified();
-        if (m_dict->isTranslatable(selection))
-        {
-            m_oldCursor = cursor;
-            m_oldFormat = cursor.charFormat();
+        m_oldCursor = cursor;
+        m_oldFormat = cursor.charFormat();
 
-            QTextCharFormat format = m_oldFormat;
-            format.setForeground(Qt::blue);
-            format.setFontUnderline(true);
-            cursor.setCharFormat(format);
+        QTextCharFormat format = m_oldFormat;
+        format.setForeground(Qt::blue);
+        format.setFontUnderline(true);
+        cursor.setCharFormat(format);
 
-            m_highlighted = true;
-        }
+        m_highlighted = true;
+        QApplication::setOverrideCursor(Qt::PointingHandCursor);
     }
 
     QTextBrowser::mouseMoveEvent(event);
 }
 
-void DictBrowser::mousePressEvent(QMouseEvent *event)
+void DictBrowser::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->modifiers().testFlag(Qt::ControlModifier))
+    QTextCursor cursor = cursorForPosition(event->pos());
+    cursor.select(QTextCursor::WordUnderCursor);
+    QString selection = cursor.selection().toPlainText().simplified();
+    if (m_dict->isTranslatable(selection) && selection != source().toString(QUrl::RemoveScheme))
     {
-        QTextCursor cursor = cursorForPosition(event->pos());
-        cursor.select(QTextCursor::WordUnderCursor);
-        QString selection = cursor.selection().toPlainText().simplified();
-        if (m_dict->isTranslatable(selection))
-        {
-            setSource(selection);
-            if (m_highlighted)
-                m_highlighted = false;
+        setSource(selection);
+        if (m_highlighted) {
+            m_highlighted = false;
+            QApplication::restoreOverrideCursor();
         }
     }
     QTextBrowser::mousePressEvent(event);
