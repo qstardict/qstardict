@@ -150,10 +150,6 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::reinit()
 {
-    if (_trayImpl) {
-        qobject_cast<TrayIconPlugin*>(_trayImpl)->uninitTray();
-    }
-
     _trayCandidat.clear();
     _trayFallbackCandidat.clear();
     foreach (const QString &plugin, Application::instance()->pluginManager()->loadedPlugins()) {
@@ -176,6 +172,22 @@ void TrayIcon::reinit()
     }
     _trayFallbackCandidat.append(_defaultTrayImpl);
 
+    QObject *newTrayImpl;
+    if (_trayCandidat.count()) {
+        newTrayImpl = _trayCandidat[0];
+    } else {
+        newTrayImpl = _trayFallbackCandidat[0];
+    }
+
+    if (newTrayImpl == _trayImpl) {
+        return;
+    }
+
+    if (_trayImpl) {
+        qobject_cast<TrayIconPlugin*>(_trayImpl)->uninitTray();
+    }
+    _trayImpl = newTrayImpl;
+
     QMenu *trayMenu = new QMenu(tr("QStarDict"));
 
     QAction *actionScan = new QAction(QIcon(":/icons/edit-select.png"), tr("&Scan"), trayMenu);
@@ -191,12 +203,6 @@ void TrayIcon::reinit()
     QAction *actionSettings = new QAction(QIcon(":/icons/configure.png"), tr("&Configure QStarDict"), trayMenu);
     connect(actionSettings, SIGNAL(triggered()), SLOT(on_actionSettings_triggered()));
     trayMenu->addAction(actionSettings);
-
-    if (_trayCandidat.count()) {
-        _trayImpl = _trayCandidat[0];
-    } else {
-        _trayImpl = _trayFallbackCandidat[0];
-    }
 
     TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(_trayImpl);
     tip->initTray();
