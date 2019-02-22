@@ -1,7 +1,7 @@
 language: c++
 cache: ccache
 sudo: enabled
-dist: trusty
+dist: xenial
 
 before_script:
   - sudo apt-get install -y cppcheck
