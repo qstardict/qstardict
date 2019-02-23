@@ -127,4 +127,5 @@ unix:!macx {
 }
 macx {
     ICON = pixmaps/qstardict.icns
+    QMAKE_INFO_PLIST = qstardict.plist
 }
