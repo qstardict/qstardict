@@ -1,14 +1,17 @@
 language: c++
 cache: ccache
 sudo: enabled
-dist: xenial
+
+os:
+  - linux
+  - osx
 
 before_script:
-  - sudo apt-get install -y cppcheck
-  - sudo apt-get install -y cmake libglib2.0-dev libx11-dev qt5-qmake qtbase5-dev qtbase5-private-dev qttools5-dev-tools zlib1g-dev qt5-default
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y cppcheck cmake libglib2.0-dev libx11-dev qt5-qmake qtbase5-dev qtbase5-private-dev qttools5-dev-tools zlib1g-dev qt5-default; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install cppcheck qt5 glib; brew link --force qt5; fi
 
 script:
   - cppcheck -j1 --quiet -f --error-exitcode=2 .
   - qmake
-  - make -j$(nproc)
+  - make -j$(nproc || sysctl -n hw.ncpu)
   - sudo make install
