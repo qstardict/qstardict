@@ -246,8 +246,4 @@ int Multitran::execSettingsDialog(QWidget *parent)
     return 0;
 }
 
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2(multitran, Multitran)
-#endif
-
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

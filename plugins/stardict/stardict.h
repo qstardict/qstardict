@@ -32,20 +32,14 @@
 class StarDict: public QObject, public QStarDict::BasePlugin, public QStarDict::DictPlugin, public QStarDict::ConfigurablePlugin
 {
 	Q_OBJECT
-#if QT_VERSION >= 0x050000
 	Q_PLUGIN_METADATA(IID "org.qstardict.StarDictPlugin/1.0" FILE "stardict.json")
-#endif
 	Q_INTERFACES(QStarDict::BasePlugin QStarDict::DictPlugin QStarDict::ConfigurablePlugin)
 
 	public:
 		StarDict(QObject *parent = 0);
 		~StarDict();
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-        QStarDict::PluginMetadata metadata() const;
-#else
         QIcon pluginIcon() const;
-#endif
 		Features features() const
 		{ return Features(SearchSimilar); }
 

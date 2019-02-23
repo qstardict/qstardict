@@ -33,19 +33,13 @@ namespace QStarDict {
 class KDEIntegration : public QObject, public QStarDict::BasePlugin, public QStarDict::TrayIconPlugin
 {
     Q_OBJECT
-#if QT_VERSION >= 0x050000
     Q_PLUGIN_METADATA(IID "org.qstardict.KDEPlugin/1.0" FILE "kdeintegration.json")
-#endif
     Q_INTERFACES(QStarDict::BasePlugin QStarDict::TrayIconPlugin)
 public:
     explicit KDEIntegration(QObject *parent = 0);
     ~KDEIntegration();
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-    QStarDict::PluginMetadata metadata() const;
-#else
     QIcon pluginIcon() const;
-#endif
     TrayCompat isDECompatible();
     void initTray();
     void uninitTray();

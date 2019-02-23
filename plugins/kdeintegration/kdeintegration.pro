@@ -7,14 +7,8 @@ META_FEATURES = de;defenable
 
 include(../plugin.pri)
 
-QT *= gui
-greaterThan(QT_MAJOR_VERSION, 4) {
-	QT *= widgets KGlobalAccel KWindowSystem KNotifications
-	DEFINES += USE_KDE5
-} else {
-	INCLUDEPATH += /usr/include/KDE
-	LIBS += -lkdeui
-}
+QT *= gui widgets KGlobalAccel KWindowSystem KNotifications
+DEFINES += USE_KDE5
 
 SOURCES += \
 	kdeintegration.cpp

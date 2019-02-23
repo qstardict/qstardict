@@ -26,9 +26,6 @@
 #include <QSqlQuery>
 #include <QString>
 #include <QVariant>
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-#include "swac-meta.h"
-#endif
 
 Swac::Swac(QObject *parent) : QObject(parent)
 {
@@ -45,24 +42,10 @@ Swac::~Swac()
     QSqlDatabase::removeDatabase("swac");
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-QStarDict::PluginMetadata Swac::metadata() const
-{
-    QStarDict::PluginMetadata md;
-    md.id = PLUGIN_ID;
-    md.name = QString::fromUtf8(PLUGIN_NAME);
-    md.version = PLUGIN_VERSION;
-    md.description = PLUGIN_DESCRIPTION;
-    md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
-    md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
-    return md;
-}
-#else
 QIcon Swac::pluginIcon() const
 {
     return QIcon();
 }
-#endif
 
 QStringList Swac::availableDicts() const
 {
@@ -150,10 +133,6 @@ int Swac::execSettingsDialog(QWidget *parent)
                             "To install new packages, please, use the <b>swac-get</b> command line program.\n"
                             "More information about swac-get is available on <a href='http://shtooka.net/'>Shtooka Project Homepage</A>." );
 }
-
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2(swac, Swac)
-#endif
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

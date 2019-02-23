@@ -28,18 +28,12 @@ class Web: public QObject, public QStarDict::BasePlugin, public QStarDict::DictP
 {
     Q_OBJECT
     Q_INTERFACES(QStarDict::BasePlugin QStarDict::DictPlugin QStarDict::ConfigurablePlugin)
-#if QT_VERSION >= 0x050000
     Q_PLUGIN_METADATA(IID "org.qstardict.WebPlugin/1.0" FILE "web.json")
-#endif
 
     public:
         Web(QObject *parent = 0);
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-        QStarDict::PluginMetadata metadata() const;
-#else
         QIcon pluginIcon() const;
-#endif
         Features features() const
         { return 0; }
 

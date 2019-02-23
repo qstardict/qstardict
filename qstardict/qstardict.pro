@@ -100,9 +100,7 @@ unix | win32 {
     macx: SOURCES += $$QXT_DIR/qxt/qxtglobalshortcut_mac.cpp
     win32: SOURCES += $$QXT_DIR/qxt/qxtglobalshortcut_win.cpp
 
-    greaterThan(QT_MAJOR_VERSION, 4): unix {
-        QT += gui-private
-    }
+    QT += gui-private
 }
 
 RESOURCES += \

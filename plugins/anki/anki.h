@@ -32,19 +32,13 @@ class Anki: public QObject, public QStarDict::BasePlugin, public QStarDict::Tool
 {
     Q_OBJECT
     Q_INTERFACES(QStarDict::BasePlugin QStarDict::ToolbarPlugin QStarDict::ConfigurablePlugin)
-#if QT_VERSION >= 0x050000
     Q_PLUGIN_METADATA(IID "org.qstardict.AnkiPlugin/1.0" FILE "anki.json")
-#endif
 
     public:
         Anki(QObject *parent = 0);
         ~Anki();
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-        QStarDict::PluginMetadata metadata() const;
-#else
         QIcon pluginIcon() const;
-#endif
         QIcon toolbarIcon() const;
         QString toolbarText() const;
         void execute(const QString &word, const QString &translation);

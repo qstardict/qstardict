@@ -38,11 +38,6 @@ OTHER_FILES += \
     $${TARGET}.json.in \
     $${TARGET}-meta.h.in
 
-greaterThan(QT_MAJOR_VERSION, 4) {
     QMAKE_SUBSTITUTES += $${TARGET}.json.in
     # the same as in json
     DEFINES += PLUGIN_ID=\\\"$$TARGET\\\"
-} else {
-    QMAKE_SUBSTITUTES += $${TARGET}-meta.h.in
-    PRECOMPILED_HEADER += $${TARGET}-meta.h
-}

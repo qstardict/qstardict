@@ -27,19 +27,13 @@ QT = \
     network \
     xml
 
-greaterThan(QT_MAJOR_VERSION, 4) {
-  QT += widgets printsupport
-}
+QT += widgets printsupport
 
 CONFIG += \
     qt \
     warn_on
 
-greaterThan(QT_MAJOR_VERSION, 4) {
-        CONFIG += c++11
-} else {
-        QMAKE_CXXFLAGS += -std=c++11
-}
+CONFIG += c++11
 
 unix {
     CONFIG += link_pkgconfig

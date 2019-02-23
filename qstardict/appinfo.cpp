@@ -3,11 +3,7 @@
 #include <QDir>
 #include <QSettings>
 #include <QCoreApplication>
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-# include <QDesktopServices>
-#else
 # include <QStandardPaths>
-#endif
 #ifdef DEVEL
 # include <QDebug>
 #endif
@@ -27,19 +23,7 @@ const QString AppInfo::genericDataDir()
         return QString();
     }
 #else
-# if QT_VERSION >= 0x050000
     return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-# else
-#  if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-    QString dataDir = qgetenv("XDG_DATA_HOME");
-    if (dataDir.isEmpty()) {
-        dataDir = QDir::homePath() + "/.local/share";
-    }
-    return dataDir;
-#  else
-    return QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#  endif
-# endif
 #endif
 }
 
@@ -145,21 +129,8 @@ QString AppInfo::configDir()
 {
     static QString confDir;
     if (confDir.isEmpty()) {
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 
-# if defined(Q_OS_MAC)
-        QString ch = QDir::homePath() + QLatin1String("/Library/Caches");
-        confDir = ch + QLatin1Char('/') + qApp->applicationName();
-# elif defined(Q_OS_LINUX)
-        QString ch = QString::fromLocal8Bit(qgetenv("XDG_CACHE_HOME"));
-        if (ch.isEmpty())
-            ch = QDir::homePath() + QLatin1String("/.config");
-        confDir = ch + QLatin1Char('/') + qApp->applicationName();
-# else
-        confDir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-# endif
-
-#elif QT_VERSION < QT_VERSION_CHECK(5,5,0)
+#if QT_VERSION < QT_VERSION_CHECK(5,5,0)
 # ifdef Q_OS_LINUX
         confDir = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) +
                 QLatin1Char('/') + qApp->applicationName();
@@ -181,11 +152,7 @@ QString AppInfo::cacheDir()
 {
     static QString cd;
     if (cd.isEmpty()) {
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-        cd = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
-#else
         cd = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-#endif
         QDir c(cd);
         if (!c.exists()) {
             c.mkpath(".");

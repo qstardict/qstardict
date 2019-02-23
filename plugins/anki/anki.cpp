@@ -28,29 +28,10 @@
 #include <QJsonObject>
 #include <QMessageBox>
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-#include "anki-meta.h"
-#endif
-
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-QStarDict::PluginMetadata Anki::metadata() const
-{
-    QStarDict::PluginMetadata md;
-    md.id = PLUGIN_ID;
-    md.name = QString::fromUtf8(PLUGIN_NAME);
-    md.version = PLUGIN_VERSION;
-    md.description = PLUGIN_DESCRIPTION;
-    md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
-    md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
-    md.icon = QIcon(":/icons/anki.png");
-    return md;
-}
-#else
 QIcon Anki::pluginIcon() const
 {
     return QIcon(":/icons/anki.png");
 }
-#endif
 
 Anki::Anki(QObject *parent)
     : QObject(parent)
@@ -128,9 +109,5 @@ int Anki::execSettingsDialog(QWidget *parent)
     ::SettingsDialog dialog(this, parent);
     return dialog.exec();
 }
-
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2(anki, Anki)
-#endif
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

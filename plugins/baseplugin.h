@@ -49,14 +49,7 @@ public:
      */
     virtual ~BasePlugin() { }
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-    /**
-     * Return the plugin's metadata.
-     */
-    virtual PluginMetadata metadata() const = 0;
-#else
     virtual QIcon pluginIcon() const = 0;
-#endif
 };
 
 class ConfigurablePlugin

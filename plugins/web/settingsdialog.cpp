@@ -26,9 +26,6 @@
 #include <QTextCodec>
 #include "ui_adddictionarydialog.h"
 #include "../pluginserver.h"
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-#include "web-meta.h"
-#endif
 
 namespace
 {

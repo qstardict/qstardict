@@ -47,11 +47,7 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option, const QModelIndex &index) const
     {
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-        QStyleOptionViewItemV4 opt = option;
-#else
         QStyleOptionViewItem opt = option;
-#endif
         initStyleOption(&opt, index);
         if (opt.icon.isNull()) {
             return;
@@ -129,17 +125,10 @@ void PluginsView::configureColumns()
     setItemDelegateForColumn(2, btnsDelegate);
     setItemDelegateForColumn(3, btnsDelegate);
 
-#if QT_VERSION >= 0x050000
     horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
     horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
     horizontalHeader()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
-#else
-    horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-    horizontalHeader()->setResizeMode(1, QHeaderView::ResizeToContents);
-    horizontalHeader()->setResizeMode(2, QHeaderView::ResizeToContents);
-    horizontalHeader()->setResizeMode(3, QHeaderView::ResizeToContents);
-#endif
 }
 
 } // namespace QStarDict

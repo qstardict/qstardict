@@ -34,9 +34,6 @@
 #include "settingsdialog.h"
 #include "../pluginserver.h"
 #include <QDebug>
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-#include "stardict-meta.h"
-#endif
 
 namespace
 {
@@ -140,25 +137,10 @@ StarDict::~StarDict()
     delete m_sdLibs;
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-QStarDict::PluginMetadata StarDict::metadata() const
-{
-    QStarDict::PluginMetadata md;
-    md.id = PLUGIN_ID;
-    md.name = QString::fromUtf8(PLUGIN_NAME);
-    md.version = PLUGIN_VERSION;
-    md.description = PLUGIN_DESCRIPTION;
-    md.authors = QString::fromUtf8(PLUGIN_AUTHORS).split(';', QString::SkipEmptyParts);
-    md.features = QString::fromLatin1(PLUGIN_FEATURES).split(';', QString::SkipEmptyParts);
-    md.icon = QIcon(":/icons/logo.png");
-    return md;
-}
-#else
 QIcon StarDict::pluginIcon() const
 {
     return QIcon(":/icons/logo.png");
 }
-#endif
 
 QStringList StarDict::availableDicts() const
 {
@@ -455,9 +437,5 @@ void xdxf2html(QString &str)
 }
 
 }
-
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2(stardict, StarDict)
-#endif
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc

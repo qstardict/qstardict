@@ -91,9 +91,7 @@ Business rules:
 #include <QPluginLoader>
 #include <QSet>
 #include <QApplication>
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
 # include <QJsonArray>
-#endif
 #include <QDebug>
 
 #include "appinfo.h"
@@ -381,26 +379,6 @@ void PluginManager::updateMetadata()
                             pd->modifyTime != QFileInfo(pd->loader->fileName()).lastModified())) { // have to update metadata cache
 
             pd->modifyTime = QFileInfo(fileName).lastModified();
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-            lastError = pd->load();
-            if (lastError != LE_NoError) { // new cache
-                pd->state &= ~(Plugin::Valid | Plugin::Enabled);
-                continue; // we were unable to do anything with this "plugin"
-            }
-
-            auto qnp = pd->castInstance<BasePlugin>();
-            PluginMetadata md = qnp->metadata(); // FIXME it's qt4 only
-            if (md.id.isEmpty() || md.name.isEmpty()) {
-                pd->unload();
-                qDebug("QStarDict plugin %s did not set metadata id or name. ignore it", qPrintable(fileName));
-                lastError = LE_Metadata;
-                pd->state &= ~(Plugin::Valid | Plugin::Enabled); // mark invalid and disable
-                continue;
-            }
-
-            pd->metadata = md;
-            pd->cacheIcon();
-#else
             auto js = pd->loader->metaData().value(QLatin1String("MetaData")).toObject();
             QString id = js.value(QLatin1String("id")).toString();
             QString name = js.value(QLatin1String("name")).toString();
@@ -419,17 +397,13 @@ void PluginManager::updateMetadata()
             pd->metadata.features = js.value(QLatin1String("features")).toString().split(';');
             pd->metadata.version = js.value(QLatin1String("version")).toString();
             // extra?
-
-#endif
             if (isnew) {
                 pd->setEnabled(pd->metadata.features.contains("defenable"));
             }
 
-#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
             if (!pd->isEnabled()) {
                 pd->unload();
             }
-#endif
 
             pd->state |= Plugin::Valid;
 
@@ -481,10 +455,8 @@ PluginManager::LoadError PluginManager::Plugin::load()
         return LE_Abi;
     }
     qnp->qsd = pluginServer;
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     metadata.icon = qnp->pluginIcon();
     cacheIcon();
-#endif
 
     return LE_NoError;
 }

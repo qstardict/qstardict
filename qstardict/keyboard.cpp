@@ -61,9 +61,6 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 
 #elif defined(Q_OS_UNIX)
 
-#if QT_VERSION < 0x040800
-#include <QX11Info>
-#endif
 #include <X11/XKBlib.h>
 #include <stdio.h>
 
@@ -80,24 +77,7 @@ namespace QStarDict
 
 Qt::KeyboardModifiers Keyboard::activeModifiers()
 {
-#if QT_VERSION < 0x040800
-    Qt::KeyboardModifiers result;
-    XkbStateRec state;
-
-    XkbGetState(QX11Info::display(), XkbUseCoreKbd, &state);
-    if (state.base_mods & mAlt)
-        result |= Qt::AltModifier;
-    if (state.base_mods & mCtrl)
-        result |= Qt::ControlModifier;
-    if (state.base_mods & mShift)
-        result |= Qt::ShiftModifier;
-    if (state.base_mods & mWin)
-        result |= Qt::MetaModifier;
-
-    return result;
-#else
     return QApplication::queryKeyboardModifiers();
-#endif
 }
 
 } // namespace
