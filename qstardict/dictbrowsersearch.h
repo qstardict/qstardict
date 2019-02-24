@@ -21,6 +21,7 @@
 #define DICTBROWSERSEARCH_H
 
 #include <QTextDocument>
+#include <QKeyEvent>
 
 #include "ui_dictbrowsersearch.h"
 
@@ -46,6 +47,7 @@ private slots:
 private:
     void showEvent(QShowEvent * event);
     void closeEvent(QCloseEvent * event);
+    void keyPressEvent(QKeyEvent *event);
 };
 
 } // namespace

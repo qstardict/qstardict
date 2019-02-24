@@ -66,4 +66,10 @@ void DictBrowserSearch::closeEvent(QCloseEvent * event)
     QWidget::closeEvent(event);
 }
 
+void DictBrowserSearch::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Escape) {
+        close();
+    }
+}
+
 } // namespace
