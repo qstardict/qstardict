@@ -34,6 +34,7 @@
 #include <QTimerEvent>
 #include <QToolBar>
 #include <QKeySequence>
+#include <QShortcut>
 #include "dictcore.h"
 #include "application.h"
 #include "popupwindow.h"
@@ -95,6 +96,10 @@ void MainWindow::createConnections()
         SIGNAL(activated()),
         app->popupWindow(),
         SLOT(showClipboardTranslation()));
+
+#ifndef Q_WS_WINDOWS
+    new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_W), this, SLOT(close()));
+#endif
 }
 
 void MainWindow::loadSettings()
