@@ -19,15 +19,11 @@
 
 #include "dictwidget.h"
 
-#include <QScrollBar>
+#include <QScrollbar>
 #include <QVBoxLayout>
 #include <QToolBar>
 #include <QAction>
 #include <QIcon>
-#include <QFileDialog>
-#include <QDir>
-#include <QFile>
-#include <QTextStream>
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QTextDocument>
@@ -89,9 +85,6 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     actionForward->setDisabled(true);
     connect(m_translationView, SIGNAL(forwardAvailable(bool)), actionForward, SLOT(setEnabled(bool)));
 
-    m_toolBar->addAction(QIcon(":/icons/document-save-as.png"), tr("&Save to file"),
-            this, SLOT(saveToFile()));
-
     m_toolBar->addAction(QIcon(":/icons/speaker.png"), tr("Speak &word"),
             this, SLOT(speak()));
 
@@ -143,43 +136,6 @@ void DictWidget::translate(const QString &str)
 void DictWidget::on_translationView_sourceChanged(const QUrl &name)
 {
     emit wordTranslated(name.toString(QUrl::RemoveScheme));
-}
-
-void DictWidget::saveToFile()
-{
-    static QDir dir( QDir::homePath() ); //added by Frank
-    static QString filter(tr("Text files (*.txt)")); //added by Frank
-
-    QFileDialog dialog(this, tr("Save translation"),
-                       dir.path(), filter); //updated by Frank
-    dialog.selectFile(translatedWord());//added by Frank
-    dialog.setNameFilters(QStringList() << tr("HTML files (*.html *.htm)") << tr("Text files (*.txt)"));//updated by Frank
-    dialog.selectNameFilter(filter); //added by Frank
-
-    if (dialog.exec() && dialog.selectedFiles().size())
-    {
-        QString fileName = dialog.selectedFiles().first();
-        /*QString*/ filter = dialog.selectedNameFilter();//updated by Frank
-        dir = dialog.directory(); //added by Frank
-        if (filter == tr("HTML files (*.html, *.htm)") &&
-            ! (fileName.endsWith(".html", Qt::CaseInsensitive) || fileName.endsWith(".htm", Qt::CaseInsensitive)))
-            fileName += ".html";
-        else if (filter == tr("Text files (*.txt)") && ! fileName.endsWith(".txt", Qt::CaseInsensitive))
-            fileName += ".txt";
-
-        QFile outputFile(fileName);
-        if (! outputFile.open(QIODevice::WriteOnly | QIODevice::Text))
-        {
-            QMessageBox::warning(this, tr("Error"),
-                                 tr("Cannot save translation as %1").arg(fileName));
-            return;
-        }
-        QTextStream outputStream(&outputFile);
-        if (filter == tr("HTML files (*.html, *.htm)"))
-            outputStream << m_translationView->document()->toHtml("UTF-8");
-        else
-            outputStream << m_translationView->toPlainText();
-    }
 }
 
 void DictWidget::speak()
