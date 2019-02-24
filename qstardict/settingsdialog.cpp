@@ -340,13 +340,16 @@ void SettingsDialog::pluginClicked(const QModelIndex &index)
         DictPlugin *dplugin = pm->plugin<DictPlugin>(id);
         const PluginMetadata &md = pm->pluginDesc(id)->metadata;
         QStringList authors = md.authors;
-        QMessageBox::information(this,
-                tr("Information about %1 plugin").arg(md.name),
+        auto *messageBox = new QMessageBox(this);
+        messageBox->setIconPixmap(md.icon.pixmap(QSize(128, 128)));
+        messageBox->setWindowTitle(tr("Information about %1 plugin").arg(md.name));
+        messageBox->setText(
                 tr("<b>Name:</b> %1<br>").arg(md.name) +
                 tr("<b>Version:</b> %1<br>").arg(md.version) +
                 tr("<b>Authors:</b> %1<br>").arg(authors.replaceInStrings("<", "&lt;").replaceInStrings(">", "&gt;").join(tr("<br>"))) +
                 (dplugin? tr("<b>Can search similar words:</b> %1<br>").arg(dplugin->features().testFlag(DictPlugin::SearchSimilar) ? tr("yes") : tr("no")) : "") +
                 tr("<b>Description:</b> %1").arg(md.description));
+        messageBox->show();
     }
 }
 
