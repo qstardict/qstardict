@@ -113,6 +113,9 @@ bool TrayIconDefaultImpl::isVisible() const
 
 void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
 {
+#ifdef Q_OS_MAC
+    Q_UNUSED(reason)
+#else
     switch (reason)
     {
     case QSystemTrayIcon::Trigger:
@@ -124,6 +127,7 @@ void TrayIconDefaultImpl::on_activated(QSystemTrayIcon::ActivationReason reason)
     default:
         ; // nothing
     }
+#endif
 }
 
 
