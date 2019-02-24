@@ -34,10 +34,17 @@ INCLUDEPATH += $$dirname(PWD)
 target.path = $$PLUGINS_DIR
 INSTALLS += target
 
-OTHER_FILES += \
-    $${TARGET}.json.in \
-    $${TARGET}-meta.h.in
+TARGET_JSON = "\
+{ \
+    \"id\": \"$$TARGET\", \
+    \"name\": \"$$META_NAME\", \
+    \"version\" : \"$$VERSION\", \
+    \"description\": \"$$META_DESC\", \
+    \"authors\": \"$$META_AUTHORS\", \
+    \"features\": \"$$META_FEATURES\" \
+}"
+write_file($${TARGET}/$${TARGET}.json, TARGET_JSON)
 
-    QMAKE_SUBSTITUTES += $${TARGET}.json.in
-    # the same as in json
-    DEFINES += PLUGIN_ID=\\\"$$TARGET\\\"
+OTHER_FILES += $${TARGET}.json
+# the same as in json
+DEFINES += PLUGIN_ID=\\\"$$TARGET\\\"
