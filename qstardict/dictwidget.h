@@ -95,6 +95,9 @@ class DictWidget: public QFrame
         void reload()
         { m_translationView->reload(); }
 
+        DictBrowser *translationView() const
+        { return m_translationView; }
+
         void reloadToolbar();
 
     signals:

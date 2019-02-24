@@ -64,7 +64,7 @@ QString Anki::toolbarText() const {
     return tr("Add word to Anki");
 }
 
-void Anki::execute(const QString &word, const QString &translation) {
+void Anki::execute(QStarDict::DictWidget *dictWidget) {
     QJsonObject requestObject;
     requestObject.insert("action", QString("addNote"));
     requestObject.insert("version", 6);
@@ -73,8 +73,8 @@ void Anki::execute(const QString &word, const QString &translation) {
     noteObject.insert("deckName", m_deckName);
     noteObject.insert("modelName", m_modelName);
     QJsonObject fieldsObject;
-    fieldsObject.insert("Front", word);
-    fieldsObject.insert("Back", translation);
+    fieldsObject.insert("Front", dictWidget->translatedWord());
+    fieldsObject.insert("Back", dictWidget->translationView()->document()->toHtml("UTF-8"));
     noteObject.insert("fields", fieldsObject);
     QJsonObject optionsObject;
     optionsObject.insert("allowDuplicate", m_allowDuplicates);

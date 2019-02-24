@@ -41,7 +41,7 @@ class Anki: public QObject, public QStarDict::BasePlugin, public QStarDict::Tool
         QIcon pluginIcon() const;
         QIcon toolbarIcon() const;
         QString toolbarText() const;
-        void execute(const QString &word, const QString &translation);
+        void execute(QStarDict::DictWidget *dictWidget);
         int execSettingsDialog(QWidget *parent = 0);
 
         void setConnectUrl(const QString &url)

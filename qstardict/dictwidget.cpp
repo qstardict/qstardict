@@ -136,8 +136,7 @@ void DictWidget::reloadToolbar() {
 
 void DictWidget::pluginAction(QAction *action) {
     if (m_toolbarPlugins.find(action) != m_toolbarPlugins.end()) {
-        m_toolbarPlugins[action]->execute(translatedWord(),
-                m_translationView->document()->toHtml("UTF-8"));
+        m_toolbarPlugins[action]->execute(this);
     }
 }
 

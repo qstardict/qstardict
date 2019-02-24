@@ -21,6 +21,7 @@
 #define TOOLBARPLUGIN_H
 
 #include <QtPlugin>
+#include "../qstardict/dictwidget.h"
 
 namespace QStarDict {
 class ToolbarPlugin {
@@ -29,7 +30,7 @@ class ToolbarPlugin {
 
         virtual QIcon toolbarIcon() const = 0;
         virtual QString toolbarText() const = 0;
-        virtual void execute(const QString &word, const QString &translation) = 0;
+        virtual void execute(DictWidget *dictWidget) = 0;
 };
 
 } // namespace QStarDict
