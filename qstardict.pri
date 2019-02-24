@@ -82,6 +82,16 @@ unix {
         PLUGINS_DIR=$$MAC_BUNDLE_PATH/lib
         DOCS_DIR=$$MAC_BUNDLE_PATH/share/doc
         MAN_DIR=$$MAC_BUNDLE_PATH/share/man/man1
+
+        bundle.target = bundle
+        bundle.depends = install
+        bundle.commands = "mkdir -p bundle && cp -R $$INSTALL_PREFIX/QStarDict.app bundle/QStarDict.app && ln -s /Applications bundle/Applications"
+
+        dmg.target = "QStarDict.dmg"
+        dmg.depends = bundle
+        dmg.commands = "rm -f QStarDict.dmg QStarDict_tmp.dmg && hdiutil create QStarDict_tmp.dmg -ov -volname QStarDict -fs HFS+ -srcfolder bundle && hdiutil convert QStarDict_tmp.dmg -format UDZO -o QStarDict.dmg"
+
+        QMAKE_EXTRA_TARGETS += bundle dmg
     }
     else {
         isEmpty(INSTALL_PREFIX):INSTALL_PREFIX=/usr

@@ -6,14 +6,14 @@ All following notes are important for developers.
 
 
 BUILDING REQUIREMENTS:
- * Qt4 libraries/frameworks (tested with macport's qt4-mac+universal)
- * glib2 devel environment (I'm using macports for it too)
+ * Qt5 libraries/frameworks (tested with homebrew)
+ * glib2 devel environment (tested with homebrew as well)
  * all other libraries are propably part of mac's OS
 
 
 CONFIRURE PHASE:
 qmake
-  it will build qstardict and install it into /opt (sudo make install will be required)
+  it will build qstardict and install it into /Applications (`make install` will be required)
   or:
 qmake INSTALL_PREFIX=/absolute/path/to/selected/dir
   it will build qstardict and install it into this location.
@@ -30,9 +30,4 @@ INSTALL PHASE:
 make install
 
 DEPLOY PHASE:
-macdeployqt path/to/QStarDict.app/
-or:
-macdeployqt path/to/QStarDict.app/ -dmg
-for dmg build (but I'm using another tool for it)
-
-
+make QStarDict.dmg
