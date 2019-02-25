@@ -36,10 +36,6 @@ QIcon Anki::pluginIcon() const
 Anki::Anki(QObject *parent)
     : QObject(parent)
 {
-    m_networkAccessManager = new QNetworkAccessManager(this);
-    connect(m_networkAccessManager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(onNetworkRequestFinished(QNetworkReply*)));
-
     QSettings settings("qstardict", "qstardict");
     m_connectUrl = settings.value("Anki/connectUrl", "http://127.0.0.1:8765").toString();
     m_deckName = settings.value("Anki/deckName", "Default").toString();
@@ -87,21 +83,25 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
     QJsonDocument requestDocument;
     requestDocument.setObject(requestObject);
 
+    auto networkAccessManager = new QNetworkAccessManager(this);
     QNetworkRequest request(m_connectUrl);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    m_networkAccessManager->post(request, requestDocument.toJson());
-}
 
-void Anki::onNetworkRequestFinished(QNetworkReply *reply) {
-    if (reply->error() != QNetworkReply::NoError) {
-        QMessageBox::critical(nullptr, tr("Anki error"),
-                tr("Unable to add the word to Anki: network error. <br>" \
-                   "Check if Anki is running and " \
-                   "<a href=\"https://ankiweb.net/shared/info/2055492159\">AnkiConnect</a> " \
-                   "add-on is installed to Anki. You probably would like to also install " \
-                   "<a href=\"https://ankiweb.net/shared/info/85158043\">Minimize to tray</a> "\
-                   "add-on to Anki."));
-    }
+    connect(networkAccessManager, &QNetworkAccessManager::finished,
+            [=](QNetworkReply *reply) {
+            if (reply->error() != QNetworkReply::NoError) {
+                QMessageBox::critical(dictWidget, tr("Anki error"),
+                        tr("Unable to add the word to Anki: network error. <br>" \
+                           "Check if Anki is running and " \
+                           "<a href=\"https://ankiweb.net/shared/info/2055492159\">AnkiConnect</a> " \
+                           "add-on is installed to Anki. You probably would like to also install " \
+                           "<a href=\"https://ankiweb.net/shared/info/85158043\">Minimize to tray</a> "\
+                           "add-on to Anki."));
+                }
+            networkAccessManager->deleteLater();
+    });
+
+    networkAccessManager->post(request, requestDocument.toJson());
 }
 
 int Anki::execSettingsDialog(QWidget *parent)

@@ -23,11 +23,6 @@
 #include "../baseplugin.h"
 #include "../toolbarplugin.h"
 
-#include <QHash>
-
-class QNetworkAccessManager;
-class QNetworkReply;
-
 class Anki: public QObject, public QStarDict::BasePlugin, public QStarDict::ToolbarPlugin, public QStarDict::ConfigurablePlugin
 {
     Q_OBJECT
@@ -65,11 +60,8 @@ class Anki: public QObject, public QStarDict::BasePlugin, public QStarDict::Tool
         { return m_allowDuplicates; }
 
         void saveSettings();
-    private slots:
-        void onNetworkRequestFinished(QNetworkReply *reply);
 
     private:
-        QNetworkAccessManager *m_networkAccessManager;
         QString m_connectUrl;
         QString m_deckName;
         QString m_modelName;
