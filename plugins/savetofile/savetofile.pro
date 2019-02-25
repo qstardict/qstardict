@@ -21,7 +21,7 @@ TARGET = savetofile
 META_VERSION = 1.0
 META_NAME = Save Translations
 META_DESC = A plugin for saving translations
-META_AUTHORS = Alexander Rodin <rodin.alexander@gmail.com>
+META_AUTHORS = Alexander Rodin <rodin.alexander@gmail.com>, Frank Ren
 META_FEATURES = toolbar
 
 include(../plugin.pri)

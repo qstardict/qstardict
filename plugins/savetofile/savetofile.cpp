@@ -1,6 +1,7 @@
 /*****************************************************************************
- * print.cpp - QStarDict, a StarDict clone written with using Qt             *
- * Copyright (C) 2019 Alexander Rodin                                        *
+ * print.cpp - QStarDict, a StarDict clone written using Qt                  *
+ * Copyright (C) 2008-2019 Alexander Rodin                                   *
+ * Copyright (C) 2009 Frank Ren                                              *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -42,20 +43,21 @@ QString SaveToFile::toolbarText() const {
 }
 
 void SaveToFile::execute(QStarDict::DictWidget *dictWidget) {
-    static QDir dir( QDir::homePath() ); //added by Frank
-    static QString filter(tr("Text files (*.txt)")); //added by Frank
+    static QDir dir(QDir::homePath());
+    static QString filter(tr("Text files (*.txt)"));
 
     QFileDialog dialog(dictWidget, tr("Save translation"),
-                       dir.path(), filter); //updated by Frank
-    dialog.selectFile(dictWidget->translatedWord());//added by Frank
-    dialog.setNameFilters(QStringList() << tr("HTML files (*.html *.htm)") << tr("Text files (*.txt)"));//updated by Frank
-    dialog.selectNameFilter(filter); //added by Frank
+                       dir.path(), filter);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.selectFile(dictWidget->translatedWord());
+    dialog.setNameFilters(QStringList() << tr("HTML files (*.html *.htm)") << tr("Text files (*.txt)"));
+    dialog.selectNameFilter(filter);
 
     if (dialog.exec() && dialog.selectedFiles().size())
     {
         QString fileName = dialog.selectedFiles().first();
-        /*QString*/ filter = dialog.selectedNameFilter();//updated by Frank
-        dir = dialog.directory(); //added by Frank
+        /*QString*/ filter = dialog.selectedNameFilter();
+        dir = dialog.directory();
         if (filter == tr("HTML files (*.html, *.htm)") &&
             ! (fileName.endsWith(".html", Qt::CaseInsensitive) || fileName.endsWith(".htm", Qt::CaseInsensitive)))
             fileName += ".html";
