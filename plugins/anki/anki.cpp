@@ -57,7 +57,7 @@ QIcon Anki::toolbarIcon() const {
 }
 
 QString Anki::toolbarText() const {
-    return tr("Add word to Anki");
+    return tr("Add word to &Anki");
 }
 
 void Anki::execute(QStarDict::DictWidget *dictWidget) {
