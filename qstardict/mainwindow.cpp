@@ -1,6 +1,6 @@
 /*****************************************************************************
- * mainwindow.cpp - QStarDict, a StarDict clone written with using Qt        *
- * Copyright (C) 2007-2009 Alexander                                         *
+ * mainwindow.cpp - QStarDict, a quasi-star dictionary                       *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -39,7 +39,6 @@
 #include "application.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
-#include "trayicon.h"
 #include "qxt/qxtglobalshortcut.h"
 
 namespace QStarDict 
@@ -110,7 +109,8 @@ void MainWindow::loadSettings()
     restoreGeometry(config.value("MainWindow/geometry", QByteArray()).toByteArray());
     restoreState(config.value("MainWindow/state", QByteArray()).toByteArray());
     setVisible(config.value("MainWindow/visible", true).toBool());
-    if (isHidden() && ! app->trayIcon()->isVisible())
+    setQuitOnClose(config.value("MainWindow/quitOnClose", false).toBool());
+    if (isHidden() && quitOnClose())
         show();
     wordsListDock->setFloating(config.value("MainWindow/wordsListDock/floating", wordsListDock->isFloating()).toBool());
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
@@ -129,6 +129,7 @@ void MainWindow::saveSettings()
     config.setValue("MainWindow/geometry", saveGeometry());
     config.setValue("MainWindow/state", saveState());
     config.setValue("MainWindow/visible", isVisible());
+    config.setValue("MainWindow/quitOnClose", quitOnClose());
     config.setValue("MainWindow/wordsListDock/floating", wordsListDock->isFloating());
     config.setValue("MainWindow/wordsListDock/geometry", wordsListDock->geometry());
     config.setValue("MainWindow/instantSearch", m_instantSearch);
@@ -260,7 +261,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if (! Application::instance()->trayIcon()->isVisible())
+    if (quitOnClose())
         Application::instance()->quit();
 
     QMainWindow::closeEvent(event);

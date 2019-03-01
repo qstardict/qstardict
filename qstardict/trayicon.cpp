@@ -1,6 +1,6 @@
 /*****************************************************************************
- * trayicon.cpp - QStarDict, a StarDict clone written with using Qt          *
- * Copyright (C) 2008 Alexander Rodin                                        *
+ * trayicon.cpp - QStarDict, a quasi-star dictionary                         *
+ * Copyright (C) 2008-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -211,6 +211,10 @@ void TrayIcon::reinit()
     TrayIconPlugin *tip = qobject_cast<TrayIconPlugin*>(_trayImpl);
     tip->initTray();
     tip->setContextMenu(trayMenu);
+
+#ifdef Q_OS_MAC
+    qt_mac_set_dock_menu(trayMenu);
+#endif
 
     if (_mainWindow) {
         tip->setMainWindow(_mainWindow);

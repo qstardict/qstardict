@@ -56,9 +56,9 @@
       </attribute>
       <layout class="QVBoxLayout">
        <item>
-        <widget class="QCheckBox" name="systemTrayBox">
+        <widget class="QCheckBox" name="runInBackgroundBox">
          <property name="text">
-          <string>Use system tray</string>
+          <string>Run in background</string>
          </property>
         </widget>
        </item>

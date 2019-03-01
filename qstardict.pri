@@ -62,6 +62,8 @@ unix:isEmpty(NO_DBUS):!contains(QT_CONFIG, dbus): NO_DBUS = 1
 unix:isEmpty(NO_DBUS):QT += dbus
 unix:isEmpty(NO_DBUS):DEFINES += QSTARDICT_WITH_DBUS
 isEmpty(NO_TRANSLATIONS):DEFINES += QSTARDICT_WITH_TRANSLATIONS
+macx:isEmpty(TRAY_ICON):NO_TRAY_ICON = 1
+isEmpty(NO_TRAY_ICON):DEFINES += QSTARDICT_WITH_TRAY_ICON
 include(plugins/plugins.pri)
 
 unix {

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * settingsdialog.cpp - QStarDict, a StarDict clone written with using Qt    *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * settingsdialog.cpp - QStarDict, a quasi-star dictionary                   *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  * Copyright (C) 2016 Sergey Il'inykh                                        *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
@@ -36,11 +36,13 @@
 #include "popupwindow.h"
 #include "application.h"
 #include "speaker.h"
-#include "trayicon.h"
 #include "pluginsmodel.h"
 #include "pluginmanager.h"
 #include "qxt/qxtglobalshortcut.h"
 #include "../plugins/pluginserver.h"
+#ifdef QSTARDICT_WITH_TRAY_ICON
+#include "trayicon.h"
+#endif
 
 namespace
 {
@@ -83,7 +85,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     dictsTableView->setColumnWidth(2, 120);
 
     // Load global settings
-    systemTrayBox->setChecked(app->trayIcon()->isVisible());
+    runInBackgroundBox->setChecked(!app->mainWindow()->quitOnClose());
     instantSearchBox->setChecked(app->mainWindow()->isInstantSearch());
     speechCmdEdit->setText(app->speaker()->speechCmd());
 #ifdef Q_OS_LINUX
@@ -162,7 +164,9 @@ void SettingsDialog::accept()
     DictCore *dict = app->dictCore();
 
     //dict->setLoadedPlugins(m_dictPluginsModel->loadedPlugins() + m_miscPluginsModel->loadedPlugins());
+#ifdef QSTARDICT_WITH_TRAY_ICON
     app->trayIcon()->reinit();
+#endif
 
     QList<DictCore::Dictionary> loadedDicts;
     int rowCount = m_dictsModel->rowCount();
@@ -172,7 +176,10 @@ void SettingsDialog::accept()
     dict->setLoadedDicts(loadedDicts);
 
     // Save global settings
-    app->trayIcon()->setVisible(systemTrayBox->isChecked());
+    app->mainWindow()->setQuitOnClose(!runInBackgroundBox->isChecked());
+#ifdef QSTARDICT_WITH_TRAY_ICON
+    app->trayIcon()->setVisible(runInBackgroundBox->isChecked());
+#endif
     app->mainWindow()->setInstantSearch(instantSearchBox->isChecked());
     app->speaker()->setSpeechCmd(speechCmdEdit->text());
 #ifdef Q_OS_LINUX
@@ -233,7 +240,7 @@ void SettingsDialog::accept()
     app->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
     app->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
 
-    if (! app->trayIcon()->isVisible())
+    if (app->mainWindow()->quitOnClose())
         app->mainWindow()->show();
 
     app->mainWindow()->reload();
@@ -242,7 +249,9 @@ void SettingsDialog::accept()
 
     app->dictCore()->saveSettings();
     app->mainWindow()->saveSettings();
+#ifdef QSTARDICT_WITH_TRAY_ICON
     app->trayIcon()->saveSettings();
+#endif
     app->popupWindow()->saveSettings();
 
     QDialog::accept();

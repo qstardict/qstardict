@@ -1,6 +1,6 @@
 /*****************************************************************************
- * application.cpp - QStarDict, a StarDict clone written using Qt            *
- * Copyright (C) 2008 Alexander Rodin                                        *
+ * application.cpp - QStarDict, a quasi-star dictionary                      *
+ * Copyright (C) 2008-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -33,11 +33,55 @@
 #include "mainwindow.h"
 #include "popupwindow.h"
 #include "speaker.h"
-#include "trayicon.h"
 #include "pluginmanager.h"
+#ifdef QSTARDICT_WITH_TRAY_ICON
+#include "trayicon.h"
+#endif
 #ifdef QSTARDICT_WITH_DBUS
 #include "dbusadaptor.h"
 #endif // QSTARDICT_WITH_DBUS
+
+#ifdef Q_OS_MAC
+#include <QDebug>
+#include <objc/objc.h>
+#include <objc/message.h>
+void setupDockClickHandler();
+bool dockClickHandler(id self,SEL _cmd,...);
+#endif
+
+#ifdef Q_OS_MAC
+void setupDockClickHandler() {
+    Class cls = objc_getClass("NSApplication");
+    objc_object *appInst = objc_msgSend((objc_object*)cls, sel_registerName("sharedApplication"));
+
+    if(appInst != NULL) {
+        objc_object* delegate = objc_msgSend(appInst, sel_registerName("delegate"));
+        Class delClass = (Class)objc_msgSend(delegate,  sel_registerName("class"));
+        SEL shouldHandle = sel_registerName("applicationShouldHandleReopen:hasVisibleWindows:");
+        if (class_getInstanceMethod(delClass, shouldHandle)) {
+            if (class_replaceMethod(delClass, shouldHandle, (IMP)dockClickHandler, "B@:"))
+                qDebug() << "Registered dock click handler (replaced original method)";
+            else
+                qWarning() << "Failed to replace method for dock click handler";
+        }
+        else {
+            if (class_addMethod(delClass, shouldHandle, (IMP)dockClickHandler,"B@:"))
+                qDebug() << "Registered dock click handler";
+            else
+                qWarning() << "Failed to register dock click handler";
+        }
+    }
+}
+
+bool dockClickHandler(id self,SEL _cmd,...) {
+    Q_UNUSED(self)
+    Q_UNUSED(_cmd)
+    // Do something fun here!
+    ((QStarDict::Application*)qApp)->mainWindow()->show();
+    // Return NO (false) to suppress the default OS X actions
+    return false;
+}
+#endif
 
 namespace QStarDict
 {
@@ -70,10 +114,14 @@ Application::Application(int &argc, char **argv)
     m_popupWindow = new PopupWindow;
     m_popupWindow->setDict(m_dictCore);
     m_speaker = new Speaker;
+#ifdef QSTARDICT_WITH_TRAY_ICON
     m_trayIcon = new TrayIcon;
+#endif
     m_popupShortcut = new QxtGlobalShortcut;
     m_mainWindow = new MainWindow;
+#ifdef QSTARDICT_WITH_TRAY_ICON
 	m_trayIcon->setMainWindow(m_mainWindow);
+#endif
 	m_mainWindow->setDict(m_dictCore);
 #ifdef QSTARDICT_WITH_DBUS
     m_dbusAdaptor = new DBusAdaptor(m_mainWindow);
@@ -83,11 +131,16 @@ Application::Application(int &argc, char **argv)
     setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     setAttribute(Qt::AA_UseHighDpiPixmaps);
+#ifdef Q_OS_MAC
+    setupDockClickHandler();
+#endif
 }
 
 Application::~Application()
 {
+#ifdef QSTARDICT_WITH_TRAY_ICON
     delete m_trayIcon;
+#endif
     delete m_mainWindow;
     delete m_popupWindow;
     delete m_speaker;

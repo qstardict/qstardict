@@ -1,6 +1,6 @@
 /*****************************************************************************
- * mainwindow.h - QStarDict, a StarDict clone written with using Qt          *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * mainwindow.h - QStarDict, a quasi-star dictionary                         *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -82,6 +82,12 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         QString defaultStyleSheet() const
         { return translationView->defaultStyleSheet(); }
 
+        void setQuitOnClose(bool quitOnClose)
+        { m_quitOnClose = quitOnClose; }
+
+        bool quitOnClose() const
+        { return m_quitOnClose; }
+
         void reload();
 
         void reloadToolbar()
@@ -117,6 +123,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         DictCore *m_dict;
         bool m_instantSearch;
         int m_queryTimer;
+        bool m_quitOnClose;
 };
 
 }

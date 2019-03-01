@@ -44,6 +44,11 @@ isEmpty(NO_TRANSLATIONS) {
 } else {
     message("Translations: disabled")
 }
+isEmpty(NO_TRAY_ICON): {
+    message("Tray icon: enabled")
+} else {
+    message("Tray icon: disabled")
+}
 message("Install prefix: "$$INSTALL_PREFIX)
 message("Binary directory: "$$BIN_DIR)
 message("Data directory: "$$DATA_DIR)

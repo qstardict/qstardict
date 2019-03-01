@@ -1,6 +1,6 @@
 /*****************************************************************************
- * application.h - QStarDict, a StarDict clone written using Qt              *
- * Copyright (C) 2008 Alexander Rodin                                        *
+ * application.h - QStarDict, a quasi-star dictionary                        *
+ * Copyright (C) 2008-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -34,7 +34,9 @@ class PluginManager;
 class MainWindow;
 class PopupWindow;
 class Speaker;
+#ifdef QSTARDICT_WITH_TRAY_ICON
 class TrayIcon;
+#endif
 #ifdef QSTARDICT_WITH_DBUS
 class DBusAdaptor;
 #endif // QSTARDICT_WITH_DBUS
@@ -98,11 +100,13 @@ class Application: public QApplication
         Speaker *speaker()
         { return m_speaker; }
 
+#ifdef QSTARDICT_WITH_TRAY_ICON
         /**
          * Returns a pointer to the tray icon.
          */
         TrayIcon *trayIcon()
         { return m_trayIcon; }
+#endif
         /**
          * Returns a pointer to the popupShortcut instance.
          */
@@ -125,7 +129,9 @@ class Application: public QApplication
         MainWindow *m_mainWindow;
         PopupWindow *m_popupWindow;
         Speaker *m_speaker;
+#ifdef QSTARDICT_WITH_TRAY_ICON
         TrayIcon *m_trayIcon;
+#endif
         QxtGlobalShortcut *m_popupShortcut;
 #ifdef QSTARDICT_WITH_DBUS
         DBusAdaptor *m_dbusAdaptor;
