@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name>DictBrowserSearch</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Search:</source>
         <translation type="unfinished"></translation>
@@ -106,23 +102,23 @@
     <name>QStarDict::DictWidget</name>
     <message>
         <source>Save translation</source>
-        <translation>儲存翻譯</translation>
+        <translation type="vanished">儲存翻譯</translation>
     </message>
     <message>
         <source>HTML files (*.html, *.htm)</source>
-        <translation>HTML檔案(*.html, *.htm)</translation>
+        <translation type="vanished">HTML檔案(*.html, *.htm)</translation>
     </message>
     <message>
         <source>Text files (*.txt)</source>
-        <translation>文字檔</translation>
+        <translation type="vanished">文字檔</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
     <message>
         <source>Cannot save translation as %1</source>
-        <translation>無法將翻譯儲存為 %1</translation>
+        <translation type="vanished">無法將翻譯儲存為 %1</translation>
     </message>
     <message>
         <source>Go to &amp;previous translation</source>
@@ -134,7 +130,7 @@
     </message>
     <message>
         <source>&amp;Save to file</source>
-        <translation>儲存到檔案(&amp;S)</translation>
+        <translation type="vanished">儲存到檔案(&amp;S)</translation>
     </message>
     <message>
         <source>Speak &amp;word</source>
@@ -142,11 +138,7 @@
     </message>
     <message>
         <source>Prin&amp;t translation</source>
-        <translation>列印翻譯(&amp;t)</translation>
-    </message>
-    <message>
-        <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">列印翻譯(&amp;t)</translation>
     </message>
     <message>
         <source>Search</source>
@@ -241,6 +233,29 @@
     </message>
     <message>
         <source>Ctrl+T</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QStarDict::PluginsModel</name>
+    <message>
+        <source>&lt;b&gt;Filename:&lt;/b&gt; %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Status:&lt;/b&gt; %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not Loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -360,19 +375,19 @@
     </message>
     <message>
         <source>Show information about plugin</source>
-        <translation>顯示外掛程式資訊</translation>
+        <translation type="vanished">顯示外掛程式資訊</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>資訊</translation>
+        <translation type="vanished">資訊</translation>
     </message>
     <message>
         <source>Configure plugin</source>
-        <translation>設定外掛程式</translation>
+        <translation type="vanished">設定外掛程式</translation>
     </message>
     <message>
         <source>Configure</source>
-        <translation>設定</translation>
+        <translation type="vanished">設定</translation>
     </message>
     <message>
         <source>Popup window</source>
@@ -483,15 +498,23 @@
         <translation></translation>
     </message>
     <message>
-        <source>Use system tray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Start with system</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show translation popup by shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run in background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Misc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other Plugins</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -511,19 +534,42 @@
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>離開(&amp;Q)</translation>
+        <translation type="vanished">離開(&amp;Q)</translation>
     </message>
     <message>
         <source>QStarDict: scanning is %1</source>
-        <translation>QStarDict: 取詞已%1</translation>
+        <translation type="vanished">QStarDict: 取詞已%1</translation>
     </message>
     <message>
         <source>enabled</source>
-        <translation>啟用</translation>
+        <translation type="vanished">啟用</translation>
     </message>
     <message>
         <source>disabled</source>
-        <translation>停用</translation>
+        <translation type="vanished">停用</translation>
+    </message>
+</context>
+<context>
+    <name>QStarDict::TrayIconDefaultImpl</name>
+    <message>
+        <source>Show &amp;main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation type="unfinished">離開(&amp;Q)</translation>
+    </message>
+    <message>
+        <source>QStarDict: scanning is %1</source>
+        <translation type="unfinished">QStarDict: 取詞已%1</translation>
+    </message>
+    <message>
+        <source>enabled</source>
+        <translation type="unfinished">啟用</translation>
+    </message>
+    <message>
+        <source>disabled</source>
+        <translation type="unfinished">停用</translation>
     </message>
 </context>
 </TS>

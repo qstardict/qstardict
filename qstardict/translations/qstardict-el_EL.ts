@@ -1,25 +1,24 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="fr_FR" version="2.1">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>DictBrowserSearch</name>
     <message>
-        <location filename="../dictbrowsersearch.ui" line="14"/>
         <source>Form</source>
-        <translation>Φόρμα</translation>
+        <translation type="vanished">Φόρμα</translation>
     </message>
     <message>
-        <location filename="../dictbrowsersearch.ui" line="20"/>
+        <location filename="../dictbrowsersearch.ui" line="17"/>
         <source>Search:</source>
         <translation>Αναζήτηση:</translation>
     </message>
     <message>
-        <location filename="../dictbrowsersearch.ui" line="30"/>
+        <location filename="../dictbrowsersearch.ui" line="27"/>
         <source>Case sensitive</source>
         <translation>Με διάκριση πεζών -κεφαλαίων</translation>
     </message>
     <message>
-        <location filename="../dictbrowsersearch.ui" line="37"/>
+        <location filename="../dictbrowsersearch.ui" line="34"/>
         <source>Whole words</source>
         <translation>Ολόκληρες λέξεις</translation>
     </message>
@@ -123,108 +122,97 @@
     <name>QStarDict::DictBrowser</name>
     <message>
         <location filename="../dictbrowser.cpp" line="77"/>
-        <source>The word &lt;b>%1&lt;/b> is not found.</source>
-        <translation>Η λέξη &lt;b>%1&lt;/b> δε βρέθηκε.</translation>
+        <source>The word &lt;b&gt;%1&lt;/b&gt; is not found.</source>
+        <translation>Η λέξη &lt;b&gt;%1&lt;/b&gt; δε βρέθηκε.</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <location filename="../dictwidget.cpp" line="159"/>
         <source>Save translation</source>
-        <translation>Αποθήκευση μετάφρασης</translation>
+        <translation type="vanished">Αποθήκευση μετάφρασης</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="170"/>
-        <location filename="../dictwidget.cpp" line="184"/>
         <source>HTML files (*.html, *.htm)</source>
-        <translation>Αρχεία HTML (*.html, *.htm)</translation>
+        <translation type="vanished">Αρχεία HTML (*.html, *.htm)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="157"/>
-        <location filename="../dictwidget.cpp" line="162"/>
-        <location filename="../dictwidget.cpp" line="173"/>
         <source>Text files (*.txt)</source>
-        <translation>Αρχεία κειμένου (*.txt)</translation>
+        <translation type="vanished">Αρχεία κειμένου (*.txt)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="103"/>
+        <location filename="../dictwidget.cpp" line="91"/>
         <source>Search</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="162"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished">Αρχεία HTML (*.html, *.htm)</translation>
+        <translation type="obsolete">Αρχεία HTML (*.html, *.htm)</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="179"/>
         <source>Error</source>
-        <translation>Λάθος</translation>
+        <translation type="vanished">Λάθος</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="180"/>
         <source>Cannot save translation as %1</source>
-        <translation>Αδυναμία αποθήκευσης μετάφρασης</translation>
+        <translation type="vanished">Αδυναμία αποθήκευσης μετάφρασης</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="84"/>
+        <location filename="../dictwidget.cpp" line="78"/>
         <source>Go to &amp;previous translation</source>
         <translation>Πήγαινε στη &amp;προηγούμενη μετάφραση</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="89"/>
+        <location filename="../dictwidget.cpp" line="83"/>
         <source>Go to &amp;next translation</source>
         <translation>Πήγαινε στην &amp;επόμενη μετάφραση</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="94"/>
         <source>&amp;Save to file</source>
-        <translation>&amp;Αποθήκευση σε αρχείο</translation>
+        <translation type="vanished">&amp;Αποθήκευση σε αρχείο</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="100"/>
+        <location filename="../dictwidget.cpp" line="88"/>
         <source>Speak &amp;word</source>
         <translation>Προφορά &amp;λέξης</translation>
     </message>
     <message>
-        <location filename="../dictwidget.cpp" line="97"/>
         <source>Prin&amp;t translation</source>
-        <translation>Αποθήκευση &amp;μετάφρασης</translation>
+        <translation type="vanished">Αποθήκευση &amp;μετάφρασης</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="116"/>
+        <location filename="../mainwindow.cpp" line="121"/>
         <source>Ctrl+T</source>
         <translation type="unfinished">Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="142"/>
+        <location filename="../mainwindow.cpp" line="148"/>
         <source>About QStarDict</source>
         <translation>Σχετικά με το QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="143"/>
-        <source>&lt;b>QStarDict %1 &lt;/b> - Qt version of StarDict&lt;br></source>
-        <translation>&lt;b>QStarDict %1 &lt;/b> - Qt έκδοση του StarDict&lt;br></translation>
+        <location filename="../mainwindow.cpp" line="149"/>
+        <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
+        <translation>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt έκδοση του StarDict&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="144"/>
-        <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href="http://qstardict.ylsoftware.com">http://qstardict.ylsoftware.com&lt;/a></source>
-        <translation>Πνευματικά Δικαιώματα (C) 2007-2009 Alexandre Rodin &lt;a href="http://qstardict.ylsoftware.com">http://qstardict.ylsoftware.com&lt;/a></translation>
+        <location filename="../mainwindow.cpp" line="150"/>
+        <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation>Πνευματικά Δικαιώματα (C) 2007-2009 Alexandre Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="13"/>
-        <location filename="../mainwindow.cpp" line="163"/>
-        <location filename="../mainwindow.cpp" line="202"/>
+        <location filename="../mainwindow.cpp" line="169"/>
+        <location filename="../mainwindow.cpp" line="208"/>
         <source>QStarDict</source>
         <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="204"/>
-        <location filename="../mainwindow.cpp" line="216"/>
+        <location filename="../mainwindow.cpp" line="210"/>
+        <location filename="../mainwindow.cpp" line="222"/>
         <source>%1 - QStarDict</source>
         <translation>%1 - QStarDict</translation>
     </message>
@@ -313,13 +301,13 @@
     <name>QStarDict::PluginsModel</name>
     <message>
         <location filename="../pluginsmodel.cpp" line="111"/>
-        <source>&lt;b>Filename:&lt;/b> %1</source>
-        <translation>&lt;b>Όνομα αρχείου:&lt;/b> %1</translation>
+        <source>&lt;b&gt;Filename:&lt;/b&gt; %1</source>
+        <translation>&lt;b&gt;Όνομα αρχείου:&lt;/b&gt; %1</translation>
     </message>
     <message>
         <location filename="../pluginsmodel.cpp" line="112"/>
-        <source>&lt;b>Status:&lt;/b> %1</source>
-        <translation>&lt;b>Kατάσταση:&lt;/b> %1</translation>
+        <source>&lt;b&gt;Status:&lt;/b&gt; %1</source>
+        <translation>&lt;b&gt;Kατάσταση:&lt;/b&gt; %1</translation>
     </message>
     <message>
         <location filename="../pluginsmodel.cpp" line="115"/>
@@ -340,79 +328,79 @@
 <context>
     <name>QStarDict::SettingsDialog</name>
     <message>
-        <location filename="../settingsdialog.cpp" line="77"/>
+        <location filename="../settingsdialog.cpp" line="79"/>
         <source>Enabled</source>
         <translation>Ενεργοποιημένο</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="77"/>
+        <location filename="../settingsdialog.cpp" line="79"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="77"/>
+        <location filename="../settingsdialog.cpp" line="79"/>
         <source>Plugin</source>
         <translation>Πρόσθετο</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="318"/>
-        <source>Information about dictionary "%1"</source>
-        <translation>Πληροφορίες λεξικού "%1"</translation>
+        <location filename="../settingsdialog.cpp" line="327"/>
+        <source>Information about dictionary &quot;%1&quot;</source>
+        <translation>Πληροφορίες λεξικού &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="319"/>
-        <location filename="../settingsdialog.cpp" line="345"/>
-        <source>&lt;b>Name:&lt;/b> %1&lt;br></source>
-        <translation>&lt;b>Όνομα :&lt;/b> %1 &lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="328"/>
+        <location filename="../settingsdialog.cpp" line="356"/>
+        <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Όνομα :&lt;/b&gt; %1 &lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="320"/>
-        <source>&lt;b>Plugin:&lt;/b> %1&lt;br></source>
-        <translation>&lt;b>Πρόσθετο :&lt;/b> %1 &lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="329"/>
+        <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Πρόσθετο :&lt;/b&gt; %1 &lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="322"/>
+        <location filename="../settingsdialog.cpp" line="331"/>
         <source>unknown</source>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="323"/>
-        <location filename="../settingsdialog.cpp" line="349"/>
-        <source>&lt;b>Description:&lt;/b> %1</source>
-        <translation>&lt;b>Περιγραφή :&lt;/b> %1</translation>
+        <location filename="../settingsdialog.cpp" line="332"/>
+        <location filename="../settingsdialog.cpp" line="360"/>
+        <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
+        <translation>&lt;b&gt;Περιγραφή :&lt;/b&gt; %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="344"/>
+        <location filename="../settingsdialog.cpp" line="354"/>
         <source>Information about %1 plugin</source>
         <translation>Σχετικά με το πρόσθετο %1</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="346"/>
-        <source>&lt;b>Version:&lt;/b> %1&lt;br></source>
-        <translation>&lt;b>Έκδοση :&lt;/b> %1 &lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="357"/>
+        <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Έκδοση :&lt;/b&gt; %1 &lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="347"/>
-        <source>&lt;b>Authors:&lt;/b> %1&lt;br></source>
-        <translation>&lt;b>Συγγραφείς :&lt;/b> %1&lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="358"/>
+        <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Συγγραφείς :&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="347"/>
-        <source>&lt;br></source>
-        <translation type="unfinished">&lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="358"/>
+        <source>&lt;br&gt;</source>
+        <translation type="unfinished">&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="348"/>
-        <source>&lt;b>Can search similar words:&lt;/b> %1&lt;br></source>
-        <translation>&lt;b>Δυνατότητ' αναζήτησης  παρομοίων λέξεων:&lt;/b> %1&lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="359"/>
+        <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Δυνατότητ&apos; αναζήτησης  παρομοίων λέξεων:&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="348"/>
+        <location filename="../settingsdialog.cpp" line="359"/>
         <source>yes</source>
         <translation>ναι</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="348"/>
+        <location filename="../settingsdialog.cpp" line="359"/>
         <source>no</source>
         <translation>όχι</translation>
     </message>
@@ -432,6 +420,11 @@
         <translation>Καθολικές ρυθμίσεις</translation>
     </message>
     <message>
+        <location filename="../settingsdialog.ui" line="61"/>
+        <source>Run in background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../settingsdialog.ui" line="68"/>
         <source>Start with system</source>
         <translation>Αυτόματη εκκίνηση</translation>
@@ -448,8 +441,8 @@
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="106"/>
-        <source>Enter cmd for the speaching program.&lt;br>If cmd contains "%s" it will be replaced to word, else word will be written to stdin of speech process.</source>
-        <translation>Εισαγωγή cmd για το πρόγραμμα προφοράς. &lt;br>Αν η cmd περιέχει "%s", Θ' αντικατασταθεί με λέξη, αλλιώς η λέξη θα γραφεί στο stdin της διαδικασίας προφοράς.</translation>
+        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be written to stdin of speech process.</source>
+        <translation>Εισαγωγή cmd για το πρόγραμμα προφοράς. &lt;br&gt;Αν η cmd περιέχει &quot;%s&quot;, Θ&apos; αντικατασταθεί με λέξη, αλλιώς η λέξη θα γραφεί στο stdin της διαδικασίας προφοράς.</translation>
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="129"/>
@@ -530,7 +523,7 @@
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="361"/>
-        <source>Don't hide</source>
+        <source>Don&apos;t hide</source>
         <translation>Μη κρύψεις</translation>
     </message>
     <message>
@@ -610,70 +603,69 @@
         <translation>Άλλα πρόσθετα</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="321"/>
-        <source>&lt;b>Author:&lt;/b> %1&lt;br></source>
-        <translation>&lt;b>Συγγραφέας :&lt;/b> %1&lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="330"/>
+        <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Συγγραφέας :&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="322"/>
-        <source>&lt;b>Words count:&lt;/b> %1&lt;br></source>
-        <translation>&lt;b>Μετρητής λέξεων :&lt;/b> %1&lt;br></translation>
+        <location filename="../settingsdialog.cpp" line="331"/>
+        <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Μετρητής λέξεων :&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="141"/>
+        <location filename="../settingsdialog.cpp" line="143"/>
         <source>All translation</source>
         <translation>Όλες οι μεταφράσεις</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="142"/>
+        <location filename="../settingsdialog.cpp" line="144"/>
         <source>Dictionary name</source>
         <translation>Όνομα λεξικού</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="143"/>
+        <location filename="../settingsdialog.cpp" line="145"/>
         <source>Title</source>
         <translation>Τίτλος</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="144"/>
+        <location filename="../settingsdialog.cpp" line="146"/>
         <source>Explanation</source>
         <translation>Εξήγηση</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="145"/>
+        <location filename="../settingsdialog.cpp" line="147"/>
         <source>Abbreviation</source>
         <translation>Συντομογραφία</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="146"/>
+        <location filename="../settingsdialog.cpp" line="148"/>
         <source>Example</source>
         <translation>Παράδειγμα</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.cpp" line="147"/>
+        <location filename="../settingsdialog.cpp" line="149"/>
         <source>Transcription</source>
         <translation>Μεταγραφή</translation>
     </message>
     <message>
-        <location filename="../settingsdialog.ui" line="61"/>
         <source>Use system tray</source>
-        <translation>Χρήση μπάρας συστήματος</translation>
+        <translation type="vanished">Χρήση μπάρας συστήματος</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::TrayIcon</name>
     <message>
-        <location filename="../trayicon.cpp" line="179"/>
+        <location filename="../trayicon.cpp" line="195"/>
         <source>QStarDict</source>
         <translation>QStarDict</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="181"/>
+        <location filename="../trayicon.cpp" line="197"/>
         <source>&amp;Scan</source>
         <translation>&amp;Σάρωση</translation>
     </message>
     <message>
-        <location filename="../trayicon.cpp" line="191"/>
+        <location filename="../trayicon.cpp" line="207"/>
         <source>&amp;Configure QStarDict</source>
         <translation>&amp;Ρύθμιση QStarDict</translation>
     </message>
