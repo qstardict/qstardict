@@ -19,7 +19,7 @@
 
 #include "dictwidget.h"
 
-#include <QScrollbar>
+#include <QScrollBar>
 #include <QVBoxLayout>
 #include <QToolBar>
 #include <QAction>
