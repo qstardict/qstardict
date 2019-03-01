@@ -5,6 +5,7 @@ sudo: enabled
 os:
   - linux
   - osx
+osx_image: xcode10
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y cppcheck cmake libglib2.0-dev libx11-dev qt5-qmake qtbase5-dev qtbase5-private-dev qttools5-dev-tools zlib1g-dev qt5-default; fi
