@@ -69,7 +69,7 @@ p, li { white-space: pre-wrap; }
     <name>Print</name>
     <message>
         <source>Prin&amp;t translation</source>
-        <translation type="unfinished">&amp;Imprimir</translation>
+        <translation>&amp;Imprimir</translation>
     </message>
 </context>
 <context>
@@ -618,6 +618,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SaveToFile</name>
     <message>
+        <source>Error</source>
+        <translation>Error</translation>
+    </message>
+    <message>
         <source>&amp;Save translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -638,16 +642,20 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation type="unfinished">Error</translation>
-    </message>
-    <message>
         <source>Cannot save translation as %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
+    <message>
+        <source>Up</source>
+        <translation>Arriba</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>Abajo</translation>
+    </message>
     <message>
         <source>StarDict plugin settings</source>
         <translation type="unfinished"></translation>
@@ -710,19 +718,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Up</source>
-        <translation type="unfinished">Arriba</translation>
-    </message>
-    <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Move down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Down</source>
-        <translation type="unfinished">Abajo</translation>
     </message>
     <message>
         <source>Select dictionaries directory</source>
