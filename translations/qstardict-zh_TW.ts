@@ -2,6 +2,55 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>AddDictionaryDialog</name>
+    <message>
+        <source>Add dictionary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTTP query:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The &apos;%s&apos; template will be replace to word.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML charset:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Anki</name>
+    <message>
+        <source>Add word to &amp;Anki</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anki error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to add the word to Anki: network error. &lt;br&gt;Check if Anki is running and &lt;a href=&quot;https://ankiweb.net/shared/info/2055492159&quot;&gt;AnkiConnect&lt;/a&gt; add-on is installed to Anki. You probably would like to also install &lt;a href=&quot;https://ankiweb.net/shared/info/85158043&quot;&gt;Minimize to tray&lt;/a&gt; add-on to Anki.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DictBrowserSearch</name>
     <message>
         <source>Search:</source>
@@ -14,6 +63,13 @@
     <message>
         <source>Whole words</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Print</name>
+    <message>
+        <source>Prin&amp;t translation</source>
+        <translation type="unfinished">列印翻譯(&amp;t)</translation>
     </message>
 </context>
 <context>
@@ -142,7 +198,22 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">搜尋</translation>
+        <translation>搜尋</translation>
+    </message>
+</context>
+<context>
+    <name>QStarDict::KDEIntegration</name>
+    <message>
+        <source>scanning is %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>enabled</source>
+        <translation type="unfinished">啟用</translation>
+    </message>
+    <message>
+        <source>disabled</source>
+        <translation type="unfinished">停用</translation>
     </message>
 </context>
 <context>
@@ -150,10 +221,6 @@
     <message>
         <source>About QStarDict</source>
         <translation>關於 QStarDict</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
-        <translation></translation>
     </message>
     <message>
         <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
@@ -229,10 +296,14 @@
     </message>
     <message>
         <source>F1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+T</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -306,12 +377,8 @@
         <translation>&lt;b&gt;作者：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
-        <source>&lt;br&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;可以搜尋相似單字：&lt;/b&gt; %1&lt;br&gt;</translation>
+        <translation type="vanished">&lt;b&gt;可以搜尋相似單字：&lt;/b&gt; %1&lt;br&gt;</translation>
     </message>
     <message>
         <source>yes</source>
@@ -340,10 +407,6 @@
     <message>
         <source>Pronounce words using this command:</source>
         <translation>使用如下指令發音</translation>
-    </message>
-    <message>
-        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be written to stdin of speech process.</source>
-        <translation></translation>
     </message>
     <message>
         <source>Dictionaries</source>
@@ -482,10 +545,6 @@
         <translation>標題</translation>
     </message>
     <message>
-        <source>Explanation</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Abbreviation</source>
         <translation>縮寫</translation>
     </message>
@@ -494,19 +553,19 @@
         <translation>範例</translation>
     </message>
     <message>
-        <source>Transcription</source>
-        <translation></translation>
+        <source>Run in background</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start with system</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show translation popup by shortcut</source>
+        <source>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be written to stdin of speech process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Run in background</source>
+        <source>Show translation popup by shortcut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -515,6 +574,22 @@
     </message>
     <message>
         <source>Other Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Explanation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transcription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Can search similar words:&lt;/b&gt;%1&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -552,24 +627,182 @@
 <context>
     <name>QStarDict::TrayIconDefaultImpl</name>
     <message>
-        <source>Show &amp;main window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished">離開(&amp;Q)</translation>
+        <translation>離開(&amp;Q)</translation>
     </message>
     <message>
         <source>QStarDict: scanning is %1</source>
-        <translation type="unfinished">QStarDict: 取詞已%1</translation>
+        <translation>QStarDict: 取詞已%1</translation>
     </message>
     <message>
         <source>enabled</source>
-        <translation type="unfinished">啟用</translation>
+        <translation>啟用</translation>
     </message>
     <message>
         <source>disabled</source>
-        <translation type="unfinished">停用</translation>
+        <translation>停用</translation>
+    </message>
+    <message>
+        <source>Show &amp;main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SaveToFile</name>
+    <message>
+        <source>&amp;Save translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text files (*.txt)</source>
+        <translation type="unfinished">文字檔</translation>
+    </message>
+    <message>
+        <source>Save translation</source>
+        <translation type="unfinished">儲存翻譯</translation>
+    </message>
+    <message>
+        <source>HTML files (*.html *.htm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTML files (*.html, *.htm)</source>
+        <translation type="unfinished">HTML檔案(*.html, *.htm)</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">錯誤</translation>
+    </message>
+    <message>
+        <source>Cannot save translation as %1</source>
+        <translation type="unfinished">無法將翻譯儲存為 %1</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>StarDict plugin settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If enabled, all lists in translation will be formatted using HTML &lt;li&gt; tag (may be slow)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reformat lists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand abbreviations if dictionary contains it (may be slow)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand abbreviations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformatted translations may display incorrectly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Data directories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Add directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Remove directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Move up&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished">上</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Move down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished">下</translation>
+    </message>
+    <message>
+        <source>Select dictionaries directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anki plugin settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anki Connect URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deck name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Model name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow duplicates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web plugin settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dictionaries</source>
+        <translation type="unfinished">字典</translation>
+    </message>
+    <message>
+        <source>Edit dictionary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add dictionary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove dictionary</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -113,8 +113,6 @@ DISTFILES += \
 
 target.path = $$BIN_DIR
 INSTALLS += target
-# translations *has* go after current target (mac required)
-isEmpty(NO_TRANSLATIONS):include("translations/translations.pri")
 
 unix:!macx {
     desktop_icon.files = qstardict.png

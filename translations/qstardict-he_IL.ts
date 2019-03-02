@@ -151,7 +151,7 @@
     <message>
         <location filename="../dictwidget.cpp" line="101"/>
         <source>Search</source>
-        <translation type="unfinished">חפש</translation>
+        <translation>חפש</translation>
     </message>
     <message>
         <location filename="../dictwidget.cpp" line="132"/>
@@ -348,7 +348,7 @@
     <message>
         <location filename="../settingsdialog.cpp" line="331"/>
         <source>unknown</source>
-        <translation type="unfinished">לא ידועה</translation>
+        <translation>לא ידועה</translation>
     </message>
     <message>
         <location filename="../settingsdialog.cpp" line="332"/>

@@ -1,6 +1,6 @@
 #############################################################################
-# translations.pri - QStarDict, a StarDict clone written with using Qt      #
-# Copyright (C) 2008-2009 Alexander Rodin                                   #
+# translations.pro - QStarDict, a StarDict clone written with using Qt      #
+# Copyright (C) 2008-2019 Alexander Rodin                                   #
 #                                                                           #
 # This program is free software; you can redistribute it and/or modify      #
 # it under the terms of the GNU General Public License as published by      #
@@ -17,21 +17,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.               #
 #############################################################################
 
-TRANSLATIONS += \
-    translations/qstardict-bg_BG.ts \
-    translations/qstardict-cs_CZ.ts \
-    translations/qstardict-de_DE.ts \
-    translations/qstardict-el_EL.ts \
-    translations/qstardict-es_ES.ts \
-    translations/qstardict-fr_FR.ts \
-    translations/qstardict-it_IT.ts \
-    translations/qstardict-lt_LT.ts \
-    translations/qstardict-pl_PL.ts \
-    translations/qstardict-pt_BR.ts \
-    translations/qstardict-ru_RU.ts \
-    translations/qstardict-ua_UA.ts \
-    translations/qstardict-zh_CN.ts \
-    translations/qstardict-zh_TW.ts
+TEMPLATE = aux
+
+include(../qstardict.pri)
+include(translations.pri)
 
 # from https://github.com/Arora/arora/blob/e310d632e9f6c135c376576d2d466af03fd219ee/src/locale/locale.pri
 isEmpty(QMAKE_LRELEASE) {
@@ -46,8 +35,8 @@ isEmpty(QMAKE_LRELEASE) {
 
 # from https://github.com/Arora/arora/blob/e310d632e9f6c135c376576d2d466af03fd219ee/src/locale/locale.pri
 updateqm.input = TRANSLATIONS
-updateqm.output = translations/${QMAKE_FILE_BASE}.qm
-updateqm.commands = $$QMAKE_LRELEASE -silent ${QMAKE_FILE_IN} -qm translations/${QMAKE_FILE_BASE}.qm
+updateqm.output = $$TRANSLATIONS_SRC_DIR/${QMAKE_FILE_BASE}.qm
+updateqm.commands = $$QMAKE_LRELEASE -silent ${QMAKE_FILE_IN} -qm $$TRANSLATIONS_SRC_DIR/${QMAKE_FILE_BASE}.qm
 updateqm.CONFIG += no_link target_predeps
 QMAKE_EXTRA_COMPILERS += updateqm
 

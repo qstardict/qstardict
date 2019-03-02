@@ -1,5 +1,5 @@
 qstardict/qstardict
-qstardict/translations/*.qm
+translations/*.qm
 *.o
 *.so
 moc_*.cpp

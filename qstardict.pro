@@ -19,7 +19,7 @@
 
 TEMPLATE = subdirs
 include(qstardict.pri)
-SUBDIRS = qstardict plugins
+SUBDIRS = qstardict plugins translations
 
 DOCS += \
     AUTHORS \
@@ -74,3 +74,5 @@ docs.path = $$DOCS_DIR
 man.files = $$MAN
 man.path = $$MAN_DIR
 INSTALLS += docs man
+
+isEmpty(NO_TRANSLATIONS):include(translations/translations.pri)
