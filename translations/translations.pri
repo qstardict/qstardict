@@ -24,6 +24,7 @@ TRANSLATIONS += \
     $$TRANSLATIONS_SRC_DIR/qstardict-cs_CZ.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-de_DE.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-el_EL.ts \
+    $$TRANSLATIONS_SRC_DIR/qstardict-en_US.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-es_ES.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-fr_FR.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-it_IT.ts \
