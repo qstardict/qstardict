@@ -23,7 +23,7 @@ TRANSLATIONS += \
     $$TRANSLATIONS_SRC_DIR/qstardict-bg_BG.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-cs_CZ.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-de_DE.ts \
-    $$TRANSLATIONS_SRC_DIR/qstardict-el_EL.ts \
+    $$TRANSLATIONS_SRC_DIR/qstardict-el_GR.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-en_US.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-es_ES.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-fr_FR.ts \
@@ -32,6 +32,6 @@ TRANSLATIONS += \
     $$TRANSLATIONS_SRC_DIR/qstardict-pl_PL.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-pt_BR.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-ru_RU.ts \
-    $$TRANSLATIONS_SRC_DIR/qstardict-ua_UA.ts \
+    $$TRANSLATIONS_SRC_DIR/qstardict-uk_UA.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-zh_CN.ts \
     $$TRANSLATIONS_SRC_DIR/qstardict-zh_TW.ts
