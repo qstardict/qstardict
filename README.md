@@ -24,3 +24,6 @@ More information about installation:
 * [GNU/Linux](https://github.com/a-rodin/qstardict/blob/master/INSTALL)
 * [macOS](https://github.com/a-rodin/qstardict/blob/master/README.MACOS)
 * [Windows](https://github.com/a-rodin/qstardict/blob/master/README.WINDOWS)
+
+### Translations ###
+https://www.transifex.com/qstardict/qstardict/
