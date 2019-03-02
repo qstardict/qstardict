@@ -73,9 +73,9 @@ QStarDict::TrayIconPlugin::TrayCompat KDEIntegration::isDECompatible()
     QString session = qgetenv("XDG_CURRENT_DESKTOP");
     QString dataDirs = qgetenv("XDG_DATAD_DIRS");
     if (session == "KDE" || session.contains("kde") || session.contains("plasma"))
-        return QStarDict::TrayIconPlugin::CompatFull;
+        return TrayCompat::Full;
     else
-        return QStarDict::TrayIconPlugin::CompatNone;
+        return TrayCompat::None;
 }
 
 void KDEIntegration::initTray()
@@ -101,7 +101,7 @@ void KDEIntegration::uninitTray()
 
 TrayIconPlugin::Features KDEIntegration::features() const
 {
-    return ClipoardTranslate;
+    return Feature::ClipoardTranslate;
 }
 
 void KDEIntegration::setContextMenu(QMenu *menu)
