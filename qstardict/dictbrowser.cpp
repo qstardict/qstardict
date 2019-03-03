@@ -114,15 +114,36 @@ void DictBrowser::search(const QString & exp, QTextDocument::FindFlags options)
     emit searchResult(found);
 }
 
-void DictBrowser::mouseMoveEvent(QMouseEvent *event)
+void DictBrowser::invalidateHighlight()
 {
-    if (m_highlighted)
+    if (m_highlighted) // clear highlight if any
     {
         m_oldCursor.setCharFormat(m_oldFormat);
         m_highlighted = false;
         QApplication::restoreOverrideCursor();
     }
-    QTextCursor cursor = cursorForPosition(event->pos());
+
+    QPoint mousePosition = mapFromGlobal(QCursor::pos());
+    if (!contentsRect().contains(mousePosition)) // mouse not in under the browser
+        return;
+
+    // check if mouse is actually under the word
+    auto cursor = cursorForPosition(mousePosition);
+    cursor.select(QTextCursor::WordUnderCursor);
+    auto selectionStart = cursor.selectionStart();
+    auto selectionEnd = cursor.selectionEnd();
+
+    cursor.setPosition(selectionStart);
+    auto topLeft = cursorRect(cursor).topLeft();
+    cursor.setPosition(selectionEnd);
+    auto bottomRight = cursorRect(cursor).bottomRight();
+
+    auto rect = QRect(topLeft, bottomRight);
+    if (!rect.contains(mousePosition))
+        return;
+
+    // highlight word if found
+    cursor = cursorForPosition(mousePosition);
     cursor.select(QTextCursor::WordUnderCursor);
     QString selection = cursor.selection().toPlainText().simplified();
     if (m_dict->isTranslatable(selection))
@@ -138,7 +159,11 @@ void DictBrowser::mouseMoveEvent(QMouseEvent *event)
         m_highlighted = true;
         QApplication::setOverrideCursor(Qt::PointingHandCursor);
     }
+}
 
+void DictBrowser::mouseMoveEvent(QMouseEvent *event)
+{
+    invalidateHighlight();
     QTextBrowser::mouseMoveEvent(event);
 }
 
@@ -150,10 +175,7 @@ void DictBrowser::mouseReleaseEvent(QMouseEvent *event)
     if (m_dict->isTranslatable(selection) && selection != source().toString(QUrl::RemoveScheme))
     {
         setSource(selection);
-        if (m_highlighted) {
-            m_highlighted = false;
-            QApplication::restoreOverrideCursor();
-        }
+        invalidateHighlight();
     }
     QTextBrowser::mousePressEvent(event);
 }
@@ -166,6 +188,7 @@ void DictBrowser::on_anchorClicked(const QUrl &link)
     else
         QDesktopServices::openUrl(link);
 }
+
 
 }
 

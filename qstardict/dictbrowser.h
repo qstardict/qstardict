@@ -76,6 +76,8 @@ class DictBrowser: public QTextBrowser
         QTextCharFormat m_oldFormat;
         bool m_highlighted;
         bool m_searchUndo;
+
+        void invalidateHighlight();
 };
 
 }
