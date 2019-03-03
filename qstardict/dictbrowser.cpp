@@ -58,6 +58,7 @@ DictBrowser::DictBrowser(QWidget *parent)
     : QTextBrowser(parent),
       m_dict(0),
       m_highlighted(false),
+      m_highlightTimerId(0),
       m_searchUndo(false)
 {
     document()->setDefaultStyleSheet(translationCSS);
@@ -120,6 +121,9 @@ void DictBrowser::invalidateHighlight()
     {
         m_oldCursor.setCharFormat(m_oldFormat);
         m_highlighted = false;
+        killTimer(m_highlightTimerId);
+        m_highlightTimerId = 0;
+        m_highlightedWord.clear();
         QApplication::restoreOverrideCursor();
     }
 
@@ -127,7 +131,7 @@ void DictBrowser::invalidateHighlight()
     if (!contentsRect().contains(mousePosition)) // mouse not in under the browser
         return;
 
-    // check if mouse is actually under the word
+    // check if the word is actually under the mouse
     auto cursor = cursorForPosition(mousePosition);
     cursor.select(QTextCursor::WordUnderCursor);
     auto selectionStart = cursor.selectionStart();
@@ -146,7 +150,7 @@ void DictBrowser::invalidateHighlight()
     cursor = cursorForPosition(mousePosition);
     cursor.select(QTextCursor::WordUnderCursor);
     QString selection = cursor.selection().toPlainText().simplified();
-    if (m_dict->isTranslatable(selection))
+    if (selection == m_highlightedWord || m_dict->isTranslatable(selection))
     {
         m_oldCursor = cursor;
         m_oldFormat = cursor.charFormat();
@@ -157,6 +161,8 @@ void DictBrowser::invalidateHighlight()
         cursor.setCharFormat(format);
 
         m_highlighted = true;
+        m_highlightedWord = selection;
+        m_highlightTimerId = startTimer(100);
         QApplication::setOverrideCursor(Qt::PointingHandCursor);
     }
 }
@@ -189,6 +195,10 @@ void DictBrowser::on_anchorClicked(const QUrl &link)
         QDesktopServices::openUrl(link);
 }
 
+void DictBrowser::timerEvent(QTimerEvent*)
+{
+    invalidateHighlight();
+}
 
 }
 
