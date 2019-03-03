@@ -1,60 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru_RU" version="2.1">
 <context>
     <name>AddDictionaryDialog</name>
     <message>
         <source>Add dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить словарь</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Название:</translation>
     </message>
     <message>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автор:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Описание:</translation>
     </message>
     <message>
         <source>HTTP query:</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP запрос:</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The &apos;%s&apos; template will be replace to word.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Шаблон &apos;%s&apos; будет заменен на слово.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>HTML charset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Кодировка HTML:</translation>
     </message>
 </context>
 <context>
     <name>Anki</name>
     <message>
         <source>Add word to &amp;Anki</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить слово в &amp;Anki</translation>
     </message>
     <message>
         <source>Anki error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка Anki</translation>
     </message>
     <message>
         <source>Unable to add the word to Anki: network error. &lt;br&gt;Check if Anki is running and &lt;a href=&quot;https://ankiweb.net/shared/info/2055492159&quot;&gt;AnkiConnect&lt;/a&gt; add-on is installed to Anki. You probably would like to also install &lt;a href=&quot;https://ankiweb.net/shared/info/85158043&quot;&gt;Minimize to tray&lt;/a&gt; add-on to Anki.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось добавить слово в Anki: ошибка сети. &lt;br&gt;Проверьте, что приложение Anki запущено и дополнение &lt;a href=&quot;https://ankiweb.net/shared/info/2055492159&quot;&gt;AnkiConnect&lt;/a&gt; установлено в Anki. Вам, вероятно, также захочется установить дополнение &lt;a href=&quot;https://ankiweb.net/shared/info/85158043&quot;&gt;Minimize to tray&lt;/a&gt; в Anki.</translation>
     </message>
 </context>
 <context>
     <name>DictBrowserSearch</name>
     <message>
         <source>Search:</source>
-        <translation>Найти:</translation>
+        <translation>Поиск:</translation>
     </message>
     <message>
         <source>Case sensitive</source>
@@ -69,7 +70,7 @@ p, li { white-space: pre-wrap; }
     <name>Print</name>
     <message>
         <source>Prin&amp;t translation</source>
-        <translation>Напечата&amp;ть перевод</translation>
+        <translation>На&amp;печатать перевод</translation>
     </message>
 </context>
 <context>
@@ -157,34 +158,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QStarDict::DictWidget</name>
     <message>
-        <source>Save translation</source>
-        <translation type="vanished">Сохранить перевод</translation>
-    </message>
-    <message>
-        <source>HTML files (*.html, *.htm)</source>
-        <translation type="vanished">HTML-файлы (*.html, *.htm)</translation>
-    </message>
-    <message>
-        <source>Text files (*.txt)</source>
-        <translation type="vanished">Текстовые файлы (*.txt)</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Поиск</translation>
-    </message>
-    <message>
-        <source>HTML files (*.html *.htm)</source>
-        <translation type="vanished">Файлы HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">Ошибка</translation>
-    </message>
-    <message>
-        <source>Cannot save translation as %1</source>
-        <translation type="vanished">Невозможно сохранить перевод как %1</translation>
-    </message>
-    <message>
         <source>Go to &amp;previous translation</source>
         <translation>Перейти к &amp;предыдущему переводу</translation>
     </message>
@@ -193,20 +166,20 @@ p, li { white-space: pre-wrap; }
         <translation>Перейти к &amp;следующему переводу</translation>
     </message>
     <message>
-        <source>&amp;Save to file</source>
-        <translation type="vanished">&amp;Сохранить в файл</translation>
-    </message>
-    <message>
         <source>Speak &amp;word</source>
         <translation>П&amp;роизнести слово</translation>
     </message>
     <message>
-        <source>Prin&amp;t translation</source>
-        <translation type="vanished">Напечата&amp;ть перевод</translation>
+        <source>Search</source>
+        <translation>Поиск</translation>
     </message>
 </context>
 <context>
     <name>QStarDict::KDEIntegration</name>
+    <message>
+        <source>scanning is %1</source>
+        <translation>сканирование %1</translation>
+    </message>
     <message>
         <source>enabled</source>
         <translation>включено</translation>
@@ -215,36 +188,12 @@ p, li { white-space: pre-wrap; }
         <source>disabled</source>
         <translation>выключено</translation>
     </message>
-    <message>
-        <source>scanning is %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QStarDict::MainWindow</name>
     <message>
-        <source>Ctrl+T</source>
-        <translation>Ctrl+T</translation>
-    </message>
-    <message>
-        <source>About QStarDict</source>
-        <translation>О программе QStarDict</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
-        <translation>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt-версия программы StarDict&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
-        <translation>Copyright (C) 2007-2009 Александр Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
-    </message>
-    <message>
         <source>QStarDict</source>
         <translation>QStarDict</translation>
-    </message>
-    <message>
-        <source>%1 - QStarDict</source>
-        <translation>%1 - QStarDict</translation>
     </message>
     <message>
         <source>Clear the search box</source>
@@ -308,7 +257,27 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
+    </message>
+    <message>
+        <source>Ctrl+T</source>
+        <translation>Ctrl+T</translation>
+    </message>
+    <message>
+        <source>About QStarDict</source>
+        <translation>О программе QStarDict</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt version of StarDict&lt;br&gt;</source>
+        <translation>&lt;b&gt;QStarDict %1 &lt;/b&gt; - Qt-версия программы StarDict&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>Copyright (C) 2007-2009 Alexander Rodin &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</source>
+        <translation>Copyright (C) 2007-2009 Александр Родин &lt;a href=&quot;http://qstardict.ylsoftware.com&quot;&gt;http://qstardict.ylsoftware.com&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>%1 - QStarDict</source>
+        <translation>%1 - QStarDict</translation>
     </message>
 </context>
 <context>
@@ -337,72 +306,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QStarDict::SettingsDialog</name>
     <message>
-        <source>Enabled</source>
-        <translation>Включен</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Название</translation>
-    </message>
-    <message>
-        <source>Plugin</source>
-        <translation>Плагин</translation>
-    </message>
-    <message>
-        <source>Information about dictionary &quot;%1&quot;</source>
-        <translation>Информация о словаре &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Название:&lt;/b&gt; %1&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Плагин:&lt;/b&gt; %1&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>неизвестно</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
-        <translation>&lt;b&gt;Описание:&lt;/b&gt; %1</translation>
-    </message>
-    <message>
-        <source>Information about %1 plugin</source>
-        <translation>Информация о плагине %1</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Версия:&lt;/b&gt; %1&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Авторы:&lt;/b&gt; %1&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;br&gt;</source>
-        <translation>&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Can search similar words:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation type="vanished">&lt;b&gt;Возможность искать похожие слова:&lt;/b&gt; %1&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>yes</source>
-        <translation>есть</translation>
-    </message>
-    <message>
-        <source>no</source>
-        <translation>нет</translation>
-    </message>
-    <message>
         <source>QStarDict Settings</source>
         <translation>Настройки QStarDict</translation>
-    </message>
-    <message>
-        <source>Show information about dictionary</source>
-        <translation>Показать информацию о словаре</translation>
     </message>
     <message>
         <source>Global settings</source>
@@ -410,7 +315,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Run in background</source>
-        <translation>Работать в фоновом режиме</translation>
+        <translation>Работать в фоне</translation>
     </message>
     <message>
         <source>Start with system</source>
@@ -449,28 +354,16 @@ p, li { white-space: pre-wrap; }
         <translation>Вниз</translation>
     </message>
     <message>
+        <source>Show information about dictionary</source>
+        <translation>Показать информацию о словаре</translation>
+    </message>
+    <message>
         <source>Show info</source>
         <translation>Показывать информацию</translation>
     </message>
     <message>
         <source>Plugins</source>
         <translation>Плагины</translation>
-    </message>
-    <message>
-        <source>Show information about plugin</source>
-        <translation type="vanished">Показать информацию о плагине</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Информация</translation>
-    </message>
-    <message>
-        <source>Configure plugin</source>
-        <translation type="vanished">Настроить плагин</translation>
-    </message>
-    <message>
-        <source>Configure</source>
-        <translation type="vanished">Настроить</translation>
     </message>
     <message>
         <source>Popup window</source>
@@ -557,12 +450,16 @@ p, li { white-space: pre-wrap; }
         <translation>Другие плагины</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Автор:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <source>Enabled</source>
+        <translation>Включен</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
-        <translation>&lt;b&gt;Количество слов:&lt;/b&gt; %1&lt;br&gt;</translation>
+        <source>Name</source>
+        <translation>Название</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Плагин</translation>
     </message>
     <message>
         <source>All translation</source>
@@ -593,12 +490,60 @@ p, li { white-space: pre-wrap; }
         <translation>Транскрипция</translation>
     </message>
     <message>
-        <source>Use system tray</source>
-        <translation type="vanished">Использовать значок в системном трее</translation>
+        <source>Information about dictionary &quot;%1&quot;</source>
+        <translation>Информация о словаре &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Name:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Название:&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Plugin:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Плагин:&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Author:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Автор:&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Words count:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Количество слов:&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>неизвестно</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Description:&lt;/b&gt; %1</source>
+        <translation>&lt;b&gt;Описание:&lt;/b&gt; %1</translation>
+    </message>
+    <message>
+        <source>Information about %1 plugin</source>
+        <translation>Информация о плагине %1</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Version:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Версия:&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Authors:&lt;/b&gt; %1&lt;br&gt;</source>
+        <translation>&lt;b&gt;Авторы:&lt;/b&gt; %1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;</source>
+        <translation>&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Can search similar words:&lt;/b&gt;%1&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Поиск похожих слов:&lt;/b&gt;%1&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>yes</source>
+        <translation>есть</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation>нет</translation>
     </message>
 </context>
 <context>
@@ -614,22 +559,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&amp;Configure QStarDict</source>
         <translation>&amp;Конфигурация</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation type="vanished">&amp;Выход</translation>
-    </message>
-    <message>
-        <source>QStarDict: scanning is %1</source>
-        <translation type="vanished">QStarDict: сканирование %1</translation>
-    </message>
-    <message>
-        <source>enabled</source>
-        <translation type="vanished">включено</translation>
-    </message>
-    <message>
-        <source>disabled</source>
-        <translation type="vanished">выключено</translation>
     </message>
 </context>
 <context>
@@ -658,8 +587,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SaveToFile</name>
     <message>
+        <source>&amp;Save translation</source>
+        <translation>&amp;Сохранить перевод</translation>
+    </message>
+    <message>
         <source>Text files (*.txt)</source>
-        <translation>Текстовые файлы (*.txt)</translation>
+        <translation>Тестовые файлы (*.txt)</translation>
     </message>
     <message>
         <source>Save translation</source>
@@ -671,7 +604,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>HTML files (*.html, *.htm)</source>
-        <translation>HTML-файлы (*.html, *.htm)</translation>
+        <translation>Файлы HTML (*.html, *.htm)</translation>
     </message>
     <message>
         <source>Error</source>
@@ -679,138 +612,146 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cannot save translation as %1</source>
-        <translation>Невозможно сохранить перевод как %1</translation>
-    </message>
-    <message>
-        <source>&amp;Save translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось сохранить перевод %1</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
+        <source>StarDict plugin settings</source>
+        <translation>Настройки плагина StarDict</translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation>Переводы</translation>
+    </message>
+    <message>
+        <source>If enabled, all lists in translation will be formatted using HTML &lt;li&gt; tag (may be slow)</source>
+        <translation>Если включено, все переводы будут отформатированы с использованием HTML &lt;li&gt; тега (может быть медленным)</translation>
+    </message>
+    <message>
+        <source>Reformat lists</source>
+        <translation>Переформатировать списки</translation>
+    </message>
+    <message>
+        <source>Expand abbreviations if dictionary contains it (may be slow)</source>
+        <translation>Раскрывать сокращения, если словарь содежит их (может быть медленным)</translation>
+    </message>
+    <message>
+        <source>Expand abbreviations</source>
+        <translation>Раскрывать сокращения</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformatted translations may display incorrectly.</source>
+        <translation>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Внимание!&lt;/font&gt;&lt;/b&gt; Переформатированные переводы могут отображаться некорректно.</translation>
+    </message>
+    <message>
+        <source>Data directories</source>
+        <translation>Директории с данными</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Add directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Добавить директорию&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Remove directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Удалить директорию&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Move up&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Переместить вверх&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
         <source>Up</source>
         <translation>Вверх</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Move down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Переместить вниз&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Down</source>
         <translation>Вниз</translation>
     </message>
     <message>
+        <source>Select dictionaries directory</source>
+        <translation>Выберите директорию со словарями</translation>
+    </message>
+    <message>
+        <source>Anki plugin settings</source>
+        <translation>Настройки плагина Anki</translation>
+    </message>
+    <message>
+        <source>Anki Connect URL</source>
+        <translation>URL для Anki Connect</translation>
+    </message>
+    <message>
+        <source>Deck name</source>
+        <translation>Название колоды</translation>
+    </message>
+    <message>
+        <source>Model name</source>
+        <translation>Название модели</translation>
+    </message>
+    <message>
+        <source>Allow duplicates</source>
+        <translation>Разрешить повторения</translation>
+    </message>
+    <message>
+        <source>Web plugin settings</source>
+        <translation>Настройки плагина Web</translation>
+    </message>
+    <message>
         <source>Dictionaries</source>
         <translation>Словари</translation>
     </message>
     <message>
-        <source>StarDict plugin settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Translations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If enabled, all lists in translation will be formatted using HTML &lt;li&gt; tag (may be slow)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reformat lists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Expand abbreviations if dictionary contains it (may be slow)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Expand abbreviations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;&lt;font color=&quot;red&quot;&gt;Warning!&lt;/font&gt;&lt;/b&gt; Reformatted translations may display incorrectly.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Data directories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Add directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Remove directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Move up&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Move down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select dictionaries directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Anki plugin settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Anki Connect URL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Deck name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Model name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Allow duplicates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Web plugin settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Edit dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить словарь</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить</translation>
     </message>
     <message>
         <source>Add dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить словарь</translation>
     </message>
     <message>
         <source>Remove dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить словарь</translation>
     </message>
 </context>
 </TS>
