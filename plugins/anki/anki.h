@@ -1,6 +1,6 @@
 /*****************************************************************************
  * anki.h - QStarDict, a StarDict clone written with using Qt                *
- * Copyright (C) 2018 Alexander Rodin                                        *
+ * Copyright (C) 2018-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -66,6 +66,8 @@ class Anki: public QObject, public QStarDict::BasePlugin, public QStarDict::Tool
         QString m_deckName;
         QString m_modelName;
         bool m_allowDuplicates;
+
+        void sendToAnki(const QString &word, const QString &translation, QWidget *parent = nullptr);
 };
 
 #endif // ANKI_H

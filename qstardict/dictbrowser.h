@@ -21,7 +21,7 @@
 #define DICTBROWSER_H
 
 #include <QTextBrowser>
-
+#include <QApplication>
 #include <QTextCursor>
 #include <QTextCharFormat>
 #include "dictcore.h"
@@ -54,10 +54,24 @@ class DictBrowser: public QTextBrowser
         const DictCore* dict() const
         { return m_dict; }
 
+        void setLinksEnabled(bool enabled)
+        {
+            if (m_highlighted)
+            {
+                m_oldCursor.setCharFormat(m_oldFormat);
+                m_highlighted = false;
+                QApplication::restoreOverrideCursor();
+            }
+            m_linksEnabled = enabled;
+        }
+        bool linksEnabled() const
+        { return m_linksEnabled; }
+
         QVariant loadResource(int type, const QUrl &name);
 
     signals:
         void searchResult(bool success);
+        void geometryChanged();
 
     public slots:
         void search(const QString & exp, QTextDocument::FindFlags options);
@@ -65,6 +79,8 @@ class DictBrowser: public QTextBrowser
     protected:
         void mouseMoveEvent(QMouseEvent *event);
         void mouseReleaseEvent(QMouseEvent *event);
+        void wheelEvent(QWheelEvent *event);
+        void resizeEvent(QResizeEvent *event);
 
     private slots:
         void on_anchorClicked(const QUrl &link);
@@ -76,6 +92,7 @@ class DictBrowser: public QTextBrowser
         QTextCharFormat m_oldFormat;
         bool m_highlighted;
         bool m_searchUndo;
+        bool m_linksEnabled;
 };
 
 }

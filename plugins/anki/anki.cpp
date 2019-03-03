@@ -1,6 +1,6 @@
 /*****************************************************************************
  * anki.cpp - QStarDict, a StarDict clone written with using Qt              *
- * Copyright (C) 2018 Alexander Rodin                                        *
+ * Copyright (C) 2018-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -19,6 +19,7 @@
 
 #include "anki.h"
 #include "settingsdialog.h"
+#include "slotreceiver.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QSettings>
@@ -27,6 +28,9 @@
 #include <QJsonValue>
 #include <QJsonObject>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QTextDocumentFragment>
+#include <QDebug>
 
 QIcon Anki::pluginIcon() const
 {
@@ -61,6 +65,37 @@ QString Anki::toolbarText() const {
 }
 
 void Anki::execute(QStarDict::DictWidget *dictWidget) {
+    auto oldLinksEnabled = dictWidget->translationView()->linksEnabled();
+    dictWidget->translationView()->setLinksEnabled(false);
+    auto button = new QPushButton(QIcon(":/icons/anki.png"), tr("Add to Anki"), dictWidget->translationView());
+    connect(button, &QPushButton::clicked, [=]() {
+        auto cursor = dictWidget->translationView()->textCursor();
+        QString translation = cursor.selection().toHtml("UTF-8");
+        cursor.clearSelection();
+        dictWidget->translationView()->setTextCursor(cursor);
+        button->hide();
+        dictWidget->translationView()->setLinksEnabled(oldLinksEnabled);
+        sendToAnki(dictWidget->translatedWord(), translation, dictWidget);
+    });
+    auto updateButton = [=]() {
+        auto cursor = dictWidget->translationView()->textCursor();
+        if (cursor.hasSelection()) {
+            cursor.setPosition(cursor.selectionEnd() + 1);
+            auto rect = dictWidget->translationView()->cursorRect(cursor);
+            button->move(rect.left(), rect.top());
+            button->show();
+        } else {
+            dictWidget->translationView()->setLinksEnabled(oldLinksEnabled);
+            button->hide();
+        }
+    };
+    connect(dictWidget->translationView(), &QStarDict::DictBrowser::selectionChanged, updateButton);
+    
+    auto slotReceiver = new SlotReceiver(updateButton, dictWidget);
+    connect(dictWidget->translationView(), SIGNAL(geometryChanged()), slotReceiver, SLOT(slot()));
+}
+
+void Anki::sendToAnki(const QString &word, const QString &translation, QWidget *parent) {
     QJsonObject requestObject;
     requestObject.insert("action", QString("addNote"));
     requestObject.insert("version", 6);
@@ -69,8 +104,8 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
     noteObject.insert("deckName", m_deckName);
     noteObject.insert("modelName", m_modelName);
     QJsonObject fieldsObject;
-    fieldsObject.insert("Front", dictWidget->translatedWord());
-    fieldsObject.insert("Back", dictWidget->translationView()->document()->toHtml("UTF-8"));
+    fieldsObject.insert("Front", word);
+    fieldsObject.insert("Back", translation);
     noteObject.insert("fields", fieldsObject);
     QJsonObject optionsObject;
     optionsObject.insert("allowDuplicate", m_allowDuplicates);
@@ -90,7 +125,7 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
     connect(networkAccessManager, &QNetworkAccessManager::finished,
             [=](QNetworkReply *reply) {
             if (reply->error() != QNetworkReply::NoError) {
-                QMessageBox::critical(dictWidget, tr("Anki error"),
+                QMessageBox::critical(parent, tr("Anki error"),
                         tr("Unable to add the word to Anki: network error. <br>" \
                            "Check if Anki is running and " \
                            "<a href=\"https://ankiweb.net/shared/info/2055492159\">AnkiConnect</a> " \

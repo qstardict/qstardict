@@ -58,7 +58,8 @@ DictBrowser::DictBrowser(QWidget *parent)
     : QTextBrowser(parent),
       m_dict(0),
       m_highlighted(false),
-      m_searchUndo(false)
+      m_searchUndo(false),
+      m_linksEnabled(true)
 {
     document()->setDefaultStyleSheet(translationCSS);
     setOpenLinks(false);
@@ -116,27 +117,29 @@ void DictBrowser::search(const QString & exp, QTextDocument::FindFlags options)
 
 void DictBrowser::mouseMoveEvent(QMouseEvent *event)
 {
-    if (m_highlighted)
-    {
-        m_oldCursor.setCharFormat(m_oldFormat);
-        m_highlighted = false;
-        QApplication::restoreOverrideCursor();
-    }
-    QTextCursor cursor = cursorForPosition(event->pos());
-    cursor.select(QTextCursor::WordUnderCursor);
-    QString selection = cursor.selection().toPlainText().simplified();
-    if (m_dict->isTranslatable(selection))
-    {
-        m_oldCursor = cursor;
-        m_oldFormat = cursor.charFormat();
+    if (m_linksEnabled) {
+        if (m_highlighted)
+        {
+            m_oldCursor.setCharFormat(m_oldFormat);
+            m_highlighted = false;
+            QApplication::restoreOverrideCursor();
+        }
+        QTextCursor cursor = cursorForPosition(event->pos());
+        cursor.select(QTextCursor::WordUnderCursor);
+        QString selection = cursor.selection().toPlainText().simplified();
+        if (m_dict->isTranslatable(selection))
+        {
+            m_oldCursor = cursor;
+            m_oldFormat = cursor.charFormat();
 
-        QTextCharFormat format = m_oldFormat;
-        format.setForeground(Qt::blue);
-        format.setFontUnderline(true);
-        cursor.setCharFormat(format);
+            QTextCharFormat format = m_oldFormat;
+            format.setForeground(Qt::blue);
+            format.setFontUnderline(true);
+            cursor.setCharFormat(format);
 
-        m_highlighted = true;
-        QApplication::setOverrideCursor(Qt::PointingHandCursor);
+            m_highlighted = true;
+            QApplication::setOverrideCursor(Qt::PointingHandCursor);
+        }
     }
 
     QTextBrowser::mouseMoveEvent(event);
@@ -144,15 +147,17 @@ void DictBrowser::mouseMoveEvent(QMouseEvent *event)
 
 void DictBrowser::mouseReleaseEvent(QMouseEvent *event)
 {
-    QTextCursor cursor = cursorForPosition(event->pos());
-    cursor.select(QTextCursor::WordUnderCursor);
-    QString selection = cursor.selection().toPlainText().simplified();
-    if (m_dict->isTranslatable(selection) && selection != source().toString(QUrl::RemoveScheme))
-    {
-        setSource(selection);
-        if (m_highlighted) {
-            m_highlighted = false;
-            QApplication::restoreOverrideCursor();
+    if (m_linksEnabled) {
+        QTextCursor cursor = cursorForPosition(event->pos());
+        cursor.select(QTextCursor::WordUnderCursor);
+        QString selection = cursor.selection().toPlainText().simplified();
+        if (m_dict->isTranslatable(selection) && selection != source().toString(QUrl::RemoveScheme))
+        {
+            setSource(selection);
+            if (m_highlighted) {
+                m_highlighted = false;
+                QApplication::restoreOverrideCursor();
+            }
         }
     }
     QTextBrowser::mousePressEvent(event);
@@ -165,6 +170,18 @@ void DictBrowser::on_anchorClicked(const QUrl &link)
         setSource(link);
     else
         QDesktopServices::openUrl(link);
+}
+
+void DictBrowser::wheelEvent(QWheelEvent *event)
+{
+    emit geometryChanged();
+    QTextBrowser::wheelEvent(event);
+}
+
+void DictBrowser::resizeEvent(QResizeEvent *event)
+{
+    emit geometryChanged();
+    QTextBrowser::resizeEvent(event);
 }
 
 }

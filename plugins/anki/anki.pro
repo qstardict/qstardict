@@ -28,10 +28,12 @@ include(../plugin.pri)
 
 HEADERS += \
     settingsdialog.h \
-    anki.h
+    anki.h \
+    slotreceiver.h
 SOURCES += \
     settingsdialog.cpp \
-    anki.cpp
+    anki.cpp \
+    slotreceiver.cpp
 FORMS += \
     settingsdialog.ui
 RESOURCES += \
