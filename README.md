@@ -24,3 +24,10 @@ More information about installation:
 * [GNU/Linux](https://github.com/a-rodin/qstardict/blob/master/INSTALL)
 * [macOS](https://github.com/a-rodin/qstardict/blob/master/README.MACOS)
 * [Windows](https://github.com/a-rodin/qstardict/blob/master/README.WINDOWS)
+
+### Contribute a translation ###
+If you want to contribute a translation for the QStarDict user interface, there are two ways to do it.
+
+The first one is to use Qt Linguist [as described in wiki](https://github.com/a-rodin/qstardict/wiki/How-to-make-a-translation).
+
+Alternatively, it is possible to send a translation using [QStarDict's Transifex page](https://www.transifex.com/qstardict/qstardict/).
