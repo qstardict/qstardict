@@ -27,6 +27,7 @@
 #include <QJsonValue>
 #include <QJsonObject>
 #include <QMessageBox>
+#include <QTextDocumentFragment>
 
 QIcon Anki::pluginIcon() const
 {
@@ -61,6 +62,15 @@ QString Anki::toolbarText() const {
 }
 
 void Anki::execute(QStarDict::DictWidget *dictWidget) {
+    auto translatedWord = dictWidget->translatedWord();
+    auto cursor = dictWidget->translationView()->textCursor();
+    QString translation;
+    if (cursor.hasSelection()) {
+        translation = cursor.selection().toHtml("UTF-8");
+    } else {
+        translation = dictWidget->translationView()->document()->toHtml("UTF-8");
+    }
+
     QJsonObject requestObject;
     requestObject.insert("action", QString("addNote"));
     requestObject.insert("version", 6);
@@ -69,8 +79,8 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
     noteObject.insert("deckName", m_deckName);
     noteObject.insert("modelName", m_modelName);
     QJsonObject fieldsObject;
-    fieldsObject.insert("Front", dictWidget->translatedWord());
-    fieldsObject.insert("Back", dictWidget->translationView()->document()->toHtml("UTF-8"));
+    fieldsObject.insert("Front", translatedWord);
+    fieldsObject.insert("Back", translation);
     noteObject.insert("fields", fieldsObject);
     QJsonObject optionsObject;
     optionsObject.insert("allowDuplicate", m_allowDuplicates);
@@ -89,7 +99,13 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
 
     connect(networkAccessManager, &QNetworkAccessManager::finished,
             [=](QNetworkReply *reply) {
-            if (reply->error() != QNetworkReply::NoError) {
+            if (reply->error() == QNetworkReply::NoError) {
+                auto cursor = dictWidget->translationView()->textCursor();
+                if (cursor.hasSelection()) {
+                    cursor.clearSelection();
+                    dictWidget->translationView()->setTextCursor(cursor);
+                }
+            } else {
                 QMessageBox::critical(dictWidget, tr("Anki error"),
                         tr("Unable to add the word to Anki: network error. <br>" \
                            "Check if Anki is running and " \
@@ -97,7 +113,7 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
                            "add-on is installed to Anki. You probably would like to also install " \
                            "<a href=\"https://ankiweb.net/shared/info/85158043\">Minimize to tray</a> "\
                            "add-on to Anki."));
-                }
+            }
             networkAccessManager->deleteLater();
     });
 
