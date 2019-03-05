@@ -42,6 +42,8 @@ CSSEdit::CSSEdit(QWidget *parent)
 void CSSEdit::setCSS(const QString &css)
 {
     m_elements.clear();
+    for (auto &elementName: m_elementsNames)
+        m_elements[elementName] = Element();
     bool inBlock = false;
     QString element;
     QString currentProperty;
@@ -106,9 +108,15 @@ void CSSEdit::setCSS(const QString &css)
     updatePreview();
 }
 
-void CSSEdit::setElementsAliases(const QHash<QString, QString> &aliases)
+void CSSEdit::setElementsNames(const QVector<QPair<QString, QString>> &aliases)
 {
-    m_elementsAliases = aliases;
+    m_elementsNames.clear();
+    m_elementsAliases.clear();
+    for (auto &i: aliases)
+    {
+        m_elementsNames.append(i.first);
+        m_elementsAliases[i.first] = i.second;
+    }
     updateElementCombo();
     updatePreview();
 }
@@ -116,10 +124,11 @@ void CSSEdit::setElementsAliases(const QHash<QString, QString> &aliases)
 QString CSSEdit::css() const
 {
     QString result;
-    for (QHash<QString, Element>::const_iterator i = m_elements.begin(); i != m_elements.end(); ++i)
+    for (auto &elementName: m_elementsNames)
     {
-        result += i.key() + "\n{\n";
-        for (Element::const_iterator j = i->begin(); j != i->end(); ++j)
+        auto &element = m_elements[elementName];
+        result += elementName + "\n{\n";
+        for (Element::const_iterator j = element.begin(); j != element.end(); ++j)
         {
             result += j.key() + ": ";
             if (j->contains(' '))
@@ -267,20 +276,20 @@ void CSSEdit::updatePreview()
 {
     QString html = "<style>" +  css()  +  "</style>";
     html += "<body>";
-    for (QHash<QString, Element>::const_iterator i = m_elements.begin(); i != m_elements.end(); ++i)
+    for (auto &elementName: m_elementsNames)
     {
         QString alias;
-        if (m_elementsAliases.contains(i.key()))
-            alias = m_elementsAliases.value(i.key());
+        if (m_elementsAliases.contains(elementName))
+            alias = m_elementsAliases.value(elementName);
         else
-            alias = i.key();
-        int pos = i.key().indexOf('.');
+            alias = elementName;
+        int pos = elementName.indexOf('.');
         if (pos == -1)
-            html += "<" + i.key() + ">" + alias + "</" + i.key() + "><br>";
+            html += "<" + elementName + ">" + alias + "</" + elementName + "><br>";
         else
         {
-            QString parent = i.key().left(pos);
-            QString class_ = i.key().mid(pos + 1);
+            QString parent = elementName.left(pos);
+            QString class_ = elementName.mid(pos + 1);
             html += "<" + parent + " class=\'" + class_ + "\'>" + alias + "</" + parent + "><br>";
         }
     }
@@ -291,14 +300,14 @@ void CSSEdit::updatePreview()
 void CSSEdit::updateElementCombo()
 {
     m_elementCombo->clear();
-    for (QHash<QString, Element>::const_iterator i = m_elements.begin(); i != m_elements.end(); ++i)
+    for (auto &elementName: m_elementsNames)
     {
         QString alias;
-        if (m_elementsAliases.contains(i.key()))
-            alias = m_elementsAliases.value(i.key());
+        if (m_elementsAliases.contains(elementName))
+            alias = m_elementsAliases.value(elementName);
         else
-            alias = i.key();
-        m_elementCombo->addItem(alias, i.key());
+            alias = elementName;
+        m_elementCombo->addItem(alias, elementName);
     }
     if (m_elements.begin() != m_elements.end())
         m_currentElement = m_elements.begin().key();

@@ -139,15 +139,15 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     pronounceWordBox->setChecked(popup->pronounceWord());
 
     // Load translations CSS
-    QHash<QString, QString> cssAliases;
-    cssAliases["body"] = tr("All translation");
-    cssAliases["font.dict_name"] = tr("Dictionary name");
-    cssAliases["font.title"] = tr("Title");
-    cssAliases["font.explanation"] = tr("Explanation");
-    cssAliases["font.abbreviature"] = tr("Abbreviation");
-    cssAliases["font.example"] = tr("Example");
-    cssAliases["font.transcription"] = tr("Transcription");
-    appearanceCSSEdit->setElementsAliases(cssAliases);
+    QVector<QPair<QString, QString>> cssAliases;
+    cssAliases.append({"body", tr("All translation")});
+    cssAliases.append({"font.dict_name", tr("Dictionary name")});
+    cssAliases.append({"font.title", tr("Title")});
+    cssAliases.append({"font.transcription", tr("Transcription")});
+    cssAliases.append({"font.explanation", tr("Explanation")});
+    cssAliases.append({"font.abbreviature", tr("Abbreviation")});
+    cssAliases.append({"font.example", tr("Example")});
+    appearanceCSSEdit->setElementsNames(cssAliases);
     appearanceCSSEdit->setCSS(app->mainWindow()->defaultStyleSheet());
 
     connect(m_dictPluginsModel, SIGNAL(loadedListChanged()),

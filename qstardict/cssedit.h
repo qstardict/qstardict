@@ -22,7 +22,8 @@
 
 #include "ui_cssedit.h"
 
-#include <QHash>
+#include <QVector>
+#include <QPair>
 
 namespace QStarDict
 {
@@ -48,14 +49,9 @@ class CSSEdit: public QWidget, private Ui::CSSEdit
          */
         QString css() const;
         /**
-         * Set aliases for elements.
+         * Set names and aliases for elements.
          */
-        void setElementsAliases(const QHash<QString, QString> &aliases);
-        /**
-         * Returns elements aliases.
-         */
-        const QHash<QString, QString> &elementsAliases() const
-        { return m_elementsAliases; }
+        void setElementsNames(const QVector<QPair<QString, QString>> &aliases);
 
     private slots:
         void colorSelectClicked();
@@ -70,6 +66,7 @@ class CSSEdit: public QWidget, private Ui::CSSEdit
         Element getParentElement(const QString &elementName);
 
         QHash<QString, Element> m_elements;
+        QVector<QString> m_elementsNames;
         QHash<QString, QString> m_elementsAliases;
         QString m_currentElement;
 };
