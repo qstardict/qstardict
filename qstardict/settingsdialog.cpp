@@ -147,8 +147,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     cssAliases["font.abbreviature"] = tr("Abbreviation");
     cssAliases["font.example"] = tr("Example");
     cssAliases["font.transcription"] = tr("Transcription");
-    apperanceCSSEdit->setElementsAliases(cssAliases);
-    apperanceCSSEdit->setCSS(app->mainWindow()->defaultStyleSheet());
+    appearanceCSSEdit->setElementsAliases(cssAliases);
+    appearanceCSSEdit->setCSS(app->mainWindow()->defaultStyleSheet());
 
     connect(m_dictPluginsModel, SIGNAL(loadedListChanged()),
             SLOT(dictLoadedPluginsChanged()));
@@ -237,8 +237,8 @@ void SettingsDialog::accept()
     popup->setPronounceWord(pronounceWordBox->isChecked());
 
     // Save translations CSS
-    app->mainWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
-    app->popupWindow()->setDefaultStyleSheet(apperanceCSSEdit->css());
+    app->mainWindow()->setDefaultStyleSheet(appearanceCSSEdit->css());
+    app->popupWindow()->setDefaultStyleSheet(appearanceCSSEdit->css());
 
     if (app->mainWindow()->quitOnClose())
         app->mainWindow()->show();
