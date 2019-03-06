@@ -105,6 +105,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     // Load popup shortcut settings
     shortcutPopupEdit->setText(app->popupShortcut()->shortcut().toString());
+    shortcutPopupEdit->setEnabled(app->popupShortcut()->isEnabled());
     shortcutPopupBox->setChecked(app->popupShortcut()->isEnabled());
 
     // Load popup window settings
