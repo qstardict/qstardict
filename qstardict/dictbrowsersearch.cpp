@@ -55,20 +55,22 @@ void DictBrowserSearch::searchResult(bool success)
 
 void DictBrowserSearch::showEvent(QShowEvent * event)
 {
+    emit searchActive(true);
     QWidget::showEvent(event);
     searchEdit->setFocus(Qt::OtherFocusReason);
     if (searchEdit->text().length())
         searchAll();
 }
 
-void DictBrowserSearch::closeEvent(QCloseEvent * event)
+void DictBrowserSearch::hideEvent(QHideEvent * event)
 {
-    QWidget::closeEvent(event);
+    emit searchActive(false);
+    QWidget::hideEvent(event);
 }
 
 void DictBrowserSearch::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape) {
-        close();
+        hide();
     }
 }
 

@@ -61,6 +61,7 @@ class DictBrowser: public QTextBrowser
 
     public slots:
         void search(const QString & exp, QTextDocument::FindFlags options);
+        void searchActive(bool active);
 
     protected:
         void mouseMoveEvent(QMouseEvent *event);
@@ -78,7 +79,6 @@ class DictBrowser: public QTextBrowser
         bool m_highlighted;
         int m_highlightTimerId;
         QString m_highlightedWord;
-        bool m_searchUndo;
 
         void invalidateHighlight();
 };

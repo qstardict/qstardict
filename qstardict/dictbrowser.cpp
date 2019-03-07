@@ -58,8 +58,7 @@ DictBrowser::DictBrowser(QWidget *parent)
     : QTextBrowser(parent),
       m_dict(0),
       m_highlighted(false),
-      m_highlightTimerId(0),
-      m_searchUndo(false)
+      m_highlightTimerId(0)
 {
     document()->setDefaultStyleSheet(translationCSS);
     setOpenLinks(false);
@@ -113,6 +112,15 @@ void DictBrowser::search(const QString & exp, QTextDocument::FindFlags options)
     setExtraSelections(extraSelections);
 
     emit searchResult(found);
+}
+
+void DictBrowser::searchActive(bool active)
+{
+    if (!active)
+    {
+        moveCursor(QTextCursor::Start);
+        setExtraSelections({});
+    }
 }
 
 void DictBrowser::invalidateHighlight()

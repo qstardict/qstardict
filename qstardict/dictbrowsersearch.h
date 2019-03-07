@@ -37,6 +37,7 @@ public:
 
 signals:
     void search(const QString & exp, QTextDocument::FindFlags options);
+    void searchActive(bool);
 
 public slots:
     void searchResult(bool success);
@@ -46,7 +47,7 @@ private slots:
 
 private:
     void showEvent(QShowEvent * event);
-    void closeEvent(QCloseEvent * event);
+    void hideEvent(QHideEvent * event);
     void keyPressEvent(QKeyEvent *event);
 };
 

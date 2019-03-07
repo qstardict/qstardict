@@ -69,6 +69,10 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     m_search = new DictBrowserSearch(this);
     connect(m_search, SIGNAL(search(const QString &,QTextDocument::FindFlags)),
             m_translationView, SLOT(search(const QString &,QTextDocument::FindFlags)));
+    connect(m_search, SIGNAL(searchActive(bool)),
+            m_translationView, SLOT(searchActive(bool)));
+    connect(m_translationView, SIGNAL(sourceChanged(const QUrl&)),
+            m_search, SLOT(hide()));
     connect(m_translationView, SIGNAL(searchResult(bool)), m_search, SLOT(searchResult(bool)));
     m_search->hide();
 
@@ -91,6 +95,7 @@ DictWidget::DictWidget(QWidget *parent, Qt::WindowFlags f)
     QAction *actionSearch = m_toolBar->addAction(QIcon(":/icons/system-search.png"), tr("Search"), this, SLOT(handleSearch()));
     actionSearch->setCheckable(true);
     actionSearch->setShortcut(QKeySequence::Find);
+    connect(m_search, SIGNAL(searchActive(bool)), actionSearch, SLOT(setChecked(bool)));
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
