@@ -32,7 +32,7 @@
    <property name="spacing">
     <number>6</number>
    </property>
-   <item row="1" column="0">
+   <item row="2" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -54,60 +54,141 @@
       <attribute name="title">
        <string>Global settings</string>
       </attribute>
-      <layout class="QVBoxLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <widget class="QCheckBox" name="runInBackgroundBox">
-         <property name="text">
-          <string>Run in background</string>
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
+          <string>Application</string>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QCheckBox" name="runInBackgroundBox">
+            <property name="text">
+             <string>Run in background</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="autostartBox">
+            <property name="text">
+             <string>Start with system</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="autostartBox">
-         <property name="text">
-          <string>Start with system</string>
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
+          <string>Translations browser</string>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QCheckBox" name="instantSearchBox">
+            <property name="text">
+             <string>Instant search</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="linksBox">
+            <property name="text">
+             <string>Show words that are translatable as links</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="_2">
+            <property name="spacing">
+             <number>6</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="linksModifierBox">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>Only if modifier pressed</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="linksModifierKeyBox">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string>Alt</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Control</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Shift</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Win</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <property name="spacing">
+             <number>6</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="speechCmdLabel">
+              <property name="text">
+               <string>Pronounce words using this command:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="speechCmdEdit">
+              <property name="toolTip">
+               <string>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be written to stdin of speech process.</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="instantSearchBox">
-         <property name="text">
-          <string>Instant search</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout">
-         <property name="spacing">
-          <number>6</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Pronounce words using this command:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="speechCmdEdit">
-           <property name="toolTip">
-            <string>Enter cmd for the speaching program.&lt;br&gt;If cmd contains &quot;%s&quot; it will be replaced to word, else word will be written to stdin of speech process.</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
        <item>
         <spacer>
@@ -677,7 +758,6 @@
   <tabstop>instantSearchBox</tabstop>
   <tabstop>speechCmdEdit</tabstop>
   <tabstop>buttonBox</tabstop>
-  <tabstop>tabWidget</tabstop>
   <tabstop>dictsTableView</tabstop>
   <tabstop>dictsMoveUpButton</tabstop>
   <tabstop>dictsMoveDownButton</tabstop>
