@@ -125,6 +125,7 @@ void DictBrowser::searchActive(bool active)
 
 void DictBrowser::invalidateHighlight()
 {
+    auto overrideCursor = false;
     if (m_highlighted) // clear highlight if any
     {
         m_oldCursor.setCharFormat(m_oldFormat);
@@ -132,7 +133,6 @@ void DictBrowser::invalidateHighlight()
         killTimer(m_highlightTimerId);
         m_highlightTimerId = 0;
         m_highlightedWord.clear();
-        QApplication::restoreOverrideCursor();
     }
 
     QPoint mousePosition = mapFromGlobal(QCursor::pos());
@@ -171,8 +171,13 @@ void DictBrowser::invalidateHighlight()
         m_highlighted = true;
         m_highlightedWord = selection;
         m_highlightTimerId = startTimer(100);
-        QApplication::setOverrideCursor(Qt::PointingHandCursor);
+        overrideCursor = true;
     }
+
+    if (overrideCursor)
+        QApplication::setOverrideCursor(Qt::PointingHandCursor);
+    else
+        QApplication::restoreOverrideCursor();
 }
 
 void DictBrowser::mouseMoveEvent(QMouseEvent *event)
