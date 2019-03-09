@@ -96,6 +96,9 @@
             <property name="text">
              <string>Show words that are translatable as links</string>
             </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item>
@@ -122,6 +125,9 @@
               </property>
               <property name="text">
                <string>Only if modifier pressed</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -375,6 +381,9 @@
               <property name="text">
                <string>Show translation popup by shortcut</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -488,6 +497,9 @@
               <property name="text">
                <string>Show only if modifier pressed</string>
               </property>
+              <property name="tristate">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -495,26 +507,6 @@
               <property name="enabled">
                <bool>false</bool>
               </property>
-              <item>
-               <property name="text">
-                <string>Alt</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Control</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Shift</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Win</string>
-               </property>
-              </item>
              </widget>
             </item>
            </layout>
@@ -816,12 +808,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>188</x>
-     <y>216</y>
+     <x>212</x>
+     <y>176</y>
     </hint>
     <hint type="destinationlabel">
-     <x>433</x>
-     <y>217</y>
+     <x>496</x>
+     <y>183</y>
     </hint>
    </hints>
   </connection>
@@ -832,12 +824,92 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>125</x>
-     <y>145</y>
+     <x>149</x>
+     <y>116</y>
     </hint>
     <hint type="destinationlabel">
-     <x>135</x>
-     <y>175</y>
+     <x>161</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>linksModifierBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>linksModifierKeyBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>148</x>
+     <y>204</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>319</x>
+     <y>211</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>linksBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>linksModifierBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>172</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>85</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>linksBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>linksModifierKeyBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>218</x>
+     <y>169</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>301</x>
+     <y>195</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useScanBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>useScanModifierBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>91</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>98</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useScanBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>modifierKeyBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>137</x>
+     <y>67</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>290</x>
+     <y>163</y>
     </hint>
    </hints>
   </connection>

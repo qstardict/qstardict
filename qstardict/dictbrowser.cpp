@@ -1,6 +1,6 @@
 /*****************************************************************************
- * dictbrowser.cpp - QStarDict, a StarDict clone written using Qt            *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * dictbrowser.cpp - QStarDict, a quasi-star dictionary                      *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -28,6 +28,7 @@
 #include "../plugins/dictplugin.h"
 #include "application.h"
 #include "pluginmanager.h"
+#include "keyboard.h"
 
 namespace
 {
@@ -58,12 +59,15 @@ DictBrowser::DictBrowser(QWidget *parent)
     : QTextBrowser(parent),
       m_dict(0),
       m_highlighted(false),
-      m_highlightTimerId(0)
+      m_highlightTimerId(0),
+      m_showLinks(true),
+      m_showLinksModifierKey(0)
 {
     document()->setDefaultStyleSheet(translationCSS);
     setOpenLinks(false);
     setOpenExternalLinks(false);
     connect(this, SIGNAL(anchorClicked(const QUrl &)), SLOT(on_anchorClicked(const QUrl &)));
+    Application::instance()->installEventFilter(this);
 }
 
 QVariant DictBrowser::loadResource(int type, const QUrl &name)
@@ -86,7 +90,9 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
             return QVariant();
         return plugin->resource(type, name);
     }
-    return QTextBrowser::loadResource(type, name);
+    auto result = QTextBrowser::loadResource(type, name);
+    invalidateHighlight();
+    return result;
 }
 
 void DictBrowser::search(const QString & exp, QTextDocument::FindFlags options)
@@ -136,10 +142,40 @@ void DictBrowser::invalidateHighlight()
     }
 
     QPoint mousePosition = mapFromGlobal(QCursor::pos());
-    if (!contentsRect().contains(mousePosition)) // mouse not in under the browser
-        return;
+    if (areLinksActive() && contentsRect().contains(mousePosition) && wordRect(mousePosition).contains(mousePosition))
+    {
+        // highlight word if found
+        auto cursor = cursorForPosition(mousePosition);
+        cursor.select(QTextCursor::WordUnderCursor);
+        QString selection = cursor.selection().toPlainText().simplified();
+        if (selection == m_highlightedWord || m_dict->isTranslatable(selection))
+        {
+            m_oldCursor = cursor;
+            m_oldFormat = cursor.charFormat();
 
-    // check if the word is actually under the mouse
+            QTextCharFormat format = m_oldFormat;
+            format.setForeground(Qt::blue);
+            format.setFontUnderline(true);
+            cursor.setCharFormat(format);
+
+            m_highlighted = true;
+            m_highlightedWord = selection;
+            m_highlightTimerId = startTimer(100);
+            overrideCursor = true;
+        }
+    }
+
+    if (overrideCursor)
+    {
+        if (!QApplication::overrideCursor())
+            QApplication::setOverrideCursor(Qt::PointingHandCursor);
+    }
+    else
+        QApplication::restoreOverrideCursor();
+}
+
+QRect DictBrowser::wordRect(const QPoint &mousePosition)
+{
     auto cursor = cursorForPosition(mousePosition);
     cursor.select(QTextCursor::WordUnderCursor);
     auto selectionStart = cursor.selectionStart();
@@ -150,51 +186,34 @@ void DictBrowser::invalidateHighlight()
     cursor.setPosition(selectionEnd);
     auto bottomRight = cursorRect(cursor).bottomRight();
 
-    auto rect = QRect(topLeft, bottomRight);
-    if (!rect.contains(mousePosition))
-        return;
-
-    // highlight word if found
-    cursor = cursorForPosition(mousePosition);
-    cursor.select(QTextCursor::WordUnderCursor);
-    QString selection = cursor.selection().toPlainText().simplified();
-    if (selection == m_highlightedWord || m_dict->isTranslatable(selection))
-    {
-        m_oldCursor = cursor;
-        m_oldFormat = cursor.charFormat();
-
-        QTextCharFormat format = m_oldFormat;
-        format.setForeground(Qt::blue);
-        format.setFontUnderline(true);
-        cursor.setCharFormat(format);
-
-        m_highlighted = true;
-        m_highlightedWord = selection;
-        m_highlightTimerId = startTimer(100);
-        overrideCursor = true;
-    }
-
-    if (overrideCursor)
-        QApplication::setOverrideCursor(Qt::PointingHandCursor);
-    else
-        QApplication::restoreOverrideCursor();
+    return QRect(topLeft, bottomRight);
 }
 
 void DictBrowser::mouseMoveEvent(QMouseEvent *event)
 {
-    invalidateHighlight();
+    if (areLinksActive())
+        invalidateHighlight();
     QTextBrowser::mouseMoveEvent(event);
+}
+
+bool DictBrowser::areLinksActive()
+{
+    if (!m_showLinks)
+        return false;
+    if (m_showLinksModifierKey == 0)
+        return true;
+    return Keyboard::activeModifiers().testFlag(static_cast<Qt::KeyboardModifier>(m_showLinksModifierKey));
 }
 
 void DictBrowser::mouseReleaseEvent(QMouseEvent *event)
 {
-    QTextCursor cursor = cursorForPosition(event->pos());
-    cursor.select(QTextCursor::WordUnderCursor);
-    QString selection = cursor.selection().toPlainText().simplified();
-    if (m_dict->isTranslatable(selection) && selection != source().toString(QUrl::RemoveScheme))
+    if (areLinksActive())
     {
-        setSource(selection);
-        invalidateHighlight();
+        QTextCursor cursor = cursorForPosition(event->pos());
+        cursor.select(QTextCursor::WordUnderCursor);
+        QString selection = cursor.selection().toPlainText().simplified();
+        if (m_dict->isTranslatable(selection) && selection != source().toString(QUrl::RemoveScheme))
+            setSource(selection);
     }
     QTextBrowser::mousePressEvent(event);
 }
@@ -211,6 +230,13 @@ void DictBrowser::on_anchorClicked(const QUrl &link)
 void DictBrowser::timerEvent(QTimerEvent*)
 {
     invalidateHighlight();
+}
+
+bool DictBrowser::eventFilter(QObject *, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress || event->type() == QEvent::KeyRelease)
+        invalidateHighlight();
+    return false;
 }
 
 }

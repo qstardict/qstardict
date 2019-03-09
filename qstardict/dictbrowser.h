@@ -1,6 +1,6 @@
 /*****************************************************************************
- * dictbrowser.h - QStarDict, a StarDict clone written with using Qt         *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * dictbrowser.h - QStarDict, a quasi-star dictionary                        *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -54,7 +54,19 @@ class DictBrowser: public QTextBrowser
         const DictCore* dict() const
         { return m_dict; }
 
+        void setShowLinks(bool showLinks)
+        { m_showLinks = showLinks; }
+        bool showLinks() const
+        { return m_showLinks; }
+
+        void setShowLinksModifierKey(int key)
+        { m_showLinksModifierKey = key; }
+        int showLinksModifierKey() const
+        { return m_showLinksModifierKey; }
+
         QVariant loadResource(int type, const QUrl &name);
+
+        bool eventFilter(QObject *object, QEvent *event);
 
     signals:
         void searchResult(bool success);
@@ -70,6 +82,8 @@ class DictBrowser: public QTextBrowser
 
     private slots:
         void on_anchorClicked(const QUrl &link);
+        bool areLinksActive();
+        QRect wordRect(const QPoint &mousePosition);
 
     private:
         DictCore *m_dict;
@@ -79,6 +93,9 @@ class DictBrowser: public QTextBrowser
         bool m_highlighted;
         int m_highlightTimerId;
         QString m_highlightedWord;
+
+        bool m_showLinks;
+        int m_showLinksModifierKey;
 
         void invalidateHighlight();
 };

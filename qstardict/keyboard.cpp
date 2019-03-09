@@ -1,6 +1,6 @@
 /*****************************************************************************
- * keyboard.cpp - QStarDict, a StarDict clone written with using Qt          *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * keyboard.cpp - QStarDict, a quasi-star dictionary                         *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -46,31 +46,7 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 
 } // namespace
 
-#elif defined(Q_OS_MAC)
-#include <QApplication>
-
-namespace QStarDict
-{
-
-Qt::KeyboardModifiers Keyboard::activeModifiers()
-{
-    return QApplication::keyboardModifiers();
-}
-
-} // namespace
-
-#elif defined(Q_OS_UNIX)
-
-#include <X11/XKBlib.h>
-#include <stdio.h>
-
-namespace
-{
-const unsigned mAlt     = 0010;
-const unsigned mCtrl    = 0004;
-const unsigned mShift   = 0001;
-const unsigned mWin     = 0100;
-}
+#else
 
 namespace QStarDict
 {
@@ -82,9 +58,7 @@ Qt::KeyboardModifiers Keyboard::activeModifiers()
 
 } // namespace
 
-
-
-#endif // Q_WS_MAC
+#endif // Q_OS_WIN
 
 // vim: tabstop=4 softtabstop=4 shiftwidth=4 expandtab cindent textwidth=120 formatoptions=tc
 

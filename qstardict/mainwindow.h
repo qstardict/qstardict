@@ -82,6 +82,16 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         QString defaultStyleSheet() const
         { return translationView->defaultStyleSheet(); }
 
+        void setShowLinks(bool showLinks)
+        { translationView->setShowLinks(showLinks); }
+        bool showLinks() const
+        { return translationView->showLinks(); }
+
+        void setShowLinksModifierKey(int key)
+        { translationView->setShowLinksModifierKey(key); }
+        int showLinksModifierKey() const
+        { return translationView->showLinksModifierKey(); }
+
         void setQuitOnClose(bool quitOnClose)
         { m_quitOnClose = quitOnClose; }
 

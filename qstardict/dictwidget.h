@@ -1,6 +1,6 @@
 /*****************************************************************************
- * dictwidget.h - QStarDict, a StarDict clone written with using Qt          *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * dictwidget.h - QStarDict, a quasi-star dictionary                         *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -70,7 +70,7 @@ class DictWidget: public QFrame
          */
         void clearHistory()
         { m_translationView->clearHistory(); }
-        
+
         /**
          * Show translation of str.
          */
@@ -91,7 +91,17 @@ class DictWidget: public QFrame
 
         QString defaultStyleSheet() const
         { return m_translationView->document()->defaultStyleSheet(); }
-        
+
+        void setShowLinks(bool showLinks)
+        { m_translationView->setShowLinks(showLinks); }
+        bool showLinks() const
+        { return m_translationView->showLinks(); }
+
+        void setShowLinksModifierKey(int key)
+        { m_translationView->setShowLinksModifierKey(key); }
+        int showLinksModifierKey() const
+        { return m_translationView->showLinksModifierKey(); }
+
         void reload()
         { m_translationView->reload(); }
 

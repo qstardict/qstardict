@@ -67,6 +67,8 @@ void PopupWindow::loadSettings()
     setDefaultSize(config.value("PopupWindow/defaultSize", QSize(320, 240)).toSize());
     setPronounceWord(config.value("PopupWindow/pronounceWord", true).toBool());
     setDefaultStyleSheet(config.value("PopupWindow/defaultStyleSheet", defaultStyleSheet()).toString());
+    setShowLinks(config.value("PopupWindow/showLinks", showLinks()).toBool());
+    setShowLinksModifierKey(config.value("PopupWindow/showLinksModifierKey", showLinksModifierKey()).toInt());
 }
 
 void PopupWindow::saveSettings()
@@ -80,6 +82,8 @@ void PopupWindow::saveSettings()
     config.setValue("PopupWindow/defaultSize", defaultSize());
     config.setValue("PopupWindow/pronounceWord", pronounceWord());
     config.setValue("PopupWindow/defaultStyleSheet", defaultStyleSheet());
+    config.setValue("PopupWindow/showLinks", showLinks());
+    config.setValue("PopupWindow/showLinksModifierKey", showLinksModifierKey());
 }
 
 void PopupWindow::setScan(bool scan)

@@ -53,6 +53,49 @@ int toPercents(double value)
         ++integralValue;
     return integralValue;
 }
+
+QString getModifierName(int key)
+{
+    switch (key)
+    {
+    case Qt::ShiftModifier:
+        return "Shift";
+    case Qt::ControlModifier:
+#ifdef Q_OS_MAC
+        return "Command";
+#else
+        return "Control";
+#endif
+    case Qt::AltModifier:
+#ifdef Q_OS_MAC
+        return "Option";
+#else
+        return "Alt";
+#endif
+    case Qt::MetaModifier:
+#ifdef Q_OS_MAC
+        return "Control";
+#elif Q_OS_WIN
+        return "Win";
+#else
+        return "Super";
+#endif
+    default:
+        return "";
+    }
+}
+
+void initModifierComboBox(QComboBox *box, int selectedKey)
+{
+    box->clear();
+    box->addItem(getModifierName(Qt::AltModifier), Qt::AltModifier);
+    box->addItem(getModifierName(Qt::ShiftModifier), Qt::ShiftModifier);
+    box->addItem(getModifierName(Qt::ControlModifier), Qt::ControlModifier);
+    box->addItem(getModifierName(Qt::MetaModifier), Qt::MetaModifier);
+
+    box->setCurrentIndex(qMax(0, box->findData(selectedKey)));
+}
+
 }
 
 namespace QStarDict {
@@ -102,36 +145,19 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #else
     autostartBox->setVisible(false);
 #endif
+    linksBox->setChecked(app->mainWindow()->showLinks());
+    linksModifierBox->setChecked(app->mainWindow()->showLinksModifierKey() != 0);
+    initModifierComboBox(linksModifierKeyBox, app->mainWindow()->showLinksModifierKey());
 
     // Load popup shortcut settings
     shortcutPopupEdit->setText(app->popupShortcut()->shortcut().toString());
-    shortcutPopupEdit->setEnabled(app->popupShortcut()->isEnabled());
     shortcutPopupBox->setChecked(app->popupShortcut()->isEnabled());
 
     // Load popup window settings
     PopupWindow *popup = app->popupWindow();
     useScanBox->setChecked(popup->isScan());
-    if (popup->modifierKey())
-    {
-        useScanModifierBox->setChecked(true);
-        QString modifierName;
-        switch (popup->modifierKey())
-        {
-        case Qt::ShiftModifier:
-            modifierName = "Shift";
-            break;
-        case Qt::ControlModifier:
-            modifierName = "Control";
-            break;
-        case Qt::AltModifier:
-            modifierName = "Alt";
-            break;
-        case Qt::MetaModifier:
-            modifierName = "Win";
-            break;
-        }
-        modifierKeyBox->setCurrentIndex(modifierKeyBox->findText(modifierName));
-    }
+    useScanModifierBox->setChecked(popup->modifierKey() != 0);
+    initModifierComboBox(modifierKeyBox, popup->modifierKey());
     showIfNotFoundBox->setChecked(popup->showIfNotFound());
     popupOpacitySpin->setValue(toPercents(popup->windowOpacity()));
     timeoutBeforeHideSpin->setValue(popup->timeoutBeforeHide() / 1000.0);
@@ -210,6 +236,11 @@ void SettingsDialog::accept()
     else
         reg.remove(QCoreApplication::applicationName());
 #endif
+    app->mainWindow()->setShowLinks(linksBox->isChecked());
+    app->popupWindow()->setShowLinks(linksBox->isChecked());
+    int linksModifierKey = linksModifierBox->isChecked() ? linksModifierKeyBox->currentData().toInt() : 0;
+    app->mainWindow()->setShowLinksModifierKey(linksModifierKey);
+    app->popupWindow()->setShowLinksModifierKey(linksModifierKey);
 
     // Save popup shortcut settings
     app->popupShortcut()->setShortcut(QKeySequence(shortcutPopupEdit->text()));
@@ -218,20 +249,11 @@ void SettingsDialog::accept()
     // Save popup window settings
     PopupWindow *popup = app->popupWindow();
     popup->setScan(useScanBox->isChecked());
-    int modifierKey = 0;
-    if (useScanModifierBox->isChecked())
-    {
-        if (modifierKeyBox->currentText() == "Shift")
-            modifierKey = Qt::ShiftModifier;
-        else if (modifierKeyBox->currentText() == "Control")
-            modifierKey = Qt::ControlModifier;
-        else if (modifierKeyBox->currentText() == "Alt")
-            modifierKey = Qt::AltModifier;
-        else if (modifierKeyBox->currentText() == "Win")
-            modifierKey = Qt::MetaModifier;
-    }
     popup->setShowIfNotFound(showIfNotFoundBox->isChecked());
-    popup->setModifierKey(modifierKey);
+    if (useScanModifierBox->isChecked())
+        popup->setModifierKey(modifierKeyBox->currentData().toInt());
+    else
+        popup->setModifierKey(0);
     popup->setWindowOpacity(popupOpacitySpin->value() / 100.0);
     popup->setTimeoutBeforeHide(static_cast<int>(timeoutBeforeHideSpin->value() * 1000.0));
     popup->setDefaultSize(QSize(popupDefaultWidthSpin->value(), popupDefaultHeightSpin->value()));

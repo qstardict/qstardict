@@ -116,6 +116,8 @@ void MainWindow::loadSettings()
     wordsListDock->setGeometry(config.value("MainWindow/wordsListDock/geometry", wordsListDock->geometry()).toRect());
     setInstantSearch(config.value("MainWindow/instantSearch", true).toBool());
     setDefaultStyleSheet(config.value("MainWindow/defaultStyleSheet", defaultStyleSheet()).toString());
+    setShowLinks(config.value("MainWindow/showLinks", showLinks()).toBool());
+    setShowLinksModifierKey(config.value("MainWindow/showLinksModifierKey", showLinksModifierKey()).toInt());
 
     app->popupShortcut()->setShortcut(QKeySequence(
         config.value("MainWindow/popupShortcutString", tr("Ctrl+T")).toString()));
@@ -134,6 +136,8 @@ void MainWindow::saveSettings()
     config.setValue("MainWindow/wordsListDock/geometry", wordsListDock->geometry());
     config.setValue("MainWindow/instantSearch", m_instantSearch);
     config.setValue("MainWindow/defaultStyleSheet", defaultStyleSheet());
+    config.setValue("MainWindow/showLinks", showLinks());
+    config.setValue("MainWindow/showLinksModifierKey", showLinksModifierKey());
 
     Application * const app = Application::instance();
     config.setValue("MainWindow/popupShortcutString",

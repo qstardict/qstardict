@@ -1,6 +1,6 @@
 /*****************************************************************************
- * popupwindow.h - QStarDict, a StarDict clone written with using Qt         *
- * Copyright (C) 2007 Alexander Rodin                                        *
+ * popupwindow.h - QStarDict, a quasi-star dictionary                        *
+ * Copyright (C) 2007-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -87,6 +87,16 @@ class PopupWindow: public ResizablePopup
 
         QString defaultStyleSheet() const
         { return translationView->defaultStyleSheet(); }
+
+        void setShowLinks(bool showLinks)
+        { translationView->setShowLinks(showLinks); }
+        bool showLinks() const
+        { return translationView->showLinks(); }
+
+        void setShowLinksModifierKey(int key)
+        { translationView->setShowLinksModifierKey(key); }
+        int showLinksModifierKey() const
+        { return translationView->showLinksModifierKey(); }
 
     public slots:
         /**
