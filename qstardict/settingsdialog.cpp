@@ -104,6 +104,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         : QDialog(parent)
 {
     setupUi(this);
+
     Application * const app = Application::instance();
 
     DictCore *dict = app->dictCore();
@@ -181,6 +182,12 @@ SettingsDialog::SettingsDialog(QWidget *parent)
             SLOT(dictLoadedPluginsChanged()));
     connect(pluginsTableView, SIGNAL(clicked(QModelIndex)), SLOT(pluginClicked(QModelIndex)));
     connect(miscPluginsView, SIGNAL(clicked(QModelIndex)), SLOT(pluginClicked(QModelIndex)));
+
+    linksModifierContainer->setEnabled(linksBox->isChecked());
+    linksModifierKeyBox->setEnabled(linksModifierBox->isChecked());
+    scanModifierContainer->setEnabled(useScanBox->isChecked());
+    modifierKeyBox->setEnabled(useScanModifierBox->isChecked());
+    shortcutPopupEdit->setEnabled(shortcutPopupBox->isChecked());
 }
 
 void SettingsDialog::accept()

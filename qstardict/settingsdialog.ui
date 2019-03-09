@@ -96,69 +96,68 @@
             <property name="text">
              <string>Show words that are translatable as links</string>
             </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="_2">
-            <property name="spacing">
-             <number>6</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QCheckBox" name="linksModifierBox">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Only if modifier pressed</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="linksModifierKeyBox">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>Alt</string>
+           <widget class="QWidget" name="linksModifierContainer" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QCheckBox" name="linksModifierBox">
+               <property name="enabled">
+                <bool>true</bool>
                </property>
-              </item>
-              <item>
                <property name="text">
-                <string>Control</string>
+                <string>Only if modifier pressed</string>
                </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Shift</string>
+               <property name="checked">
+                <bool>false</bool>
                </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Win</string>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="linksModifierKeyBox">
+               <property name="enabled">
+                <bool>false</bool>
                </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
+               <item>
+                <property name="text">
+                 <string>Alt</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Control</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Shift</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Win</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </item>
           <item>
            <layout class="QHBoxLayout">
@@ -355,23 +354,25 @@
          <property name="title">
           <string>Behavior</string>
          </property>
-         <layout class="QGridLayout">
-          <property name="leftMargin">
-           <number>9</number>
-          </property>
-          <property name="topMargin">
-           <number>9</number>
-          </property>
-          <property name="rightMargin">
-           <number>9</number>
-          </property>
-          <property name="bottomMargin">
-           <number>9</number>
-          </property>
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <item row="4" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QCheckBox" name="useScanBox">
+            <property name="text">
+             <string>Scan selection</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="showIfNotFoundBox">
+            <property name="text">
+             <string>Show if word not found</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
              <widget class="QCheckBox" name="shortcutPopupBox">
@@ -395,33 +396,51 @@
             </item>
            </layout>
           </item>
-          <item row="8" column="0">
-           <layout class="QVBoxLayout">
-            <property name="spacing">
-             <number>6</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QCheckBox" name="pronounceWordBox">
-              <property name="text">
-               <string>Pronounce the word</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          <item>
+           <widget class="QWidget" name="scanModifierContainer" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QCheckBox" name="useScanModifierBox">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="text">
+                <string>Show only if modifier pressed</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <property name="tristate">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="modifierKeyBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </item>
-          <item row="7" column="0">
+          <item>
            <layout class="QHBoxLayout">
             <property name="spacing">
              <number>6</number>
@@ -472,8 +491,8 @@
             </item>
            </layout>
           </item>
-          <item row="6" column="0">
-           <layout class="QHBoxLayout">
+          <item>
+           <layout class="QVBoxLayout">
             <property name="spacing">
              <number>6</number>
             </property>
@@ -490,43 +509,13 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QCheckBox" name="useScanModifierBox">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
+             <widget class="QCheckBox" name="pronounceWordBox">
               <property name="text">
-               <string>Show only if modifier pressed</string>
-              </property>
-              <property name="tristate">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="modifierKeyBox">
-              <property name="enabled">
-               <bool>false</bool>
+               <string>Pronounce the word</string>
               </property>
              </widget>
             </item>
            </layout>
-          </item>
-          <item row="0" column="0">
-           <widget class="QCheckBox" name="useScanBox">
-            <property name="text">
-             <string>Scan selection</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="showIfNotFoundBox">
-            <property name="text">
-             <string>Show if word not found</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -850,41 +839,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>linksBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>linksModifierBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>96</x>
-     <y>172</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>85</x>
-     <y>210</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>linksBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>linksModifierKeyBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>218</x>
-     <y>169</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>301</x>
-     <y>195</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>useScanBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>useScanModifierBox</receiver>
+   <receiver>scanModifierContainer</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -892,24 +849,24 @@
      <y>58</y>
     </hint>
     <hint type="destinationlabel">
-     <x>98</x>
-     <y>172</y>
+     <x>264</x>
+     <y>180</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>useScanBox</sender>
+   <sender>linksBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>modifierKeyBox</receiver>
+   <receiver>linksModifierContainer</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>137</x>
-     <y>67</y>
+     <x>96</x>
+     <y>172</y>
     </hint>
     <hint type="destinationlabel">
-     <x>290</x>
-     <y>163</y>
+     <x>264</x>
+     <y>205</y>
     </hint>
    </hints>
   </connection>
