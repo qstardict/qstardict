@@ -6,7 +6,7 @@
  * which should be included with libfacet as the file COPYING.
  */
 
-#ifndef WIN32
+#ifndef __linux__
 #include <langinfo.h>
 #include <locale.h>
 #endif
@@ -27,7 +27,7 @@ identification::identification(const std::string& name,size_t i):
     }
     else
     {
-#ifdef WIN32
+#ifndef __linux__
 		name_ = name.substr(0,name.find("_"));
 #else
 	setlocale(LC_ALL,name.c_str());

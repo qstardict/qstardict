@@ -27,7 +27,7 @@
 #include <QVector>
 #include <QHash>
 
-class Multitran: public QObject, public QStarDict::DictPlugin
+class Multitran: public QObject, public QStarDict::BasePlugin, public QStarDict::DictPlugin, public QStarDict::ConfigurablePlugin
 {
     Q_OBJECT
     Q_INTERFACES(QStarDict::DictPlugin)
@@ -36,19 +36,6 @@ class Multitran: public QObject, public QStarDict::DictPlugin
     public:
         Multitran(QObject *parent = 0);
         ~Multitran();
-
-        QString name() const
-        { return "multitran"; }
-        QString version() const
-        { return "0.1"; }
-        QString description() const
-        { return "The Multitran plugin"; }
-        QStringList authors() const
-        { return QStringList()
-            << tr("Stanislav Ievlev <inger@altlinux.org>")
-            << tr("Nick Shaforostoff <shaforostoff@kde.ru>"); }
-        Features features() const
-        { return Features(/*SearchSimilar | SettingsDialog*/); }
 
         QStringList availableDicts() const;
         QStringList loadedDicts() const {return QStringList("Multitran");}//{ return m_loadedDicts.keys(); }
@@ -60,6 +47,9 @@ class Multitran: public QObject, public QStarDict::DictPlugin
         virtual QStringList findSimilarWords(const QString &dict, const QString &word);
 
         int execSettingsDialog(QWidget *parent);
+
+        QIcon pluginIcon() const
+        { return QIcon(); }
 
         //friend class SettingsDialog;
 

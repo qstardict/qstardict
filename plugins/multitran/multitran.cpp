@@ -26,25 +26,18 @@
 // #include <QSettings>
 #include <QTextCodec>
 
-
-/*
-/usr/include/mt/query
-/usr/include/btree
-/usr/include/mt/support
-/usr/include/facet
-*/
-#include <facet/identification.hh>
-#include <facet/alphabet.hh>
-#include <facet/typographic.hh>
-#include <mt/query/linguas.hh>
-#include <mt/query/translation.hh>
-#include <mt/query/singleton.hh>
-#include <mt/query/config.hh>
-#include <mt/query/file_map.hh>
-#include <mt/support/path.hh>
-#include <mt/query/lgk.hh>
-#include <mt/support/str.hh>
-#include <mt/query/lang_info.hh>
+#include "identification.hh"
+#include "alphabet.hh"
+#include "typographic.hh"
+#include "linguas.hh"
+#include "translation.hh"
+#include "singleton.hh"
+#include "config.hh"
+#include "file_map.hh"
+#include "path.hh"
+#include "lgk.hh"
+#include "str.hh"
+#include "lang_info.hh"
 
 #include <algorithm>
 #include <functional>
@@ -185,7 +178,7 @@ Multitran::DictInfo Multitran::dictInfo(const QString &dict)
 //     ::DictInfo nativeInfo;
 //     nativeInfo.wordcount = 0;
 
-    DictInfo result(name(), dict);
+    DictInfo result("Multitran", dict);
     result.setAuthor("Multitran.ru");
     result.setDescription(tr("1 mln words excerpt of multitran.ru"));
     result.setWordsCount(-1);
