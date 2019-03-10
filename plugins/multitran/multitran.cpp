@@ -213,7 +213,7 @@ Multitran::Translation Multitran::translate(const QString &dict, const QString &
     if (lang == avail_langs.end() ||
     (!from_lang.empty() && !to_lang.empty() && (compare_names(from_lang,to_lang).distance(*lang)!=2)))
     {
-        //std::cerr<<"illegal language names"<<std::endl;
+        std::cerr<<"illegal language names"<<std::endl;
         return Translation();
     }
 

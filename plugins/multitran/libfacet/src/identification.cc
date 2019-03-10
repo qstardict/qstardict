@@ -22,20 +22,24 @@ identification::identification(const std::string& name,size_t i):
 {
     if (name == "C" || name == "POSIX")
     {
-	name_ = "english";
-	codeset_ = "ISO-8859-1";
+        name_ = "english";
+        codeset_ = "ISO-8859-1";
     }
     else
     {
 #ifndef __linux__
-		name_ = name.substr(0,name.find("_"));
+        name_ = name.substr(0,name.find("_"));
 #else
-	setlocale(LC_ALL,name.c_str());
-	name_ = nl_langinfo(_NL_IDENTIFICATION_LANGUAGE);
-	codeset_ = nl_langinfo(CODESET);
-	setlocale(LC_IDENTIFICATION,"C"); //return back to C locale 
+        setlocale(LC_ALL,name.c_str());
+        name_ = nl_langinfo(_NL_IDENTIFICATION_LANGUAGE);
+        codeset_ = nl_langinfo(CODESET);
+        setlocale(LC_IDENTIFICATION,"C"); //return back to C locale 
 #endif
     }
+    if (name_ == "ru")
+      name_ = "rus";
+    if (name == "en")
+      name_ = "eng";
     name_[0] = static_cast<char>(tolower(name_[0]));//lowercase for the first letter
 }
 

@@ -27,7 +27,7 @@ namespace mt
     {
      public:
 		LIBFACET_API alphabet(const std::string& langname,
-				 const std::string& datapath="/usr/share/multitran",size_t i = 0);
+				 const std::string& datapath="/usr/local/share/multitran",size_t i = 0);
 		LIBFACET_API virtual ~alphabet() {}
 	
 		LIBFACET_API bool isalpha(char c) const;
