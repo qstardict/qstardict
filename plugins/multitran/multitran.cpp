@@ -210,6 +210,9 @@ Multitran::Translation Multitran::translate(const QString &dict, const QString &
     mt::linguas::iterator lang = std::max_element(avail_langs.begin(),
                                                 avail_langs.end(),
                                                 compare_names(from_lang,to_lang));
+    std::cout << from_lang << "\n";
+    std::cout << lang->first << " " << lang->second << "\n";
+    std::cout << lower_str(lang->first,text) << "\n";
     if (lang == avail_langs.end() ||
     (!from_lang.empty() && !to_lang.empty() && (compare_names(from_lang,to_lang).distance(*lang)!=2)))
     {
