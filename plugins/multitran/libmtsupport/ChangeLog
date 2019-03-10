@@ -1,0 +1,77 @@
+2005-01-12 18:02  ievlev
+
+	* Makefile.common, include/mt/support/path.hh,
+	include/mt/support/str.hh, src/path.cc, src/str.cc,
+	testsuite/test1.cpp: now ready for gcc3.4 and win32 
+
+2004-12-27 15:36  ievlev
+
+	* vcnet/libmtsupport.suo: more right usage of dllimport/export,
+	remove .suo file 
+
+2004-12-06 15:15  ievlev
+
+	* include/mt/support/str.hh, vcnet/libmtsupport.ncb,
+	vcnet/libmtsupport.suo, vcnet/test1.vcproj: minor fixes in dll
+	interface 
+
+2004-11-29 14:07  ievlev
+
+	* Makefile, README, include/mt/support/mtsupport_dll.hh,
+	include/mt/support/path.hh, include/mt/support/shared_ptr.hh,
+	include/mt/support/str.hh, src/str.cc, testsuite/Makefile,
+	testsuite/test1.cpp, vcnet/libmtsupport.ncb,
+	vcnet/libmtsupport.sln, vcnet/libmtsupport.suo,
+	vcnet/libmtsupport.vcproj, vcnet/test1.vcproj: 
+	- ported to Win32 (Visual Studio 7.1) 
+
+2004-11-12 15:55  ievlev
+
+	* include/mt/support/str.hh: added missing include 
+
+2004-11-11 16:08  ievlev
+
+	* include/mt/support/str.hh, src/str.cc: change semantic of trim
+	functions 
+
+2004-11-09 11:02  ievlev
+
+	* AUTHORS, README, include/mt/support/path.hh, src/path.cc,
+	src/str.cc: prepare for first alpha 
+
+2004-10-22 15:01  ievlev
+
+	* src/path.cc: added missing source 
+
+2004-10-22 14:59  ievlev
+
+	* include/mt/support/path.hh, src/Makefile: made single
+	path_separator const 
+
+2004-10-22 13:02  ievlev
+
+	* src/: Makefile, str.cc: more portable usage of includes 
+
+2004-10-18 17:32  ievlev
+
+	* include/mt/support/str.hh, src/str.cc: reverse return modified
+	copy of string 
+
+2004-10-11 16:11  ievlev
+
+	* include/mt/support/path.hh: added default path separator 
+
+2004-10-06 12:55  ievlev
+
+	* AUTHORS, COPYING, Makefile, Makefile.common, README,
+	libmtsupport.spec, include/mt/support/shared_ptr.hh,
+	include/mt/support/str.hh, src/Makefile, src/str.cc: 
+	 - imported 
+
+2004-10-06 12:55  ievlev
+
+	* AUTHORS, COPYING, Makefile, Makefile.common, README,
+	libmtsupport.spec, include/mt/support/shared_ptr.hh,
+	include/mt/support/str.hh, src/Makefile, src/str.cc: Initial
+	revision 
+

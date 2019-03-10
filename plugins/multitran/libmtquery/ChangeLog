@@ -1,0 +1,160 @@
+2005-01-13 17:54  ievlev
+
+	* Makefile: added DEBUG_LDFLAGS to remove rpath during final build 
+
+2005-01-12 18:13  ievlev
+
+	* Makefile.common: 
+	 - Auto commit 
+
+2005-01-12 18:13  ievlev
+
+	* include/mt/query/article.hh, include/mt/query/config.hh,
+	include/mt/query/dict_path.hh, include/mt/query/file_map.hh,
+	include/mt/query/lang_info.hh, include/mt/query/lemm.hh,
+	include/mt/query/siktable.hh, include/mt/query/singleton.hh,
+	include/mt/query/translation.hh, src/Makefile, src/article.cc,
+	src/config.cc, src/dict_path.cc, src/lang_info.cc, src/lemm.cc,
+	src/lgk.cc, src/translation.cc, testsuite/Makefile,
+	testsuite/test1.cc, testsuite/test2.cc, testsuite/test4.cc,
+	vcnet/libmtquery.sln, vcnet/test1.vcproj, vcnet/test2.vcproj,
+	vcnet/test4.vcproj: now ready for gcc3.4 and win32 
+
+2004-12-27 15:46  ievlev
+
+	* README, include/mt/query/article.hh, include/mt/query/config.hh,
+	include/mt/query/file_map.hh, include/mt/query/lang_info.hh,
+	include/mt/query/lemm.hh, include/mt/query/mtquery_dll.hh,
+	include/mt/query/siktable.hh, include/mt/query/translation.hh,
+	src/config.cc, src/lemm.cc, src/translation.cc, testsuite/test1.cc,
+	vcnet/libmtquery.sln, vcnet/libmtquery.vcproj: first port to Win32 
+
+2004-12-15 16:55  ievlev
+
+	* src/siktable.cc: added binary to stream (needed by ms) 
+
+2004-11-25 16:43  ievlev
+
+	* include/mt/query/linguas.hh, src/Makefile, src/linguas.cc: added
+	linguas list 
+
+2004-11-12 16:10  ievlev
+
+	* include/mt/query/lgk.hh, src/lgk.cc, src/siktable.cc: added
+	namespace to lgk header to avoid name conflicts 
+
+2004-11-12 14:39  ievlev
+
+	* include/mt/query/file_map.hh, src/file_map.cc,
+	testsuite/test6.cc: rename fs_map to file_map 
+
+2004-11-12 13:01  ievlev
+
+	* testsuite/test6.cc: added missing test file 
+
+2004-11-12 13:00  ievlev
+
+	* include/mt/query/file_map.hh, src/Makefile, src/file_map.cc,
+	testsuite/Makefile: added simple interface to subjects.txt like
+	databases 
+
+2004-11-11 13:22  ievlev
+
+	* include/mt/query/translation.hh, src/translation.cc,
+	testsuite/test4.cc: add langin,langout information to article_set 
+
+2004-11-11 12:24  ievlev
+
+	* include/mt/query/singleton.hh: made singleton more abstract 
+
+2004-11-09 16:01  ievlev
+
+	* libmtquery.spec: update sample spec file 
+
+2004-11-09 15:42  ievlev
+
+	* src/dict_path.cc, src/siktable.cc, src/translation.cc,
+	testsuite/test4.cc: fix bug in sik(), there are only single
+	translation database for two langs 
+
+2004-11-09 11:44  ievlev
+
+	* include/mt/query/article.hh, src/article.cc, testsuite/test5.cc: 
+	added missing sources 
+
+2004-11-09 11:43  ievlev
+
+	* AUTHORS, include/mt/query/config.hh,
+	include/mt/query/dict_path.hh, include/mt/query/lang_info.hh,
+	include/mt/query/lemm.hh, include/mt/query/lgk.hh,
+	include/mt/query/siktable.hh, include/mt/query/singleton.hh,
+	include/mt/query/translation.hh, src/Makefile, src/dict_path.cc,
+	src/lang_info.cc, src/lemm.cc, src/lgk.cc, src/siktable.cc,
+	src/translation.cc, testsuite/Makefile, testsuite/test1.cc,
+	testsuite/test2.cc, testsuite/test3.cc, testsuite/test4.cc: 
+	translation from english into russian are ready 
+
+2004-11-05 15:39  ievlev
+
+	* src/translation.cc, testsuite/test4.cc: fix append_good algo 
+
+2004-11-04 17:00  ievlev
+
+	* include/mt/query/dict_path.hh, src/Makefile, src/dict_path.cc,
+	src/translation.cc: preparations for the articles, move dict path
+	generation to separate place 
+
+2004-11-03 16:57  ievlev
+
+	* include/mt/query/lemm.hh, src/lemm.cc, src/translation.cc: second
+	step to translations 
+
+2004-11-01 17:06  ievlev
+
+	* include/mt/query/lemm.hh, include/mt/query/translation.hh,
+	src/translation.cc: fix building of the latest changes: singleton
+	improvements, using int16 and int32 
+
+2004-11-01 16:36  ievlev
+
+	* doc/README.rus, include/mt/query/lemm.hh,
+	include/mt/query/siktable.hh, include/mt/query/singleton.hh,
+	include/mt/query/translation.hh, src/Makefile, src/lemm.cc,
+	src/translation.cc, testsuite/Makefile, testsuite/test1.cc,
+	testsuite/test2.cc, testsuite/test3.cc, testsuite/test4.cc: first
+	steps to work with index 
+
+2004-10-22 14:22  ievlev
+
+	* include/mt/query/lang_info.hh, include/mt/query/lemm.hh,
+	include/mt/query/singleton.hh, src/Makefile, src/lang_info.cc,
+	src/lemm.cc, src/lgk.cc, src/siktable.cc, testsuite/Makefile: made
+	includes more portable 
+
+2004-10-21 12:07  ievlev
+
+	* src/Makefile: fix install 
+
+2004-10-21 11:52  ievlev
+
+	* AUTHORS, Makefile, COPYING, Makefile.common, README,
+	libmtquery.spec, include/mt/query/lang_info.hh,
+	include/mt/query/lemm.hh, include/mt/query/siktable.hh,
+	include/mt/query/config.hh, include/mt/query/lgk.hh,
+	include/mt/query/singleton.hh, src/Makefile, src/lemm.cc,
+	src/siktable.cc, doc/README.rus, src/lang_info.cc, src/lgk.cc,
+	testsuite/Makefile, testsuite/test1.cc, testsuite/test2.cc,
+	testsuite/test3.cc: 
+	 - imported 
+
+2004-10-21 11:52  ievlev
+
+	* AUTHORS, Makefile, COPYING, Makefile.common, README,
+	libmtquery.spec, include/mt/query/lang_info.hh,
+	include/mt/query/lemm.hh, include/mt/query/siktable.hh,
+	include/mt/query/config.hh, include/mt/query/lgk.hh,
+	include/mt/query/singleton.hh, src/Makefile, src/lemm.cc,
+	src/siktable.cc, doc/README.rus, src/lang_info.cc, src/lgk.cc,
+	testsuite/Makefile, testsuite/test1.cc, testsuite/test2.cc,
+	testsuite/test3.cc: Initial revision 
+

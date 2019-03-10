@@ -1,0 +1,82 @@
+2005-01-13 17:53  ievlev
+
+	* Makefile, src/Makefile: added DEBUG_LDFLAGS to remove rpath
+	during final build 
+
+2005-01-12 18:11  ievlev
+
+	* Makefile.common: 
+	 - Auto commit 
+
+2005-01-12 18:11  ievlev
+
+	* include/facet/alphabet.hh, include/facet/identification.hh,
+	src/alphabet.cc, src/typographic.cc, testsuite/test1.cc: now ready
+	for gcc3.4 and win32 
+
+2004-12-27 15:39  ievlev
+
+	* include/facet/alphabet.hh, include/facet/identification.hh,
+	include/facet/typographic.hh, vcnet/libfacet.suo,
+	vcnet/libfacet.vcproj: more right usage of dllimport/export, remove
+	.suo file 
+
+2004-12-06 15:20  ievlev
+
+	* include/facet/facet_dll.hh: added missing file 
+
+2004-12-06 15:20  ievlev
+
+	* README, include/facet/alphabet.hh,
+	include/facet/identification.hh, include/facet/typographic.hh,
+	src/Makefile, src/alphabet.cc, src/identification.cc,
+	testsuite/Makefile, testsuite/test1.cc, testsuite/russian/abc.rus,
+	vcnet/libfacet.sln, vcnet/libfacet.suo, vcnet/libfacet.vcproj,
+	vcnet/test.vcproj: added support for Win32 
+
+2004-11-11 16:37  ievlev
+
+	* src/alphabet.cc: move to new trim syntax 
+
+2004-11-09 10:41  ievlev
+
+	* include/facet/identification.hh, include/facet/typographic.hh,
+	src/typographic.cc, testsuite/test1.cc: little code improvements:
+	more const methods 
+
+2004-11-09 10:32  ievlev
+
+	* AUTHORS, testsuite/Makefile, testsuite/test1.cc: prepare to the
+	first alpha release 
+
+2004-10-22 13:25  ievlev
+
+	* libfacet.spec: update spec 
+
+2004-10-22 13:19  ievlev
+
+	* src/: Makefile, alphabet.cc, identification.cc, typographic.cc: 
+	made includes more portable 
+
+2004-10-11 16:24  ievlev
+
+	* src/alphabet.cc: switch to external path_separator 
+
+2004-10-06 14:42  ievlev
+
+	* AUTHORS, COPYING, Makefile, Makefile.common, README,
+	libfacet.spec, include/facet/alphabet.hh,
+	include/facet/identification.hh, include/facet/typographic.hh,
+	src/Makefile, src/alphabet.cc, src/identification.cc,
+	src/typographic.cc, testsuite/Makefile, testsuite/test1.cc: 
+	 - imported 
+
+2004-10-06 14:42  ievlev
+
+	* AUTHORS, COPYING, Makefile, Makefile.common, README,
+	libfacet.spec, include/facet/alphabet.hh,
+	include/facet/identification.hh, include/facet/typographic.hh,
+	src/Makefile, src/alphabet.cc, src/identification.cc,
+	src/typographic.cc, testsuite/Makefile, testsuite/test1.cc: Initial
+	revision 
+

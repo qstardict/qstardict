@@ -1,0 +1,10 @@
+Set of usefull functions we use in multitran library.
+
+Building
+--------
+To build this library your need following tools:
+Linux:
+    - Gnu Make (3.79.1 or higher)
+    - Cnu C++ Compiller (3.2.1 or higher)
+Windows:
+    - MS Visual Studio .NET 2003 or higher

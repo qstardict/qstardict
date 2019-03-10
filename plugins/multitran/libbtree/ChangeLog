@@ -1,0 +1,146 @@
+2005-01-12 18:06  ievlev
+
+	* Makefile.common: 
+	 - Auto commit 
+
+2005-01-12 18:05  ievlev
+
+	* include/btree/biterator.hh, include/btree/bmap.hh,
+	include/btree/brecset.hh, include/btree/btree.hh, src/biterator.cc,
+	src/btree.cc, testsuite/test1.cc, testsuite/test2.cc: now ready for
+	gcc3.4 and win32 
+
+2004-12-27 15:42  ievlev
+
+	* include/btree/biterator.hh, include/btree/brecset.hh,
+	include/btree/btraits.hh, include/btree/btree.hh, src/btree.cc,
+	vcnet/libbtree.suo, vcnet/libbtree.vcproj: more right usage of
+	dllimport/export, remove .suo file 
+
+2004-12-15 16:48  ievlev
+
+	* README, include/btree/bgreater.hh, include/btree/biterator.hh,
+	include/btree/brecset.hh, include/btree/btree.hh,
+	include/btree/btree_dll.hh, src/brecset.cc, src/btree.cc,
+	testsuite/test1.cc, testsuite/test2.cc, testsuite/english/end.eng,
+	testsuite/english/endnum.eng, testsuite/russian/end.rus,
+	vcnet/libbtree.sln, vcnet/libbtree.suo, vcnet/libbtree.vcproj,
+	vcnet/test1.vcproj, vcnet/test2.vcproj: ported to win32 
+
+2004-11-09 10:57  ievlev
+
+	* AUTHORS, doc/README.rus, include/btree/bdata.hh,
+	include/btree/bgreater.hh, include/btree/bmap.hh,
+	include/btree/btraits.hh, testsuite/test1.cc, testsuite/test2.cc,
+	testsuite/test3.cc, testsuite/test4.cc: prepare to the first alpha 
+
+2004-11-05 14:45  ievlev
+
+	* include/btree/btree.hh, src/btree.cc, testsuite/test1.cc: added
+	get method 
+
+2004-11-02 11:59  ievlev
+
+	* testsuite/test4.cc: added missing file 
+
+2004-11-02 11:56  ievlev
+
+	* doc/README.rus, include/btree/btree.hh, src/btree.cc,
+	testsuite/Makefile: added improved version of walk_if 
+
+2004-11-01 16:35  ievlev
+
+	* include/btree/bdata.hh, include/btree/bmap.hh,
+	include/btree/btree.hh, src/brecset.cc, testsuite/test1.cc,
+	testsuite/test2.cc, testsuite/test3.cc: improvements in singleton 
+
+2004-10-22 12:51  ievlev
+
+	* include/btree/btree.hh: translate comment into english 
+
+2004-10-22 12:49  ievlev
+
+	* include/btree/biterator.hh, include/btree/bmap.hh,
+	include/btree/brecset.hh, include/btree/btree.hh, src/Makefile,
+	src/biterator.cc, src/brecset.cc, src/btree.cc, testsuite/Makefile,
+	testsuite/test2.cc: made includes more portable 
+
+2004-10-12 15:26  ievlev
+
+	* include/btree/btree.hh: remove extra logic checking 
+
+2004-10-11 15:51  ievlev
+
+	* include/btree/bgreater.hh, include/btree/btree.hh, src/btree.cc,
+	testsuite/test2.cc, testsuite/test3.cc: added support for
+	duplicates 
+
+2004-10-11 14:37  ievlev
+
+	* doc/README.rus, include/btree/bgreater.hh,
+	include/btree/biterator.hh, include/btree/bmap.hh,
+	include/btree/brecset.hh, include/btree/btree.hh, src/biterator.cc,
+	src/brecset.cc, src/btree.cc, testsuite/test1.cc: improve
+	searching, added ability to change comparison algo 
+
+2004-10-08 15:40  ievlev
+
+	* doc/README.rus, include/btree/bgreater.hh,
+	include/btree/biterator.hh, include/btree/bmap.hh,
+	include/btree/btree.hh, src/biterator.cc, src/btree.cc,
+	testsuite/test1.cc: first version of multiple key support 
+
+2004-10-07 12:50  ievlev
+
+	* include/btree/bgreater.hh, include/btree/bmap.hh,
+	include/btree/btree.hh, src/btree.cc, testsuite/test1.cc: made find
+	algo as a template 
+
+2004-10-06 11:13  ievlev
+
+	* README: added simple README file 
+
+2004-10-06 10:56  ievlev
+
+	* AUTHORS, COPYING, include/btree/bdata.hh,
+	include/btree/biterator.hh, include/btree/bmap.hh,
+	include/btree/brecset.hh, include/btree/btree.hh, src/biterator.cc,
+	src/brecset.cc, src/btree.cc, testsuite/test1.cc,
+	testsuite/test2.cc, testsuite/test3.cc: apply copyrights 
+
+2004-10-04 15:50  ievlev
+
+	* libbtree.spec: added sample rpm spec file 
+
+2004-10-04 13:15  ievlev
+
+	* src/Makefile: fix includes directory name 
+
+2004-10-04 13:12  ievlev
+
+	* src/Makefile: fix install 
+
+2004-10-04 13:04  ievlev
+
+	* Makefile: 
+	 - Auto commit 
+
+2004-10-04 13:00  ievlev
+
+	* Makefile, Makefile.common, doc/README.rus, src/Makefile,
+	src/biterator.cc, src/brecset.cc, testsuite/Makefile,
+	testsuite/test1.cc, testsuite/test2.cc, testsuite/test3.cc,
+	include/btree/bdata.hh, include/btree/biterator.hh,
+	include/btree/bmap.hh, include/btree/brecset.hh,
+	include/btree/btree.hh, src/btree.cc: 
+	 - imported 
+
+2004-10-04 13:00  ievlev
+
+	* Makefile, Makefile.common, doc/README.rus, src/Makefile,
+	src/biterator.cc, src/brecset.cc, testsuite/Makefile,
+	testsuite/test1.cc, testsuite/test2.cc, testsuite/test3.cc,
+	include/btree/bdata.hh, include/btree/biterator.hh,
+	include/btree/bmap.hh, include/btree/brecset.hh,
+	include/btree/btree.hh, src/btree.cc: Initial revision 
+

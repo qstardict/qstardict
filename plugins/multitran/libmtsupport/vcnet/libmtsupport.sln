@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmtsupport", "libmtsupport.vcproj", "{1B6F28EF-FE39-4739-ACFA-2F4A01811448}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test1", "test1.vcproj", "{DA9DCBA7-1840-4ABD-BBB5-4F11E9015978}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1B6F28EF-FE39-4739-ACFA-2F4A01811448} = {1B6F28EF-FE39-4739-ACFA-2F4A01811448}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{1B6F28EF-FE39-4739-ACFA-2F4A01811448}.Debug.ActiveCfg = Debug|Win32
+		{1B6F28EF-FE39-4739-ACFA-2F4A01811448}.Debug.Build.0 = Debug|Win32
+		{1B6F28EF-FE39-4739-ACFA-2F4A01811448}.Release.ActiveCfg = Release|Win32
+		{1B6F28EF-FE39-4739-ACFA-2F4A01811448}.Release.Build.0 = Release|Win32
+		{DA9DCBA7-1840-4ABD-BBB5-4F11E9015978}.Debug.ActiveCfg = Debug|Win32
+		{DA9DCBA7-1840-4ABD-BBB5-4F11E9015978}.Debug.Build.0 = Debug|Win32
+		{DA9DCBA7-1840-4ABD-BBB5-4F11E9015978}.Release.ActiveCfg = Release|Win32
+		{DA9DCBA7-1840-4ABD-BBB5-4F11E9015978}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

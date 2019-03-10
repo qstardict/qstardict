@@ -1,0 +1,10 @@
+NAME = mtsupport
+VERSION = 0.0.1alpha2
+
+CC = gcc
+CXX = g++
+FLAGS = -g -O2 -Wall -W -Wold-style-cast -fno-common -pedantic -DNDEBUG
+
+#CC = icc
+#CXX = icc
+#FLAGS =  -O2 -Wall -axK -wd383 -wd981 -cxxlib-gcc
