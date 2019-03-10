@@ -1,3 +1,13 @@
+2005-01-24 14:26  ievlev
+
+	* Makefile.common: 
+	 - Auto commit 
+
+2005-01-24 14:24  ievlev
+
+	* include/mt/query/translation.hh, src/translation.cc: move from
+	mt-utils function for splitting phrase 
+
 2005-01-13 17:54  ievlev
 
 	* Makefile: added DEBUG_LDFLAGS to remove rpath during final build 

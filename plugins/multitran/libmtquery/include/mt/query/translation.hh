@@ -24,6 +24,8 @@ namespace mt
     typedef std::vector<lemm> lemm_phrase;//phrase after lemmatization
     typedef std::vector<article> article_list;//phrase after lemmatization
 
+    void fill_phrase(phrase&,const std::string&,mt::lang_code);
+
     struct article_set 
     { /**< set of articles for the word */
 	article_set(lang_code langin,lang_code langout):

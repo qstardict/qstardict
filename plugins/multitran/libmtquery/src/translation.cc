@@ -223,3 +223,25 @@ translation::translation(const phrase& input,lang_code langin,lang_code langout,
 		art_sets_.push_back(as);
     }
 }
+
+void mt::fill_phrase(phrase& ph,const std::string& text,mt::lang_code from)
+{
+    std::string::const_iterator pos = text.begin();
+    while(true)
+    {
+	//find first letter
+	std::string::const_iterator pos1 = std::find_if(pos,
+	                            		  text.end(),
+				    		  std::bind1st(std::ptr_fun(&mt::test_ch),from));
+	if (pos1 == text.end()) break;
+
+	//find first non-letter
+	std::string::const_iterator pos2 = std::find_if(pos1,
+	                            		  text.end(),
+				    		  std::not1(std::bind1st(std::ptr_fun(&mt::test_ch),from)));
+
+	ph.push_back(std::string(pos1,pos2));
+
+	pos = pos2;
+    }
+}
