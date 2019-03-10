@@ -30,12 +30,15 @@
 class Multitran: public QObject, public QStarDict::BasePlugin, public QStarDict::DictPlugin, public QStarDict::ConfigurablePlugin
 {
     Q_OBJECT
-    Q_INTERFACES(QStarDict::DictPlugin)
-    Q_PLUGIN_METADATA(IID "org.qstardict.DictPlugin/1.0" FILE "multitran.json")
+    Q_INTERFACES(QStarDict::BasePlugin QStarDict::DictPlugin QStarDict::ConfigurablePlugin)
+    Q_PLUGIN_METADATA(IID "org.qstardict.MultitranPlugin/1.0" FILE "multitran.json")
 
     public:
         Multitran(QObject *parent = 0);
         ~Multitran();
+
+        Features features() const
+        { return Features(/*SearchSimilar | SettingsDialog*/); }
 
         QStringList availableDicts() const;
         QStringList loadedDicts() const {return QStringList("Multitran");}//{ return m_loadedDicts.keys(); }
