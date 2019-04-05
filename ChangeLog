@@ -10,7 +10,7 @@
 * Version 0.03
 	- fix bug when build fails on x86_64
 	- fix categories in .desktop file
-	- add option "Show pop up only if modifier pressed" in settings dialog
+	- add option "Show pop up only if modifier is pressed" in settings dialog
 	- improve selection scanning
 	- fix bug with closing window when it must hide
 	- setting Qt 4.2 compitibility

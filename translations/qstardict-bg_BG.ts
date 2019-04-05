@@ -353,7 +353,7 @@ p, li { white-space: pre-wrap; }
         <translation>секунди</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>Покажи, само ако модификатора е натиснат</translation>
     </message>
     <message>

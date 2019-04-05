@@ -481,7 +481,7 @@ p, li { white-space: pre-wrap; }
         <translation>sec</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>Afficher seulement si la touche suivante est enfoncée</translation>
     </message>
     <message>

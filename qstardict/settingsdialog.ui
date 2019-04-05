@@ -122,7 +122,7 @@
                 <bool>true</bool>
                </property>
                <property name="text">
-                <string>Only if modifier pressed</string>
+                <string>Only if modifier is pressed</string>
                </property>
                <property name="checked">
                 <bool>false</bool>
@@ -420,7 +420,7 @@
                 <bool>true</bool>
                </property>
                <property name="text">
-                <string>Show only if modifier pressed</string>
+                <string>Show only if modifier is pressed</string>
                </property>
                <property name="checked">
                 <bool>true</bool>

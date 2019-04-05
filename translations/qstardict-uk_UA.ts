@@ -465,7 +465,7 @@ p, li { white-space: pre-wrap; }
         <translation>сек</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>Показувати тiльки якщо натиснута клавiша-модифiкатор</translation>
     </message>
     <message>

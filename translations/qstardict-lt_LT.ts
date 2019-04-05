@@ -485,7 +485,7 @@ p, li { white-space: pre-wrap; }
         <translation>s</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>Rodyti tik nuspaudus modifikavimo klavišą</translation>
     </message>
     <message>

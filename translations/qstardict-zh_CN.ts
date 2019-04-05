@@ -497,7 +497,7 @@ p, li { white-space: pre-wrap; }
         <translation> 秒</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>显示，仅当按下</translation>
     </message>
     <message>

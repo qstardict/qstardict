@@ -519,7 +519,7 @@
     </message>
     <message>
         <location filename="../settingsdialog.ui" line="396"/>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

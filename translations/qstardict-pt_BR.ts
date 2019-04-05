@@ -357,7 +357,7 @@ p, li { white-space: pre-wrap; }
         <translation>seg</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>Mostrar somente com modificador pressionando</translation>
     </message>
     <message>

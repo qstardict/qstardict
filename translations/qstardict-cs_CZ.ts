@@ -358,7 +358,7 @@ potom co kurzor opustí výběr</translation>
         <translation>sek</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>Zobrazit pouze při stistku klávesy</translation>
     </message>
     <message>

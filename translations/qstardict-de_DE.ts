@@ -485,7 +485,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sek.</translation>
     </message>
     <message>
-        <source>Show only if modifier pressed</source>
+        <source>Show only if modifier is pressed</source>
         <translation>Nur zeigen falls Taste gedrückt</translation>
     </message>
     <message>
