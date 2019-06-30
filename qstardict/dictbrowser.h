@@ -96,6 +96,7 @@ class DictBrowser: public QTextBrowser
 
         bool m_showLinks;
         int m_showLinksModifierKey;
+        bool m_highlightInCurrentTranslation;
 
         void invalidateHighlight();
 };

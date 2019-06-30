@@ -61,7 +61,8 @@ DictBrowser::DictBrowser(QWidget *parent)
       m_highlighted(false),
       m_highlightTimerId(0),
       m_showLinks(true),
-      m_showLinksModifierKey(0)
+      m_showLinksModifierKey(0),
+      m_highlightInCurrentTranslation(false)
 {
     document()->setDefaultStyleSheet(translationCSS);
     setOpenLinks(false);
@@ -72,6 +73,7 @@ DictBrowser::DictBrowser(QWidget *parent)
 
 QVariant DictBrowser::loadResource(int type, const QUrl &name)
 {
+    m_highlightInCurrentTranslation = false;
     if (type == QTextDocument::HtmlResource && name.scheme() == "qstardict")
     {
         QString str = name.toString(QUrl::RemoveScheme);
@@ -90,9 +92,7 @@ QVariant DictBrowser::loadResource(int type, const QUrl &name)
             return QVariant();
         return plugin->resource(type, name);
     }
-    auto result = QTextBrowser::loadResource(type, name);
-    invalidateHighlight();
-    return result;
+    return QTextBrowser::loadResource(type, name);
 }
 
 void DictBrowser::search(const QString & exp, QTextDocument::FindFlags options)
@@ -139,6 +139,11 @@ void DictBrowser::invalidateHighlight()
         killTimer(m_highlightTimerId);
         m_highlightTimerId = 0;
         m_highlightedWord.clear();
+    }
+    if (!m_highlightInCurrentTranslation)
+    {
+        QApplication::restoreOverrideCursor();
+        return;
     }
 
     QPoint mousePosition = mapFromGlobal(QCursor::pos());
@@ -192,7 +197,10 @@ QRect DictBrowser::wordRect(const QPoint &mousePosition)
 void DictBrowser::mouseMoveEvent(QMouseEvent *event)
 {
     if (areLinksActive())
+    {
+        m_highlightInCurrentTranslation = true;
         invalidateHighlight();
+    }
     QTextBrowser::mouseMoveEvent(event);
 }
 
@@ -234,8 +242,16 @@ void DictBrowser::timerEvent(QTimerEvent*)
 
 bool DictBrowser::eventFilter(QObject *, QEvent *event)
 {
-    if (event->type() == QEvent::KeyPress || event->type() == QEvent::KeyRelease)
+    if (event->type() == QEvent::KeyPress)
+    {
+        if (m_showLinksModifierKey)
+            m_highlightInCurrentTranslation = true;
         invalidateHighlight();
+    }
+    else if (event->type() == QEvent::KeyRelease)
+    {
+        invalidateHighlight();
+    }
     return false;
 }
 
