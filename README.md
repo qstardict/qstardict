@@ -1,5 +1,8 @@
-QStarDict is a StarDict clone written using Qt. The user interface
-is similar to StarDict.
+QStarDict, which stands for [quasi-star](https://en.wikipedia.org/wiki/Quasi-star) dictionary, is a free (as [in freedom](https://www.gnu.org/philosophy/free-sw.html)) dictionary application.
+
+### In action ###
+
+![Main Window](https://github.com/a-rodin/qstardict/wiki/images/qstardict-main.gif)
 
 ### Main features ###
 * Full support of StarDict dictionaries
