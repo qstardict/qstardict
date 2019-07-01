@@ -20,6 +20,9 @@
 #ifndef ANKI_H
 #define ANKI_H
 
+#include <optional>
+#include <functional>
+#include <QJsonObject>
 #include "../baseplugin.h"
 #include "../toolbarplugin.h"
 
@@ -49,23 +52,80 @@ class Anki: public QObject, public QStarDict::BasePlugin, public QStarDict::Tool
         QString deckName() const
         { return m_deckName; }
 
-        void setModelName(const QString &modelName)
-        { m_modelName = modelName; }
-        QString modelName() const
-        { return m_modelName; }
-
         void setAllowDuplicates(bool allowDuplicates)
         { m_allowDuplicates = allowDuplicates; }
         bool allowDuplicates() const
         { return m_allowDuplicates; }
 
+        void setBasicCard(bool basicCard)
+        { m_basicCard = basicCard; }
+        bool basicCard() const
+        { return m_basicCard; }
+
+        void setBasicCardDeckName(std::optional<QString> basicCardDeckName)
+        { m_basicCardDeckName = basicCardDeckName; }
+        std::optional<QString> basicCardDeckName() const
+        { return m_basicCardDeckName; }
+
+        void setReversedBasicCard(bool reversedBasicCard)
+        { m_reversedBasicCard = reversedBasicCard; }
+        bool reversedBasicCard() const
+        { return m_reversedBasicCard; }
+
+        void setReversedBasicCardDeckName(std::optional<QString> reversedBasicCardDeckName)
+        { m_reversedBasicCardDeckName = reversedBasicCardDeckName; }
+        std::optional<QString> reversedBasicCardDeckName() const
+        { return m_reversedBasicCardDeckName; }
+
+        void setTypeInCard(bool TypeInCard)
+        { m_typeInCard = TypeInCard; }
+        bool TypeInCard() const
+        { return m_typeInCard; }
+
+        void setTypeInCardDeckName(std::optional<QString> typeInCardDeckName)
+        { m_typeInCardDeckName = typeInCardDeckName; }
+        std::optional<QString> typeInCardDeckName() const
+        { return m_typeInCardDeckName; }
+
+        void setReversedTypeInCard(bool reversedTypeInCard)
+        { m_reversedTypeInCard = reversedTypeInCard; }
+        bool reversedTypeInCard() const
+        { return m_reversedTypeInCard; }
+
+        void setReversedTypeInCardDeckName(std::optional<QString> reversedTypeInCardDeckName)
+        { m_reversedTypeInCardDeckName = reversedTypeInCardDeckName; }
+        std::optional<QString> reversedTypeInCardDeckName() const
+        { return m_reversedTypeInCardDeckName; }
+
         void saveSettings();
 
     private:
+        struct Card {
+            QString modelName;
+            QString deckName;
+            QString front;
+            QString back;
+        };
+
         QString m_connectUrl;
         QString m_deckName;
-        QString m_modelName;
         bool m_allowDuplicates;
+
+        bool m_basicCard;
+        std::optional<QString> m_basicCardDeckName;
+        bool m_reversedBasicCard;
+        std::optional<QString> m_reversedBasicCardDeckName;
+        bool m_typeInCard;
+        std::optional<QString> m_typeInCardDeckName;
+        bool m_reversedTypeInCard;
+        std::optional<QString> m_reversedTypeInCardDeckName;
+
+        bool m_showError;
+        
+        void createDeck(const QString &deckName, std::function<void(bool)> callback);
+        void createCard(const Card &card, std::function<void(bool)> callback);
+        void sendRequest(const QJsonObject &requestObject, std::function<void(bool)> callback);
+        void showError(QWidget *parent);
 };
 
 #endif // ANKI_H

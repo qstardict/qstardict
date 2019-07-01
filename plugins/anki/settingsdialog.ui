@@ -6,81 +6,257 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>316</width>
-    <height>227</height>
+    <width>517</width>
+    <height>534</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Anki plugin settings</string>
   </property>
-  <layout class="QGridLayout">
-   <item row="1" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="connectUrlLabel">
-       <property name="text">
-        <string>Anki Connect URL</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="connectUrlEdit">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="deckNameLabel">
-       <property name="text">
-        <string>Deck name</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="deckNameEdit">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="modelNameLabel">
-       <property name="text">
-        <string>Model name</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="modelNameEdit">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="allowDuplicatesBox">
-       <property name="text">
-        <string>Allow duplicates</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+  <layout class="QVBoxLayout" name="verticalLayout_6">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Common options</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="connectUrlLabel">
+        <property name="text">
+         <string>Anki Connect URL</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLineEdit" name="connectUrlEdit">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Test</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="deckNameLabel">
+        <property name="text">
+         <string>Deck name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="deckNameEdit">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="allowDuplicatesBox">
+        <property name="text">
+         <string>Allow duplicates</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
-   <item row="2" column="0">
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Card types</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QCheckBox" name="basicCardBox">
+        <property name="text">
+         <string>Basic card (word → translation)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="basicCardDeckNameWidget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>-1</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="basicCardDeckNameBox">
+           <property name="text">
+            <string>With custom deck name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="basicCardDeckNameEdit">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="reversedBasicCardBox">
+        <property name="text">
+         <string>Reversed basic card (translation → word)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="reversedBasicCardDeckNameWidget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>-1</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="reversedBasicCardDeckNameBox">
+           <property name="text">
+            <string>With custom deck name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="reversedBasicCardDeckNameEdit">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="typeInCardBox">
+        <property name="text">
+         <string>Type in card (word → translation)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="typeInCardDeckNameWidget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>-1</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="typeInCardDeckNameBox">
+           <property name="text">
+            <string>With custom deck name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="typeInCardDeckNameEdit">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="reversedTypeInCardBox">
+        <property name="text">
+         <string>Reversed type in card (translation → word)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="reversedTypeInCardDeckNameWidget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="reversedTypeInCardDeckNameBox">
+           <property name="text">
+            <string>With custom deck name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="reversedTypeInCardDeckNameEdit">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>31</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -92,12 +268,6 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>connectUrlEdit</tabstop>
-  <tabstop>deckNameEdit</tabstop>
-  <tabstop>modelNameEdit</tabstop>
-  <tabstop>allowDuplicatesBox</tabstop>
- </tabstops>
  <resources>
   <include location="pixmaps/pixmaps.qrc"/>
  </resources>
@@ -109,8 +279,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>227</x>
-     <y>311</y>
+     <x>169</x>
+     <y>517</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -125,12 +295,140 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>295</x>
-     <y>317</y>
+     <x>169</x>
+     <y>517</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>basicCardDeckNameBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>basicCardDeckNameEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>167</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>283</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reversedBasicCardDeckNameBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>reversedBasicCardDeckNameEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>123</x>
+     <y>304</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>338</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>typeInCardDeckNameBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>typeInCardDeckNameEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>178</x>
+     <y>370</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>301</x>
+     <y>369</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reversedTypeInCardDeckNameBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>reversedTypeInCardDeckNameEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>198</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>279</x>
+     <y>428</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>basicCardBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>basicCardDeckNameWidget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>106</x>
+     <y>206</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>126</x>
+     <y>231</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reversedBasicCardBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>reversedBasicCardDeckNameWidget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>82</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>85</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>typeInCardBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>typeInCardDeckNameWidget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>332</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>105</x>
+     <y>353</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reversedTypeInCardBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>reversedTypeInCardDeckNameWidget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>153</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>156</x>
+     <y>413</y>
     </hint>
    </hints>
   </connection>

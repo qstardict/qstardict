@@ -29,6 +29,16 @@
 #include <QMessageBox>
 #include <QTextDocumentFragment>
 
+namespace {
+std::optional<QString> variantToOptional(const QVariant &variant)
+{
+    if (variant.isNull())
+        return std::nullopt;
+    else
+        return variant.toString();
+}
+}
+
 QIcon Anki::pluginIcon() const
 {
     return QIcon(":/icons/anki.png");
@@ -40,8 +50,15 @@ Anki::Anki(QObject *parent)
     QSettings settings("qstardict", "qstardict");
     m_connectUrl = settings.value("Anki/connectUrl", "http://127.0.0.1:8765").toString();
     m_deckName = settings.value("Anki/deckName", "Default").toString();
-    m_modelName = settings.value("Anki/modelName", "Basic").toString();
     m_allowDuplicates = settings.value("Anki/allowDuplicates", false).toBool();
+    m_basicCard = settings.value("Anki/basicCard", true).toBool();
+    m_basicCardDeckName = variantToOptional(settings.value("Anki/basicCardDeckName"));
+    m_reversedBasicCard = settings.value("Anki/reversedBasicCard", true).toBool();
+    m_reversedBasicCardDeckName = variantToOptional(settings.value("Anki/reversedBasicCardDeckName"));
+    m_typeInCard = settings.value("Anki/typeInCard", true).toBool();
+    m_typeInCardDeckName = variantToOptional(settings.value("Anki/typeInCardDeckName"));
+    m_reversedTypeInCard = settings.value("Anki/reversedTypeInCard", true).toBool();
+    m_reversedTypeInCardDeckName = variantToOptional(settings.value("Anki/reversedTypeInCardDeckName"));
 }
 
 Anki::~Anki()
@@ -49,7 +66,6 @@ Anki::~Anki()
     QSettings settings("qstardict", "qstardict");
     settings.setValue("Anki/connectUrl", m_connectUrl);
     settings.setValue("Anki/deckName", m_deckName);
-    settings.setValue("Anki/modelName", m_modelName);
     settings.setValue("Anki/allowDuplicates", m_allowDuplicates);
 }
 
@@ -61,6 +77,7 @@ QString Anki::toolbarText() const {
     return tr("Add word to &Anki");
 }
 
+
 void Anki::execute(QStarDict::DictWidget *dictWidget) {
     auto translatedWord = dictWidget->translatedWord();
     auto cursor = dictWidget->translationView()->textCursor();
@@ -71,16 +88,85 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
         translation = dictWidget->translationView()->document()->toHtml("UTF-8");
     }
 
+    QVector<Card> cards;
+    if (m_basicCard) {
+        cards.push_back({
+            "Basic",
+            m_basicCardDeckName ? *m_basicCardDeckName : m_deckName,
+            translatedWord,
+            translation
+        });
+    }
+    if (m_reversedBasicCard) {
+        cards.push_back({
+            "Basic",
+            m_reversedBasicCardDeckName ? *m_reversedBasicCardDeckName : m_deckName,
+            translation,
+            translatedWord
+        });
+    }
+    if (m_typeInCard) {
+        cards.push_back({
+            "Basic (type in the answer)",
+            m_typeInCardDeckName ? *m_typeInCardDeckName : m_deckName,
+            translatedWord,
+            translation
+        });
+    }
+    if (m_reversedTypeInCard) {
+        cards.push_back({
+            "Basic (type in the answer)",
+            m_reversedTypeInCardDeckName ? *m_reversedTypeInCardDeckName : m_deckName,
+            translation,
+            translatedWord
+        });
+    }
+
+    m_showError = true;
+    for (const auto& card: cards) {
+        createDeck(card.deckName, [=](bool success) {
+            if (!success)
+            {
+                showError(dictWidget);
+                return;
+            }
+            auto cursor = dictWidget->translationView()->textCursor();
+            if (cursor.hasSelection()) {
+                cursor.clearSelection();
+                dictWidget->translationView()->setTextCursor(cursor);
+            }
+            createCard(card, [=](bool success) {
+                if (!success)
+                    showError(dictWidget);
+            });
+        });
+    }
+}
+
+void Anki::createDeck(const QString &deckName, std::function<void(bool)> callback)
+{
+    QJsonObject createDeckObject;
+    createDeckObject.insert("action", QString("createDeck"));
+    createDeckObject.insert("version", 6);
+    QJsonObject createDeckParamsObject;
+    createDeckParamsObject.insert("deck", deckName);
+    createDeckObject.insert("params", createDeckParamsObject);
+
+    sendRequest(createDeckObject, callback);
+}
+
+void Anki::createCard(const Card &card, std::function<void(bool)> callback)
+{
     QJsonObject requestObject;
     requestObject.insert("action", QString("addNote"));
     requestObject.insert("version", 6);
     QJsonObject paramsObject;
     QJsonObject noteObject;
-    noteObject.insert("deckName", m_deckName);
-    noteObject.insert("modelName", m_modelName);
+    noteObject.insert("deckName", card.deckName);
+    noteObject.insert("modelName", card.modelName);
     QJsonObject fieldsObject;
-    fieldsObject.insert("Front", translatedWord);
-    fieldsObject.insert("Back", translation);
+    fieldsObject.insert("Front", card.front);
+    fieldsObject.insert("Back", card.back);
     noteObject.insert("fields", fieldsObject);
     QJsonObject optionsObject;
     optionsObject.insert("allowDuplicate", m_allowDuplicates);
@@ -90,6 +176,11 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
     paramsObject.insert("note", noteObject);
     requestObject.insert("params", paramsObject);
 
+    sendRequest(requestObject, callback);
+}
+
+void Anki::sendRequest(const QJsonObject &requestObject, std::function<void(bool)> callback)
+{
     QJsonDocument requestDocument;
     requestDocument.setObject(requestObject);
 
@@ -97,27 +188,28 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
     QNetworkRequest request(m_connectUrl);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
-    connect(networkAccessManager, &QNetworkAccessManager::finished,
-            [=](QNetworkReply *reply) {
-            if (reply->error() == QNetworkReply::NoError) {
-                auto cursor = dictWidget->translationView()->textCursor();
-                if (cursor.hasSelection()) {
-                    cursor.clearSelection();
-                    dictWidget->translationView()->setTextCursor(cursor);
-                }
-            } else {
-                QMessageBox::critical(dictWidget, tr("Anki error"),
-                        tr("Unable to add the word to Anki: network error. <br>" \
-                           "Check if Anki is running and " \
-                           "<a href=\"https://ankiweb.net/shared/info/2055492159\">AnkiConnect</a> " \
-                           "add-on is installed to Anki. You probably would like to also install " \
-                           "<a href=\"https://ankiweb.net/shared/info/85158043\">Minimize to tray</a> "\
-                           "add-on to Anki."));
-            }
-            networkAccessManager->deleteLater();
+    connect(networkAccessManager, &QNetworkAccessManager::finished, [=](QNetworkReply *reply) {
+        callback(reply->error() == QNetworkReply::NoError);
+        networkAccessManager->deleteLater();
     });
 
     networkAccessManager->post(request, requestDocument.toJson());
+}
+
+void Anki::showError(QWidget *parent)
+{
+    if (!m_showError)
+        return;
+    m_showError = false;
+    QMessageBox::critical(
+        parent,
+        tr("Anki error"),
+        tr("Unable to add the word to Anki: network error. <br>" \
+           "Check if Anki is running and " \
+           "<a href=\"https://ankiweb.net/shared/info/2055492159\">AnkiConnect</a> " \
+           "add-on is installed to Anki. You probably would like to also install " \
+           "<a href=\"https://ankiweb.net/shared/info/85158043\">Minimize to tray</a> "\
+           "add-on to Anki."));
 }
 
 int Anki::execSettingsDialog(QWidget *parent)
