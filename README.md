@@ -2,7 +2,7 @@ QStarDict, which stands for [quasi-star](https://en.wikipedia.org/wiki/Quasi-sta
 
 ###
 <p align="center">
-<img src="https://github.com/a-rodin/qstardict/wiki/images/qstardict-main.gif" width="742" alt="Main Window">
+<img src="https://github.com/a-rodin/qstardict/wiki/images/qstardict-main.gif" width="742" height="533" alt="Main Window">
 </p>
 
 ### Main features ###
