@@ -1,7 +1,5 @@
 QStarDict, which stands for [quasi-star](https://en.wikipedia.org/wiki/Quasi-star) dictionary, is a free (as [in freedom](https://www.gnu.org/philosophy/free-sw.html)) dictionary application.
 
-### In action ###
-
 <p align="center">
 <img src="https://github.com/a-rodin/qstardict/wiki/images/qstardict-main.gif" width="742" alt="Main Window">
 </p>
