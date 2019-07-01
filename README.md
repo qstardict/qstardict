@@ -2,7 +2,9 @@ QStarDict, which stands for [quasi-star](https://en.wikipedia.org/wiki/Quasi-sta
 
 ### In action ###
 
-![Main Window](https://github.com/a-rodin/qstardict/wiki/images/qstardict-main.gif)
+<center>
+<img src="https://github.com/a-rodin/qstardict/wiki/images/qstardict-main.gif" width="742" alt="Main Window">
+</center>
 
 ### Main features ###
 * Full support of StarDict dictionaries
