@@ -1,11 +1,13 @@
 QStarDict, which stands for [quasi-star](https://en.wikipedia.org/wiki/Quasi-star) dictionary, is a free (as [in freedom](https://www.gnu.org/philosophy/free-sw.html)) dictionary application.
 
-### Main Window
-
-The main window of QStarDict presents interface for looking up 
-
 <p align="center">
 <img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-main.gif" width="742" height="533" alt="Main Window">
+</p>
+
+### Look up words from any application
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-popup.gif" width="738" height="532" alt="Popup Window">
 </p>
 
 It can be hidden in system tray
