@@ -10,7 +10,7 @@ QStarDict not only finds words as soon as they are typed, but also shows _fuzzy 
 
 ### Look up words from any application
 
-When you encounter a word that you want to look up in other applications, it is not necessary to switch windows and type the word in QStarDict. Instead, it is possible to just select the word and see the translation right away.
+When you encounter a word that you want to look up in other applications, it is not necessary to switch windows and type the word to QStarDict search bar. Instead, it is possible to just select the word and see the translation right away.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-popup.gif" width="738" height="532" alt="Popup Window">
