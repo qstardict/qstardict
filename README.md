@@ -19,7 +19,7 @@ When you encounter a word that you want to look up in other applications, it is 
 
 ### Hide to notification area
 
-To keep QStarDict always watching with the closed main window, it is possible to hide to the notification area.
+To keep QStarDict always watching with the closed main window, it is possible to hide to it the notification area.
 
 <p align="center">
 <img alt="system tray" src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-tray.png" width="143" height="31">
