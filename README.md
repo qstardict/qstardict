@@ -2,7 +2,7 @@ QStarDict, which stands for [quasi-star](https://en.wikipedia.org/wiki/Quasi-sta
 
 ### Fuzzy search, cross-links, and history navigation
 
-QStarDict not only finds words as soon as they typed, but also shows _fuzzy matches_ for them. It helps to identify similar words or correct typos. All articles are automatically _cross-linked_, so that click on a word in any article opens the corresponding article if it exists. With _history navigation_ buttons it is easy to move back and forth between articles.
+QStarDict not only finds words as soon as they are typed, but also shows _fuzzy matches_ for them. It helps to identify similar words or correct typos. All articles are automatically _cross-linked_, so that click on a word in any article opens the corresponding article if it exists. With _history navigation_ buttons it is easy to move back and forth between articles.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-main.gif" width="742" height="533" alt="Main Window">
