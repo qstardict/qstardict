@@ -11,7 +11,7 @@ QStarDict not only finds words as soon as they are typed, but also shows _fuzzy 
 
 ### Hide to notification area
 
-To keep QStarDict always watching with the closed main window, it is possible to hide to it the notification area.
+To keep QStarDict always watching with the closed main window, it is possible to hide it to the notification area.
 
 <p align="center">
 <img alt="system tray" src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-tray.png" width="143" height="31">
@@ -22,7 +22,7 @@ To keep QStarDict always watching with the closed main window, it is possible to
 When you encounter a word that you want to look up in other applications, it is not necessary to switch windows and type the word to QStarDict search bar. Instead, it is possible to just select the word and see the article right away.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-popup.gif" width="738" height="532" alt="Popup Window">
+<img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-popup.gif" width="742" height="533" alt="Popup Window">
 </p>
 
 ### Add words to Anki
