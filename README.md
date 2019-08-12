@@ -26,18 +26,10 @@ When you encounter a word that you want to look up in other applications, it is 
 </p>
 
 ### Add words to Anki
+QStarDict has integration with [Anki](https://apps.ankiweb.net), which allows to create cards from dictionary articles.
 
-### Extend
-
-### Main features ###
-* Full support of StarDict dictionaries
-* Working in system tray
-* Scanning mouse selection and showing popup window with translation of the
-  selected word
-* Translations reformatting
-* Pronouncing translated word
-* Plugins support
-* KDE 4 plasmoid
+### Extend with plugins
+If you want to add new dictionary format or custom toolbar action to QStarDict, it can be done without modifying the core by [writing a plugin](https://github.com/a-rodin/qstardict/wiki/How-to-write-a-QStarDict-plugin).
 
 ### Installation ###
 QStarDict is available in Ubuntu, Debian and other distros repositories. 
