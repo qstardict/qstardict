@@ -1,5 +1,6 @@
 **QStarDict**, which stands for [quasi-star](https://en.wikipedia.org/wiki/Quasi-star) dictionary, is a free (as [in freedom](https://www.gnu.org/philosophy/free-sw.html)) dictionary application. It is aimed primarily, but not exclusively, at those who learn foreign languages.
 
+[![Build Status](https://travis-ci.org/a-rodin/qstardict.svg?branch=master)](https://travis-ci.org/a-rodin/qstardict)
 ## Features
 ### Fuzzy search, cross-links, and history navigation
 
