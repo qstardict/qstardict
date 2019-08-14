@@ -79,7 +79,7 @@ class Anki: public QObject, public QStarDict::BasePlugin, public QStarDict::Tool
 
         void setTypeInCard(bool TypeInCard)
         { m_typeInCard = TypeInCard; }
-        bool TypeInCard() const
+        bool typeInCard() const
         { return m_typeInCard; }
 
         void setTypeInCardDeckName(std::optional<QString> typeInCardDeckName)

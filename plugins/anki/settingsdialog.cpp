@@ -47,18 +47,21 @@ SettingsDialog::SettingsDialog(Anki *plugin, QWidget *parent)
     basicCardDeckNameWidget->setEnabled(basicCardBox->isChecked());
     basicCardDeckNameEdit->setEnabled(basicCardDeckNameBox->isChecked());
 
+    reversedBasicCardBox->setChecked(m_plugin->reversedBasicCard());
     reversedBasicCardDeckNameWidget->setEnabled(reversedBasicCardBox->isChecked());
     reversedBasicCardDeckNameBox->setChecked(m_plugin->reversedBasicCardDeckName().has_value());
-    if (m_plugin->reversedBasicCardDeckName())
+    if (m_plugin->reversedBasicCardDeckName().has_value())
         reversedBasicCardDeckNameEdit->setText(*m_plugin->reversedBasicCardDeckName());
     reversedBasicCardDeckNameEdit->setEnabled(reversedBasicCardDeckNameBox->isChecked());
 
+    typeInCardBox->setChecked(m_plugin->typeInCard());
     typeInCardDeckNameWidget->setEnabled(typeInCardBox->isChecked());
     typeInCardDeckNameBox->setChecked(m_plugin->typeInCardDeckName().has_value());
     if (m_plugin->typeInCardDeckName())
         typeInCardDeckNameEdit->setText(*m_plugin->typeInCardDeckName());
     typeInCardDeckNameEdit->setEnabled(typeInCardDeckNameBox->isChecked());
 
+    reversedTypeInCardBox->setChecked(m_plugin->reversedTypeInCard());
     reversedTypeInCardDeckNameWidget->setEnabled(reversedTypeInCardBox->isChecked());
     reversedTypeInCardDeckNameBox->setChecked(m_plugin->reversedTypeInCardDeckName().has_value());
     if (m_plugin->reversedTypeInCardDeckName())
@@ -130,7 +133,7 @@ void SettingsDialog::accept()
         deckNameEdit->setFocus();
         return;
     }
-    if (basicCardDeckNameBox->isChecked() && basicCardDeckNameEdit->text().isEmpty())
+    if (basicCardDeckNameEdit->isEnabled() && basicCardDeckNameEdit->text().isEmpty())
     {
         QMessageBox::critical(this,
                 tr("Validation error"),
@@ -138,7 +141,7 @@ void SettingsDialog::accept()
         basicCardDeckNameEdit->setFocus();
         return;
     }
-    if (reversedBasicCardDeckNameBox->isChecked() && reversedBasicCardDeckNameEdit->text().isEmpty())
+    if (reversedBasicCardDeckNameEdit->isEnabled() && reversedBasicCardDeckNameEdit->text().isEmpty())
     {
         QMessageBox::critical(this,
                 tr("Validation error"),
@@ -146,7 +149,7 @@ void SettingsDialog::accept()
         reversedBasicCardDeckNameEdit->setFocus();
         return;
     }
-    if (typeInCardDeckNameBox->isChecked() && typeInCardDeckNameEdit->text().isEmpty())
+    if (typeInCardDeckNameEdit->isEnabled() && typeInCardDeckNameEdit->text().isEmpty())
     {
         QMessageBox::critical(this,
                 tr("Validation error"),
@@ -154,7 +157,7 @@ void SettingsDialog::accept()
         typeInCardDeckNameEdit->setFocus();
         return;
     }
-    if (reversedTypeInCardDeckNameBox->isChecked() && reversedTypeInCardDeckNameEdit->text().isEmpty())
+    if (reversedTypeInCardDeckNameEdit->isEnabled() && reversedTypeInCardDeckNameEdit->text().isEmpty())
     {
         QMessageBox::critical(this,
                 tr("Validation error"),
@@ -175,7 +178,7 @@ void SettingsDialog::accept()
 
     m_plugin->setReversedBasicCard(reversedBasicCardBox->isChecked());
     if (reversedBasicCardDeckNameBox->isChecked())
-        m_plugin->setReversedBasicCardDeckName(basicCardDeckNameEdit->text());
+        m_plugin->setReversedBasicCardDeckName(reversedBasicCardDeckNameEdit->text());
     else
         m_plugin->setReversedBasicCardDeckName(std::nullopt);
 
@@ -187,7 +190,7 @@ void SettingsDialog::accept()
 
     m_plugin->setReversedTypeInCard(reversedTypeInCardBox->isChecked());
     if (reversedTypeInCardDeckNameBox->isChecked())
-        m_plugin->setReversedTypeInCardDeckName(typeInCardDeckNameEdit->text());
+        m_plugin->setReversedTypeInCardDeckName(reversedTypeInCardDeckNameEdit->text());
     else
         m_plugin->setReversedTypeInCardDeckName(std::nullopt);
 

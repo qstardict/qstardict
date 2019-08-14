@@ -29,13 +29,24 @@
 #include <QMessageBox>
 #include <QTextDocumentFragment>
 
-namespace {
-std::optional<QString> variantToOptional(const QVariant &variant)
+namespace
+{
+template <typename T>
+std::optional<T> toOptional(const QVariant &variant)
 {
     if (variant.isNull())
         return std::nullopt;
     else
-        return variant.toString();
+        return variant.value<T>();
+}
+
+template <typename T>
+QVariant toVariant(const std::optional<T> &optional)
+{
+    if (optional)
+        return QVariant(*optional);
+    else
+        return QVariant();
 }
 }
 
@@ -52,13 +63,13 @@ Anki::Anki(QObject *parent)
     m_deckName = settings.value("Anki/deckName", "Default").toString();
     m_allowDuplicates = settings.value("Anki/allowDuplicates", false).toBool();
     m_basicCard = settings.value("Anki/basicCard", true).toBool();
-    m_basicCardDeckName = variantToOptional(settings.value("Anki/basicCardDeckName"));
+    m_basicCardDeckName = toOptional<QString>(settings.value("Anki/basicCardDeckName"));
     m_reversedBasicCard = settings.value("Anki/reversedBasicCard", true).toBool();
-    m_reversedBasicCardDeckName = variantToOptional(settings.value("Anki/reversedBasicCardDeckName"));
+    m_reversedBasicCardDeckName = toOptional<QString>(settings.value("Anki/reversedBasicCardDeckName"));
     m_typeInCard = settings.value("Anki/typeInCard", true).toBool();
-    m_typeInCardDeckName = variantToOptional(settings.value("Anki/typeInCardDeckName"));
+    m_typeInCardDeckName = toOptional<QString>(settings.value("Anki/typeInCardDeckName"));
     m_reversedTypeInCard = settings.value("Anki/reversedTypeInCard", true).toBool();
-    m_reversedTypeInCardDeckName = variantToOptional(settings.value("Anki/reversedTypeInCardDeckName"));
+    m_reversedTypeInCardDeckName = toOptional<QString>(settings.value("Anki/reversedTypeInCardDeckName"));
 }
 
 Anki::~Anki()
@@ -67,6 +78,14 @@ Anki::~Anki()
     settings.setValue("Anki/connectUrl", m_connectUrl);
     settings.setValue("Anki/deckName", m_deckName);
     settings.setValue("Anki/allowDuplicates", m_allowDuplicates);
+    settings.setValue("Anki/basicCard", m_basicCard);
+    settings.setValue("Anki/basicCardDeckName", toVariant(m_basicCardDeckName));
+    settings.setValue("Anki/reversedBasicCard", m_reversedBasicCard);
+    settings.setValue("Anki/reversedBasicCardDeckName", toVariant(m_reversedBasicCardDeckName));
+    settings.setValue("Anki/typeInCard", m_typeInCard);
+    settings.setValue("Anki/typeInCardDeckName", toVariant(m_typeInCardDeckName));
+    settings.setValue("Anki/reversedTypeInCard", m_reversedTypeInCard);
+    settings.setValue("Anki/reversedTypeInCardDeckName", toVariant(m_reversedTypeInCardDeckName));
 }
 
 QIcon Anki::toolbarIcon() const {
