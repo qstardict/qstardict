@@ -33,7 +33,7 @@ CONFIG += \
     qt \
     warn_on
 
-CONFIG += c++17
+CONFIG += c++1z
 
 unix {
     CONFIG += link_pkgconfig
