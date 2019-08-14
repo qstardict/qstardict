@@ -35,6 +35,9 @@ class SettingsDialog: public QDialog, public Ui::SettingsDialog
 
     private:
         Anki *m_plugin;
+
+    private slots:
+        void testAnkiConnection();
 };
 
 #endif // SETTINGSDIALOG_H

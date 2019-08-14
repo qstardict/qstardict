@@ -17,7 +17,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Common options</string>
+      <string>General options</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -37,9 +37,15 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="connectTestButton">
           <property name="text">
            <string>Test</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
           </property>
          </widget>
         </item>

@@ -21,6 +21,11 @@
 
 #include <QSettings>
 #include <QMessageBox>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
 #include "../pluginserver.h"
 
 SettingsDialog::SettingsDialog(Anki *plugin, QWidget *parent)
@@ -29,6 +34,9 @@ SettingsDialog::SettingsDialog(Anki *plugin, QWidget *parent)
 {
     setupUi(this);
     connectUrlEdit->setText(m_plugin->connectUrl());
+    connect(connectTestButton, &QAbstractButton::clicked,
+            this, &SettingsDialog::testAnkiConnection);
+
     deckNameEdit->setText(m_plugin->deckName());
     allowDuplicatesBox->setChecked(m_plugin->allowDuplicates());
 
@@ -56,6 +64,59 @@ SettingsDialog::SettingsDialog(Anki *plugin, QWidget *parent)
     if (m_plugin->reversedTypeInCardDeckName())
         reversedTypeInCardDeckNameEdit->setText(*m_plugin->reversedTypeInCardDeckName());
     reversedTypeInCardDeckNameEdit->setEnabled(reversedTypeInCardDeckNameBox->isChecked());
+}
+
+void SettingsDialog::testAnkiConnection()
+{
+    if (!connectUrlEdit->isEnabled())
+        return;
+
+    connectTestButton->setChecked(true);
+    connectUrlEdit->setEnabled(false);
+
+    QJsonObject requestObject;
+    requestObject.insert("action", QString("version"));
+    requestObject.insert("version", 6);
+    QJsonDocument requestDocument;
+    requestDocument.setObject(requestObject);
+
+    auto networkAccessManager = new QNetworkAccessManager(this);
+    QNetworkRequest request(connectUrlEdit->text());
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    connect(networkAccessManager, &QNetworkAccessManager::finished, [=](QNetworkReply *reply) {
+        try
+        {
+            if (reply->error())
+                throw tr("Unable to connect to Anki. Check if Anki is running and the URL is correct.");
+
+            QJsonParseError error;
+            auto document = QJsonDocument::fromJson(reply->readAll(), &error);
+            if (error.error != QJsonParseError::NoError)
+                throw tr("Unable to parse Anki response: %1").arg(error.errorString());
+
+            if (!document.isObject())
+                throw tr("Returned by Anki JSON is not an object");
+
+            auto object = document.object();
+            auto errorValue = object.value("error");
+            if (errorValue != QJsonValue::Null && errorValue != QJsonValue::Undefined)
+                throw tr("Anki returned an error: %1").arg(errorValue.toString());
+
+            QMessageBox::information(this, tr("Connection succeded"),
+                    tr("The connection to Anki is working!"));
+        }
+        catch (QString message)
+        {
+            QMessageBox::warning(this, tr("Connection error"), message);
+        }
+
+        connectTestButton->setChecked(false);
+        connectUrlEdit->setEnabled(true);
+        connectUrlEdit->setFocus();
+        networkAccessManager->deleteLater();
+    });
+    networkAccessManager->post(request, requestDocument.toJson());
 }
 
 void SettingsDialog::accept()
