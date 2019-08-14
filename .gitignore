@@ -11,3 +11,10 @@ CMakeLists.txt.user
 *.pro.user
 build-kdeplasma-*
 *-meta.h
+.DS_Store
+.qmake*
+*.dmg
+*.log
+*.json
+*.dylib
+*moc_*
