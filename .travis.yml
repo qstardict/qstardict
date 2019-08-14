@@ -5,7 +5,7 @@ sudo: enabled
 os:
   - linux
   - osx
-dist: xenial
+dist: bionic
 osx_image: xcode10
 
 before_script:
