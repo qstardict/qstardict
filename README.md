@@ -12,7 +12,7 @@ QStarDict not only finds words as soon as they are typed, but also shows _fuzzy 
 
 ### Hide to notification area
 
-To keep QStarDict always watching with the closed main window, it is possible to hide it to the notification area.
+To keep QStarDict always running with closed main window, it is possible to hide it to the notification area.
 
 <p align="center">
 <img alt="system tray" src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-tray.png" width="143" height="31">
@@ -28,6 +28,10 @@ When you encounter a word that you want to look up in other applications, it is 
 
 ### Add words to Anki
 QStarDict has integration with [Anki](https://apps.ankiweb.net), which allows to create cards from dictionary articles.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-anki.gif" width="803" height="533" alt="QStarDict and Anki">
+</p>
 
 ### Extend with plugins
 If you want to add new dictionary format or custom toolbar action to QStarDict, it can be done without modifying the core by [writing a plugin](https://github.com/a-rodin/qstardict/wiki/How-to-write-a-QStarDict-plugin).
