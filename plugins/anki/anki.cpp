@@ -63,16 +63,24 @@ Anki::Anki(QObject *parent)
     m_deckName = settings.value("Anki/deckName", "Default").toString();
     m_allowDuplicates = settings.value("Anki/allowDuplicates", false).toBool();
     m_basicCard = settings.value("Anki/basicCard", true).toBool();
-    m_basicCardDeckName = toOptional<QString>(settings.value("Anki/basicCardDeckName"));
+    if (m_basicCard)
+        m_basicCardDeckName = toOptional<QString>(settings.value(
+                    "Anki/basicCardDeckName", "Basic"));
     m_reversedBasicCard = settings.value("Anki/reversedBasicCard", true).toBool();
-    m_reversedBasicCardDeckName = toOptional<QString>(settings.value("Anki/reversedBasicCardDeckName"));
+    if (m_reversedBasicCard)
+        m_reversedBasicCardDeckName = toOptional<QString>(settings.value(
+                    "Anki/reversedBasicCardDeckName", "Basic Reversed"));
     m_typeInCard = settings.value("Anki/typeInCard", true).toBool();
-    m_typeInCardDeckName = toOptional<QString>(settings.value("Anki/typeInCardDeckName"));
+    if (m_typeInCard)
+        m_typeInCardDeckName = toOptional<QString>(settings.value(
+                    "Anki/typeInCardDeckName", "Type In"));
     m_reversedTypeInCard = settings.value("Anki/reversedTypeInCard", true).toBool();
-    m_reversedTypeInCardDeckName = toOptional<QString>(settings.value("Anki/reversedTypeInCardDeckName"));
+    if (m_reversedTypeInCard)
+        m_reversedTypeInCardDeckName = toOptional<QString>(settings.value(
+                    "Anki/reversedTypeInCardDeckName", "Type In Reversed"));
 }
 
-Anki::~Anki()
+void Anki::saveSettings()
 {
     QSettings settings("qstardict", "qstardict");
     settings.setValue("Anki/connectUrl", m_connectUrl);
@@ -86,6 +94,11 @@ Anki::~Anki()
     settings.setValue("Anki/typeInCardDeckName", toVariant(m_typeInCardDeckName));
     settings.setValue("Anki/reversedTypeInCard", m_reversedTypeInCard);
     settings.setValue("Anki/reversedTypeInCardDeckName", toVariant(m_reversedTypeInCardDeckName));
+}
+
+Anki::~Anki()
+{
+    saveSettings();
 }
 
 QIcon Anki::toolbarIcon() const {
@@ -109,33 +122,45 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
 
     QVector<Card> cards;
     if (m_basicCard) {
+        auto deckName = m_deckName;
+        if (m_basicCardDeckName)
+            deckName += ": " + *m_basicCardDeckName;
         cards.push_back({
             "Basic",
-            m_basicCardDeckName ? *m_basicCardDeckName : m_deckName,
+            deckName,
             translatedWord,
             translation
         });
     }
     if (m_reversedBasicCard) {
+        auto deckName = m_deckName;
+        if (m_reversedBasicCardDeckName)
+            deckName += ": " + *m_reversedBasicCardDeckName;
         cards.push_back({
             "Basic",
-            m_reversedBasicCardDeckName ? *m_reversedBasicCardDeckName : m_deckName,
+            deckName,
             translation,
             translatedWord
         });
     }
     if (m_typeInCard) {
+        auto deckName = m_deckName;
+        if (m_typeInCardDeckName)
+            deckName += ": " + *m_typeInCardDeckName;
         cards.push_back({
             "Basic (type in the answer)",
-            m_typeInCardDeckName ? *m_typeInCardDeckName : m_deckName,
+            deckName,
             translatedWord,
             translation
         });
     }
     if (m_reversedTypeInCard) {
+        auto deckName = m_deckName;
+        if (m_reversedTypeInCardDeckName)
+            deckName += ": " + *m_reversedTypeInCardDeckName;
         cards.push_back({
             "Basic (type in the answer)",
-            m_reversedTypeInCardDeckName ? *m_reversedTypeInCardDeckName : m_deckName,
+            deckName,
             translation,
             translatedWord
         });

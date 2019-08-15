@@ -109,7 +109,7 @@
          <item>
           <widget class="QCheckBox" name="basicCardDeckNameBox">
            <property name="text">
-            <string>With custom deck name</string>
+            <string>Custom deck name suffix</string>
            </property>
           </widget>
          </item>
@@ -151,7 +151,7 @@
          <item>
           <widget class="QCheckBox" name="reversedBasicCardDeckNameBox">
            <property name="text">
-            <string>With custom deck name</string>
+            <string>Custom deck name suffix</string>
            </property>
           </widget>
          </item>
@@ -193,7 +193,7 @@
          <item>
           <widget class="QCheckBox" name="typeInCardDeckNameBox">
            <property name="text">
-            <string>With custom deck name</string>
+            <string>Custom deck name suffix</string>
            </property>
           </widget>
          </item>
@@ -232,7 +232,7 @@
          <item>
           <widget class="QCheckBox" name="reversedTypeInCardDeckNameBox">
            <property name="text">
-            <string>With custom deck name</string>
+            <string>Custom deck name suffix</string>
            </property>
           </widget>
          </item>

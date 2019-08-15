@@ -44,14 +44,18 @@ SettingsDialog::SettingsDialog(Anki *plugin, QWidget *parent)
     basicCardDeckNameBox->setChecked(m_plugin->basicCardDeckName().has_value());
     if (m_plugin->basicCardDeckName())
         basicCardDeckNameEdit->setText(*m_plugin->basicCardDeckName());
+    else
+        basicCardDeckNameEdit->setText("Basic");
     basicCardDeckNameWidget->setEnabled(basicCardBox->isChecked());
     basicCardDeckNameEdit->setEnabled(basicCardDeckNameBox->isChecked());
 
     reversedBasicCardBox->setChecked(m_plugin->reversedBasicCard());
     reversedBasicCardDeckNameWidget->setEnabled(reversedBasicCardBox->isChecked());
     reversedBasicCardDeckNameBox->setChecked(m_plugin->reversedBasicCardDeckName().has_value());
-    if (m_plugin->reversedBasicCardDeckName().has_value())
+    if (m_plugin->reversedBasicCardDeckName())
         reversedBasicCardDeckNameEdit->setText(*m_plugin->reversedBasicCardDeckName());
+    else
+        reversedBasicCardDeckNameEdit->setText("Basic Reversed");
     reversedBasicCardDeckNameEdit->setEnabled(reversedBasicCardDeckNameBox->isChecked());
 
     typeInCardBox->setChecked(m_plugin->typeInCard());
@@ -59,6 +63,8 @@ SettingsDialog::SettingsDialog(Anki *plugin, QWidget *parent)
     typeInCardDeckNameBox->setChecked(m_plugin->typeInCardDeckName().has_value());
     if (m_plugin->typeInCardDeckName())
         typeInCardDeckNameEdit->setText(*m_plugin->typeInCardDeckName());
+    else
+        typeInCardDeckNameEdit->setText("Type In");
     typeInCardDeckNameEdit->setEnabled(typeInCardDeckNameBox->isChecked());
 
     reversedTypeInCardBox->setChecked(m_plugin->reversedTypeInCard());
@@ -66,6 +72,8 @@ SettingsDialog::SettingsDialog(Anki *plugin, QWidget *parent)
     reversedTypeInCardDeckNameBox->setChecked(m_plugin->reversedTypeInCardDeckName().has_value());
     if (m_plugin->reversedTypeInCardDeckName())
         reversedTypeInCardDeckNameEdit->setText(*m_plugin->reversedTypeInCardDeckName());
+    else
+        reversedTypeInCardDeckNameEdit->setText("Type In Reversed");
     reversedTypeInCardDeckNameEdit->setEnabled(reversedTypeInCardDeckNameBox->isChecked());
 }
 
@@ -194,6 +202,7 @@ void SettingsDialog::accept()
     else
         m_plugin->setReversedTypeInCardDeckName(std::nullopt);
 
+    m_plugin->saveSettings();
     QDialog::accept();
 }
 
