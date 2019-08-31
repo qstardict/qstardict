@@ -1,6 +1,6 @@
 /*****************************************************************************
  * cssedit.cpp - QStarDict, a StarDict clone written with using Qt           *
- * Copyright (C) 2008 Alexander Rodin                                        *
+ * Copyright (C) 2008-2019 Alexander Rodin                                   *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -106,6 +106,7 @@ void CSSEdit::setCSS(const QString &css)
 
     updateElementCombo();
     updatePreview();
+    setCurrentElement(m_elementCombo->currentIndex());
 }
 
 void CSSEdit::setElementsNames(const QVector<QPair<QString, QString>> &aliases)
