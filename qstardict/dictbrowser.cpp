@@ -220,7 +220,9 @@ void DictBrowser::mouseReleaseEvent(QMouseEvent *event)
         QTextCursor cursor = cursorForPosition(event->pos());
         cursor.select(QTextCursor::WordUnderCursor);
         QString selection = cursor.selection().toPlainText().simplified();
-        if (m_dict->isTranslatable(selection) && selection != source().toString(QUrl::RemoveScheme))
+        if (m_dict->isTranslatable(selection) &&
+            selection != source().toString(QUrl::RemoveScheme) &&
+            !textCursor().hasSelection())
             setSource(selection);
     }
     QTextBrowser::mousePressEvent(event);
