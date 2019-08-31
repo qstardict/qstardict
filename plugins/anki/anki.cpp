@@ -117,7 +117,12 @@ void Anki::execute(QStarDict::DictWidget *dictWidget) {
     if (cursor.hasSelection()) {
         translation = cursor.selection().toHtml("UTF-8");
     } else {
-        translation = dictWidget->translationView()->document()->toHtml("UTF-8");
+        QMessageBox::warning(
+            dictWidget,
+            tr("Anki warning"),
+            tr("Please select part of the article with the translation that " \
+               "you want to add to Anki and try again."));
+        return;
     }
 
     QVector<Card> cards;
