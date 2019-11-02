@@ -131,3 +131,14 @@
 	- Update libqxt
 * Version 1.3
 	- Fix KDE integration plugin
+* Version 2.0
+	- add Anki plugin
+	- add support for HTML articles in StarDict dictionaries (Tom Hall)
+	- improve cross-article links
+	- add Greek translation (Giorgos Kostopoulos)
+	- update Chinese (zh_CN) translation (Boyuan Yang)
+	- add manual page
+	- improve support for HiDPI screens
+	- improve macOS support
+	- drop Qt4 support
+	- move "print" and "save to file" actions to plugins disabled by default
