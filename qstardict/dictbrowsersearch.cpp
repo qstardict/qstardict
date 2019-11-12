@@ -48,7 +48,7 @@ void DictBrowserSearch::searchResult(bool success)
     QPalette p;
     if (!success)
     {
-        p.setColor(QPalette::Base, Qt::red);
+        p.setColor(QPalette::Base, QColor(229, 152, 169));
     }
     searchEdit->setPalette(p);
 }
