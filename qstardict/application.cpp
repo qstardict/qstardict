@@ -52,11 +52,13 @@ bool dockClickHandler(id self,SEL _cmd,...);
 #ifdef Q_OS_MAC
 void setupDockClickHandler() {
     Class cls = objc_getClass("NSApplication");
-    objc_object *appInst = objc_msgSend((objc_object*)cls, sel_registerName("sharedApplication"));
+    typedef objc_object* (*SendType)(void*, SEL);
+    SendType casted_objc_msgSend = (SendType)(objc_msgSend);
+    objc_object *appInst = casted_objc_msgSend(cls, sel_registerName("sharedApplication"));
 
     if(appInst != NULL) {
-        objc_object* delegate = objc_msgSend(appInst, sel_registerName("delegate"));
-        Class delClass = (Class)objc_msgSend(delegate,  sel_registerName("class"));
+        objc_object* delegate = casted_objc_msgSend(appInst, sel_registerName("delegate"));
+        Class delClass = (Class)casted_objc_msgSend(delegate,  sel_registerName("class"));
         SEL shouldHandle = sel_registerName("applicationShouldHandleReopen:hasVisibleWindows:");
         if (class_getInstanceMethod(delClass, shouldHandle)) {
             if (class_replaceMethod(delClass, shouldHandle, (IMP)dockClickHandler, "B@:"))
