@@ -34,7 +34,11 @@ namespace
 {
 const QString translationCSS = 
     "body {\n"
+#ifdef Q_OS_MAC
+        "font-size: 13pt; font-family: Avenir; }\n"
+#else
         "font-size: 10pt; }\n"
+#endif
     "font.dict_name {\n"
         "color: blue;\n"
         "font-style: italic; }\n"
