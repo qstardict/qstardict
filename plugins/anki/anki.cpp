@@ -60,17 +60,17 @@ Anki::Anki(QObject *parent)
 {
     QSettings settings("qstardict", "qstardict");
     m_connectUrl = settings.value("Anki/connectUrl", "http://127.0.0.1:8765").toString();
-    m_deckName = settings.value("Anki/deckName", "Default").toString();
+    m_deckName = settings.value("Anki/deckName", "QStarDict").toString();
     m_allowDuplicates = settings.value("Anki/allowDuplicates", false).toBool();
     m_basicCard = settings.value("Anki/basicCard", true).toBool();
     if (m_basicCard)
         m_basicCardDeckName = toOptional<QString>(settings.value(
                     "Anki/basicCardDeckName", "Basic"));
-    m_reversedBasicCard = settings.value("Anki/reversedBasicCard", true).toBool();
+    m_reversedBasicCard = settings.value("Anki/reversedBasicCard", false).toBool();
     if (m_reversedBasicCard)
         m_reversedBasicCardDeckName = toOptional<QString>(settings.value(
                     "Anki/reversedBasicCardDeckName", "Basic Reversed"));
-    m_typeInCard = settings.value("Anki/typeInCard", true).toBool();
+    m_typeInCard = settings.value("Anki/typeInCard", false).toBool();
     if (m_typeInCard)
         m_typeInCardDeckName = toOptional<QString>(settings.value(
                     "Anki/typeInCardDeckName", "Type In"));
