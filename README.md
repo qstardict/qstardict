@@ -18,14 +18,6 @@ To keep QStarDict always running with closed main window, it is possible to hide
 <img alt="system tray" src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-tray.png" width="143" height="31">
 </p>
 
-### Look up words from any application
-
-When you encounter a word that you want to look up in other applications, it is not necessary to switch windows and type the word to QStarDict search bar. Instead, it is possible to just select the word and see the article right away.
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-popup.gif" width="742" height="533" alt="Popup Window">
-</p>
-
 ### Add words to Anki
 QStarDict has integration with [Anki](https://apps.ankiweb.net), which allows to create cards from dictionary articles.
 
@@ -33,13 +25,18 @@ QStarDict has integration with [Anki](https://apps.ankiweb.net), which allows to
 <img src="https://raw.githubusercontent.com/wiki/a-rodin/qstardict/images/qstardict-anki.gif" width="803" height="533" alt="QStarDict and Anki">
 </p>
 
+### Look up words from any application
+
+If QStarDict is running under X server, it is possible to look up works from other applications using a popup window which is shown for selected words in any application.
+
+
 ### Extend with plugins
 If you want to add new dictionary format or custom toolbar action to QStarDict, it can be done without modifying the core by [writing a plugin](https://github.com/a-rodin/qstardict/wiki/How-to-write-a-QStarDict-plugin).
 
 ### Installation ###
 QStarDict is available in Ubuntu, Debian and other distros repositories. 
 
-If you want to compile it yourself install Qt4 and GLib2 development files and run in the project's directory
+If you want to compile it yourself install Qt5 and GLib2 development files and run in the project's directory
 
     qmake INSTALL_PREFIX=<your install prefix, /usr by default>
     make
