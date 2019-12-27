@@ -19,6 +19,8 @@
 
 #include "application.h"
 
+#include <QCommandLineParser>
+
 #ifdef QSTARDICT_WITH_TRANSLATIONS
 #include <QLibraryInfo>
 #include <QLocale>
@@ -93,6 +95,7 @@ Application::Application(int &argc, char **argv)
 {
     setOrganizationName("qstardict");
     setApplicationName("qstardict");
+    setApplicationVersion(QSTARDICT_VERSION);
     setQuitOnLastWindowClosed(false);
 
 #ifdef QSTARDICT_WITH_TRANSLATIONS
@@ -110,6 +113,14 @@ Application::Application(int &argc, char **argv)
     installTranslator(m_qtTranslator);
 #endif // QSTARDICT_WITH_TRANSLATIONS
 
+    QCommandLineParser parser;
+    parser.setApplicationDescription(tr("A quasi-star international and intergalactical dictionary"));
+    parser.addHelpOption();
+    parser.addVersionOption();
+    QCommandLineOption minimizedOption({"m", "minimized"}, tr("Start with minimized main window."));
+    parser.addOption(minimizedOption);
+    parser.process(*this);
+
     m_pluginManager = new PluginManager;
     m_pluginManager->loadPlugins();
     m_dictCore = new DictCore;
@@ -120,7 +131,7 @@ Application::Application(int &argc, char **argv)
     m_trayIcon = new TrayIcon;
 #endif
     m_popupShortcut = new QxtGlobalShortcut;
-    m_mainWindow = new MainWindow;
+    m_mainWindow = new MainWindow(nullptr, parser.isSet(minimizedOption));
 #ifdef QSTARDICT_WITH_TRAY_ICON
 	m_trayIcon->setMainWindow(m_mainWindow);
 #endif

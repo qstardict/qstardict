@@ -44,10 +44,11 @@
 namespace QStarDict 
 {
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent, bool minimized) :
     QMainWindow(parent),
     m_instantSearch(false),
-    m_queryTimer(0)
+    m_queryTimer(0),
+    m_minimized(minimized)
 {
     setupUi(this);
     m_dict = 0;
@@ -108,7 +109,7 @@ void MainWindow::loadSettings()
     QSettings config;
     restoreGeometry(config.value("MainWindow/geometry", QByteArray()).toByteArray());
     restoreState(config.value("MainWindow/state", QByteArray()).toByteArray());
-    setVisible(config.value("MainWindow/visible", true).toBool());
+    setVisible(!m_minimized && config.value("MainWindow/visible", true).toBool());
     setQuitOnClose(config.value("MainWindow/quitOnClose", false).toBool());
     if (isHidden() && quitOnClose())
         show();
@@ -130,7 +131,9 @@ void MainWindow::saveSettings()
     QSettings config;
     config.setValue("MainWindow/geometry", saveGeometry());
     config.setValue("MainWindow/state", saveState());
-    config.setValue("MainWindow/visible", isVisible());
+    // if "minimized" option was explicitly set, we don't want to save the state for the next run
+    if (!m_minimized)
+        config.setValue("MainWindow/visible", isVisible());
     config.setValue("MainWindow/quitOnClose", quitOnClose());
     config.setValue("MainWindow/wordsListDock/floating", wordsListDock->isFloating());
     config.setValue("MainWindow/wordsListDock/geometry", wordsListDock->geometry());

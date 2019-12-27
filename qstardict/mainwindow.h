@@ -41,7 +41,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         /**
          * Create new MainWindow.
          */
-        MainWindow(QWidget *parent = 0);
+        MainWindow(QWidget *parent = 0, bool minimized = false);
         /**
          * Destructor.
          */
@@ -134,6 +134,7 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
         bool m_instantSearch;
         int m_queryTimer;
         bool m_quitOnClose;
+        bool m_minimized;
 };
 
 }
