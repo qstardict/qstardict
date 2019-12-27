@@ -13,7 +13,7 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install cppcheck qt5 glib; brew link --force qt5; fi
 
 script:
-  - cppcheck -j1 --quiet -f --error-exitcode=2 -iplugins/stardict .
+  - cppcheck -j1 --quiet -f --error-exitcode=2 -iplugins/stardict -iqxt .
   - qmake
   - make -j$(nproc || sysctl -n hw.ncpu)
   - sudo make install
